@@ -1,3 +1,7 @@
+# About project
+
+This is a training project in which we tried to implement the application for the organization of events
+
 # EventOrganization
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.1.
