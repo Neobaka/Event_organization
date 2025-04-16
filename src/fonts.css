@@ -1,0 +1,15 @@
+@font-face {
+  font-display: swap;
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 500;
+  src: url('/assets/fonts/RobotoMono-Medium.ttf') format('ttf');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 800;
+  src: url('/assets/fonts/RobotoMono-Bold.ttf') format('ttf');
+}
