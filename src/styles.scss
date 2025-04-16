@@ -1,1 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
+@import "fonts";
+
+
+:root {
+  --dark-color: #1E1E1E;
+  --dark-soft-color: #141414;
+  --dark-text-color: #7E7E7E;
+  --light-color: #ffffff;
+}
+
+body{
+  font-family: "Roboto Mono", sans-serif;
+  background-color: var(--dark-color);
+  color: var(--light-color);
+  padding: 0;
+  margin: 0;
+}
