@@ -3,11 +3,17 @@
     <div class="event-card-img-div">
       <img class="event-card-img" src="assets/img/event-card-img1.png" alt="Изображение мероприятия">
       <div class="event-card-img-subdiv">
-        <button class="event-card-img-cost-button">
-          от 1000 руб
-        </button>
+        <a style="text-decoration: none" href="#">
+          <button class="event-card-img-cost-button">
+            от 1000 руб
+          </button>
+        </a>
         <button class="event-card-img-button-like">
-          <img src="assets/svg/heart-icon.svg">
+          <svg id="iconHeartId" width="20px" height="20px" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+            <g id="SVGRepo_iconCarrier"> <path id="iconHeartPathId" d="M1.24264 8.24264L8 15L14.7574 8.24264C15.553 7.44699 16 6.36786 16 5.24264V5.05234C16 2.8143 14.1857 1 11.9477 1C10.7166 1 9.55233 1.55959 8.78331 2.52086L8 3.5L7.21669 2.52086C6.44767 1.55959 5.28338 1 4.05234 1C1.8143 1 0 2.8143 0 5.05234V5.24264C0 6.36786 0.44699 7.44699 1.24264 8.24264Z" fill="#D9D9D9"/> </g>
+          </svg>
         </button>
       </div>
     </div>
@@ -29,10 +35,21 @@
           21.03.2025
         </span>
         <span class="event-card-undertags-location">
-        <img src="assets/svg/location-icon.svg">
+        <img src="assets/svg/location-icon.svg" alt="Иконка местоположения">
           <a href="https://yandex.ru/maps/?text=музкомедия" target="_blank">Музкомедия</a>
         </span>
       </div>
     </div>
   </div>
 </div>
+
+<!--
+<script>
+  const icon = document.getElementById('iconHeartId');
+  const iconPath = document.getElementById('iconHeartPathId');
+
+  icon.addEventListener('click', () => {
+    iconPath.setAttribute('fill', 'red'); // Цвет при нажатии
+  });
+</script>
+-->
