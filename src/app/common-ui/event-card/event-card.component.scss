@@ -1,8 +1,14 @@
 .event-card-div{
-  border: 1px solid red;
   width: 310px;
   height: 280px;
   border-radius: 20px;
+  transition: 0.1s;
+
+}
+
+.event-card-div:hover{
+  box-shadow: 0 0 2px var(--light-stroke-color);
+  transition: 0.1s;
 }
 
 .event-card-img-div{
