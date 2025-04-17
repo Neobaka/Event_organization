@@ -1,0 +1,29 @@
+.event-card-block{
+  margin: 20px auto;
+  width: 80%;
+}
+
+a{
+  display: flex;
+  text-decoration: none;
+  color: var(--light-color);
+}
+
+.event-card-block-div{
+  display: flex;
+  gap: 30px;
+  justify-content: space-evenly;
+}
+
+.event-card-block-title{
+  padding-left: 20px;
+  font-weight: 500;
+  font-size: 40px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.event-card-block-title:hover{
+  text-decoration: underline;
+}
