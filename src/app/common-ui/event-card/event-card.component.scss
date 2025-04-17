@@ -69,6 +69,16 @@
   margin-right: 16px;
 }
 
+#iconHeartId path{
+  cursor: pointer;
+  transition: fill 0.3s;
+}
+
+#iconHeartId:hover path {
+  fill: #ff9baa;
+  transition: fill 0.3s;
+}
+
 .event-card-under-image-div{
   display: grid;
   grid-template-columns: 1fr 1fr;
