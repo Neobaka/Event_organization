@@ -1,0 +1,212 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body {
+  background-color: #121212;
+  color: white;
+}
+
+
+.login-btn {
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 20px;
+  padding: 6px 16px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.hero {
+  position: relative;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px;
+  color: white;
+}
+
+.hero::before {
+  content: "";
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://via.placeholder.com/1200x300');
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+
+.event-date {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 1rem;
+}
+
+.map-container {
+  padding: 20px;
+  background-color: #1a1a1a;
+  margin: 20px;
+  border-radius: 5px;
+}
+
+.map {
+  height: 200px;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #333;
+}
+
+.section {
+  padding: 20px;
+}
+
+h2 {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+.event-description {
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.read-more {
+  color: #3498db;
+  text-decoration: none;
+}
+
+.time-section {
+  border-top: 1px solid #333;
+  padding-top: 20px;
+}
+
+.time-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.time-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.time-label {
+  color: #888;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+.time-value {
+  font-size: 1rem;
+}
+
+.location-section {
+  border-top: 1px solid #333;
+  padding-top: 20px;
+}
+
+.map-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.location-footer {
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 0.9rem;
+}
+
+.location-footer div {
+  position: relative;
+  padding-right: 10px;
+}
+
+.location-footer div:not(:last-child)::after {
+  content: "•";
+  position: absolute;
+  right: 0;
+}
+
+.event-info-section {
+  border-top: 1px solid #333;
+  padding-top: 20px;
+}
+
+.info-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.info-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-label {
+  color: #888;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+.info-value {
+  font-size: 1rem;
+}
+
+.register-btn {
+  display: block;
+  width: 100%;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 15px;
+  text-align: center;
+  margin: 20px 0;
+  cursor: pointer;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .time-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
