@@ -1,11 +1,17 @@
 @import "fonts";
 
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
 
 :root {
   --dark-color: #1E1E1E;
   --dark-soft-color: #141414;
   --dark-text-color: #7E7E7E;
   --light-color: #ffffff;
+  --light-stroke-color: #DBE0E5;
 }
 
 body{

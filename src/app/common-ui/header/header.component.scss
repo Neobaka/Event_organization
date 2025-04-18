@@ -54,6 +54,10 @@
   color: var(--light-color);
 }
 
+.header-nav-ul-link:hover{
+  color: cornflowerblue;
+}
+
 .header-button-div{
   display: flex;
   height: 40px;
@@ -92,5 +96,6 @@
   width: 16px;
   padding-bottom: 2%;
 }
+
 
 
