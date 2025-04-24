@@ -13,7 +13,7 @@ import { ParentComponent } from './common-ui/app-parent/parent.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent, SearchBarComponent, EventCardBlockComponent, EventPageComponent, RegistrationModalComponent, ReactiveFormsModule, ParentComponent],
+  imports: [RouterOutlet, HeaderComponent, SearchBarComponent, EventCardBlockComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
