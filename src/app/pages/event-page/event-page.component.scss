@@ -21,45 +21,12 @@ body {
   font-weight: 500;
 }
 
-.hero {
-  position: relative;
-  height: 300px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 0 20px;
-  color: white;
-}
-
-.hero::before {
-  content: "";
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://via.placeholder.com/1200x300');
-  background-size: cover;
-  background-position: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: -1;
-}
-
-.hero h1 {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
-}
-
-.hero p {
-  font-size: 1.1rem;
-  margin-bottom: 20px;
-}
 
 .event-date {
   margin-top: 20px;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 15px;
   font-size: 1rem;
 }
@@ -197,6 +164,70 @@ h2 {
   cursor: pointer;
   font-weight: 500;
   text-decoration: none;
+}
+
+.hero-container {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  background-color: #1a1a1a; /* Темный фон как заглушка */
+  overflow: hidden;
+}
+
+.hero-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.7);
+}
+
+.hero-content {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  padding: 20px;
+  z-index: 10;
+}
+
+.hero-title {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+.hero-subtitle {
+  font-size: 18px;
+  margin-bottom: 15px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+.hero-details {
+  font-size: 16px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 28px;
+  }
+
+  .hero-subtitle {
+    font-size: 16px;
+  }
+
+  .hero-details {
+    font-size: 14px;
+  }
 }
 
 /* Responsive styles */

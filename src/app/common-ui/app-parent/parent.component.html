@@ -1,0 +1,5 @@
+<button class="button" (click)="openModal()">Открыть модальное окно</button>
+
+<app-registration-modal [isOpen]="isModalOpen"
+                        (close)="closeModal()">
+</app-registration-modal>

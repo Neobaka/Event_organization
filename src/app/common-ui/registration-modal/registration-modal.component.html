@@ -1,0 +1,86 @@
+<div class="modal-overlay" *ngIf="isOpen" (click)="onOverlayClick($event)">
+  <div class="modal">
+    <div class="modal-left">
+      <button class="close-button" (click)="closeModal()">×</button>
+
+      <div class="user-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+      </div>
+
+      <div class="tab-container">
+        <div class="tab tab-underline">Личный кабинет</div>
+      </div>
+
+      <div class="tab-container">
+        <div class="tab">Регистрация</div>
+      </div>
+
+      <form class="form-container" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+        <div class="form-row">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Имя" formControlName="firstName">
+            <div class="error-message" *ngIf="registrationForm.get('firstName')?.touched && registrationForm.get('firstName')?.errors?.['required']">
+              Введите имя
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Фамилия" formControlName="lastName">
+            <div class="error-message" *ngIf="registrationForm.get('lastName')?.touched && registrationForm.get('lastName')?.errors?.['required']">
+              Введите фамилию
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <input type="tel" class="form-control" placeholder="Номер телефона (+7)" formControlName="phone">
+          <div class="error-message" *ngIf="registrationForm.get('phone')?.touched && registrationForm.get('phone')?.errors?.['required']">
+            Введите номер телефона
+          </div>
+          <div class="error-message" *ngIf="registrationForm.get('phone')?.touched && registrationForm.get('phone')?.errors?.['pattern']">
+            Введите номер в формате +7XXXXXXXXXX
+          </div>
+        </div>
+
+        <div class="form-group">
+          <input type="email" class="form-control" placeholder="Адрес электронной почты" formControlName="email">
+          <div class="error-message" *ngIf="registrationForm.get('email')?.touched && registrationForm.get('email')?.errors?.['required']">
+            Введите email
+          </div>
+          <div class="error-message" *ngIf="registrationForm.get('email')?.touched && registrationForm.get('email')?.errors?.['email']">
+            Введите корректный email
+          </div>
+        </div>
+
+        <div class="form-group">
+          <input type="password" class="form-control" placeholder="Пароль" formControlName="password">
+          <div class="error-message" *ngIf="registrationForm.get('password')?.touched && registrationForm.get('password')?.errors?.['required']">
+            Введите пароль
+          </div>
+          <div class="error-message" *ngIf="registrationForm.get('password')?.touched && registrationForm.get('password')?.errors?.['minlength']">
+            Пароль должен содержать не менее 6 символов
+          </div>
+        </div>
+
+        <div class="form-group">
+          <input type="password" class="form-control" placeholder="Повторите пароль" formControlName="confirmPassword">
+          <div class="error-message" *ngIf="registrationForm.get('confirmPassword')?.touched && registrationForm.get('confirmPassword')?.errors?.['required']">
+            Повторите пароль
+          </div>
+          <div class="error-message" *ngIf="registrationForm.get('confirmPassword')?.touched && registrationForm.get('confirmPassword')?.errors?.['passwordMismatch']">
+            Пароли не совпадают
+          </div>
+        </div>
+
+        <button type="submit" class="register-btn">Зарегистрироваться</button>
+      </form>
+    </div>
+
+    <div class="modal-right">
+      <div class="localhosts-logo">LocalHosts</div>
+      <div class="logo-underline"></div>
+    </div>
+  </div>
+</div>
