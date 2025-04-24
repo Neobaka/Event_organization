@@ -7,8 +7,8 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\app.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\app.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\app.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\registration-modal\\registration-modal.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\common-ui\\registration-modal\\registration-modal.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\Source\\Repos\\Event_organization\\src\\app\\common-ui\\app-parent\\parent.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
@@ -19,20 +19,20 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\common-ui\\app-parent\\parent.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\registration-modal\\registration-modal.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\common-ui\\registration-modal\\registration-modal.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\registration-modal\\registration-modal.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\common-ui\\registration-modal\\registration-modal.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\registration-modal\\registration-modal.component.spec.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\common-ui\\registration-modal\\registration-modal.component.spec.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\registration-modal\\registration-modal.component.scss||{181FE41B-5A5D-479F-9F8F-BF665F4EBC2A}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\common-ui\\registration-modal\\registration-modal.component.scss||{181FE41B-5A5D-479F-9F8F-BF665F4EBC2A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\app.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\app.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\registration-modal\\registration-modal.component.spec.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\common-ui\\registration-modal\\registration-modal.component.spec.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\main.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
@@ -140,9 +140,9 @@
               "$type": "Document",
               "DocumentIndex": 3,
               "Title": "parent.component.html",
-              "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\Source\\Repos\\Event_organization\\src\\app\\common-ui\\app-parent\\parent.component.html",
+              "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\app-parent\\parent.component.html",
               "RelativeDocumentMoniker": "src\\app\\common-ui\\app-parent\\parent.component.html",
-              "ToolTip": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\Source\\Repos\\Event_organization\\src\\app\\common-ui\\app-parent\\parent.component.html",
+              "ToolTip": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\app-parent\\parent.component.html",
               "RelativeToolTip": "src\\app\\common-ui\\app-parent\\parent.component.html",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
@@ -153,18 +153,18 @@
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "parent.component.ts",
-              "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\Source\\Repos\\Event_organization\\src\\app\\common-ui\\app-parent\\parent.component.ts",
+              "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\app-parent\\parent.component.ts",
               "RelativeDocumentMoniker": "src\\app\\common-ui\\app-parent\\parent.component.ts",
-              "ToolTip": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\Source\\Repos\\Event_organization\\src\\app\\common-ui\\app-parent\\parent.component.ts",
+              "ToolTip": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\app-parent\\parent.component.ts",
               "RelativeToolTip": "src\\app\\common-ui\\app-parent\\parent.component.ts",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAeAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
               "WhenOpened": "2025-04-23T20:59:53.139Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "registration-modal.component.spec.ts",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\registration-modal\\registration-modal.component.spec.ts",
               "RelativeDocumentMoniker": "src\\app\\common-ui\\registration-modal\\registration-modal.component.spec.ts",
@@ -172,8 +172,7 @@
               "RelativeToolTip": "src\\app\\common-ui\\registration-modal\\registration-modal.component.spec.ts",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-04-23T20:43:32.033Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-23T20:43:32.033Z"
             },
             {
               "$type": "Document",
@@ -185,44 +184,43 @@
               "RelativeToolTip": "src\\app\\app.module.ts",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-04-23T20:39:41.473Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-23T20:39:41.473Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "registration-modal.component.ts",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\registration-modal\\registration-modal.component.ts",
               "RelativeDocumentMoniker": "src\\app\\common-ui\\registration-modal\\registration-modal.component.ts",
               "ToolTip": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\registration-modal\\registration-modal.component.ts",
               "RelativeToolTip": "src\\app\\common-ui\\registration-modal\\registration-modal.component.ts",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAA0AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
               "WhenOpened": "2025-04-23T20:27:04.126Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 5,
               "Title": "registration-modal.component.scss",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\registration-modal\\registration-modal.component.scss",
               "RelativeDocumentMoniker": "src\\app\\common-ui\\registration-modal\\registration-modal.component.scss",
               "ToolTip": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\registration-modal\\registration-modal.component.scss",
               "RelativeToolTip": "src\\app\\common-ui\\registration-modal\\registration-modal.component.scss",
-              "ViewState": "AgIAAIYAAAAAAAAAAAAuwJcAAAADAAAAAAAAAA==",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAAJcAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002663|",
               "WhenOpened": "2025-04-23T20:25:50.955Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 4,
               "Title": "registration-modal.component.html",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\registration-modal\\registration-modal.component.html",
               "RelativeDocumentMoniker": "src\\app\\common-ui\\registration-modal\\registration-modal.component.html",
               "ToolTip": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\registration-modal\\registration-modal.component.html",
               "RelativeToolTip": "src\\app\\common-ui\\registration-modal\\registration-modal.component.html",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABQAAAAjAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
               "WhenOpened": "2025-04-23T20:25:35.033Z",
               "EditorCaption": ""
@@ -249,8 +247,7 @@
               "RelativeToolTip": "src\\app\\pages\\event-page\\event-page.component.ts",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-04-17T08:18:42.546Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-17T08:18:42.546Z"
             },
             {
               "$type": "Document",
@@ -310,18 +307,17 @@
               "RelativeToolTip": "src\\app\\pages\\event-page\\event-page.component.html",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2025-04-17T08:14:10.834Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-17T08:14:10.834Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
               "Title": "app.component.ts",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\app.component.ts",
               "RelativeDocumentMoniker": "src\\app\\app.component.ts",
               "ToolTip": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\app.component.ts",
               "RelativeToolTip": "src\\app\\app.component.ts",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAcAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
               "WhenOpened": "2025-04-17T08:00:28.187Z",
               "EditorCaption": ""
@@ -336,8 +332,7 @@
               "RelativeToolTip": "src\\app\\app.config.ts",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-04-17T08:00:24.876Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-17T08:00:24.876Z"
             },
             {
               "$type": "Document",
@@ -397,8 +392,7 @@
               "RelativeToolTip": "src\\main.ts",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-04-17T07:58:45.596Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-17T07:58:45.596Z"
             },
             {
               "$type": "Document",
@@ -422,8 +416,7 @@
               "RelativeToolTip": "src\\app\\app.component.spec.ts",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-04-17T07:58:36.439Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-17T07:58:36.439Z"
             },
             {
               "$type": "Document",
@@ -435,8 +428,7 @@
               "RelativeToolTip": "src\\app\\app.component.scss",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002663|",
-              "WhenOpened": "2025-04-17T07:58:35.298Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-17T07:58:35.298Z"
             },
             {
               "$type": "Document",
