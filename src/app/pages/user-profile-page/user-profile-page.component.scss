@@ -1,0 +1,26 @@
+.user-profile-main-title{
+  background: none;
+  display: flex;
+  font-weight: 400;
+}
+.user-profile-div-back-button{
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 105px;
+  left: 3vw;
+}
+
+.user-profile-div{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: baseline;
+}
+
+.user-profile-div-title{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

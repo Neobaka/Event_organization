@@ -1,0 +1,66 @@
+<div class="user-profile-data-block-div">
+  <div>
+    <img class="user-profile-avatar-big-img" src="assets/img/sample.jpeg">
+  </div>
+  <div class="user-profile-data-block-input-divs">
+    <div class="user-profile-data-block-input-div">
+      <label>Ваш логин</label>
+      <input type="text" name="" id="username" placeholder="user1" readonly>
+    </div>
+    <div class="user-profile-data-block-input-div">
+      <label>Ваш пароль</label>
+      <input type="password" id="password" placeholder="********" readonly>
+    </div>
+    <button id="editBtn">Изменить данные</button>
+  </div>
+</div>
+
+<!--Модальное окно -->
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Изменить данные</h2>
+    <div class="user-profile-data-block-input-div">
+      <label for="newUsername">Логин:</label>
+      <input type="text" id="newUsername">
+    </div>
+    <div class="user-profile-data-block-input-div">
+      <label for="newPassword">Пароль:</label>
+      <input type="password" id="newPassword">
+    </div>
+    <button id="saveBtn">Сохранить</button>
+  </div>
+</div>
+
+<script>
+  const editBtn = document.getElementById("editBtn");
+  const modal = document.getElementById("myModal");
+  const closeBtn = document.getElementsByClassName("close")[0];
+  const saveBtn = document.getElementById("saveBtn");
+  const username = document.getElementById("username");
+  const password = document.getElementById("password");
+  const newUsername = document.getElementById("newUsername");
+  const newPassword = document.getElementById("newPassword");
+
+  editBtn.onclick = function() {
+    modal.style.display = "block";
+    newUsername.value = username.value;
+    newPassword.value = password.value;
+  }
+
+  closeBtn.onclick = function() {
+    modal.style.display = "none";
+  }
+
+  window.onclick = function(event) {
+    if (event.target === modal) {
+    modal.style.display = "none";
+    }
+  }
+
+  saveBtn.onclick = function() {
+    username.value = newUsername.value;
+    password.value = newPassword.value;
+    modal.style.display = "none";
+  }
+</script>
