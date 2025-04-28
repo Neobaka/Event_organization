@@ -1,0 +1,72 @@
+<body>
+<div class="all-content">
+<div class="hero-container">
+    <h1 class="hero-title">Регистрация мероприятия</h1>
+    <p class="hero-subtitle">Заполните необходимые поля</p>
+</div>
+
+<div class="hero-registration">
+    <p>Название мероприятия<p>
+    <input type="text" id="name"><br><br> 
+    <p>Слоган</p>
+    <input type="text" id="slog"><br><br> 
+</div>
+
+<section class="time-section section">
+    <h2>Дата и время</h2>
+    <div class="time-container">
+        <div class="time-block">
+        <span class="time-label">Начало</span>
+        <input type="datetime-local" id="start-date" name="start-date" placeholder="дд.мм.гггг 00:00">
+        </div>
+        <div class="time-block">
+        <span class="time-label">Конец</span>
+        <input type="datetime-local" id="end-date" name="end-date" placeholder="дд.мм.гггг 00:00">
+        </div>
+    </div>
+</section>
+
+<section class="description section">
+    <h2>Описание события</h2>
+    <textarea type="text" id="description" placeholder='Ежегодная культурная акция "Ночь музеев" — один из самых популярных событий Екатеринбурга. В эту ночь более 60 музеев, галерей и культурных площадок города работают в вечернее и ночное время, предлагая специальные выставки, экскурсии, перформансы и интерактивные программы. Центральная площадка включает Музей истории Екатеринбурга, Ельцин Центр, Музей изобразительных искусств и центр современного искусства "Главный проспект". Посетители могут приобрести единый билет для посещения нескольких локаций или выбрать отдельные площадки по своему вкусу.'></textarea><br><br> 
+</section>
+
+<section class="location-section section">
+    <h2>Локация</h2>
+    <div class="location-footer">
+    <p>Адрес</p>
+    <input type="text" id="adress"><br><br> 
+    <p>Название локации</p>
+    <input type="text" id="name_loc"><br><br> 
+    <p>Номер телефона</p>
+    <input type="text" id="phone"><br><br> 
+    <p>Метро</p>
+    <input type="text" id="metro"><br><br> 
+    </div>
+</section>
+
+<section class="photo section">
+    <h2>Фотография на заставку мероприятия</h2>
+    <div class="photo-content">
+    <img class="hero-image" src="assets/img/event-page.jpg" alt="Изображение мероприятия">
+        <button class="plus-button">
+            <span class="plus">+</span>
+            <span class="text">Заменить фото</span>
+        </button>
+    </div>
+</section>
+
+<section class="event-info-section section">
+    <h2>Информация об ивенте</h2>
+    <div class="info-container">
+        <p class="info-label">Организатор</p>
+        <input type="text" id="organization"><br><br> 
+        <p class="info-label">Веб-сайт</p>
+        <input type="text" id="web-site"><br><br> 
+    </div>
+</section>
+
+<a href="#" class="register-btn">Зарегистрировать мероприятие</a>
+</div>
+</body>
+

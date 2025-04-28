@@ -6,7 +6,7 @@ import { RegistrationModalComponent } from '../registration-modal/registration-m
   standalone: true, 
   imports: [RegistrationModalComponent],
   templateUrl: './parent.component.html',
-  styleUrls: ['./parent.component.scss']
+  styleUrls: ['./parent.component.scss'],
 })
 export class ParentComponent {
   isModalOpen = false;

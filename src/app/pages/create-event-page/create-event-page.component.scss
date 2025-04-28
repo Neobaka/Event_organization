@@ -1,0 +1,278 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+  
+body {
+  width: 100%;
+  background-color: #1E1E1E;
+  color: white;
+  padding: 0px 176px;
+}
+
+.all-content {
+  box-sizing: border-box;
+  display: block;
+  position: relative;
+  width: 100vw;
+  margin: 0 auto;
+}
+
+.event-date {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  font-size: 1rem;
+}
+
+.hero-registration {
+  margin-bottom: 70px;
+}
+
+.hero-registration p{
+  font-size: 22px;
+  font-weight: 300;
+}
+
+input[type="text"] {
+  border: none;
+  border-bottom: 1px solid #fff;
+  padding: 10px;
+  background-color: transparent;
+  font-size: 16px;
+  width: 925px;
+  color: #fff;
+  margin-bottom: 30px;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-bottom-color: #1A80E5;
+}
+
+textarea[id="description"] {
+  border: none;
+  border: 1px solid #fff;
+  padding: 10px;
+  background-color: transparent;
+  font-size: 16px;
+  width: 925px;
+  height: 227px;
+  color: #fff;
+  vertical-align: top;
+}
+textarea[id="description"]:focus {
+  outline: none;
+  border-color: #1A80E5;
+  vertical-align: top;
+}
+
+.event-info-section input[type="text"] {
+  width: 895px;
+}
+
+.location-section input[type="text"] {
+  width: 895px;
+}
+
+input[type="datetime-local"] {
+  border: none;
+  background-color: transparent;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 30px;
+}
+
+h2 {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+
+.time-section {
+  padding-top: 20px;
+  margin-bottom: 70px;
+}
+
+.time-container {
+  padding-left: 20px;
+  margin-top: 30px;
+  display: flex;
+  gap: 295px;
+}
+
+.time-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.time-label {
+  color: #888;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.time-value {
+  font-size: 1rem;
+}
+
+.description {
+  margin-bottom: 70px;
+}
+
+.description h2{
+  margin-bottom: 22px;
+}
+
+.photo {
+  margin-bottom: 70px;
+}
+
+.photo h2{
+  margin-bottom: 30px;
+}
+
+.photo-content {
+  display: flex;
+  gap: 30px;
+}
+
+.plus-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #1E1E1E;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 150px;
+  height: 100px;
+  border-radius: 20%;
+  transition: background-color 0.3s ease;
+}
+
+.plus-button .plus {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.plus-button:hover {
+  background-color: #333;
+}
+
+.location-section {
+  padding-top: 20px;
+  margin-bottom: 70px;
+}
+
+.location-section h2{
+  margin-bottom: 40px;
+}
+
+.location-footer {
+  margin-top: 15px;
+  padding-left: 32px;
+}
+
+.event-info-section {
+  padding-top: 20px;
+  margin-bottom: 70px;
+}
+
+.info-container {
+  margin-top: 40px;
+  padding-left: 30px;
+}
+
+.info-label {
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+.info-value {
+  font-size: 1rem;
+}
+
+.register-btn {
+  display: block;
+  width: 480px;
+  background-color: #3498db;
+  color: black;
+  border: none;
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+  margin: 20px 0;
+  cursor: pointer;
+  font-weight: 500;
+  text-decoration: none;
+  margin-left: 225px;
+}
+
+.register-btn:hover {
+  background-color: black;
+  color: #3498db;
+  border: 1px solid #3498db;
+}
+
+
+.hero-container {
+  width: 100%;
+  color: white;
+  margin-bottom: 112px;
+}
+
+.hero-image {
+  width: 152px;
+  height: 110px;
+}
+
+
+.hero-title {
+  margin-top: 137px;
+  font-family: Roboto Mono;
+  font-size: 48px;
+  line-height: 60px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.hero-subtitle {
+  font-size: 20px;
+  font-weight: 300;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 28px;
+  }
+
+  .hero-subtitle {
+    font-size: 16px;
+  }
+
+  .hero-details {
+    font-size: 14px;
+  }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .time-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+  
