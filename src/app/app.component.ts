@@ -7,13 +7,14 @@ import { EventPageComponent } from './pages/event-page/event-page.component';
 import { RegistrationModalComponent } from './common-ui/registration-modal/registration-modal.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ParentComponent } from './common-ui/app-parent/parent.component';
+import { LoginModalComponent } from './common-ui/login-modal/login-modal.component';
 
 
 
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent, SearchBarComponent, EventCardBlockComponent],
+  imports: [RouterOutlet, HeaderComponent, SearchBarComponent, EventCardBlockComponent, LoginModalComponent, ParentComponent, RegistrationModalComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

@@ -1,23 +1,36 @@
 import { Component } from '@angular/core';
 import { RegistrationModalComponent } from '../registration-modal/registration-modal.component';
+import { LoginModalComponent } from '../login-modal/login-modal.component';
 
 @Component({
   selector: 'app-parent',
   standalone: true, 
-  imports: [RegistrationModalComponent],
+  imports: [RegistrationModalComponent, LoginModalComponent],
   templateUrl: './parent.component.html',
   styleUrls: ['./parent.component.scss']
 })
 export class ParentComponent {
-  isModalOpen = false;
+  isLoginModalOpen = false;
+  isRegistrationModalOpen = false;
 
-  openModal(): void {
-    console.log('Модальное окро открыто');
-    this.isModalOpen = true;
+ 
+
+  openLoginModal(): void {
+    this.isLoginModalOpen = true;
+    this.isRegistrationModalOpen = false;
   }
 
-  closeModal(): void {
-    console.log('Модальное окно закрыто');
-    this.isModalOpen = false;
+  openRegistrationModal(): void {
+    this.isRegistrationModalOpen = true;
+    this.isLoginModalOpen = false;
+  }
+
+  closeModals(): void {
+    this.isLoginModalOpen = false;
+    this.isRegistrationModalOpen = false;
+  }
+
+  onForgotPassword(): void {
+    console.log('Забыл пароль');
   }
 }

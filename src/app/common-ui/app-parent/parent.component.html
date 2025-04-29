@@ -1,5 +1,12 @@
-<button class="button" (click)="openModal()">Открыть модальное окно</button>
+<button class="button" (click)="openLoginModal()">Войти</button>
+<button class="button" (click)="openRegistrationModal()">Регистрация</button>
 
-<app-registration-modal [isOpen]="isModalOpen"
-                        (close)="closeModal()">
+<app-login-modal [isOpen]="isLoginModalOpen"
+                 (close)="closeModals()"
+                 (forgotPassword)="onForgotPassword()"
+                 (register)="openRegistrationModal()">
+</app-login-modal>
+
+<app-registration-modal [isOpen]="isRegistrationModalOpen"
+                        (close)="closeModals()">
 </app-registration-modal>

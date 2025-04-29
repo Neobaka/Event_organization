@@ -2,13 +2,16 @@
   "ExpandedNodes": [
     "",
     "\\public",
+    "\\public\\assets",
+    "\\public\\assets\\img",
     "\\src",
     "\\src\\app",
     "\\src\\app\\common-ui",
-    "\\src\\app\\common-ui\\app-parent",
     "\\src\\app\\common-ui\\registration-modal",
-    "\\src\\app\\pages"
+    "\\src\\app\\pages",
+    "\\src\\app\\pages\\event-page",
+    "\\src\\app\\pages\\main-page"
   ],
-  "SelectedNode": "\\src\\app\\app.component.ts",
+  "SelectedNode": "\\src\\app\\common-ui\\registration-modal\\registration-modal.component.html",
   "PreviewInSolutionExplorer": false
 }
