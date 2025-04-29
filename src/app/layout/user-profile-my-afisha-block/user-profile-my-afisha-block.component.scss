@@ -24,18 +24,19 @@ h3{
   cursor: pointer;
   font-weight: 100;
   font-size: 16px;
+
+  &:hover{
+    transition: 0.2s;
+    background-color: lightgrey;
+  }
+
+  &.active {
+    transition: 0.2s;
+    background: var(--very-dark-color);
+    color: var(--light-color);
+  }
 }
 
-.user-profile-afisha-filter-btns:hover{
-  transition: 0.2s;
-  background-color: lightgrey;
-}
-
-.user-profile-afisha-filter-btns:active{
-  transition: 0.2s;
-  background: var(--very-dark-color);
-  color: var(--light-color);
-}
 
 .search-bar-search-div{
   width: 100%;
@@ -94,14 +95,4 @@ h3{
   gap: 40px;
 }
 
-.user-profile-afisha-cards-p1{
-  font-size: 32px;
-  font-weight: 300;
-  margin: 0;
-}
 
-.user-profile-afisha-cards-p2{
-  margin: 0;
-  font-size: 16px;
-  font-weight: 300;
-}
