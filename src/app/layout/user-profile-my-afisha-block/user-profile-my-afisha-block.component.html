@@ -2,9 +2,18 @@
   <div class="user-profile-afisha-filter-div">
     <h3>Моя афиша</h3>
     <div class="user-profile-afisha-filter-btn-div">
-      <button class="user-profile-afisha-filter-btns">Мои билеты</button>
-      <button class="user-profile-afisha-filter-btns">Хочу сходить</button>
-      <button class="user-profile-afisha-filter-btns">Любимые места</button>
+      <button
+        (click)="showUserPageFilterComponent('user-profile-my-tickets')"
+        [class.active]="isActive('user-profile-my-tickets')"
+        class="user-profile-afisha-filter-btns">Мои билеты</button>
+      <button
+        (click)="showUserPageFilterComponent('user-profile-planned-events')"
+        [class.active]="isActive('user-profile-planned-events')"
+        class="user-profile-afisha-filter-btns">Хочу сходить</button>
+      <button
+        (click)="showUserPageFilterComponent('user-profile-favorite-places')"
+        [class.active]="isActive('user-profile-favorite-places')"
+        class="user-profile-afisha-filter-btns">Любимые места</button>
     </div>
   </div>
   <div class="search-bar-search-div">
@@ -14,9 +23,17 @@
     </button>
   </div>
   <div class="user-profile-afisha-cards-div">
-    <p class="user-profile-afisha-cards-p1">Афиша Екатеринбурга</p>
-    <p class="user-profile-afisha-cards-p2">Покупайте билеты и они появятся здесь</p>
-    <button class="user-profile-afisha-filter-btns">Купить билеты</button>
+    @switch (activeComponent) {
+      @case ('user-profile-my-tickets'){
+        <app-user-profile-my-tickets></app-user-profile-my-tickets>
+      }
+      @case ('user-profile-planned-events'){
+        <app-user-profile-planned-events></app-user-profile-planned-events>
+      }
+      @case ('user-profile-favorite-places'){
+        <app-user-profile-favorite-places></app-user-profile-favorite-places>
+      }
+    }
   </div>
 </div>
 
