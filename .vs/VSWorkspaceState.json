@@ -12,6 +12,6 @@
     "\\src\\app\\pages\\event-page",
     "\\src\\app\\pages\\main-page"
   ],
-  "SelectedNode": "\\src\\app\\common-ui\\registration-modal\\registration-modal.component.html",
+  "SelectedNode": "\\src\\app\\app.component.ts",
   "PreviewInSolutionExplorer": false
 }
