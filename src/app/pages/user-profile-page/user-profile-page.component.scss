@@ -2,6 +2,7 @@
   background: none;
   display: flex;
   font-weight: 400;
+  font-size: 48px;
 }
 .user-profile-div-back-button{
   background: none;
@@ -23,4 +24,14 @@
   width: 100%;
   display: flex;
   justify-content: center;
+}
+
+.user-profile-components{
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: center;
+  gap: 50px;
+  align-items: flex-start;
+  margin-top: 100px;
 }
