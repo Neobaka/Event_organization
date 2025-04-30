@@ -8,11 +8,8 @@
             от 1000 руб
           </button>
         </a>
-        <button class="event-card-img-button-like" (click)="toggleLike()">
-          <app-svg-icon
-            name="heart-icon"
-            alt="Нравится"
-          ></app-svg-icon>
+        <button class="event-card-img-button-like" (click)="toggleLike($event)">
+          <mat-icon [ngClass]="{'icon-active': isLiked}">favorite</mat-icon>
           <!--<img id="iconHeartId" src="assets/svg/heart-icon.svg" alt="Нравится">-->
         </button>
       </div>
@@ -45,14 +42,3 @@
     </div>
   </div>
 </div>
-
-<!--
-<script>
-  const icon = document.getElementById('iconHeartId');
-  const iconPath = document.getElementById('iconHeartPathId');
-
-  icon.addEventListener('click', () => {
-    iconPath.setAttribute('fill', 'red'); // Цвет при нажатии
-  });
-</script>
--->
