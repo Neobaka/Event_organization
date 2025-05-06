@@ -44,3 +44,12 @@ node_modules/
 dist/
 .angular/
 tmp/
+/.vs/Event_organization/FileContentIndex/6e07b309-7a02-4ceb-b3b9-efa70def3793.vsidx
+/.vs/Event_organization/FileContentIndex/7d3b5e73-57f8-448f-afb2-a81ea9369a0d.vsidx
+/.vs/Event_organization/FileContentIndex/4f43f9a4-f48e-4129-8a4e-d2360b71b8cc.vsidx
+/.vs/Event_organization/FileContentIndex/a188b66e-21a2-4ae9-87cf-23f59eb234f6.vsidx
+/.vs/Event_organization/FileContentIndex/bc7bf834-bf56-48f9-9878-a97f4363a1cd.vsidx
+/.vs/Event_organization/FileContentIndex/14045c4b-f517-4da2-bf54-29ce161022af.vsidx
+/.vs/Event_organization/FileContentIndex
+/.vs/slnx.sqlite
+*.sqlite-journal
