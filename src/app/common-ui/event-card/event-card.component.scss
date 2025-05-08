@@ -71,8 +71,16 @@
   display: flex;
   background: none;
   border: none;
-  cursor: pointer;
   margin-right: 16px;
+
+  .mat-icon{
+    color: #D9D9D9;
+    transition: color 0.2s;
+    cursor: pointer;
+  }
+  .icon-active {
+    color: var(--like-color);
+  }
 }
 
 #iconHeartId path{
@@ -167,7 +175,7 @@
   width: min-content;
 }
 
-.event-card-undertags-location img{
+.event-card-undertags-location app-svg-icon{
   margin-right: 4px;
 }
 

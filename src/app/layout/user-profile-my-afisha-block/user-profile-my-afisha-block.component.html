@@ -1,0 +1,40 @@
+<div class="user-profile-afisha-div">
+  <div class="user-profile-afisha-filter-div">
+    <h3>Моя афиша</h3>
+    <div class="user-profile-afisha-filter-btn-div">
+      <button
+        (click)="showUserPageFilterComponent('user-profile-my-tickets')"
+        [class.active]="isActive('user-profile-my-tickets')"
+        class="user-profile-afisha-filter-btns">Мои билеты</button>
+      <button
+        (click)="showUserPageFilterComponent('user-profile-planned-events')"
+        [class.active]="isActive('user-profile-planned-events')"
+        class="user-profile-afisha-filter-btns">Хочу сходить</button>
+      <button
+        (click)="showUserPageFilterComponent('user-profile-favorite-places')"
+        [class.active]="isActive('user-profile-favorite-places')"
+        class="user-profile-afisha-filter-btns">Любимые места</button>
+    </div>
+  </div>
+  <div class="search-bar-search-div">
+    <input class="search-bar-div-input" type="text" placeholder="Начните вводить название...">
+    <button class="search-button">
+      <img class="search-button-img" src="assets/svg/search-icon.svg" alt="Кнопка ввода">
+    </button>
+  </div>
+  <div class="user-profile-afisha-cards-div">
+    @switch (activeComponent) {
+      @case ('user-profile-my-tickets'){
+        <app-user-profile-my-tickets></app-user-profile-my-tickets>
+      }
+      @case ('user-profile-planned-events'){
+        <app-user-profile-planned-events></app-user-profile-planned-events>
+      }
+      @case ('user-profile-favorite-places'){
+        <app-user-profile-favorite-places></app-user-profile-favorite-places>
+      }
+    }
+  </div>
+</div>
+
+

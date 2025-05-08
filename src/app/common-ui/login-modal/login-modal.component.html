@@ -1,0 +1,55 @@
+<div class="modal-overlay" *ngIf="isOpen" (click)="onOverlayClick($event)">
+  <div class="modal">
+    <div class="modal-left">
+      <button class="close-button" (click)="closeModal()">×</button>
+
+      <div class="user-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+      </div>
+
+      <div class="tab-container">
+        <div class="tab tab-underline">Личный кабинет</div>
+      </div>
+
+      <div class="tab-container">
+        <div class="tab tab-underline">Авторизация</div>
+      </div>
+
+      <form class="form-container" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <input type="email" class="form-control" placeholder="Адрес электронной почты" formControlName="email">
+          <div class="error-message" *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.errors?.['required']">
+            Введите email
+          </div>
+          <div class="error-message" *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.errors?.['email']">
+            Введите корректный email
+          </div>
+        </div>
+
+        <div class="form-group">
+          <input type="password" class="form-control" placeholder="Пароль" formControlName="password">
+          <div class="error-message" *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.errors?.['required']">
+            Введите пароль
+          </div>
+        </div>
+
+        <button type="submit" class="login-btn">Войти</button>
+
+        <div class="form-footer">
+          <a href="javascript:void(0)" (click)="onForgotPassword()">Забыли пароль?</a>
+          <a href="javascript:void(0)" (click)="onRegister()">Нет аккаунта?</a>
+        </div>
+      </form>
+    </div>
+
+    <div class="modal-right">
+
+      <div class="localhosts-logo">LocalHosts</div>
+      <div class="logo-underline"></div>
+      <img class="hero-image" src="assets/img/Rectangle 6.png" alt="Изображение мероприятия">
+    </div>
+  </div>
+</div>
