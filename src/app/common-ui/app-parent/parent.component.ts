@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { RegistrationModalComponent } from '../registration-modal/registration-modal.component';
 import { LoginModalComponent } from '../login-modal/login-modal.component';
 import { AuthService } from '../../services/auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-parent',
   standalone: true,
-  imports: [RegistrationModalComponent, LoginModalComponent],
+  imports: [RegistrationModalComponent, LoginModalComponent, CommonModule],
   templateUrl: './parent.component.html',
   styleUrls: ['./parent.component.scss']
 })
