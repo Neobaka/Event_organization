@@ -163,3 +163,15 @@
   line-height: 24px;
   z-index: 3;
 }
+
+.sort-radio{
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  margin: 4px 0;
+  background-color: var(--dark-soft-color);
+}
+
+.sort-radio-list{
+  margin: 5px 25px 5px 5px;
+}

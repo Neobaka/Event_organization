@@ -17,9 +17,20 @@
       <button class="filter-button">Спорт</button>
     </div>
     <div class="search-bar-div-filter-div2">
-      <button class="filter-button button-sort">
+      <button
+        [matMenuTriggerFor]="sortMenu"
+        class="filter-button button-sort"
+        matTooltip="Отсортировать"
+        matTooltipPosition="below">
         <mat-icon class="filter-icon">swap_vert</mat-icon>
       </button>
+      <mat-menu #sortMenu="matMenu">
+        <mat-radio-group [value]="selectedSort" (change)="selectSort($event.value)" class="sort-radio">
+          <mat-radio-button *ngFor="let option of sortOptions" [value]="option.value" class="sort-radio-list">
+            {{ option.label }}
+          </mat-radio-button>
+        </mat-radio-group>
+      </mat-menu>
       <button class="filter-button button-calendar">
         <mat-icon class="calendar-icon">calendar_month</mat-icon>
         Дата
