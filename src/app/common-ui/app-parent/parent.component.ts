@@ -7,7 +7,7 @@ import {Auth2Service} from '../../auth/auth2.service';
 @Component({
   selector: 'app-parent',
   standalone: true,
-  imports: [RegistrationModalComponent, LoginModalComponent, CommonModule],
+  imports: [RegistrationModalComponent, LoginModalComponent],
   templateUrl: './parent.component.html',
   styleUrls: ['./parent.component.scss'],
 })
