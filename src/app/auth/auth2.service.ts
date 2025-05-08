@@ -1,67 +1,63 @@
 import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {BehaviorSubject, catchError, Observable, tap, throwError} from 'rxjs';
-import { CookieService } from 'ngx-cookie-service';
-import {LoginResponse} from './login-response';
-import {LoginRequest} from './login-request';
-import {RegisterRequest} from './register-request';
-import {RegisterResponse} from './register-response';
+import {Router} from '@angular/router';
+import {RegisterPayload} from './register-payload';
+import {TokenResponse} from './token-response';
+import {catchError, tap, throwError} from 'rxjs';
+import {LoginPayload} from './login-payload';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class Auth2Service {
-  private apiUrl = `http://188.226.91.215:43546/api/v1/`;
-  private http = inject(HttpClient);
-  private cookies = inject(CookieService);
+  // Ключ для хранения токена в localStorage
+  private readonly ACCESS_TOKEN_KEY = 'access_token';
 
-  // Для реактивного отслеживания токена
-  private tokenSubject = new BehaviorSubject<string | null>(null);
-  public token$ = this.tokenSubject.asObservable();
+  http = inject(HttpClient);
+  router = inject(Router);
+  private apiUrl = 'http://188.226.91.215:43546/api/v1/';
 
-  constructor() {
-    // При создании сервиса проверяем сохранённый токен
-    const savedToken = this.cookies.get('access_token');
-    if (savedToken) {
-      this.tokenSubject.next(savedToken);
-    }
+  //проверка авторизации
+  get isAuth(): boolean {
+    return !!localStorage.getItem(this.ACCESS_TOKEN_KEY);
   }
 
+  // Метод для входа пользователя
+  login(payload: LoginPayload) {
+    return this.http.post<TokenResponse>(
+      `${this.apiUrl}users/login`,
+      payload // Данные пользователя
+    ).pipe(
+      // При успешном ответе:
+      tap(response => this.saveToken(response.AccessToken)),
 
-  login2(email: string, password: string): Observable<LoginResponse> {
-    const body: LoginRequest = { email, password };
-
-    return this.http.post<LoginResponse>(`${this.apiUrl}/users/login`, body).pipe(
-      tap(response => {
-        // Сохраняем токен в куки
-        this.cookies.set('access_token', response.accessToken, {
-          path: '/',
-          secure: false,
-          sameSite: 'Strict'
-        });
-
-        // Обновляем реактивное состояние
-        this.tokenSubject.next(response.accessToken);
-      }),
+      // При ошибке:
       catchError(error => {
-        return throwError(() => new Error('Неверный email или пароль'));
+        this.clearToken(); // Очищаем токен
+        return throwError(() => error); // Пробрасываем ошибку дальше
       })
     );
   }
 
-  register2(userData: RegisterRequest): Observable<RegisterResponse> {
-    return this.http.post<RegisterResponse>(`${this.apiUrl}users`, userData).pipe(
-      tap(response => {
-        this.cookies.set('access_token', response.accessToken, {
-          path: '/',
-          secure: true,
-          sameSite: 'Strict'
-        });
-        this.tokenSubject.next(response.accessToken);
-      })
-    );
+  // Метод для выхода
+  logout() {
+    this.clearToken(); // Удаляем токен
+    this.router.navigate(['/login']); // Перенаправляем на страницу входа
   }
 
+  // Сохранение токена в localStorage
+  private saveToken(token: string) {
+    localStorage.setItem(this.ACCESS_TOKEN_KEY, token);
+  }
 
+  // Удаление токена
+  private clearToken() {
+    localStorage.removeItem(this.ACCESS_TOKEN_KEY);
+  }
+
+  // Получение токена (для jwt.interceptor)
+  getAccessToken(): string | null {
+    return localStorage.getItem(this.ACCESS_TOKEN_KEY);
+  }
 }

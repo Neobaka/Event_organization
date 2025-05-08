@@ -7,6 +7,8 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 import { routes } from './app.routes';
 import { environment } from '../environments/environment';
+import {provideHttpClient, withInterceptors} from '@angular/common/http';
+import {jwtInterceptor} from './auth/jwt.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,6 +18,7 @@ export const appConfig: ApplicationConfig = {
       BrowserModule,
       AngularFireModule.initializeApp(environment.firebase),
       AngularFireAuthModule
-    )
+    ),
+    provideHttpClient(withInterceptors([jwtInterceptor]))
   ]
 };
