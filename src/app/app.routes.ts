@@ -7,4 +7,3 @@ export const routes: Routes = [
   {path: `profile`, component: UserProfilePageComponent},
   {path: ``, component: MainPageComponent},
   {path: `event`, component: EventPageComponent},
-];

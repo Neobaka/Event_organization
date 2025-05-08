@@ -15,7 +15,7 @@ import { LoginModalComponent } from './common-ui/login-modal/login-modal.compone
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent, SearchBarComponent, EventCardBlockComponent, LoginModalComponent, ParentComponent, RegistrationModalComponent],
+  imports: [RouterOutlet, HeaderComponent, SearchBarComponent, EventCardBlockComponent, LoginModalComponent, ParentComponent, RegistrationModalComponent, EventPageComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
