@@ -7,6 +7,7 @@ import { EventPageComponent } from './pages/event-page/event-page.component';
 import { RegistrationModalComponent } from './common-ui/registration-modal/registration-modal.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ParentComponent } from './common-ui/app-parent/parent.component';
+import { CreateEventPageComponent } from './pages/create-event-page/create-event-page.component';
 import { LoginModalComponent } from './common-ui/login-modal/login-modal.component';
 
 
