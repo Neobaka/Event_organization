@@ -120,14 +120,14 @@
 .filter-button:hover{
   background-color: var(--dark-soft-color);
   color: var(--light-stroke-color);
-  transition: 0.2s;
+  transition: 0.3s;
 }
 
 .filter-button:active{
   box-sizing: border-box;
   background-color: var(--dark-soft-color);
   color: var(--light-stroke-color);
-  transition: 0.2s;
+  transition: 0.3s;
   border: solid 1px var(--light-stroke-color);
 }
 

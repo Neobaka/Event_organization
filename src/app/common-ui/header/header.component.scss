@@ -1,6 +1,6 @@
 .header{
   display: grid;
-  grid-template-columns: 1fr 2fr 0.25fr;
+  grid-template-columns: 1fr 3fr 0.5fr;
   align-items: center;
   border-bottom: 1px solid var(--light-color);
 }
@@ -44,58 +44,18 @@
   align-items: center;
   display: flex;
   justify-content: flex-end;
-  margin-right: 44px;
   list-style: none;
 }
 
 .header-nav-ul-link{
   text-decoration: none;
+  transition: 0.3s;
   margin-left: 36px;
   color: var(--light-color);
 }
 
 .header-nav-ul-link:hover{
+  transition: 0.3s;
   color: lightgrey;
 }
-
-.header-button-div{
-  display: flex;
-  height: 40px;
-  justify-content: flex-end;
-}
-
-.header-button-login{
-  cursor: pointer;
-  display: flex;
-  border-radius: 12px;
-  height: 100%;
-  width: 100px;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 11px;
-  margin-right: 38px;
-  border: none;
-  transition: 0.2s ease;
-}
-
-.header-button-login:hover{
-  border: 1px solid var(--light-color);
-  color: var(--light-color);
-  background-color: var(--dark-color);
-  transition: 0.2s ease;
-}
-
-.header-button-login-text{
-  font-size: 16px;
-  margin-left: 5%;
-  align-items: flex-end;
-}
-
-.header-button-login-icon{
-  height: 16px;
-  width: 16px;
-  padding-bottom: 2%;
-}
-
-
 

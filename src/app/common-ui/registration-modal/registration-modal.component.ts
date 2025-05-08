@@ -6,10 +6,11 @@ import {Auth2Service} from '../../auth/auth2.service';
 import {RegisterPayload} from '../../auth/register-payload';
 import {switchMap} from 'rxjs';
 import {Router} from '@angular/router';
+import {MatIcon} from '@angular/material/icon';
 
 @Component({
   selector: 'app-registration-modal',
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, MatIcon],
   templateUrl: './registration-modal.component.html',
   styleUrls: ['./registration-modal.component.scss']
 })

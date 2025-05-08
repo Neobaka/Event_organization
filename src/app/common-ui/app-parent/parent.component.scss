@@ -1,10 +1,12 @@
 .header-button-div {
   display: flex;
   height: 40px;
-  justify-content: flex-end;
+  justify-content: center;
+  width: 100%;
 }
 
 .header-button-login {
+  box-sizing: border-box;
   cursor: pointer;
   display: flex;
   border-radius: 12px;
@@ -13,16 +15,16 @@
   justify-content: center;
   align-items: center;
   padding: 10px 11px;
-  margin-right: 38px;
-  border: none;
-  transition: 0.2s ease;
+  border: 1px solid var(--light-color);
+  transition: 0.4s ease-in-out;
 }
 
 .header-button-login:hover {
+  box-sizing: border-box;
   border: 1px solid var(--light-color);
   color: var(--light-color);
   background-color: var(--dark-color);
-  transition: 0.2s ease;
+  transition: 0.4s;
 }
 
 .header-button-login-text {
@@ -32,12 +34,21 @@
 }
 
 .header-button-login-icon {
-  height: 16px;
-  width: 16px;
-  padding-bottom: 2%;
+  color: currentColor;
+  font-size: 24px;
+}
+
+.header-avatar-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  justify-content: center;
 }
 
 .header-avatar {
+  display: flex;
+  flex-direction: row;
   cursor: pointer;
   width: 40px;
   height: 40px;
@@ -50,3 +61,50 @@
   height: 100%;
   object-fit: cover;
 }
+
+.logout-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.logout-icon {
+  color: #fff; /* Белая иконка */
+  transition: color 0.2s;
+  width: 100%;
+  height: 100%;
+}
+
+.logout-btn:hover .logout-icon {
+  color: #ff5252;
+}
+
+.logout-tooltip {
+  display: block;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -36px;
+  background: rgba(30, 30, 30, 0.96);
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 14px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s, bottom 0.2s;
+  z-index: 10;
+}
+
+.logout-btn:hover .logout-tooltip,
+.logout-btn:focus .logout-tooltip {
+  opacity: 1;
+  bottom: -46px;
+  pointer-events: auto;
+}
+
