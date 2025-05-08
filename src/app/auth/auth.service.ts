@@ -4,9 +4,12 @@ import { Observable, from } from 'rxjs';
 import { map } from 'rxjs/operators';
 import firebase from 'firebase/compat/app';
 
+
+//singleton
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
   currentUser$: Observable<firebase.User | null>;
 

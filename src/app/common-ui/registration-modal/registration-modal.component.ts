@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-registration-modal',
