@@ -7,6 +7,7 @@ import firebase from 'firebase/compat/app';
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
   currentUser$: Observable<firebase.User | null>;
 
