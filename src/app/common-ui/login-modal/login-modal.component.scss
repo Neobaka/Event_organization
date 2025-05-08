@@ -169,9 +169,10 @@
   position: absolute;
 }
 
-.hero-image{
-    width: 100%;
-    height: 100%;
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover
 }
 
 @media (max-width: 768px) {

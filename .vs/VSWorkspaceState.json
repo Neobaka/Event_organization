@@ -5,11 +5,12 @@
     "\\public\\assets",
     "\\src",
     "\\src\\app",
+    "\\src\\app\\common-ui",
     "\\src\\app\\common-ui\\event-card",
+    "\\src\\app\\common-ui\\registration-modal",
     "\\src\\app\\pages",
-    "\\src\\app\\pages\\event-page",
-    "\\src\\app\\services"
+    "\\src\\app\\pages\\create-event-page"
   ],
-  "SelectedNode": "\\src\\app\\pages\\event-page\\event-map.comonent.ts",
+  "SelectedNode": "\\src\\app\\common-ui\\registration-modal\\registration-modal.component.ts",
   "PreviewInSolutionExplorer": false
 }
