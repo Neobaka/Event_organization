@@ -13,14 +13,27 @@ import {LoginPayload} from './login-payload';
 export class Auth2Service {
   // Ключ для хранения токена в localStorage
   private readonly ACCESS_TOKEN_KEY = 'access_token';
+  private readonly apiUrl = 'http://188.226.91.215:43546/api/v1/';
 
   http = inject(HttpClient);
   router = inject(Router);
-  private apiUrl = 'http://188.226.91.215:43546/api/v1/';
 
   //проверка авторизации
   get isAuth(): boolean {
     return !!localStorage.getItem(this.ACCESS_TOKEN_KEY);
+  }
+
+  //регистрация
+  register(payload: RegisterPayload){
+    return this.http.post<void>(
+      `${this.apiUrl}users`,
+      payload
+    ).pipe(
+      catchError(error => {
+        this.clearToken();
+        return throwError(() => error);
+      })
+    )
   }
 
   // Метод для входа пользователя
@@ -43,7 +56,7 @@ export class Auth2Service {
   // Метод для выхода
   logout() {
     this.clearToken(); // Удаляем токен
-    this.router.navigate(['/login']); // Перенаправляем на страницу входа
+    this.router.navigate(['/']); // Перенаправляем на страницу входа
   }
 
   // Сохранение токена в localStorage

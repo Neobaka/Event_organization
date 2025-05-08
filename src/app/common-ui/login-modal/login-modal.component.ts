@@ -1,8 +1,9 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {Component, EventEmitter, inject, Input, Output} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Auth2Service } from '../../auth/auth2.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login-modal',
@@ -20,6 +21,7 @@ export class LoginModalComponent {
   loginForm: FormGroup;
   errorMessage: string = '';
   loading: boolean = false;
+  router: any =inject(Router);
 
   constructor(
     private fb: FormBuilder,
@@ -58,7 +60,7 @@ export class LoginModalComponent {
 
       const { email, password } = this.loginForm.value;
 
-      // Формируем payload
+      // Формируем payload, используя интерфейс который мы создали
       const loginPayload = {
         EmailId: email,
         Password: password
@@ -69,6 +71,7 @@ export class LoginModalComponent {
           console.log('User logged in successfully:', user);
           this.loading = false;
           this.closeModal();
+          this.router.navigate(['/profile']);
         },
         error: (error) => {
           console.error('Login error:', error);
