@@ -3,11 +3,13 @@ import { RegistrationModalComponent } from '../registration-modal/registration-m
 import { LoginModalComponent } from '../login-modal/login-modal.component';
 import {Observable} from 'rxjs';
 import {Auth2Service} from '../../auth/auth2.service';
+import {AsyncPipe, CommonModule} from '@angular/common';
+import {MatIcon} from '@angular/material/icon';
 
 @Component({
   selector: 'app-parent',
   standalone: true,
-  imports: [RegistrationModalComponent, LoginModalComponent],
+  imports: [RegistrationModalComponent, LoginModalComponent, AsyncPipe, CommonModule, MatIcon],
   templateUrl: './parent.component.html',
   styleUrls: ['./parent.component.scss'],
 })
@@ -19,6 +21,10 @@ export class ParentComponent {
   constructor(private authService: Auth2Service) {
     // Получаем реактивный статус авторизации
     this.isLoggedIn$ = this.authService.isLoggedIn();
+  }
+
+  logout(): void {
+    this.authService.logout();
   }
 
   openLoginModal(): void {

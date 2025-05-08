@@ -4,11 +4,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Auth2Service } from '../../auth/auth2.service';
 import {Router} from '@angular/router';
+import {MatIcon} from '@angular/material/icon';
 
 @Component({
   selector: 'app-login-modal',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, MatIcon],
   templateUrl: './login-modal.component.html',
   styleUrls: ['./login-modal.component.scss']
 })
