@@ -1,8 +1,19 @@
 .header{
-  display: grid;
-  grid-template-columns: 1fr 2fr 0.5fr;
+  display: flex;
+  width: 100vw;
   align-items: center;
   border-bottom: 1px solid var(--light-color);
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.header-nav-login{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  margin-right: 50px;
 }
 
 .header-logo-link{
@@ -16,7 +27,7 @@
 }
 
 .header-logo-div{
-  margin-left: 5%;
+  margin-left: 50px;
   display: flex;
   align-items: center;
 }
@@ -35,7 +46,8 @@
 
 .header-nav{
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
+  margin-right: 40px;
 }
 
 .header-nav-ul{
