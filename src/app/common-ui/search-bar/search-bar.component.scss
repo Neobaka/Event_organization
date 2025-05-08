@@ -106,10 +106,27 @@
   border: solid 1px transparent;
 }
 
-.button-calendar-img{
-  margin-right: 5px;
-  position: relative;
-  top: -1px;
+.calendar-icon{
+  font-size: 20px;
+  line-height: 23px;
+  color: currentColor;
+  overflow: visible;
+  margin-right: 3px;
+}
+
+.arrow-down-icon{
+  font-size: 24px;
+  line-height: 24px;
+  color: currentColor;
+  overflow: visible;
+}
+
+.button-cost-filter{
+  padding: 5px 15px;
+}
+
+.button-calendar{
+  padding: 5px 15px;
 }
 
 .button-cost-filter-img{
@@ -138,4 +155,11 @@
 .button-sort:hover{
   background-color: lightgray;
   transition: 0.2s;
+}
+
+.filter-icon{
+  color: var(--dark-color);
+  font-size: 20px;
+  line-height: 24px;
+  z-index: 3;
 }

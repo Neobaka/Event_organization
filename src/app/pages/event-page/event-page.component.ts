@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { HeaderComponent } from '../../common-ui/header/header.component';
 import { NgClass } from '@angular/common';
-import { SvgIconComponent } from '../../helpers/svg-icon/svg-icon.component';
 import { MatIcon } from '@angular/material/icon';
 import { EventMapComponent } from '../../pages/event-page/event-map.comonent';
 
