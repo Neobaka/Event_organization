@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { RegistrationModalComponent } from '../registration-modal/registration-modal.component';
 import { LoginModalComponent } from '../login-modal/login-modal.component';
-import { AuthService } from '../../auth/auth.service';
+import {Observable} from 'rxjs';
+import {Auth2Service} from '../../auth/auth2.service';
 
 @Component({
   selector: 'app-parent',
@@ -13,12 +14,11 @@ import { AuthService } from '../../auth/auth.service';
 export class ParentComponent {
   isLoginModalOpen = false;
   isRegistrationModalOpen = false;
-  isLoggedIn = false;
+  isLoggedIn$!: Observable<boolean>; // Теперь это Observable
 
-  constructor(private authService: AuthService) {
-    this.authService.isLoggedIn().subscribe(loggedIn => {
-      this.isLoggedIn = loggedIn;
-    });
+  constructor(private authService: Auth2Service) {
+    // Получаем реактивный статус авторизации
+    this.isLoggedIn$ = this.authService.isLoggedIn();
   }
 
   openLoginModal(): void {
@@ -35,7 +35,7 @@ export class ParentComponent {
     this.isLoginModalOpen = false;
     this.isRegistrationModalOpen = false;
   }
-
+  /*
   onForgotPassword(): void {
     const email = prompt('Введите ваш email для сброса пароля:');
     if (email) {
@@ -51,7 +51,9 @@ export class ParentComponent {
       });
     }
   }
+  */
 
+  /*
   logout(): void {
     this.authService.logout().subscribe({
       next: () => {
@@ -62,4 +64,5 @@ export class ParentComponent {
       }
     });
   }
+  */
 }

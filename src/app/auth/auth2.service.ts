@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {RegisterPayload} from './register-payload';
 import {TokenResponse} from './token-response';
-import {catchError, tap, throwError} from 'rxjs';
+import {BehaviorSubject, catchError, Observable, tap, throwError} from 'rxjs';
 import {LoginPayload} from './login-payload';
 
 @Injectable({
@@ -18,9 +18,18 @@ export class Auth2Service {
   http = inject(HttpClient);
   router = inject(Router);
 
-  //проверка авторизации
-  get isAuth(): boolean {
+  // BehaviorSubject для хранения состояния авторизации
+  private loggedInSubject = new BehaviorSubject<boolean>(this.hasToken());
+  public loggedIn$ = this.loggedInSubject.asObservable();
+
+  // Проверка наличия токена в localStorage
+  private hasToken(): boolean {
     return !!localStorage.getItem(this.ACCESS_TOKEN_KEY);
+  }
+
+  // Геттер для синхронной проверки
+  get isAuth(): boolean {
+    return this.hasToken();
   }
 
   //регистрация
@@ -43,11 +52,15 @@ export class Auth2Service {
       payload // Данные пользователя
     ).pipe(
       // При успешном ответе:
-      tap(response => this.saveToken(response.AccessToken)),
+      tap(response => {
+        this.saveToken(response.AccessToken);
+        this.loggedInSubject.next(true); //обновляем состояние после логина
+      }),
 
       // При ошибке:
       catchError(error => {
         this.clearToken(); // Очищаем токен
+        this.loggedInSubject.next(false); // Обновляем состояние
         return throwError(() => error); // Пробрасываем ошибку дальше
       })
     );
@@ -56,6 +69,7 @@ export class Auth2Service {
   // Метод для выхода
   logout() {
     this.clearToken(); // Удаляем токен
+    this.loggedInSubject.next(false); // Обновляем состояние
     this.router.navigate(['/']); // Перенаправляем на страницу входа
   }
 
@@ -72,5 +86,10 @@ export class Auth2Service {
   // Получение токена (для jwt.interceptor)
   getAccessToken(): string | null {
     return localStorage.getItem(this.ACCESS_TOKEN_KEY);
+  }
+
+  // Реактивная проверка авторизации
+  isLoggedIn(): Observable<boolean> {
+    return this.loggedIn$;
   }
 }
