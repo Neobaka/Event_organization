@@ -1,13 +1,15 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {Component, EventEmitter, inject, Input, Output} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../../services/auth.service';
+import { Auth2Service } from '../../auth/auth2.service';
+import {Router} from '@angular/router';
+import {MatIcon} from '@angular/material/icon';
 
 @Component({
   selector: 'app-login-modal',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, MatIcon],
   templateUrl: './login-modal.component.html',
   styleUrls: ['./login-modal.component.scss']
 })
@@ -20,8 +22,12 @@ export class LoginModalComponent {
   loginForm: FormGroup;
   errorMessage: string = '';
   loading: boolean = false;
+  router: any =inject(Router);
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: Auth2Service
+  ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
@@ -55,37 +61,45 @@ export class LoginModalComponent {
 
       const { email, password } = this.loginForm.value;
 
-      this.authService.login(email, password).subscribe({
+      // Формируем payload, используя интерфейс который мы создали
+      const loginPayload = {
+        EmailId: email,
+        Password: password
+      };
+
+      this.authService.login(loginPayload).subscribe({
         next: (user) => {
           console.log('User logged in successfully:', user);
           this.loading = false;
           this.closeModal();
+          this.router.navigate(['/profile']);
         },
         error: (error) => {
           console.error('Login error:', error);
           this.loading = false;
-
-          switch (error.code) {
-            case 'auth/user-not-found':
-              this.errorMessage = 'Пользователь с таким email не найден';
-              break;
-            case 'auth/wrong-password':
-              this.errorMessage = 'Неверный пароль';
-              break;
-            case 'auth/too-many-requests':
-              this.errorMessage = 'Слишком много попыток. Попробуйте позже';
-              break;
-            default:
-              this.errorMessage = 'Произошла ошибка при входе. Попробуйте снова';
-          }
+          this.handleLoginError(error);
         }
       });
     } else {
       // Пометить все поля как затронутые для показа ошибок валидации
       Object.keys(this.loginForm.controls).forEach(key => {
-        const control = this.loginForm.get(key);
-        control?.markAsTouched();
+        this.loginForm.get(key)?.markAsTouched();
       });
+    }
+  }
+
+  private handleLoginError(error: any): void {
+    console.error('Login error:', error);
+
+    // Обработка ошибок
+    if (error.status === 401) {
+      this.errorMessage = 'Invalid credentials provided. Failed to authenticate user';
+    } else if (error.status === 400) {
+      this.errorMessage = 'Invalid request body';
+    } else if (error.status === 0) {
+      this.errorMessage = 'Ошибка соединения с сервером';
+    } else {
+      this.errorMessage = 'Произошла ошибка при входе';
     }
   }
 }

@@ -1,11 +1,16 @@
 import { Routes } from '@angular/router';
-import {UserProfilePageComponent} from './pages/user-profile-page/user-profile-page.component';
-import { MainPageComponent } from './pages/main-page/main-page.component';
-import {EventPageComponent } from './pages/event-page/event-page.component'
 
 export const routes: Routes = [
-  { path: `profile`, component: UserProfilePageComponent },
-  { path: `event`, component: EventPageComponent },
-  { path: ``, component: MainPageComponent },
-  
+  {
+    path: 'profile',
+    loadComponent: () => import('./pages/user-profile-page/user-profile-page.component').then(m => m.UserProfilePageComponent),
+  },
+  {
+    path: '',
+    loadComponent: () => import('./pages/main-page/main-page.component').then(m => m.MainPageComponent),
+  },
+  {
+    path: 'event',
+    loadComponent: () => import('./pages/event-page/event-page.component').then(m => m.EventPageComponent),
+  },
 ];
