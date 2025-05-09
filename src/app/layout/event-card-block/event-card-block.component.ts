@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {EventCardComponent} from '../../common-ui/event-card/event-card.component';
 import {ScrollingModule} from '@angular/cdk/scrolling';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-event-card-block',

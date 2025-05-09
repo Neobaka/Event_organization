@@ -17,7 +17,8 @@ import { LoginModalComponent } from './common-ui/login-modal/login-modal.compone
   selector: 'app-root',
   imports: [RouterOutlet, HeaderComponent, SearchBarComponent, EventCardBlockComponent, LoginModalComponent, ParentComponent, RegistrationModalComponent, EventPageComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
+  template: '<router-outlet></router-outlet>'
 })
 export class AppComponent {
   title = 'Event_organization';
