@@ -4,7 +4,13 @@ import {Router} from '@angular/router';
 import {RegisterPayload} from './register-payload';
 import {TokenResponse} from './token-response';
 import {BehaviorSubject, catchError, Observable, tap, throwError} from 'rxjs';
-import {LoginPayload} from './login-payload';
+import { LoginPayload } from './login-payload';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import firebase from 'firebase/compat/app';
+
+
+//Поскольку используем compat API, везде, где есть ссылака на User, нужно использовать тип из firebase/compat/app
+type User = firebase.User;
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +33,29 @@ export class Auth2Service {
     return !!localStorage.getItem(this.ACCESS_TOKEN_KEY);
   }
 
+  user$: Observable<User | null>;
+
+  private userDataSubject = new BehaviorSubject<any>(null);
+  public userData$ = this.userDataSubject.asObservable();
+
+  constructor(private afAuth: AngularFireAuth) {
+    this.user$ = this.afAuth.authState;
+
+    if (this.hasToken()) {
+      this.getUserProfileFromApi().subscribe(profile => {
+        this.userDataSubject.next(profile);
+      });
+    }
+  }
+
+  getCurrentUser(): Promise<User | null> {
+    return this.afAuth.currentUser;
+  }
+
+  getUserProfileFromApi(): Observable<any> {
+    return this.http.get(`${this.apiUrl}users/me`);
+  }
+
   // Геттер для синхронной проверки
   get isAuth(): boolean {
     return this.hasToken();
@@ -45,26 +74,27 @@ export class Auth2Service {
     )
   }
 
-  // Метод для входа пользователя
   login(payload: LoginPayload) {
-    return this.http.post<TokenResponse>(
-      `${this.apiUrl}users/login`,
-      payload // Данные пользователя
-    ).pipe(
-      // При успешном ответе:
-      tap(response => {
-        this.saveToken(response.AccessToken);
-        this.loggedInSubject.next(true); //обновляем состояние после логина
-      }),
+  return this.http.post<TokenResponse>(
+    `${this.apiUrl}users/login`,
+    payload
+  ).pipe(
+    tap(response => {
+      this.saveToken(response.AccessToken);
+      this.loggedInSubject.next(true);
 
-      // При ошибке:
-      catchError(error => {
-        this.clearToken(); // Очищаем токен
-        this.loggedInSubject.next(false); // Обновляем состояние
-        return throwError(() => error); // Пробрасываем ошибку дальше
-      })
-    );
-  }
+      // Загружаем профиль пользователя после логина
+      this.getUserProfileFromApi().subscribe(profile => {
+        this.userDataSubject.next(profile);
+      });
+    }),
+    catchError(error => {
+      this.clearToken(); // Очищаем токен
+      this.loggedInSubject.next(false);
+      return throwError(() => error);
+    })
+  );
+}
 
   // Метод для выхода
   logout() {
