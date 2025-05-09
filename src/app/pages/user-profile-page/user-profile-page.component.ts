@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {HeaderComponent} from '../../common-ui/header/header.component';
 import {UserProfileDataBlockComponent} from '../../layout/user-profile-data-block/user-profile-data-block.component';
 import {UserProfileMyAfishaBlockComponent} from '../../layout/user-profile-my-afisha-block/user-profile-my-afisha-block.component';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-user-profile-page',
@@ -15,10 +15,21 @@ import {Router} from '@angular/router';
   styleUrl: './user-profile-page.component.scss'
 })
 export class UserProfilePageComponent {
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute) {
   }
 
   navigateToMainPage(){
     this.router.navigate(['']);
+  }
+
+  initialSection = 'user-profile-my-tickets';
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      if (params['section'] === 'favorite-places') {
+        this.initialSection = 'user-profile-favorite-places';
+      }
+    });
   }
 }

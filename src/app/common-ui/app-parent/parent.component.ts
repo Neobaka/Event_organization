@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import {Auth2Service} from '../../auth/auth2.service';
 import {AsyncPipe, CommonModule} from '@angular/common';
 import {MatIcon} from '@angular/material/icon';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-parent',
@@ -18,9 +19,17 @@ export class ParentComponent {
   isRegistrationModalOpen = false;
   isLoggedIn$!: Observable<boolean>; // Теперь это Observable
 
-  constructor(private authService: Auth2Service) {
+
+  constructor(
+    private authService: Auth2Service,
+    private router: Router
+  ) {
     // Получаем реактивный статус авторизации
     this.isLoggedIn$ = this.authService.isLoggedIn();
+  }
+
+  goToProfile() {
+    this.router.navigate(['/profile']);
   }
 
   logout(): void {
