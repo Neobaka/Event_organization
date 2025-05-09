@@ -1,72 +1,170 @@
-<body>
+<app-header></app-header>
 <div class="all-content">
-<div class="hero-container">
+  <div class="hero-container">
     <h1 class="hero-title">Регистрация мероприятия</h1>
     <p class="hero-subtitle">Заполните необходимые поля</p>
-</div>
-
-<div class="hero-registration">
-    <p>Название мероприятия<p>
-    <input type="text" id="name"><br><br> 
-    <p>Слоган</p>
-    <input type="text" id="slog"><br><br> 
-</div>
-
-<section class="time-section section">
-    <h2>Дата и время</h2>
-    <div class="time-container">
-        <div class="time-block">
-        <span class="time-label">Начало</span>
-        <input type="datetime-local" id="start-date" name="start-date" placeholder="дд.мм.гггг 00:00">
+  </div>
+  <div class="all-content">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+      <div class="hero-registration">
+        <p>Название мероприятия</p>
+        <input type="text" formControlName="title">
+        <div class="error-message" *ngIf="submitted && form.controls['title'].errors?.['required']">
+          Это поле обязательно для заполнения
         </div>
-        <div class="time-block">
-        <span class="time-label">Конец</span>
-        <input type="datetime-local" id="end-date" name="end-date" placeholder="дд.мм.гггг 00:00">
+      </div>
+
+      <div class="genre-cat-btn-div" style="display: flex; gap: 32px; position: relative;">
+        <!-- Категория (кнопка + dropdown) -->
+        <div style="position: relative;">
+          <button type="button" class="genre-cat-btn" (click)="toggleCategoryDropdown()">
+            {{ selectedCategory ? categoryOptions[selectedCategory] : 'Выберите категорию мероприятия' }}
+            <mat-icon class="arrow-down-icon">keyboard_arrow_down</mat-icon>
+          </button>
+          <div class="dropdown-list" *ngIf="showCategoryDropdown">
+            <div
+              class="dropdown-item"
+              *ngFor="let option of categoryOptions | keyvalue"
+              (click)="selectCategory(option.key)"
+              [class.selected]="selectedCategory === option.key"
+              [hidden]="option.key === 'DEFAULT'"
+            >
+              {{ option.value }}
+            </div>
+          </div>
+          <div class="error-message" *ngIf="submitted && form.controls['category'].errors?.['required']">
+            Выберите категорию
+          </div>
         </div>
-    </div>
-</section>
 
-<section class="description section">
-    <h2>Описание события</h2>
-    <textarea type="text" id="description" placeholder='Ежегодная культурная акция "Ночь музеев" — один из самых популярных событий Екатеринбурга. В эту ночь более 60 музеев, галерей и культурных площадок города работают в вечернее и ночное время, предлагая специальные выставки, экскурсии, перформансы и интерактивные программы. Центральная площадка включает Музей истории Екатеринбурга, Ельцин Центр, Музей изобразительных искусств и центр современного искусства "Главный проспект". Посетители могут приобрести единый билет для посещения нескольких локаций или выбрать отдельные площадки по своему вкусу.'></textarea><br><br> 
-</section>
+        <!-- Жанры (кнопка + dropdown с чекбоксами) -->
+        <div style="position: relative;">
+          <button type="button" class="genre-cat-btn" (click)="toggleGenreDropdown()">
+            {{ selectedGenreLabel }}
+            <mat-icon class="arrow-down-icon">keyboard_arrow_down</mat-icon>
+          </button>
+          <div class="dropdown-list" *ngIf="showGenreDropdown">
+            <div
+              class="dropdown-item"
+              *ngFor="let option of genreOptions | keyvalue"
+              (click)="selectGenre(option.key)"
+              [class.selected]="selectedGenre === option.key"
+              [hidden]="option.key === 'DEFAULT'"
+            >
+              {{ option.value }}
+            </div>
+          </div>
+          <div class="error-message" *ngIf="submitted && form.controls['genre'].errors?.['required']">
+            Выберите жанр
+          </div>
+        </div>
+      </div>
 
-<section class="location-section section">
-    <h2>Локация</h2>
-    <div class="location-footer">
-    <p>Адрес</p>
-    <input type="text" id="adress"><br><br> 
-    <p>Название локации</p>
-    <input type="text" id="name_loc"><br><br> 
-    <p>Номер телефона</p>
-    <input type="text" id="phone"><br><br> 
-    <p>Метро</p>
-    <input type="text" id="metro"><br><br> 
-    </div>
-</section>
 
-<section class="photo section">
-    <h2>Фотография на заставку мероприятия</h2>
-    <div class="photo-content">
-    <img class="hero-image" src="assets/img/event-page.jpg" alt="Изображение мероприятия">
-        <button class="plus-button">
-            <span class="plus">+</span>
-            <span class="text">Заменить фото</span>
-        </button>
-    </div>
-</section>
+      <section class="time-section section">
+        <h2>Дата</h2>
+        <div class="time-container">
+          <div class="time-block">
+            <span class="time-label">Начало</span>
+            <input type="datetime-local" formControlName="startDate">
+            <div class="error-message" *ngIf="submitted && form.controls['startDate'].errors?.['required']">
+              Укажите дату и время начала
+            </div>
+          </div>
+          <div class="time-block">
+            <span class="time-label">Конец</span>
+            <input type="datetime-local" formControlName="endDate">
+            <div class="error-message" *ngIf="submitted && form.controls['endDate'].errors?.['required']">
+              Укажите дату и время окончания
+            </div>
+          </div>
+        </div>
+      </section>
 
-<section class="event-info-section section">
-    <h2>Информация об ивенте</h2>
-    <div class="info-container">
-        <p class="info-label">Организатор</p>
-        <input type="text" id="organization"><br><br> 
-        <p class="info-label">Веб-сайт</p>
-        <input type="text" id="web-site"><br><br> 
-    </div>
-</section>
+      <section class="description section">
+        <h2>Описание события</h2>
+        <textarea formControlName="description" type="text" id="description"
+                  placeholder="Расскажите о своем мероприятии так, чтобы на него захотелось пойти!"></textarea>
+        <div class="error-message" *ngIf="submitted && form.controls['description'].errors?.['required']">
+          Введите описание события
+        </div>
+      </section>
 
-<a href="#" class="register-btn">Зарегистрировать мероприятие</a>
+      <section class="photo section">
+        <h2>Фотография на заставку мероприятия</h2>
+        <div class="photo-content">
+          <label *ngIf="!filePreviewUrl" class="plus-button" style="cursor:pointer;">
+            <mat-icon>add</mat-icon>
+            <span class="text">{{ fileName || 'Выбрать фото' }}</span>
+            <input
+              type="file"
+              (change)="onFileSelected($event)"
+              accept="image/*"
+              style="display:none"
+            />
+          </label>
+          <!-- Превью: появляется вместо инпута -->
+          <img *ngIf="filePreviewUrl" [src]="filePreviewUrl" alt="Превью"
+               class="photo-preview">
+          <button
+            *ngIf="filePreviewUrl"
+            type="button"
+            class="plus-button"
+            (click)="uploadImage()"
+            [disabled]="!selectedFile">
+            <mat-icon class="done-icon">check</mat-icon>
+            <span class="text">Загрузить</span>
+          </button>
+        </div>
+        <div class="error-message" *ngIf="submitted && form.controls['fileName'].errors?.['required']">
+          Добавьте изображение
+        </div>
+      </section>
+
+      <div class="cost-section">
+        <p>Укажите стоимость</p>
+        <div>
+          <span class="cost-rub-span">От</span>
+          <input class="cost-input" type="number" formControlName="cost">
+          <span class="cost-rub-span">рублей</span>
+        </div>
+        <div class="error-message" *ngIf="submitted && form.controls['cost'].errors?.['required']">
+          Укажите начальную стоимость
+        </div>
+      </div>
+
+      <section class="location-section section">
+        <h2>Дополнительная информация</h2>
+        <div class="location-footer">
+          <div>
+            <p>Укажите место проведения</p>
+            <input class="about-info-input" type="text" formControlName="address">
+            <div class="error-message" *ngIf="submitted && form.controls['address'].errors?.['required']">
+              Укажите место проведения
+            </div>
+          </div>
+
+          <div>
+            <p class="info-label">Организатор</p>
+            <input class="about-info-input" type="text" formControlName="organization">
+            <div class="error-message" *ngIf="submitted && form.controls['organization'].errors?.['required']">
+              Укажите организатора
+            </div>
+          </div>
+
+          <div>
+            <p class="info-label">Веб-сайт</p>
+            <input class="about-info-input" type="text" formControlName="website">
+            <div class="error-message" *ngIf="submitted && form.controls['website'].errors?.['required']">
+              Укажите веб-сайт
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="submit-btn">
+        <button class="register-btn" type="submit">Создать мероприятие</button>
+      </div>
+    </form>
+  </div>
 </div>
-</body>
-
