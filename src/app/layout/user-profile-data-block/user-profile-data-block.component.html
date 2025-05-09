@@ -4,8 +4,16 @@
   </div>
   <div class="user-profile-data-block-input-divs">
     <div class="user-profile-data-block-input-div">
-      <label>Ваш логин</label>
-      <input type="text" id="username" placeholder="user1" readonly>
+      <label><strong>Ваше Имя:</strong> </label>
+      <input type="text" id="username" placeholder="{{ user?.displayName || 'Сначала войдите в аккаунт' }}" readonly>
+    </div>
+    <div class="user-profile-data-block-input-div">
+      <label><strong>Ваш телефон:</strong> </label>
+      <input type="text" id="username" placeholder="{{ user?.phoneNumber || 'Не указан' }}" readonly>
+    </div>
+    <div class="user-profile-data-block-input-div">
+      <label>Ваша почта</label>
+      <input type="text" id="username" placeholder="{{ user?.email }}" readonly>
     </div>
     <div class="user-profile-data-block-input-div">
       <label>Ваш пароль</label>
