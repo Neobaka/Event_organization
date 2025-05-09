@@ -56,6 +56,36 @@ export class Auth2Service {
     return this.http.get(`${this.apiUrl}users/me`);
   }
 
+  signInWithGoogle(): Promise<any> {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    return this.afAuth.signInWithPopup(provider)
+      .then(result => {
+        // После успешной аутентификации через Google
+        if (result.user) {
+          // Здесь можно отправить данные на ваш бэкенд для создания JWT токена
+          // Например, обмен Firebase ID token на ваш собственный токен
+          return result.user.getIdToken().then(idToken => {
+            return this.http.post<TokenResponse>(
+              `${this.apiUrl}users/google-auth`,
+              { idToken }
+            ).pipe(
+              tap(response => {
+                this.saveToken(response.AccessToken);
+                this.loggedInSubject.next(true);
+
+                // Загружаем профиль пользователя
+                this.getUserProfileFromApi().subscribe(profile => {
+                  this.userDataSubject.next(profile);
+                });
+              })
+            ).toPromise();
+          });
+        }
+        return null;
+      });
+  }
+
+
   // Геттер для синхронной проверки
   get isAuth(): boolean {
     return this.hasToken();

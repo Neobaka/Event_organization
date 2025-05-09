@@ -102,4 +102,22 @@ export class LoginModalComponent {
       this.errorMessage = 'Произошла ошибка при входе';
     }
   }
+
+  signInWithGoogle(): void {
+    this.loading = true;
+    this.errorMessage = '';
+
+    this.authService.signInWithGoogle()
+      .then(() => {
+        this.loading = false;
+        this.closeModal();
+        this.router.navigate(['/profile']);
+      })
+      .catch(error => {
+        console.error('Google login error:', error);
+        this.loading = false;
+        this.errorMessage = 'Ошибка при входе через Google';
+      });
+  }
+
 }
