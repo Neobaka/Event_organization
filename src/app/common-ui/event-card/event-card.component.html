@@ -1,7 +1,14 @@
-<div class="event-card-div">
-  <a href="#" class="event-card-img-link">
+<div class="event-card-div" (click)="openEvent()">
     <div class="event-card-img-div">
-      <img class="event-card-img" [src]="'assets/img/event-card-img1.png'" alt="Изображение мероприятия">
+      <img
+        class="event-card-img"
+        *ngIf="imageUrl; else placeholder"
+        [src]="imageUrl"
+        [alt]="event.eventName"
+      >
+      <ng-template #placeholder>
+        <img class="event-card-img" src="assets/img/event-card-img1.png" alt="Нет изображения">
+      </ng-template>
       <!--<img class="event-card-img" [src]="'assets/img/' + (event.fileName || 'event-card-img1.png')" alt="Изображение мероприятия">-->
       <div class="event-card-img-subdiv">
         <a style="text-decoration: none" href="#">
@@ -16,7 +23,6 @@
         </button>
       </div>
     </div>
-  </a>
   <div class="event-card-under-image-div">
     <div class="event-card-title">
       <h3>

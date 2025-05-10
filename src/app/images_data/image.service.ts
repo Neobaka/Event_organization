@@ -15,4 +15,8 @@ export class ImageService {
     formData.append('file', file);
     return this.http.post<{ fileName: string }>(`${this.apiUrl}/upload`, formData);
   }
+
+  getImage(fileName: string): Observable<Blob> {
+    return this.http.get(`${this.apiUrl}/${fileName}`, { responseType: 'blob' });
+  }
 }

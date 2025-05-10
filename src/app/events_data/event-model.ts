@@ -1,4 +1,5 @@
 export interface EventModel {
+  id: number;
   fileName: string;
   cost: number;
   creatorId: number;
