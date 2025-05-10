@@ -198,6 +198,8 @@ h2 {
   height: 300px;
   background-color: #1a1a1a; /* Темный фон как заглушка */
   overflow: hidden;
+  border-radius: 0 0 20px 20px;
+
 }
 
 .hero-image {
@@ -207,7 +209,6 @@ h2 {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(0.7);
 }
 
 .hero-content {

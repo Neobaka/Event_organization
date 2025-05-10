@@ -7,6 +7,7 @@ import {EnumTranslatorPipe} from '../../events_data/enum-translator.pipe';
 import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
 import {Subscription} from 'rxjs';
 import {ImageService} from '../../images_data/image.service';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -31,7 +32,8 @@ export class EventCardComponent implements OnInit, OnDestroy {
 
   constructor(
     private imageService: ImageService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -59,5 +61,11 @@ export class EventCardComponent implements OnInit, OnDestroy {
     event.stopPropagation();
     event.preventDefault();
     this.isLiked = !this.isLiked;
+  }
+
+  openEvent() {
+    if (this.event) {
+      this.router.navigate(['/event', this.event.id]);
+    }
   }
 }

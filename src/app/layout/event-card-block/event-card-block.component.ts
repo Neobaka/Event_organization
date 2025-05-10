@@ -2,7 +2,6 @@ import {Component, ViewEncapsulation} from '@angular/core';
 import { CarouselComponent } from 'ngx-carousel-ease';
 import { EventModel } from '../../events_data/event-model';
 import { EventService } from '../../events_data/event.service';
-import {MatIcon} from '@angular/material/icon';
 import {EventCardComponent} from '../../common-ui/event-card/event-card.component';
 import {NgForOf, NgIf} from '@angular/common';
 
@@ -10,7 +9,6 @@ import {NgForOf, NgIf} from '@angular/common';
   selector: 'app-event-card-block',
   templateUrl: './event-card-block.component.html',
   imports: [
-    MatIcon,
     EventCardComponent,
     NgForOf,
     CarouselComponent,
