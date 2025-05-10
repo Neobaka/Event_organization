@@ -103,7 +103,10 @@ export class Auth2Service {
   login(payload: LoginPayload) {
     return this.http.post<TokenResponse>(`${this.apiUrl}users/login`, payload).pipe(
       tap(response => this.handleAuthSuccess(response.AccessToken)),
-      catchError(error => this.handleAuthError(error))
+      catchError(error => {
+        this.clearToken();
+        return throwError(() => error);
+      })
     );
   }
 
@@ -120,6 +123,17 @@ export class Auth2Service {
     this.clearToken();
     this.loggedInSubject.next(false);
     return throwError(() => error);
+  }
+
+  isTokenExpired(token: string | null): boolean {
+    if (!token) return true;
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      // exp - время истечения в секундах
+      return Math.floor(Date.now() / 1000) >= payload.exp;
+    } catch (e) {
+      return true; // если токен некорректный - считаем его истёкшим
+    }
   }
 
   // Метод для выхода

@@ -192,6 +192,7 @@ h3{
 }
 
 .event-card-undertags-div{
+  width: 100%;
   display: flex;
   justify-content: center;
   gap: 10px;
@@ -215,7 +216,7 @@ h3{
   font-size: 12px;
   align-items: center;
   word-wrap: break-word;
-  width: min-content;
+  width: max-content;
 }
 
 .event-card-undertags-location app-svg-icon{
