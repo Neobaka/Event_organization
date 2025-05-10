@@ -12,10 +12,9 @@ export class EventService {
 
   constructor(private http: HttpClient) {}
 
-  getEvents(): Observable<EventModel[]> {
-    return this.http.get<any>(this.apiUrl).pipe(
-      map(response => response.content)
-    );
+  getEvents(page: number, size: number): Observable<EventModel[]> {
+    return this.http.get<{ content: EventModel[] }>(`${this.apiUrl}?page=${page}&size=${size}`)
+        .pipe(map(response => response.content));
   }
 
   createEvent(event: Partial<EventModel>): Observable<any> {

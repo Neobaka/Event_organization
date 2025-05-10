@@ -19,16 +19,18 @@
   flex-wrap: wrap;
   flex-direction: row;
   align-content: stretch;
+  overflow: hidden;
+  position: relative;
   justify-content: space-between;
   align-items: center;
   height: 70%;
-  margin-bottom: 5px;
 }
 
 .event-card-img{
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: cover;
+  object-position: center;
   border-radius: 20px;
 }
 
@@ -132,7 +134,11 @@
 }
 
 .event-card-under-image-second-div{
+  display: flex;
   height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .event-card-title{
@@ -146,7 +152,8 @@
   max-height: 100%;
   max-width: 205px;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
 }
 
 h3{
@@ -217,5 +224,4 @@ h3{
 .event-card-undertags-location app-svg-icon{
   margin-right: 4px;
 }
-
 
