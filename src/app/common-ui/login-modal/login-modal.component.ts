@@ -1,10 +1,10 @@
-import {Component, EventEmitter, inject, Input, Output} from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Auth2Service } from '../../auth/auth2.service';
-import {Router} from '@angular/router';
-import {MatIcon} from '@angular/material/icon';
+import { Router } from '@angular/router';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-login-modal',
@@ -18,7 +18,6 @@ export class LoginModalComponent {
   @Output() close = new EventEmitter<void>();
   @Output() forgotPassword = new EventEmitter<void>();
   @Output() register = new EventEmitter<void>();
-
   loginForm: FormGroup;
   errorMessage: string = '';
   loading: boolean = false;
@@ -91,15 +90,27 @@ export class LoginModalComponent {
   private handleLoginError(error: any): void {
     console.error('Login error:', error);
 
-    // Обработка ошибок
-    if (error.status === 401) {
-      this.errorMessage = 'Invalid credentials provided. Failed to authenticate user';
-    } else if (error.status === 400) {
-      this.errorMessage = 'Invalid request body';
-    } else if (error.status === 0) {
-      this.errorMessage = 'Ошибка соединения с сервером';
-    } else {
-      this.errorMessage = 'Произошла ошибка при входе';
+    // Обработка ошибок Firebase Authentication
+    const errorCode = error.code;
+    switch (errorCode) {
+      case 'auth/invalid-email':
+        this.errorMessage = 'Неверный формат электронной почты';
+        break;
+      case 'auth/user-disabled':
+        this.errorMessage = 'Пользователь отключен';
+        break;
+      case 'auth/user-not-found':
+        this.errorMessage = 'Пользователь не найден';
+        break;
+      case 'auth/wrong-password':
+        this.errorMessage = 'Неверный пароль';
+        break;
+      case 'auth/too-many-requests':
+        this.errorMessage = 'Слишком много запросов. Попробуйте позже';
+        break;
+      default:
+        this.errorMessage = 'Произошла ошибка при входе';
+        break;
     }
   }
 
@@ -108,7 +119,8 @@ export class LoginModalComponent {
     this.errorMessage = '';
 
     this.authService.signInWithGoogle()
-      .then(() => {
+      .then(user => {
+        console.log('Успешный вход через Google:', user);
         this.loading = false;
         this.closeModal();
         this.router.navigate(['/profile']);
@@ -116,8 +128,15 @@ export class LoginModalComponent {
       .catch(error => {
         console.error('Google login error:', error);
         this.loading = false;
-        this.errorMessage = 'Ошибка при входе через Google';
+
+        // Обработка ошибок авторизации через Google
+        if (error.code === 'auth/popup-closed-by-user') {
+          this.errorMessage = 'Окно входа было закрыто пользователем';
+        } else if (error.code === 'auth/popup-blocked') {
+          this.errorMessage = 'Всплывающее окно заблокировано браузером';
+        } else {
+          this.errorMessage = 'Ошибка при входе через Google';
+        }
       });
   }
-
 }

@@ -2,7 +2,7 @@ import { NgOptimizedImage } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Auth2Service } from '../../auth/auth2.service';
 import firebase from 'firebase/compat/app';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { UserProfileComponent } from '../../layout/user-profile-data-block/user-profile.component';
 
 
 //Поскольку используем compat API, везде, где есть ссылака на User, нужно использовать тип из firebase/compat/app
@@ -11,7 +11,7 @@ type User = firebase.User;
 @Component({
   selector: 'app-user-profile-data-block',
   imports: [
-    NgOptimizedImage
+    NgOptimizedImage, UserProfileComponent
   ],
   templateUrl: './user-profile-data-block.component.html',
   styleUrl: './user-profile-data-block.component.scss'

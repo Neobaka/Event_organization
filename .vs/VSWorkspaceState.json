@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\public",
+    "\\public\\assets",
+    "\\public\\assets\\svg",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\common-ui",
+    "\\src\\app\\common-ui\\login-modal",
+    "\\src\\app\\layout",
+    "\\src\\app\\layout\\user-profile-data-block"
+  ],
+  "SelectedNode": "\\src\\app\\common-ui\\login-modal\\login-modal.component.html",
+  "PreviewInSolutionExplorer": false
+}

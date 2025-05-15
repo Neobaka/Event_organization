@@ -2,25 +2,11 @@
   <div>
     <img class="user-profile-avatar-big-img" ngSrc="assets/img/sample.jpeg" height="250" width="250" priority>
   </div>
-  <div class="user-profile-data-block-input-divs">
-    <div class="user-profile-data-block-input-div">
-      <label><strong>Ваше Имя:</strong> </label>
-      <input type="text" id="username" placeholder="{{ userData?.DisplayName || 'Сначала войдите в аккаунт' }}" readonly>
-    </div>
-    <div class="user-profile-data-block-input-div">
-      <label><strong>Ваш телефон:</strong> </label>
-      <input type="text" id="username" placeholder="{{ userData?.PhoneNumber || 'Не указан' }}" readonly>
-    </div>
-    <div class="user-profile-data-block-input-div">
-      <label>Ваша почта</label>
-      <input type="text" id="username" placeholder="{{ userData?.Email }}" readonly>
-    </div>
-    <div class="user-profile-data-block-input-div">
-      <label>Ваш пароль</label>
-      <input type="password" id="password" placeholder="********" readonly>
-    </div>
-    <button id="editBtn">Изменить данные</button>
-  </div>
+
+  <app-user-profile></app-user-profile>
+
+    
+
 </div>
 
 <!--Модальное окно
