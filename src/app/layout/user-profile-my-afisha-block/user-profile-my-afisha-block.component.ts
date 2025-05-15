@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {UserProfileMyTicketsComponent} from '../../common-ui/user-profile-my-tickets/user-profile-my-tickets.component';
 import {
   UserProfilePlannedEventsComponent
@@ -20,6 +20,11 @@ import {
 })
 export class UserProfileMyAfishaBlockComponent {
   activeComponent: string = 'user-profile-my-tickets';
+  @Input() initialSection: string = 'user-profile-my-tickets';
+
+  ngOnInit() {
+    this.activeComponent = this.initialSection;
+  }
 
   showUserPageFilterComponent(componentName: string) {
     this.activeComponent = componentName;

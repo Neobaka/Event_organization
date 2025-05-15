@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ParentComponent } from '../app-parent/parent.component';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -7,6 +8,12 @@ import { ParentComponent } from '../app-parent/parent.component';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent {
 
+export class HeaderComponent {
+  constructor(private router: Router) {}
+
+  goToFavoritePlaces(event: MouseEvent) {
+    event.preventDefault(); // чтобы не было перехода по href="#"
+    this.router.navigate(['/profile'], { queryParams: { section: 'favorite-places' } });
+  }
 }

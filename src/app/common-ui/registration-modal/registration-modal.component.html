@@ -4,18 +4,15 @@
       <button class="close-button" (click)="closeModal()">×</button>
 
       <div class="user-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-          <circle cx="12" cy="7" r="4"></circle>
-        </svg>
+        <mat-icon class="groups-icon">person</mat-icon>
+      </div>
+
+      <div class="tab-container-account">
+        <div class="tab-account">Личный кабинет</div>
       </div>
 
       <div class="tab-container">
-        <div class="tab tab-underline">Личный кабинет</div>
-      </div>
-
-      <div class="tab-container">
-        <div class="tab">Регистрация</div>
+        <div class="tab tab-underline">Регистрация</div>
       </div>
 
       <form class="form-container" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
