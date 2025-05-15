@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import {Router, RouterOutlet} from '@angular/router';
 import {HeaderComponent} from './common-ui/header/header.component';
 import {SearchBarComponent} from './common-ui/search-bar/search-bar.component';
 import { EventCardBlockComponent } from './layout/event-card-block/event-card-block.component';
@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ParentComponent } from './common-ui/app-parent/parent.component';
 import { CreateEventPageComponent } from './pages/create-event-page/create-event-page.component';
 import { LoginModalComponent } from './common-ui/login-modal/login-modal.component';
+import { Auth2Service } from './auth/auth2.service';
 
 
 
@@ -21,7 +22,15 @@ import { LoginModalComponent } from './common-ui/login-modal/login-modal.compone
   template: '<router-outlet></router-outlet>'
 })
 export class AppComponent {
+  constructor(private auth: Auth2Service, private router: Router) {}
   title = 'Event_organization';
+
+  ngOnInit() {
+    const token = this.auth.getAccessToken();
+    if (this.auth.isTokenExpired(token)) {
+      this.auth.logout(); // logout уже делает navigate(['/'])
+    }
+  }
 
   isModalOpen = false;
 

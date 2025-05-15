@@ -1,17 +1,32 @@
-import { Component } from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
+import { CarouselComponent } from 'ngx-carousel-ease';
+import { EventModel } from '../../events_data/event-model';
+import { EventService } from '../../events_data/event.service';
 import {EventCardComponent} from '../../common-ui/event-card/event-card.component';
-import {ScrollingModule} from '@angular/cdk/scrolling';
-import { Router } from '@angular/router';
+import {NgForOf, NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-event-card-block',
+  templateUrl: './event-card-block.component.html',
   imports: [
     EventCardComponent,
-    ScrollingModule
+    NgForOf,
+    CarouselComponent,
+    NgIf
   ],
-  templateUrl: './event-card-block.component.html',
-  styleUrl: './event-card-block.component.scss'
+  encapsulation: ViewEncapsulation.None,
+  styleUrls: ['./event-card-block.component.scss']
 })
 export class EventCardBlockComponent {
+  events: EventModel[] = [];
+
+  constructor(private eventService: EventService) {}
+
+  ngOnInit(): void {
+    this.eventService.getEvents(0, 20).subscribe(events => {
+      this.events = events;
+    });
+  }
 
 }
+
