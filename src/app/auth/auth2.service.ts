@@ -3,9 +3,9 @@ import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {RegisterPayload} from './register-payload';
 import {TokenResponse} from './token-response';
-import { BehaviorSubject, catchError, Observable, tap, throwError, of } from 'rxjs';
-import { LoginPayload } from './login-payload';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
+import {BehaviorSubject, catchError, Observable, tap, throwError, of} from 'rxjs';
+import {LoginPayload} from './login-payload';
+import {AngularFireAuth} from '@angular/fire/compat/auth';
 import firebase from 'firebase/compat/app';
 import {TokenService} from './token.service';
 
@@ -34,32 +34,32 @@ export class Auth2Service {
   private readonly ACCESS_TOKEN_KEY = 'access_token';
   private readonly apiUrl = 'http://188.226.91.215:43546/api/v1/';
   private userProfile$?: Observable<any>;
-  private loggedInSubject = new BehaviorSubject<boolean>(this.hasToken());
-  private userDataSubject = new BehaviorSubject<any>(null);
+  private loggedInSubject: BehaviorSubject<boolean>
+  private userDataSubject = new BehaviorSubject<UserDetails | null>(null);
 
-  public loggedIn$ = this.loggedInSubject.asObservable();
-  public userData$ = this.userDataSubject.asObservable();
-  public user$: Observable<User | null>;
+  private http = inject(HttpClient);
+  private router = inject(Router);
+  private afAuth = inject(AngularFireAuth);
+  private tokenService = inject(TokenService);
 
-  http = inject(HttpClient);
-  router = inject(Router);
+  public get loggedIn$(): Observable<boolean> {
+    return this.loggedInSubject.asObservable();
+  }
 
-  constructor(
-    private afAuth: AngularFireAuth,
-    private tokenService: TokenService
-  ) {
+  public get userData$(): Observable<UserDetails | null> {
+    return this.userDataSubject.asObservable();
+  }
+
+  public readonly user$: Observable<User | null>;
+
+  constructor() {
+    this.loggedInSubject = new BehaviorSubject<boolean>(this.hasToken());
     this.user$ = this.afAuth.authState;
-
-    if (this.hasToken()) {
-      this.getUserProfileFromApi().subscribe(); // загргузка профиля при инициализации
-    }
   }
 
-  // Проверка наличия токена в localStorage
   private hasToken(): boolean {
-    return !!localStorage.getItem(this.ACCESS_TOKEN_KEY);
+    return !!this.tokenService.getAccessToken();
   }
-
 
   getCurrentUser(): Promise<User | null> {
     return this.afAuth.currentUser;
@@ -113,17 +113,14 @@ export class Auth2Service {
       .then(result => {
         // После успешной аутентификации через Google
         if (result.user) {
-          // Здесь можно отправить данные на ваш бэкенд для создания JWT токена
-          // Например, обмен Firebase ID token на ваш собственный токен
           return result.user.getIdToken().then(idToken => {
             return this.http.post<TokenResponse>(
               `${this.apiUrl}users/google-auth`,
-              { idToken }
+              {idToken}
             ).pipe(
               tap(response => {
                 this.saveToken(response.AccessToken);
                 this.loggedInSubject.next(true);
-
                 // Загружаем профиль пользователя
                 this.getUserProfileFromApi().subscribe(profile => {
                   this.userDataSubject.next(profile);
@@ -143,7 +140,7 @@ export class Auth2Service {
   }
 
   //регистрация
-  register(payload: RegisterPayload){
+  register(payload: RegisterPayload) {
     return this.http.post<void>(
       `${this.apiUrl}users`,
       payload

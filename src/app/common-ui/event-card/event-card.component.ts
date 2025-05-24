@@ -1,13 +1,13 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, DestroyRef, inject, Input, OnInit} from '@angular/core';
 import {SvgIconComponent} from '../../helpers/svg-icon/svg-icon.component';
 import {MatIcon} from '@angular/material/icon';
 import {DatePipe, NgClass, NgIf} from '@angular/common';
 import {EventModel} from '../../events_data/event-model';
 import {EnumTranslatorPipe} from '../../events_data/enum-translator.pipe';
 import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
-import {Subscription} from 'rxjs';
 import {ImageService} from '../../images_data/image.service';
 import {Router} from '@angular/router';
+import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 
 
 @Component({
@@ -23,22 +23,20 @@ import {Router} from '@angular/router';
   templateUrl: './event-card.component.html',
   styleUrl: './event-card.component.scss'
 })
-export class EventCardComponent implements OnInit, OnDestroy {
+export class EventCardComponent implements OnInit {
   @Input() event!: EventModel;
   imageUrl?: SafeUrl;
-  private imageSub?: Subscription;
-
   isLiked = false;
 
-  constructor(
-    private imageService: ImageService,
-    private sanitizer: DomSanitizer,
-    private router: Router,
-  ) {}
+  private imageService = inject(ImageService);
+  private sanitizer = inject(DomSanitizer);
+  private router = inject(Router);
+  private destroyRef = inject(DestroyRef);
 
   ngOnInit() {
     if (this.event?.fileName) {
-      this.imageSub = this.imageService.getImage(this.event.fileName)
+      this.imageService.getImage(this.event.fileName)
+        .pipe(takeUntilDestroyed(this.destroyRef))
         .subscribe({
           next: (blob) => {
             const objectURL = URL.createObjectURL(blob);
@@ -48,12 +46,6 @@ export class EventCardComponent implements OnInit, OnDestroy {
             this.imageUrl = undefined;
           }
         });
-    }
-  }
-
-  ngOnDestroy() {
-    if (this.imageSub) {
-      this.imageSub.unsubscribe();
     }
   }
 

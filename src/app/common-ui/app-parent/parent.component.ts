@@ -50,34 +50,4 @@ export class ParentComponent {
     this.isLoginModalOpen = false;
     this.isRegistrationModalOpen = false;
   }
-  /*
-  onForgotPassword(): void {
-    const email = prompt('Введите ваш email для сброса пароля:');
-    if (email) {
-      this.authService.resetPassword(email).subscribe({
-        next: () => {
-          alert('Инструкции по сбросу пароля отправлены на ваш email');
-          this.closeModals();
-        },
-        error: (error) => {
-          console.error('Reset password error:', error);
-          alert('Произошла ошибка при отправке запроса на сброс пароля');
-        }
-      });
-    }
-  }
-  */
-
-  /*
-  logout(): void {
-    this.authService.logout().subscribe({
-      next: () => {
-        console.log('Юзер вышел из аккаунта');
-      },
-      error: (error) => {
-        console.error('Ошибка выхода:', error);
-      }
-    });
-  }
-  */
 }

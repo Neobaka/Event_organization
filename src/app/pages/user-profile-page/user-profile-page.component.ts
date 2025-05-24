@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {HeaderComponent} from '../../common-ui/header/header.component';
 import {UserProfileDataBlockComponent} from '../../layout/user-profile-data-block/user-profile-data-block.component';
 import {UserProfileMyAfishaBlockComponent} from '../../layout/user-profile-my-afisha-block/user-profile-my-afisha-block.component';
@@ -15,10 +15,10 @@ import {ActivatedRoute, Router} from '@angular/router';
   styleUrl: './user-profile-page.component.scss'
 })
 export class UserProfilePageComponent {
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute) {
-  }
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
+
+
 
   navigateToMainPage(){
     this.router.navigate(['']);

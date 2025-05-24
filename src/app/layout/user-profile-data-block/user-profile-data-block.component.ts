@@ -1,8 +1,9 @@
 import { NgOptimizedImage } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { Auth2Service } from '../../auth/auth2.service';
+import {Component, inject, OnInit} from '@angular/core';
+import {Auth2Service, UserDetails} from '../../auth/auth2.service';
 import firebase from 'firebase/compat/app';
 import { UserProfileComponent } from '../../layout/user-profile-data-block/user-profile.component';
+import {Subscription} from 'rxjs';
 
 
 //Поскольку используем compat API, везде, где есть ссылака на User, нужно использовать тип из firebase/compat/app
@@ -17,12 +18,13 @@ type User = firebase.User;
   styleUrl: './user-profile-data-block.component.scss'
 })
 export class UserProfileDataBlockComponent implements OnInit {
-  userData: any = null;
+  private authService = inject(Auth2Service);
 
-  constructor(private authService: Auth2Service) { }
+  userData: UserDetails | null = null;
+  private subscription = new Subscription();
 
   ngOnInit(): void {
-    this.authService.getUserProfileFromApi().subscribe({
+    this.subscription = this.authService.userData$.subscribe({
       next: (data) => {
         this.userData = data;
       },
@@ -30,5 +32,9 @@ export class UserProfileDataBlockComponent implements OnInit {
         console.error('Ошибка при получении данных профиля:', err);
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }
