@@ -4,14 +4,11 @@
       <button class="close-button" (click)="closeModal()">×</button>
 
       <div class="user-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-          <circle cx="12" cy="7" r="4"></circle>
-        </svg>
+        <mat-icon class="groups-icon">person</mat-icon>
       </div>
 
-      <div class="tab-container">
-        <div class="tab tab-underline">Личный кабинет</div>
+      <div class="tab-container-account">
+        <div class="tab-account">Личный кабинет</div>
       </div>
 
       <div class="tab-container">
@@ -46,10 +43,15 @@
     </div>
 
     <div class="modal-right">
-
       <div class="localhosts-logo">LocalHosts</div>
       <div class="logo-underline"></div>
       <img class="hero-image" src="assets/img/Rectangle 6.png" alt="Изображение мероприятия">
+      <div class="social-auth-container">
+        <button class="google-signin-btn" (click)="signInWithGoogle()">
+          <img src="assets/svg/google.svg" alt="Google" class="google-icon">
+          Войти через Google
+        </button>
+      </div>
     </div>
   </div>
 </div>

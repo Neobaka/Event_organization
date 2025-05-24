@@ -5,11 +5,35 @@
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-body {
-  background-color: #121212;
+.main-page {
+  background-color: var(--dark-color);
   color: white;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  margin: 0;
 }
 
+.page-container {
+  width: 60%;
+}
+
+.event-card-img-button-like {
+  display: flex;
+  background: none;
+  border: none;
+  margin-right: 16px;
+
+  .mat-icon {
+    color: #D9D9D9;
+    transition: color 0.2s;
+    cursor: pointer;
+  }
+
+  .icon-active {
+    color: var(--like-color);
+  }
+}
 
 .login-btn {
   background-color: white;
@@ -40,16 +64,18 @@ body {
 
 .map {
   height: 200px;
+  width: 100%;
   background-color: #f1f1f1;
   border-radius: 5px;
-  display: flex;
-  justify-content: center;
   align-items: center;
-  color: #333;
 }
 
 .section {
   padding: 20px;
+}
+
+.section1{
+    margin-top: 210px;
 }
 
 h2 {
@@ -172,6 +198,8 @@ h2 {
   height: 300px;
   background-color: #1a1a1a; /* Темный фон как заглушка */
   overflow: hidden;
+  border-radius: 0 0 20px 20px;
+
 }
 
 .hero-image {
@@ -181,7 +209,6 @@ h2 {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(0.7);
 }
 
 .hero-content {
