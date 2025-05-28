@@ -106,10 +106,27 @@
   border: solid 1px transparent;
 }
 
-.button-calendar-img{
-  margin-right: 5px;
-  position: relative;
-  top: -1px;
+.calendar-icon{
+  font-size: 20px;
+  line-height: 23px;
+  color: currentColor;
+  overflow: visible;
+  margin-right: 3px;
+}
+
+.arrow-down-icon{
+  font-size: 24px;
+  line-height: 24px;
+  color: currentColor;
+  overflow: visible;
+}
+
+.button-cost-filter{
+  padding: 5px 15px;
+}
+
+.button-calendar{
+  padding: 5px 15px;
 }
 
 .button-cost-filter-img{
@@ -120,14 +137,14 @@
 .filter-button:hover{
   background-color: var(--dark-soft-color);
   color: var(--light-stroke-color);
-  transition: 0.2s;
+  transition: 0.3s;
 }
 
 .filter-button:active{
   box-sizing: border-box;
   background-color: var(--dark-soft-color);
   color: var(--light-stroke-color);
-  transition: 0.2s;
+  transition: 0.3s;
   border: solid 1px var(--light-stroke-color);
 }
 
@@ -138,4 +155,23 @@
 .button-sort:hover{
   background-color: lightgray;
   transition: 0.2s;
+}
+
+.filter-icon{
+  color: var(--dark-color);
+  font-size: 20px;
+  line-height: 24px;
+  z-index: 3;
+}
+
+.sort-radio{
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  margin: 4px 0;
+  background-color: var(--dark-soft-color);
+}
+
+.sort-radio-list{
+  margin: 5px 25px 5px 5px;
 }

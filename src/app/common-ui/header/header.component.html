@@ -5,18 +5,20 @@
       <span class="header-logo-text">LocalHosts</span>
     </a>
   </div>
-  <nav class="header-nav">
-    <ul class="header-nav-ul">
-      <a  class="header-nav-ul-link" href="#">
-        <li class="header-nav-ul-li">Каталог</li>
-      </a>
-      <a class="header-nav-ul-link" href="#">
-        <li class="header-nav-ul-li">Избранное</li>
-      </a>
-      <a class="header-nav-ul-link" href="#">
-        <li class="header-nav-ul-li">Помощь</li>
-      </a>
-    </ul>
-  </nav>
-  <app-parent></app-parent>
+  <div class="header-nav-login">
+    <nav class="header-nav">
+      <ul class="header-nav-ul">
+        <a  class="header-nav-ul-link" href="#">
+          <li class="header-nav-ul-li">Каталог</li>
+        </a>
+        <a class="header-nav-ul-link" href="#" (click)="goToFavoritePlaces($event)">
+          <li class="header-nav-ul-li">Избранное</li>
+        </a>
+        <a class="header-nav-ul-link" href="#">
+          <li class="header-nav-ul-li">Помощь</li>
+        </a>
+      </ul>
+    </nav>
+    <app-parent></app-parent>
+  </div>
 </header>

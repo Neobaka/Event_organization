@@ -1,15 +1,20 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {Component, EventEmitter, inject, Input, Output} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../../services/auth.service';
+import {Auth2Service} from '../../auth/auth2.service';
+import {RegisterPayload} from '../../auth/register-payload';
+import {switchMap} from 'rxjs';
+import {Router} from '@angular/router';
+import {MatIcon} from '@angular/material/icon';
 
 @Component({
   selector: 'app-registration-modal',
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, MatIcon],
   templateUrl: './registration-modal.component.html',
   styleUrls: ['./registration-modal.component.scss']
 })
+
 export class RegistrationModalComponent {
   @Input() isOpen = false;
   @Output() close = new EventEmitter<void>();
@@ -17,8 +22,12 @@ export class RegistrationModalComponent {
   registrationForm: FormGroup;
   errorMessage: string = '';
   loading: boolean = false;
+  router: any = inject(Router);
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: Auth2Service
+  ) {
     this.registrationForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -59,41 +68,51 @@ export class RegistrationModalComponent {
       this.errorMessage = '';
 
       const { email, password, firstName, lastName, phone } = this.registrationForm.value;
-      const userData = {
-        firstName,
-        lastName,
-        phone,
-        email
+      // Формируем payload, используя интерфейс который мы создали
+      const registerPayload: RegisterPayload = {
+        Email: email,
+        PhoneNumber: phone,
+        DisplayName: `${firstName} ${lastName}`,
+        Password: password
       };
 
-      this.authService.register(email, password, userData).subscribe({
+      this.authService.register(registerPayload).pipe(
+        // После успешной регистрации выполняем автоматический вход
+        switchMap(() => this.authService.login({
+          EmailId: email,
+          Password: password
+        }))
+        ).subscribe({
         next: (user) => {
           console.log('User registered successfully:', user);
           this.loading = false;
           this.closeModal();
+          this.router.navigate(['/profile']);
+          // можно добавить еще логику при успехе (РЕДИРЕКТ)
         },
         error: (error) => {
-          console.error('Registration error:', error);
+          this.handleRegistrationError(error);
           this.loading = false;
-
-          switch (error.code) {
-            case 'auth/email-already-in-use':
-              this.errorMessage = 'Этот email уже используется';
-              break;
-            case 'auth/weak-password':
-              this.errorMessage = 'Пароль слишком простой';
-              break;
-            default:
-              this.errorMessage = 'Произошла ошибка при регистрации. Попробуйте снова';
-          }
         }
       });
     } else {
       // Отметить все поля как затронутые для отображения ошибок валидации
       Object.keys(this.registrationForm.controls).forEach(key => {
-        const control = this.registrationForm.get(key);
-        control?.markAsTouched();
+        this.registrationForm.get(key)?.markAsTouched();
       });
+    }
+  }
+
+  private handleRegistrationError(error: any): void {
+    console.error('Registration error:', error);
+
+    // обработка ошибок
+    if (error.status === 409) {
+      this.errorMessage = 'User account with provided email-id already exists';
+    } else if (error.status === 400) {
+      this.errorMessage = 'Invalid request body';
+    } else {
+      this.errorMessage = 'Ошибка регистрации. Попробуйте снова';
     }
   }
 }
