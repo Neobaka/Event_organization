@@ -6,6 +6,7 @@ import {Auth2Service} from '../../auth/auth2.service';
 import {AsyncPipe, CommonModule} from '@angular/common';
 import {MatIcon} from '@angular/material/icon';
 import {Router} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-parent',
@@ -22,10 +23,24 @@ export class ParentComponent {
 
   constructor(
     private authService: Auth2Service,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
+
   ) {
     // Получаем реактивный статус авторизации
     this.isLoggedIn$ = this.authService.isLoggedIn();
+
+    this.route.queryParams.subscribe(params => {
+    if (params['showLoginModal'] === 'true') {
+      this.openLoginModal();
+
+      this.router.navigate([], {
+        relativeTo: this.route,
+        queryParams: {},
+        replaceUrl: true
+      });
+    }
+  });
   }
 
   goToProfile() {
