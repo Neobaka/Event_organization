@@ -1,3 +1,6 @@
+/* eslint-disable indent */
+/* eslint-disable @typescript-eslint/typedef */
+/* eslint-disable @typescript-eslint/member-ordering */
 import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
@@ -13,6 +16,24 @@ import {TokenService} from './token.service';
 //Поскольку используем compat API, везде, где есть ссылака на User, нужно использовать тип из firebase/compat/app
 type User = firebase.User;
 
+export interface EventModel {
+  id: number;
+  eventName: string;
+  eventDescription: string;
+  dateStart: string;
+  dateEnd: string;
+  place: string;
+  organizerName: string;
+  organizerSite: string;
+  cost: number;
+  fileName: string;
+  category: string;
+  genre: string;
+  creatorId: number;
+  createdAt?: string;
+  views?: number;
+  participants?: number;
+}
 
 export interface UserDetails {
   id: number;
@@ -104,33 +125,40 @@ export class Auth2Service {
   }
 
   // Вход через Google
-  signInWithGoogle(): Promise<any> {
+  async signInWithGoogle(): Promise<any> {
     const provider = new firebase.auth.GoogleAuthProvider();
     provider.addScope('email');
     provider.addScope('profile');
 
-    return this.afAuth.signInWithPopup(provider)
-      .then(result => {
-        // После успешной аутентификации через Google
-        if (result.user) {
-          return result.user.getIdToken().then(idToken => {
-            return this.http.post<TokenResponse>(
-              `${this.apiUrl}users/google-auth`,
-              {idToken}
-            ).pipe(
-              tap(response => {
-                this.saveToken(response.AccessToken);
-                this.loggedInSubject.next(true);
-                // Загружаем профиль пользователя
-                this.getUserProfileFromApi().subscribe(profile => {
-                  this.userDataSubject.next(profile);
-                });
-              })
-            ).toPromise();
-          });
-        }
+    try {
+      const result = await this.afAuth.signInWithPopup(provider);
+
+      if (!result.user) {
         return null;
-      });
+      }
+
+      const idToken = await result.user.getIdToken();
+
+      const response = await this.http.post<TokenResponse>(
+        `${this.apiUrl}users/google-auth`,
+        { idToken }
+      ).pipe(
+        tap(response => {
+          this.saveToken(response.AccessToken);
+          this.loggedInSubject.next(true);
+          // Загружаем профиль пользователя
+          this.getUserProfileFromApi().subscribe(profile => {
+            this.userDataSubject.next(profile);
+          });
+        })
+      ).toPromise();
+
+      return response;
+
+    } catch (error) {
+      console.error('Ошибка при входе через Google:', error);
+      throw error;
+    }
   }
 
 
@@ -214,5 +242,26 @@ export class Auth2Service {
   // Реактивная проверка авторизации
   isLoggedIn(): Observable<boolean> {
     return this.loggedIn$;
+  }
+
+
+  // Получение событий конкретного пользователя
+  getUserEvents(userId: number): Observable<EventModel[]> {
+    return this.http.get<EventModel[]>(`${this.apiUrl}events/user/${userId}`);
+  }
+
+  // Удаление события
+  deleteEvent(eventId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}events/${eventId}`);
+  }
+
+  // Получение события по ID (для редактирования)
+  getEventById(eventId: number): Observable<EventModel> {
+    return this.http.get<EventModel>(`${this.apiUrl}events/${eventId}`);
+  }
+
+  // Обновление события
+  updateEvent(eventId: number, payload: any): Observable<EventModel> {
+    return this.http.put<EventModel>(`${this.apiUrl}events/${eventId}`, payload);
   }
 }

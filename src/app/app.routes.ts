@@ -18,5 +18,9 @@ export const routes: Routes = [
   {
     path: 'create',
     loadComponent: () => import('./pages/create-event-page/create-event-page.component').then(m => m.CreateEventPageComponent),
+  },
+  {
+    path: 'created',
+    loadComponent: () => import('./pages/created-event-page/created-event-page.component').then(m => m.CreatedEventPageComponent),
   }
 ];
