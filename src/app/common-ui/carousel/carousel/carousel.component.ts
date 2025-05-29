@@ -1,8 +1,6 @@
 import {
   Component,
   Input,
-  ContentChildren,
-  QueryList,
   AfterViewInit,
   ElementRef,
   ViewChild,
@@ -24,7 +22,6 @@ export class CarouselComponent implements AfterViewInit {
   @Input() gap = 20; // Отступ между слайдами в px
   @ViewChild('track', {static: true}) trackRef!: ElementRef<HTMLDivElement>;
 
-  private wheelTimeout: any = null;
   private wheelLocked = false;
 
   slideWidthPx = 0;
@@ -111,12 +108,12 @@ export class CarouselComponent implements AfterViewInit {
 
 
   onWheel(event: WheelEvent): void {
-    event.preventDefault();
-
-    if (this.wheelLocked) return;
-
     // Для тачпада и горизонтального скролла
     if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) {
+      event.preventDefault();
+
+      if (this.wheelLocked) return;
+
       if (event.deltaX > 0) {
         this.next();
       } else if (event.deltaX < 0) {

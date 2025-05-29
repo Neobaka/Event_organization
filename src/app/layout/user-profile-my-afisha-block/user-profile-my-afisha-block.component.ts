@@ -1,8 +1,8 @@
 import {Component, Input} from '@angular/core';
 import {UserProfileMyTicketsComponent} from '../../common-ui/user-profile-my-tickets/user-profile-my-tickets.component';
 import {
-  UserProfilePlannedEventsComponent
-} from '../../common-ui/user-profile-favorite-events/user-profile-planned-events.component';
+  UserProfileFavoriteEventsComponent
+} from '../../common-ui/user-profile-favorite-events/user-profile-favorite-events.component';
 import {
   UserProfileFavoritePlacesComponent
 } from '../../common-ui/user-profile-favorite-places/user-profile-favorite-places.component';
@@ -12,7 +12,7 @@ import {
   selector: 'app-user-profile-my-afisha-block',
   imports: [
     UserProfileMyTicketsComponent,
-    UserProfilePlannedEventsComponent,
+    UserProfileFavoriteEventsComponent,
     UserProfileFavoritePlacesComponent
   ],
   templateUrl: './user-profile-my-afisha-block.component.html',

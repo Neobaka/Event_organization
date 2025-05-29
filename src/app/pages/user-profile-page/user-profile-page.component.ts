@@ -27,8 +27,8 @@ export class UserProfilePageComponent {
   initialSection = 'user-profile-my-tickets';
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      if (params['section'] === 'favorite-places') {
-        this.initialSection = 'user-profile-favorite-places';
+      if (params['section'] === 'favorite-events') {
+        this.initialSection = 'user-profile-favorite-events';
       }
     });
   }

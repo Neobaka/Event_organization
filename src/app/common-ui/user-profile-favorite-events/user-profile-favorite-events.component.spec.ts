@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UserProfilePlannedEventsComponent } from './user-profile-planned-events.component';
+import { UserProfileFavoriteEventsComponent } from './user-profile-favorite-events.component';
 
 describe('UserProfilePlannedEventsComponent', () => {
-  let component: UserProfilePlannedEventsComponent;
-  let fixture: ComponentFixture<UserProfilePlannedEventsComponent>;
+  let component: UserProfileFavoriteEventsComponent;
+  let fixture: ComponentFixture<UserProfileFavoriteEventsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UserProfilePlannedEventsComponent]
+      imports: [UserProfileFavoriteEventsComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(UserProfilePlannedEventsComponent);
+    fixture = TestBed.createComponent(UserProfileFavoriteEventsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
