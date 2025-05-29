@@ -6,21 +6,11 @@
       </a>
     </h3>
   </div>
-
-  <div class="event-cards-container">
-    <carousel
-      *ngIf="events.length > 0"
-      [slideToShow]="4"
-      [gapBetweenSlides]="20"
-      [arrows]="true"
-      [dots]="false"
-      [counter]="false"
-      [infinite]="false"
-      class="event-cards-carousel"
-    >
+  <div #container class="event-cards-container">
+    <app-carousel *ngIf="events.length > 0" [slidesToShow]="slidesToShow" [gap]="gap">
       <div class="carousel-slide" *ngFor="let event of events">
         <app-event-card [event]="event"></app-event-card>
       </div>
-    </carousel>
+    </app-carousel>
   </div>
 </div>

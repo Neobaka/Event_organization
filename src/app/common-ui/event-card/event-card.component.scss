@@ -1,16 +1,17 @@
 .event-card-div{
   width: 410px;
   border-radius: 20px;
-  transition: 0.1s;
-  margin: 20px auto;
+  transition: 0.3s;
+  margin: 0 auto;
   aspect-ratio: 1;
   box-sizing: border-box;
   cursor: pointer;
 }
 
 .event-card-div:hover{
-  box-shadow: 0 0 2px var(--light-stroke-color);
-  transition: 0.1s;
+  padding: 2px;
+  box-shadow: 0 0 5px var(--light-stroke-color);
+  transition: 0.3s;
   box-sizing: border-box;
 }
 
