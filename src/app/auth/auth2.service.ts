@@ -90,6 +90,22 @@ export class Auth2Service {
     return this.userDataSubject.value;
   }
 
+  updateFavoriteEvents(eventId: number, add: boolean) {
+    const current = this.userDataSubject.value;
+    if (!current) return;
+    let updatedFavorites: number[];
+    if (add) {
+      updatedFavorites = [...current.favoriteEvents, eventId];
+    } else {
+      updatedFavorites = current.favoriteEvents.filter(id => id !== eventId);
+    }
+    // Обновляем userDataSubject с новым массивом избранного
+    this.userDataSubject.next({
+      ...current,
+      favoriteEvents: updatedFavorites
+    });
+  }
+
   getCurrentUser(): Promise<User | null> {
     return this.afAuth.currentUser;
   }

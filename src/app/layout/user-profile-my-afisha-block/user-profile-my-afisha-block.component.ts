@@ -2,7 +2,7 @@ import {Component, Input} from '@angular/core';
 import {UserProfileMyTicketsComponent} from '../../common-ui/user-profile-my-tickets/user-profile-my-tickets.component';
 import {
   UserProfilePlannedEventsComponent
-} from '../../common-ui/user-profile-planned-events/user-profile-planned-events.component';
+} from '../../common-ui/user-profile-favorite-events/user-profile-planned-events.component';
 import {
   UserProfileFavoritePlacesComponent
 } from '../../common-ui/user-profile-favorite-places/user-profile-favorite-places.component';
@@ -30,7 +30,7 @@ export class UserProfileMyAfishaBlockComponent {
     this.activeComponent = componentName;
   }
 
-  isActive(componentName: string) : boolean {
+  isActive(componentName: string): boolean {
     return this.activeComponent === componentName;
   }
 }

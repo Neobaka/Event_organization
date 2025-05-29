@@ -7,8 +7,8 @@
         [class.active]="isActive('user-profile-my-tickets')"
         class="user-profile-afisha-filter-btns">Мои билеты</button>
       <button
-        (click)="showUserPageFilterComponent('user-profile-planned-events')"
-        [class.active]="isActive('user-profile-planned-events')"
+        (click)="showUserPageFilterComponent('user-profile-favorite-events')"
+        [class.active]="isActive('user-profile-favorite-events')"
         class="user-profile-afisha-filter-btns">Хочу сходить</button>
       <button
         (click)="showUserPageFilterComponent('user-profile-favorite-places')"
@@ -27,8 +27,8 @@
       @case ('user-profile-my-tickets'){
         <app-user-profile-my-tickets></app-user-profile-my-tickets>
       }
-      @case ('user-profile-planned-events'){
-        <app-user-profile-planned-events></app-user-profile-planned-events>
+      @case ('user-profile-favorite-events'){
+        <app-user-profile-favorite-events></app-user-profile-favorite-events>
       }
       @case ('user-profile-favorite-places'){
         <app-user-profile-favorite-places></app-user-profile-favorite-places>

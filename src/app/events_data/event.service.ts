@@ -24,4 +24,12 @@ export class EventService {
   getEventById(id: number): Observable<EventModel> {
     return this.http.get<EventModel>(`${this.apiUrl}/${id}`);
   }
+
+  addEventToFavorites(eventId: number): Observable<any> {
+    return this.http.post(`${this.apiUrl}/favorite/${eventId}`, {});
+  }
+
+  deleteEventFromFavorites(eventId: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/favorite/${eventId}`);
+  }
 }
