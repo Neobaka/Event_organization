@@ -1,4 +1,22 @@
 <app-header></app-header>
 <app-search-bar></app-search-bar>
-<app-event-card-block></app-event-card-block>
-<app-event-card-block></app-event-card-block>
+<app-event-card-block
+  [title]="'Может в кино?'"
+  [events]="allEvents | fliterByCategory: 'CINEMA'"
+></app-event-card-block>
+<app-event-card-block
+  [title]="'Или может театр?'"
+  [events]="allEvents | fliterByCategory:'THEATRE' "
+></app-event-card-block>
+<app-event-card-block
+  [title]="'Выставки'"
+  [events]="allEvents | fliterByCategory:'EXHIBITION' "
+></app-event-card-block>
+<app-event-card-block
+  [title]="'Музеи'"
+  [events]="allEvents | fliterByCategory:'MUSEUM' "
+></app-event-card-block>
+<app-event-card-block
+  [title]="'Спортивные события'"
+  [events]="allEvents | fliterByCategory:'SPORT' "
+></app-event-card-block>

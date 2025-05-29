@@ -1,4 +1,13 @@
-import {ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  Input,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+  ViewEncapsulation
+} from '@angular/core';
 import {EventModel} from '../../events_data/event-model';
 import {EventService} from '../../events_data/event.service';
 import {EventCardComponent} from '../../common-ui/event-card/event-card.component';
@@ -18,7 +27,8 @@ import {CarouselComponent} from '../../common-ui/carousel/carousel/carousel.comp
   styleUrls: ['./event-card-block.component.scss']
 })
 export class EventCardBlockComponent implements OnInit, OnDestroy {
-  events: EventModel[] = [];
+  @Input() title: string = '';
+  @Input() events: EventModel[] = [];
   private readonly CARD_WIDTH = 410;
   private readonly MIN_GAP = 10;
   private readonly MAX_GAP = 40;
@@ -56,9 +66,6 @@ export class EventCardBlockComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.eventService.getEvents(0, 20).subscribe(events => {
-      this.events = events;
-    });
     this.updateLayout();
     window.addEventListener('resize', this.onResize);
   }

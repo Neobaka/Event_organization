@@ -1,16 +1,24 @@
 <div class="event-card-block">
   <div class="event-card-block-title-div">
     <h3 class="event-card-block-title">
-      <a href="#" class="event-link">Может в кино?
+      <a href="#" class="event-link">
+        {{ title }}
         <img src="assets/svg/right-arrow-icon.svg" alt="Перейти">
       </a>
     </h3>
   </div>
   <div #container class="event-cards-container">
-    <app-carousel *ngIf="events.length > 0" [slidesToShow]="slidesToShow" [gap]="gap">
-      <div class="carousel-slide" *ngFor="let event of events">
-        <app-event-card [event]="event"></app-event-card>
+    <ng-container *ngIf="events.length > 0; else emptyBlock">
+      <app-carousel [slidesToShow]="slidesToShow" [gap]="gap">
+        <div class="carousel-slide" *ngFor="let event of events">
+          <app-event-card [event]="event"></app-event-card>
+        </div>
+      </app-carousel>
+    </ng-container>
+    <ng-template #emptyBlock>
+      <div class="empty-events-message">
+        Ой, тут ничего нет...
       </div>
-    </app-carousel>
+    </ng-template>
   </div>
 </div>
