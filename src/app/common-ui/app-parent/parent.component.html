@@ -1,25 +1,3 @@
- <!--Кнопка входа в аккаунт-->
-<!--<div class="header-button-div">
-  <button *ngIf="!(isLoggedIn$ | async)" class="header-button-login" (click)="openLoginModal()">
-    <mat-icon class="header-button-login-icon">person</mat-icon>
-    <span class="header-button-login-text">
-      Войти
-    </span>
-  </button>-->
-<!--Аватарка пользователся после входа в аккаунт-->
-<!--<div *ngIf="isLoggedIn$ | async" class="header-avatar-container">
-    <div class="header-avatar" (click)="goToProfile()">
-      <img class="avatar-img" src="assets/img/sample.jpeg" alt="Аватарка пользователя" />
-    </div>
-    <button class="logout-btn" (click)="logout()" type="button">
-      <mat-icon class="logout-icon">logout</mat-icon>
-      <span class="logout-tooltip">Выйти из аккаунта</span>
-    </button>
-  </div>
-</div>-->
-<!--Кнопка входа в аккаунт-->
-
-
 <div class="header-button-div">
   <button *ngIf="!(isLoggedIn$ | async)" class="header-button-login" (click)="openLoginModal()">
     <mat-icon class="header-button-login-icon">person</mat-icon>
@@ -44,7 +22,7 @@
       </button>
 
       <!-- Кнопка для создателя мероприятий -->
-      <button *ngIf="isEventCreator()"
+      <button *ngIf="isEventCreator() || isAdmin()"
               class="role-button creator-button"
               (click)="navigateToCreateEvent()"
               type="button">

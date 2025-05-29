@@ -6,7 +6,7 @@ import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {RegisterPayload} from './register-payload';
 import {TokenResponse} from './token-response';
-import {BehaviorSubject, catchError, Observable, tap, throwError, of} from 'rxjs';
+import {BehaviorSubject, catchError, Observable, tap, throwError, of, EMPTY} from 'rxjs';
 import {LoginPayload} from './login-payload';
 import {AngularFireAuth} from '@angular/fire/compat/auth';
 import firebase from 'firebase/compat/app';
@@ -76,10 +76,18 @@ export class Auth2Service {
   constructor() {
     this.loggedInSubject = new BehaviorSubject<boolean>(this.hasToken());
     this.user$ = this.afAuth.authState;
+
+    if (this.hasToken()) {
+      this.loadUserProfile();
+    }
   }
 
   private hasToken(): boolean {
     return !!this.tokenService.getAccessToken();
+  }
+
+  public get currentUser(): UserDetails | null {
+    return this.userDataSubject.value;
   }
 
   getCurrentUser(): Promise<User | null> {
@@ -107,7 +115,7 @@ export class Auth2Service {
           this.router.navigate(['/login']);
         }
 
-        return of(null);
+        return EMPTY;
       })
     ).subscribe(profile => {
       if (profile) {
@@ -195,7 +203,7 @@ export class Auth2Service {
     this.saveToken(token);
     this.loggedInSubject.next(true);
     this.resetUserProfileCache();
-    this.getUserProfileFromApi().subscribe();
+    this.loadUserProfile();
   }
 
   // Общая обработка ошибок аутентификации
@@ -221,6 +229,7 @@ export class Auth2Service {
     this.clearToken();
     this.loggedInSubject.next(false);
     this.resetUserProfileCache();
+    this.userDataSubject.next(null);
     this.router.navigate(['/']);
   }
 

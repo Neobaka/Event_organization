@@ -67,16 +67,15 @@ export class ParentComponent implements OnInit, OnDestroy {
 
   // Проверка ролей пользователя
   isAdmin(): boolean {
-    return this.currentUser?.role === 'admin';
+    return this.authService.currentUser?.role === 'ROLE_ADMIN';
   }
 
   isEventCreator(): boolean {
-    return this.currentUser?.role === 'event_creator' ||
-      this.currentUser?.role === 'creator';
+    return this.authService.currentUser?.role === 'ROLE_CREATOR';
   }
 
   isRegularUser(): boolean {
-    return this.currentUser?.role === 'user';
+    return this.currentUser?.role === 'ROLE_USER';
   }
 
   // Навигация для кнопок с ролями
