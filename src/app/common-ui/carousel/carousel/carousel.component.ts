@@ -20,25 +20,57 @@ import {NgStyle} from '@angular/common';
   standalone: true
 })
 export class CarouselComponent implements AfterViewInit {
-  @Input() slidesToShow = 4; // Количество видимых слайдов
+  @ViewChild('viewport', { static: true }) viewportRef!: ElementRef<HTMLDivElement>;
   @Input() gap = 20; // Отступ между слайдами в px
   @ViewChild('track', {static: true}) trackRef!: ElementRef<HTMLDivElement>;
 
   private wheelTimeout: any = null;
   private wheelLocked = false;
 
-
+  slideWidthPx = 0;
   currentIndex = 0;
   totalSlides = 0;
+  slidesToShow = 0;
 
-  constructor(private cdr: ChangeDetectorRef) {
-  }
+  constructor(private cdr: ChangeDetectorRef) {}
 
   ngAfterViewInit(): void {
     setTimeout(() => {
-      this.totalSlides = this.trackRef.nativeElement.children.length;
+      this.updateLayout();
       this.cdr.detectChanges();
     });
+    window.addEventListener('resize', this.onResize);
+  }
+
+  ngOnDestroy(): void {
+    window.removeEventListener('resize', this.onResize);
+  }
+
+  onResize = () => {
+    this.updateLayout();
+    this.cdr.detectChanges();
+  };
+
+  updateLayout(): void {
+    const trackEl = this.trackRef.nativeElement;
+    const viewportEl = this.viewportRef.nativeElement;
+    this.totalSlides = trackEl.children.length;
+
+    if (this.totalSlides > 0) {
+      const firstSlide = trackEl.children[0] as HTMLElement;
+      // slideWidthPx = ширина слайда + gap
+      this.slideWidthPx = firstSlide.offsetWidth + this.gap;
+      // viewportWidth = ширина видимой области
+      const viewportWidth = viewportEl.offsetWidth;
+      // сколько целых слайдов помещается
+      this.slidesToShow = Math.floor(viewportWidth / this.slideWidthPx);
+      if (this.slidesToShow < 1) this.slidesToShow = 1;
+      if (this.slidesToShow > this.totalSlides) this.slidesToShow = this.totalSlides;
+      // сбрасываем currentIndex если он стал слишком большим
+      if (this.currentIndex > this.totalSlides - this.slidesToShow) {
+        this.currentIndex = Math.max(0, this.totalSlides - this.slidesToShow);
+      }
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -74,16 +106,7 @@ export class CarouselComponent implements AfterViewInit {
 
 
   getTransform(): string {
-    // Рассчитываем смещение для track
-    const slideWidth = 100 / this.slidesToShow;
-    return `translateX(-${this.currentIndex * slideWidth}%)`;
-  }
-
-  getSlideStyle(): object {
-    return {
-      'min-width': `calc(${100 / this.slidesToShow}% - ${this.gap}px)`,
-      'margin-right': `${this.gap}px`
-    };
+    return `translateX(-${this.currentIndex * this.slideWidthPx}px)`;
   }
 
 
@@ -97,13 +120,6 @@ export class CarouselComponent implements AfterViewInit {
       if (event.deltaX > 0) {
         this.next();
       } else if (event.deltaX < 0) {
-        this.prev();
-      }
-    } else {
-      // Обычный вертикальный скролл
-      if (event.deltaY > 0) {
-        this.next();
-      } else if (event.deltaY < 0) {
         this.prev();
       }
     }

@@ -37,7 +37,6 @@ interface MyEvent {
     MatIconModule,
     FormsModule,
     SlicePipe,
-    DatePipe
   ],
   templateUrl: './created-event-page.component.html',
   styleUrl: './created-event-page.component.scss'
@@ -239,10 +238,10 @@ export class CreatedEventPageComponent implements OnInit {
         this.allEvents = this.allEvents.filter(e => e.id !== this.eventToDelete!.id);
         this.categorizeEvents();
         this.applyFilters();
-        
+
         // Закрываем модальное окно
         this.cancelDelete();
-        
+
         // Показываем уведомление
         alert('Мероприятие успешно удалено!');
       },

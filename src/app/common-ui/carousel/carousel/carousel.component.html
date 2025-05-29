@@ -1,17 +1,17 @@
 <div class="carousel-wrapper">
-  <button class="carousel-arrow left" (click)="prev()" [disabled]="!canGoPrev">
-    &#8592;
-  </button>
-  <div class="carousel-viewport" (wheel)="onWheel($event)">
-    <div
-      class="carousel-track"
-      #track
-      [ngStyle]="{ 'transform': getTransform(), 'gap.px': gap }"
-    >
-      <ng-content></ng-content>
+    <button class="carousel-arrow left" (click)="prev()" [disabled]="!canGoPrev">
+        &#8592;
+    </button>
+    <div #viewport class="carousel-viewport" (wheel)="onWheel($event)">
+        <div
+                class="carousel-track"
+                #track
+                [ngStyle]="{ 'transform': getTransform(), 'gap.px': gap }"
+        >
+            <ng-content></ng-content>
+        </div>
     </div>
-  </div>
-  <button class="carousel-arrow right" (click)="next()" [disabled]="!canGoNext">
-    &#8594;
-  </button>
+    <button class="carousel-arrow right" (click)="next()" [disabled]="!canGoNext">
+        &#8594;
+    </button>
 </div>
