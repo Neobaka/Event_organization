@@ -103,7 +103,7 @@ export class Auth2Service {
     this.userProfile$ = undefined;
   }
 
-  // Обновлено: вход через Google
+  // Вход через Google
   signInWithGoogle(): Promise<any> {
     const provider = new firebase.auth.GoogleAuthProvider();
     provider.addScope('email');

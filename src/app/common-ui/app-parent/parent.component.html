@@ -1,17 +1,70 @@
-<!-- Кнопка входа в аккаунт -->
+ <!--Кнопка входа в аккаунт-->
+<!--<div class="header-button-div">
+  <button *ngIf="!(isLoggedIn$ | async)" class="header-button-login" (click)="openLoginModal()">
+    <mat-icon class="header-button-login-icon">person</mat-icon>
+    <span class="header-button-login-text">
+      Войти
+    </span>
+  </button>-->
+<!--Аватарка пользователся после входа в аккаунт-->
+<!--<div *ngIf="isLoggedIn$ | async" class="header-avatar-container">
+    <div class="header-avatar" (click)="goToProfile()">
+      <img class="avatar-img" src="assets/img/sample.jpeg" alt="Аватарка пользователя" />
+    </div>
+    <button class="logout-btn" (click)="logout()" type="button">
+      <mat-icon class="logout-icon">logout</mat-icon>
+      <span class="logout-tooltip">Выйти из аккаунта</span>
+    </button>
+  </div>
+</div>-->
+<!--Кнопка входа в аккаунт-->
+
+
 <div class="header-button-div">
   <button *ngIf="!(isLoggedIn$ | async)" class="header-button-login" (click)="openLoginModal()">
     <mat-icon class="header-button-login-icon">person</mat-icon>
     <span class="header-button-login-text">
-    Войти
-  </span>
+      Войти
+    </span>
   </button>
 
-  <!-- Аватарка пользователся после входа в аккаунт -->
+  <!--Аватарка пользователя и кнопки ролей после входа в аккаунт-->
   <div *ngIf="isLoggedIn$ | async" class="header-avatar-container">
+
+    <!-- Кнопки в зависимости от роли пользователя -->
+    <div class="role-buttons-container" *ngIf="currentUser">
+      <!-- Кнопка для админа -->
+      <button *ngIf="isAdmin()"
+              class="role-button admin-button"
+              (click)="navigateToAdminPanel()"
+              type="button">
+        <mat-icon class="role-button-icon">admin_panel_settings</mat-icon>
+        <span class="role-button-text">Админ панель</span>
+        <span class="role-tooltip">Панель администратора</span>
+      </button>
+
+      <!-- Кнопка для создателя мероприятий -->
+      <button *ngIf="isEventCreator()"
+              class="role-button creator-button"
+              (click)="navigateToCreateEvent()"
+              type="button">
+        <mat-icon class="role-button-icon">add_circle</mat-icon>
+        <span class="role-button-text">Создать мероприятие</span>
+        <span class="role-tooltip">Создать новое мероприятие</span>
+      </button>
+    </div>
+
+    <!-- Аватарка пользователя -->
     <div class="header-avatar" (click)="goToProfile()">
       <img class="avatar-img" src="assets/img/sample.jpeg" alt="Аватарка пользователя" />
+      <!-- Индикатор роли на аватарке -->
+      <div class="role-indicator" *ngIf="currentUser">
+        <span *ngIf="isAdmin()" class="role-badge admin-badge">A</span>
+        <span *ngIf="isEventCreator()" class="role-badge creator-badge">C</span>
+      </div>
     </div>
+
+    <!-- Кнопка выхода -->
     <button class="logout-btn" (click)="logout()" type="button">
       <mat-icon class="logout-icon">logout</mat-icon>
       <span class="logout-tooltip">Выйти из аккаунта</span>
