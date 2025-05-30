@@ -1,9 +1,10 @@
 import {Component, inject, Input, SimpleChanges} from '@angular/core';
 import {EventCardComponent} from '../event-card/event-card.component';
-import {Auth2Service, EventModel} from '../../auth/auth2.service';
+import {Auth2Service} from '../../auth/auth2.service';
 import {EventService} from '../../events_data/event.service';
 import {NgForOf, NgIf} from '@angular/common';
 import {RouterLink} from '@angular/router';
+import {EventModel} from '../../events_data/event-model';
 
 @Component({
   selector: 'app-user-profile-favorite-events',

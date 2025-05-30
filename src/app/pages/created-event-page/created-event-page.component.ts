@@ -1,32 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../../common-ui/header/header.component';
-import { NgForOf, NgIf, SlicePipe, DatePipe } from '@angular/common';
+import {NgForOf, NgIf, SlicePipe, NgClass} from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EventService } from '../../events_data/event.service';
-import { Auth2Service } from '../../auth/auth2.service';
+import {Auth2Service} from '../../auth/auth2.service';
 import { CATEGORY } from '../../events_data/event-category';
 import { GENRE } from '../../events_data/event-genre';
-
-interface MyEvent {
-  id: number;
-  eventName: string;
-  eventDescription: string;
-  dateStart: string;
-  dateEnd: string;
-  place: string;
-  organizerName: string;
-  organizerSite: string;
-  cost: number;
-  fileName: string;
-  category: string;
-  genre: string;
-  creatorId: number;
-  createdAt?: string;
-  views?: number;
-  participants?: number;
-}
+import {EventModel} from '../../events_data/event-model';
 
 @Component({
   selector: 'app-my-events-page',
@@ -37,15 +19,16 @@ interface MyEvent {
     MatIconModule,
     FormsModule,
     SlicePipe,
+    NgClass,
   ],
   templateUrl: './created-event-page.component.html',
   styleUrl: './created-event-page.component.scss'
 })
 export class CreatedEventPageComponent implements OnInit {
-  allEvents: MyEvent[] = [];
-  filteredEvents: MyEvent[] = [];
-  upcomingEvents: MyEvent[] = [];
-  pastEvents: MyEvent[] = [];
+  allEvents: EventModel[] = [];
+  filteredEvents: EventModel[] = [];
+  upcomingEvents: EventModel[] = [];
+  pastEvents: EventModel[] = [];
 
   selectedFilter: 'all' | 'upcoming' | 'past' = 'all';
   searchQuery: string = '';
@@ -53,7 +36,7 @@ export class CreatedEventPageComponent implements OnInit {
 
   // Модальное окно удаления
   showDeleteModal: boolean = false;
-  eventToDelete: MyEvent | null = null;
+  eventToDelete: EventModel | null = null;
 
   categoryOptions = CATEGORY;
   genreOptions = GENRE;
@@ -66,7 +49,6 @@ export class CreatedEventPageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.loadCurrentUser();
     this.loadMyEvents();
   }
 
@@ -83,15 +65,11 @@ export class CreatedEventPageComponent implements OnInit {
   }
 
   loadMyEvents() {
-    if (!this.currentUserId) return;
-
     this.isLoading = true;
 
-    // Получаем все события и фильтруем по создателю
-    this.eventService.getEvents(1, 1000).subscribe({
-      next: (events: any[]) => {
-        // Фильтруем события по создателю
-        this.allEvents = events.filter(event => event.creatorId === this.currentUserId);
+    this.eventService.getEventsByCreator().subscribe({
+      next: (events: EventModel[]) => {
+        this.allEvents = events;
         this.categorizeEvents();
         this.applyFilters();
         this.isLoading = false;
@@ -126,7 +104,7 @@ export class CreatedEventPageComponent implements OnInit {
   }
 
   applyFilters() {
-    let events: MyEvent[] = [];
+    let events: EventModel[] = [];
 
     // Фильтрация по типу
     switch (this.selectedFilter) {
@@ -165,7 +143,7 @@ export class CreatedEventPageComponent implements OnInit {
     event.target.src = '/assets/images/default-event.jpg';
   }
 
-  getEventStatus(event: MyEvent): string {
+  getEventStatus(event: EventModel): string {
     const now = new Date();
     const startDate = new Date(event.dateStart);
     const endDate = new Date(event.dateEnd);
@@ -175,7 +153,7 @@ export class CreatedEventPageComponent implements OnInit {
     return 'active';
   }
 
-  getEventStatusText(event: MyEvent): string {
+  getEventStatusText(event: EventModel): string {
     const status = this.getEventStatus(event);
     switch (status) {
       case 'upcoming': return 'Предстоящее';
@@ -194,13 +172,22 @@ export class CreatedEventPageComponent implements OnInit {
     });
   }
 
-  formatCreatedDate(dateString?: string): string {
-    if (!dateString) return 'Неизвестно';
-    const date = new Date(dateString);
-    return date.toLocaleDateString('ru-RU', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric'
+  deleteEvent() {
+    if (!this.eventToDelete) return;
+    this.isLoading = true;
+    this.eventService.deleteEventById(this.eventToDelete.id).subscribe({
+      next: () => {
+        // Удаляем из локального массива
+        this.allEvents = this.allEvents.filter(e => e.id !== this.eventToDelete!.id);
+        this.categorizeEvents();
+        this.applyFilters();
+        this.cancelDelete();
+        this.isLoading = false;
+      },
+      error: (err: any) => {
+        console.error('Ошибка удаления мероприятия:', err);
+        this.isLoading = false;
+      }
     });
   }
 
@@ -212,15 +199,11 @@ export class CreatedEventPageComponent implements OnInit {
     return this.genreOptions[genreKey] || genreKey;
   }
 
-  editEvent(eventId: number) {
-    this.router.navigate(['/edit-event', eventId]);
-  }
-
   viewEvent(eventId: number) {
     this.router.navigate(['/event', eventId]);
   }
 
-  confirmDelete(event: MyEvent) {
+  confirmDelete(event: EventModel) {
     this.eventToDelete = event;
     this.showDeleteModal = true;
   }
@@ -230,34 +213,7 @@ export class CreatedEventPageComponent implements OnInit {
     this.eventToDelete = null;
   }
 
-  deleteEvent() {
-    if (!this.eventToDelete) return;
-    this.auth2Service.deleteEvent(this.eventToDelete.id).subscribe({
-      next: () => {
-        // Удаляем из локального массива
-        this.allEvents = this.allEvents.filter(e => e.id !== this.eventToDelete!.id);
-        this.categorizeEvents();
-        this.applyFilters();
 
-        // Закрываем модальное окно
-        this.cancelDelete();
-
-        // Показываем уведомление
-        alert('Мероприятие успешно удалено!');
-      },
-      error: (err: any) => {
-        console.error('Ошибка удаления мероприятия:', err);
-        alert('Ошибка при удалении мероприятия');
-      }
-    });
-
-    // Удаляем только из локального массива
-    this.allEvents = this.allEvents.filter(e => e.id !== this.eventToDelete!.id);
-    this.categorizeEvents();
-    this.applyFilters();
-    this.cancelDelete();
-    alert('Мероприятие удалено из списка (временно - только локально)');
-  }
 
   createNewEvent() {
     this.router.navigate(['/create-event']);

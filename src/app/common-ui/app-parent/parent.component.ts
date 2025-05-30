@@ -89,6 +89,11 @@ export class ParentComponent implements OnInit, OnDestroy {
     console.log('Переход к созданию мероприятия');
   }
 
+  navigateToMyEvents(): void {
+    this.router.navigate(['/my-events']);
+    console.log('Переход на страницу моих мероприятий')
+  }
+
   goToProfile() {
     this.router.navigate(['/profile']);
   }
