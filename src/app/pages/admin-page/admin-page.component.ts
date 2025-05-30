@@ -21,7 +21,7 @@ import {FormsModule} from '@angular/forms';
 })
 export class AdminPageComponent {
   page = 0;
-  size = 10;
+  size = 100;
   editUser: UserDetails | null = null;
   showEditModal = false;
   editDisplayName = '';
