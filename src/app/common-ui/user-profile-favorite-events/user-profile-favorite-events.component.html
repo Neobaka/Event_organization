@@ -1,7 +1,11 @@
 <div *ngIf="isLoading">Загрузка...</div>
-<div *ngIf="!isLoading && favoriteEvents.length === 0">
-  <div class="empty-events-message">У вас пока нет избранных мероприятий.</div>
+<div *ngIf="!isLoading && filteredEvents.length === 0">
+  <div class="user-profile-afisha-cards-div">
+    <p class="user-profile-afisha-cards-p1">Пока пусто 😞</p>
+    <p class="user-profile-afisha-cards-p2">Отмечайте любимые места и они появятся здесь</p>
+    <button class="user-profile-afisha-filter-btns" [routerLink]="['/']">Купить билеты</button>
+  </div>
 </div>
-<div *ngIf="!isLoading && favoriteEvents.length > 0" class="div-events">
-  <app-event-card *ngFor="let event of favoriteEvents" [event]="event"></app-event-card>
+<div *ngIf="!isLoading && filteredEvents.length > 0" class="div-events">
+  <app-event-card *ngFor="let event of filteredEvents" [event]="event"></app-event-card>
 </div>

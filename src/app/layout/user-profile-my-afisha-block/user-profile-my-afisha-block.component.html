@@ -17,7 +17,12 @@
     </div>
   </div>
   <div class="search-bar-search-div">
-    <input class="search-bar-div-input" type="text" placeholder="Начните вводить название...">
+    <input
+      class="search-bar-div-input"
+      type="text"
+      placeholder="Начните вводить название..."
+      [(ngModel)]="searchQuery"
+    >
     <button class="search-button">
       <img class="search-button-img" src="assets/svg/search-icon.svg" alt="Кнопка ввода">
     </button>
@@ -28,7 +33,7 @@
         <app-user-profile-my-tickets></app-user-profile-my-tickets>
       }
       @case ('user-profile-favorite-events'){
-        <app-user-profile-favorite-events></app-user-profile-favorite-events>
+        <app-user-profile-favorite-events [searchQuery]="searchQuery"></app-user-profile-favorite-events>
       }
       @case ('user-profile-favorite-places'){
         <app-user-profile-favorite-places></app-user-profile-favorite-places>

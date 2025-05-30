@@ -6,6 +6,7 @@ import {
 import {
   UserProfileFavoritePlacesComponent
 } from '../../common-ui/user-profile-favorite-places/user-profile-favorite-places.component';
+import {FormsModule} from '@angular/forms';
 
 //это parent
 @Component({
@@ -13,13 +14,15 @@ import {
   imports: [
     UserProfileMyTicketsComponent,
     UserProfileFavoriteEventsComponent,
-    UserProfileFavoritePlacesComponent
+    UserProfileFavoritePlacesComponent,
+    FormsModule
   ],
   templateUrl: './user-profile-my-afisha-block.component.html',
   styleUrl: './user-profile-my-afisha-block.component.scss'
 })
 export class UserProfileMyAfishaBlockComponent {
   activeComponent: string = 'user-profile-my-tickets';
+  searchQuery: string = '';
   @Input() initialSection: string = 'user-profile-my-tickets';
 
   ngOnInit() {
@@ -28,6 +31,7 @@ export class UserProfileMyAfishaBlockComponent {
 
   showUserPageFilterComponent(componentName: string) {
     this.activeComponent = componentName;
+    this.searchQuery = '';
   }
 
   isActive(componentName: string): boolean {

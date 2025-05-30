@@ -1,7 +1,0 @@
-<div *ngIf="isLoading">Загрузка...</div>
-<div *ngIf="!isLoading && favoriteEvents.length === 0">
-  <div class="empty-events-message">У вас пока нет избранных мероприятий.</div>
-</div>
-<div *ngIf="!isLoading && favoriteEvents.length > 0" class="div-events">
-  <app-event-card *ngFor="let event of favoriteEvents" [event]="event"></app-event-card>
-</div>
