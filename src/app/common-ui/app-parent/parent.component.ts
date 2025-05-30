@@ -74,13 +74,9 @@ export class ParentComponent implements OnInit, OnDestroy {
     return this.authService.currentUser?.role === 'ROLE_CREATOR';
   }
 
-  isRegularUser(): boolean {
-    return this.currentUser?.role === 'ROLE_USER';
-  }
-
   // Навигация для кнопок с ролями
   navigateToAdminPanel(): void {
-    this.router.navigate(['/admin']);
+    this.router.navigate(['/admin-panel']);
     console.log('Переход в админ панель');
   }
 

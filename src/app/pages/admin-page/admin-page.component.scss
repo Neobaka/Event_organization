@@ -1,0 +1,274 @@
+.all-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.hero-container {
+  text-align: center;
+  margin-bottom: 40px;
+
+  .hero-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--dark-text-color);
+    margin-bottom: 10px;
+  }
+
+  .hero-subtitle {
+    font-size: 1.1rem;
+    color: var(--dark-text-color);
+    margin-bottom: 0;
+  }
+}
+.filters-section {
+  background: #1e1e1e;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+
+  .search-container {
+    position: relative;
+    margin-bottom: 20px;
+
+    .search-input {
+      width: 100%;
+      padding: 12px 16px 12px 45px;
+      border: 2px solid #e1e5e9;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: border-color 0.3s ease;
+
+      &:focus {
+        outline: none;
+        border-color: #007bff;
+      }
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #6c757d;
+    }
+  }
+}
+
+.users-container {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.user-card {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  background: #232323;
+  border-radius: 8px;
+  padding: 0 20px;
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.06);
+  color: #fff;
+  font-size: 15px;
+  transition: background 0.2s;
+}
+
+.user-card:hover {
+  background: #292929;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.user-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-name {
+  font-size: 16px;
+  margin: 0;
+}
+
+.user-role {
+  font-size: 13px;
+  padding: 2px 8px;
+  border-radius: 5px;
+  background: #ffd54f;
+  color: #333;
+  margin-left: 8px;
+}
+
+.ROLE_ADMIN {
+  background: #d32f2f;
+  color: #fff;
+}
+
+.ROLE_CREATOR {
+  background: #1976d2;
+  color: #fff;
+}
+
+.ROLE_USER {
+  background: #ffd54f;
+  color: #333;
+}
+
+.user-details {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.user-meta {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+}
+
+.user-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.view-btn {
+  background: #fff;
+  color: #232323;
+  border: none;
+  border-radius: 5px;
+  padding: 4px 12px;
+  cursor: pointer;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: background 0.2s;
+}
+
+.view-btn:hover {
+  background: #ffd54f;
+  color: #232323;
+}
+.load-more-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 24px auto 0 auto;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #ffd54f;
+  color: #232323;
+  border: none;
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.10);
+  cursor: pointer;
+  font-size: 28px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.load-more-btn:hover {
+  background: #ffe082;
+  color: #000;
+}
+
+/* Модальное окно */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 30px;
+  border-radius: 16px;
+  max-width: 400px;
+  width: 90%;
+}
+
+.modal-content h3 {
+  margin-top: 0;
+  margin-bottom: 16px;
+  color: #333;
+}
+
+.modal-content label {
+  display: block;
+  margin-bottom: 6px;
+  color: #333;
+  font-weight: 500;
+}
+
+.modal-content input,
+.modal-content select {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  margin-bottom: 18px;
+  font-size: 15px;
+  background: #f8f9fa;
+  color: #333;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.modal-content input:focus,
+.modal-content select:focus {
+  border-color: #ffd54f;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.modal-actions button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cancel-btn {
+  background: #f8f9fa;
+  color: #666;
+}
+
+.cancel-btn:hover {
+  background: #e9ecef;
+}
+
+.confirm-btn {
+  background: #d32f2f;
+  color: white;
+}
+
+.confirm-btn:hover {
+  background: #c62828;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+}
