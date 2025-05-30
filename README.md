@@ -16,6 +16,8 @@ The following technologies were used in the application:
 * RxJS
 * TS / JS
 * [Firebase](https://firebase.google.com/)
+* Yandex Maps API 2.1 for interactive mapping
+* TypeScript geocoding implementation
 
 ## Requirements
 - Node.js >= 22.x
