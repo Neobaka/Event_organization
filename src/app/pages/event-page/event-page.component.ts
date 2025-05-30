@@ -8,8 +8,8 @@ import { EventModel } from '../../events_data/event-model';
 import {ActivatedRoute, Router} from '@angular/router';
 import { EventService } from '../../events_data/event.service';
 import { ImageService } from '../../images_data/image.service';
-import {combineLatest, Subscription} from 'rxjs';
-import {Auth2Service} from '../../auth/auth2.service';
+import {combineLatest, Subject, Subscription, take, takeUntil} from 'rxjs';
+import {Auth2Service, UserDetails} from '../../auth/auth2.service';
 
 @Component({
   selector: 'app-event-page',
@@ -22,6 +22,7 @@ export class EventPageComponent {
   event?: EventModel;
   imageUrl?: SafeUrl;
   private imageSub?: Subscription;
+  private destroy$ = new Subject<void>();
   isAdded = false;
 
   private authService = inject(Auth2Service);
@@ -34,32 +35,48 @@ export class EventPageComponent {
   ngOnInit() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
 
-    // Получаем событие и пользователя одновременно
     combineLatest([
       this.eventService.getEventById(id),
       this.authService.userData$
-    ]).subscribe(([event, user]) => {
-      this.event = event;
-      if (event?.fileName) {
-        this.imageSub = this.imageService.getImage(event.fileName)
-          .subscribe({
-            next: (blob) => {
-              const objectURL = URL.createObjectURL(blob);
-              this.imageUrl = this.sanitizer.bypassSecurityTrustUrl(objectURL);
-            },
-            error: () => {
-              this.imageUrl = undefined;
-            }
-          });
-      }
-      this.isAdded = !!(user && user.plannedEvents && event && user.plannedEvents.includes(event.id));
-    });
+    ]).pipe(takeUntil(this.destroy$))
+      .subscribe(([event, user]) => {
+        this.event = event;
+        this.updateImage(event);
+        this.updateAddedStatus(user);
+      });
+
+    // Реакция на изменения авторизации
+    this.authService.isLoggedIn()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(() => {
+        this.authService.userData$
+          .pipe(take(1))
+          .subscribe(user => this.updateAddedStatus(user));
+      });
+  }
+
+  private updateImage(event: EventModel) {
+    if (event?.fileName) {
+      this.imageSub = this.imageService.getImage(event.fileName).subscribe({
+        next: (blob) => {
+          const url = URL.createObjectURL(blob);
+          this.imageUrl = this.sanitizer.bypassSecurityTrustUrl(url);
+        },
+        error: () => this.imageUrl = undefined
+      });
+    }
+  }
+
+  private updateAddedStatus(user: UserDetails | null) {
+    this.isAdded = !!user?.plannedEvents?.includes(this.event?.id!);
   }
 
   ngOnDestroy() {
     if (this.imageSub) {
       this.imageSub.unsubscribe();
     }
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   toggleLike(event: MouseEvent) {
@@ -74,28 +91,21 @@ export class EventPageComponent {
 
     if (!this.authService.isAuth) {
       this.router.navigate([], {
-        queryParams: { showLoginModal: 'true' },
+        queryParams: {showLoginModal: 'true'},
         queryParamsHandling: 'merge'
       });
       return;
     }
+    const action = this.isAdded
+      ? this.eventService.deleteEventFromPlanned(this.event!.id)
+      : this.eventService.addEventToPlanned(this.event!.id);
 
-    if (!this.isAdded) {
-      this.eventService.addEventToPlanned(this.event!.id).subscribe({
-        next: () => {
-          this.isAdded = true;
-          this.authService.updatePlannedEvents(this.event!.id, true);
-        },
-        error: () => { }
-      });
-    } else {
-      this.eventService.deleteEventFromPlanned(this.event!.id).subscribe({
-        next: () => {
-          this.isAdded = false;
-          this.authService.updatePlannedEvents(this.event!.id, false);
-        },
-        error: () => { }
-      });
-    }
+    action.subscribe({
+      next: () => {
+        this.isAdded = !this.isAdded;
+        this.authService.updatePlannedEvents(this.event!.id, this.isAdded);
+      },
+      error: () => {}
+    });
   }
 }

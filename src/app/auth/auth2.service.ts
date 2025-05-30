@@ -25,6 +25,7 @@ export interface UserDetails {
   role: string;
   favoriteEvents: number[];
   plannedEvents: number[];
+  fileName: string;
 }
 
 @Injectable({
@@ -91,10 +92,9 @@ export class Auth2Service {
     const current = this.userDataSubject.value;
     if (!current) return;
     let updatedPlanned: number[];
-    if(add){
+    if (add) {
       updatedPlanned = [...current.plannedEvents, eventId];
-    }
-    else{
+    } else {
       updatedPlanned = current.plannedEvents.filter(id => id !== eventId);
     }
 
@@ -163,7 +163,7 @@ export class Auth2Service {
 
       const response = await this.http.post<TokenResponse>(
         `${this.apiUrl}users/google-auth`,
-        { idToken }
+        {idToken}
       ).pipe(
         tap(response => {
           this.saveToken(response.AccessToken);
@@ -204,7 +204,10 @@ export class Auth2Service {
 
   login(payload: LoginPayload) {
     return this.http.post<TokenResponse>(`${this.apiUrl}users/login`, payload).pipe(
-      tap(response => this.handleAuthSuccess(response.AccessToken)),
+      tap(response => {
+        this.handleAuthSuccess(response.AccessToken);
+        this.loadUserProfile();
+      }),
       catchError(error => {
         this.clearToken();
         return throwError(() => error);
