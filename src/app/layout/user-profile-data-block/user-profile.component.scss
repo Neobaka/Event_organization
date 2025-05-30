@@ -32,19 +32,11 @@ input {
   box-sizing: border-box;
   padding-left: 20px;
   border-radius: 20px;
-  border: none;
+  border: 1px solid var(--light-color);
+  color: var(--light-stroke-color);
   height: 50px;
   width: 500px;
-  background-color: var(--light-stroke-color);
-}
-
-button:hover {
-  background-color: var(--light-stroke-color);
-}
-
-button {
-  border-radius: 20px;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
+  background-color: var(--dark-color);
+  cursor: not-allowed;
+  outline: none;
 }

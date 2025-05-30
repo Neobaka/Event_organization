@@ -14,6 +14,6 @@ export class HeaderComponent {
 
   goToFavoritePlaces(event: MouseEvent) {
     event.preventDefault(); // чтобы не было перехода по href="#"
-    this.router.navigate(['/profile'], { queryParams: { section: 'favorite-places' } });
+    this.router.navigate(['/profile'], { queryParams: { section: 'favorite-events' } });
   }
 }

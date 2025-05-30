@@ -1,49 +1,47 @@
 import {Component, inject, Input, SimpleChanges} from '@angular/core';
-import {RouterLink} from '@angular/router';
-import {RouterModule} from '@angular/router';
+import {EventCardComponent} from '../event-card/event-card.component';
 import {Auth2Service, EventModel} from '../../auth/auth2.service';
 import {EventService} from '../../events_data/event.service';
-import {EventCardComponent} from '../event-card/event-card.component';
 import {NgForOf, NgIf} from '@angular/common';
+import {RouterLink} from '@angular/router';
 
 @Component({
-  selector: 'app-user-profile-my-tickets',
+  selector: 'app-user-profile-favorite-events',
   imports: [
-    RouterLink,
     EventCardComponent,
     NgIf,
-    NgForOf
+    NgForOf,
+    RouterLink
   ],
-  templateUrl: './user-profile-my-tickets.component.html',
-  styleUrl: './user-profile-my-tickets.component.scss'
+  templateUrl: './user-profile-favorite-events.component.html',
+  styleUrl: './user-profile-favorite-events.component.scss'
 })
-export class UserProfileMyTicketsComponent {
-  plannedEvents: EventModel[] = [];
+export class UserProfileFavoriteEventsComponent {
+  favoriteEvents: EventModel[] = [];
+  @Input() searchQuery: string = '';
   filteredEvents: EventModel[] = [];
   isLoading = true;
-
-  @Input() searchQuery: string = '';
 
   private authService = inject(Auth2Service);
   private eventService = inject(EventService);
 
   ngOnInit() {
     this.authService.userData$.subscribe(user => {
-      if (user && user.plannedEvents && user.plannedEvents.length > 0) {
+      if (user && user.favoriteEvents && user.favoriteEvents.length > 0) {
         this.isLoading = true;
         Promise.all(
-          user.plannedEvents.map(id =>
+          user.favoriteEvents.map(id =>
             this.eventService.getEventById(id).toPromise()
           )
         ).then(events => {
-          this.plannedEvents = events.filter(e => !!e);
+          this.favoriteEvents = events.filter(e => !!e);
           this.filterEvents();
           this.isLoading = false;
         });
       } else {
-        this.plannedEvents = [];
-        this.filterEvents();
+        this.favoriteEvents = [];
         this.isLoading = false;
+        this.filterEvents();
       }
     });
   }
@@ -56,10 +54,10 @@ export class UserProfileMyTicketsComponent {
 
   filterEvents() {
     if (!this.searchQuery) {
-      this.filteredEvents = this.plannedEvents;
+      this.filteredEvents = this.favoriteEvents;
     } else {
       const query = this.searchQuery.trim().toLowerCase();
-      this.filteredEvents = this.plannedEvents.filter(e =>
+      this.filteredEvents = this.favoriteEvents.filter(e =>
         e.eventName.toLowerCase().includes(query)
       );
     }

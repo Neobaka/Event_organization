@@ -8,6 +8,8 @@ import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
 import {ImageService} from '../../images_data/image.service';
 import {Router} from '@angular/router';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
+import {EventService} from '../../events_data/event.service';
+import {Auth2Service} from '../../auth/auth2.service';
 
 
 @Component({
@@ -27,11 +29,14 @@ export class EventCardComponent implements OnInit {
   @Input() event!: EventModel;
   imageUrl?: SafeUrl;
   isLiked = false;
+  isAdded = false;
 
   private imageService = inject(ImageService);
   private sanitizer = inject(DomSanitizer);
   private router = inject(Router);
   private destroyRef = inject(DestroyRef);
+  private eventService = inject(EventService);
+  private authService = inject(Auth2Service);
 
   ngOnInit() {
     if (this.event?.fileName) {
@@ -47,12 +52,74 @@ export class EventCardComponent implements OnInit {
           }
         });
     }
+    this.authService.userData$.subscribe(user => {
+      if (user) {
+        this.isLiked = user.favoriteEvents?.includes(this.event.id) ?? false;
+        this.isAdded = user.plannedEvents?.includes(this.event.id) ?? false;
+      }
+    });
+  }
+
+  toggleAdd(event: MouseEvent) {
+    event.stopPropagation();
+    event.preventDefault();
+
+    if (!this.authService.isAuth) {
+      this.router.navigate([], {
+        queryParams: { showLoginModal: 'true' },
+        queryParamsHandling: 'merge' // Сохраняет существующие query-параметры
+      });
+      return;
+    }
+
+    if (!this.isAdded) {
+      this.eventService.addEventToPlanned(this.event.id).subscribe({
+        next: () => {
+          this.isAdded = true;
+          this.authService.updatePlannedEvents(this.event.id, true);
+        },
+        error: () => {}
+      });
+    } else {
+      this.eventService.deleteEventFromPlanned(this.event.id).subscribe({
+        next: () => {
+          this.isAdded = false;
+          this.authService.updatePlannedEvents(this.event.id, false);
+        },
+        error: () => {}
+      })
+    }
   }
 
   toggleLike(event: MouseEvent) {
     event.stopPropagation();
     event.preventDefault();
-    this.isLiked = !this.isLiked;
+
+    if (!this.authService.isAuth) {
+      this.router.navigate([], {
+        queryParams: { showLoginModal: 'true' },
+        queryParamsHandling: 'merge'
+      });
+      return;
+    }
+
+    if (!this.isLiked) {
+      this.eventService.addEventToFavorites(this.event.id).subscribe({
+        next: () => {
+          this.isLiked = true
+          this.authService.updateFavoriteEvents(this.event.id, true);
+        },
+        error: () => { /* обработка ошибки */ }
+      });
+    } else {
+      this.eventService.deleteEventFromFavorites(this.event.id).subscribe({
+        next: () => {
+          this.isLiked = false
+          this.authService.updateFavoriteEvents(this.event.id, false);
+        },
+        error: () => { /* обработка ошибки */ }
+      });
+    }
   }
 
   openEvent() {

@@ -1,16 +1,15 @@
 {
   "ExpandedNodes": [
     "",
-    "\\public",
-    "\\public\\assets",
-    "\\public\\assets\\svg",
     "\\src",
     "\\src\\app",
+    "\\src\\app\\auth",
     "\\src\\app\\common-ui",
     "\\src\\app\\common-ui\\login-modal",
+    "\\src\\app\\common-ui\\registration-modal",
     "\\src\\app\\layout",
-    "\\src\\app\\layout\\user-profile-data-block"
+    "\\src\\app\\layout\\event-card-block"
   ],
-  "SelectedNode": "\\src\\app\\common-ui\\login-modal\\login-modal.component.html",
+  "SelectedNode": "\\package.json",
   "PreviewInSolutionExplorer": false
 }

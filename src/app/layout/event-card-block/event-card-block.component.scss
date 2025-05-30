@@ -1,5 +1,5 @@
 .event-card-block {
-  margin: 20px auto;
+  margin: 20px auto 0 auto;
   width: 70%;
 }
 
@@ -92,4 +92,12 @@
 
 .event-cards-container {
   overflow: hidden;
+  height: 420px;
+}
+
+.empty-events-message{
+  text-align: center;
+  color: #888;
+  padding: 32px 0;
+  font-size: 1.2em;
 }

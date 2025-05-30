@@ -1,3 +1,22 @@
+.div-events{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.user-profile-afisha-cards-div{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+
 .user-profile-afisha-cards-p1{
   font-size: 32px;
   font-weight: 300;
@@ -17,14 +36,4 @@
   cursor: pointer;
   font-weight: 100;
   font-size: 16px;
-}
-
-.user-profile-afisha-cards-div{
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  gap: 40px;
 }
