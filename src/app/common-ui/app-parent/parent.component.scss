@@ -144,17 +144,17 @@
   .role-button-text {
     white-space: nowrap;
   }
-  /* Tooltip для кнопок ролей */
+
   .role-tooltip {
     position: absolute;
-    bottom: -30px;
+    bottom: -36px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(30, 30, 30, 0.96);
     color: white;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 10px;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 14px;
     white-space: nowrap;
     opacity: 0;
     pointer-events: none;
@@ -188,6 +188,17 @@
     background-color: #218838;
     transform: translateY(-1px);
     box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+  }
+}
+
+.my-events-button {
+  background-color: var(--dark-golden-color);
+  color: white;
+
+  &:hover {
+    background-color: #b59404;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgb(113, 95, 17);
   }
 }
 

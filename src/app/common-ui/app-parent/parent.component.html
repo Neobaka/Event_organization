@@ -30,11 +30,21 @@
         <span class="role-button-text">Создать мероприятие</span>
         <span class="role-tooltip">Создать новое мероприятие</span>
       </button>
+
+      <button
+        *ngIf="isAdmin() || isEventCreator()"
+        class="role-button my-events-button"
+        (click)="navigateToMyEvents()"
+        type="button">
+        <mat-icon class="role-button-icon">menu_open</mat-icon>
+        <span class="role-button-text">Созданные мероприятия</span>
+        <span class="role-tooltip">Список созданных мероприятий</span>
+      </button>
     </div>
 
     <!-- Аватарка пользователя -->
     <div class="header-avatar" (click)="goToProfile()">
-      <img class="avatar-img" src="assets/img/sample.jpeg" alt="Аватарка пользователя" />
+      <img class="avatar-img" src="assets/img/sample.jpeg" alt="Аватарка пользователя"/>
       <!-- Индикатор роли на аватарке -->
       <div class="role-indicator" *ngIf="currentUser">
         <span *ngIf="isAdmin()" class="role-badge admin-badge">A</span>

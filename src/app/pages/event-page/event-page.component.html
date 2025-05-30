@@ -45,11 +45,8 @@
         <div>{{ event?.place }}</div>
         <button class="event-card-img-button-like" (click)="toggleLike($event)">
           <mat-icon [ngClass]="{'icon-active': isLiked}">favorite</mat-icon>
-            <!--<img id="iconHeartId" src="assets/svg/heart-icon.svg" alt="Нравится">-->
+          <!--<img id="iconHeartId" src="assets/svg/heart-icon.svg" alt="Нравится">-->
         </button>
-      </div>
-      <div class="location-footer">
-        <div>+7(343) 350-81-01?</div>
       </div>
     </section>
 
@@ -67,6 +64,11 @@
       </div>
     </section>
 
-    <a href="#" class="register-btn">Зарегистрироваться</a>
+    <button
+      class="register-btn"
+      [class.added]="isAdded"
+      (click)="toggleAdd($event)">
+      {{ isAdded ? 'Удалить из планов' : 'Планирую посетить' }}
+    </button>
   </div>
 </div>

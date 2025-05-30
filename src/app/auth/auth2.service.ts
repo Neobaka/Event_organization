@@ -6,7 +6,7 @@ import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {RegisterPayload} from './register-payload';
 import {TokenResponse} from './token-response';
-import {BehaviorSubject, catchError, Observable, tap, throwError, of, EMPTY} from 'rxjs';
+import {BehaviorSubject, catchError, Observable, tap, throwError, EMPTY} from 'rxjs';
 import {LoginPayload} from './login-payload';
 import {AngularFireAuth} from '@angular/fire/compat/auth';
 import firebase from 'firebase/compat/app';
@@ -15,25 +15,6 @@ import {TokenService} from './token.service';
 
 //Поскольку используем compat API, везде, где есть ссылака на User, нужно использовать тип из firebase/compat/app
 type User = firebase.User;
-
-export interface EventModel {
-  id: number;
-  eventName: string;
-  eventDescription: string;
-  dateStart: string;
-  dateEnd: string;
-  place: string;
-  organizerName: string;
-  organizerSite: string;
-  cost: number;
-  fileName: string;
-  category: string;
-  genre: string;
-  creatorId: number;
-  createdAt?: string;
-  views?: number;
-  participants?: number;
-}
 
 export interface UserDetails {
   id: number;
@@ -284,26 +265,5 @@ export class Auth2Service {
   // Реактивная проверка авторизации
   isLoggedIn(): Observable<boolean> {
     return this.loggedIn$;
-  }
-
-
-  // Получение событий конкретного пользователя
-  getUserEvents(userId: number): Observable<EventModel[]> {
-    return this.http.get<EventModel[]>(`${this.apiUrl}events/user/${userId}`);
-  }
-
-  // Удаление события
-  deleteEvent(eventId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}events/${eventId}`);
-  }
-
-  // Получение события по ID (для редактирования)
-  getEventById(eventId: number): Observable<EventModel> {
-    return this.http.get<EventModel>(`${this.apiUrl}events/${eventId}`);
-  }
-
-  // Обновление события
-  updateEvent(eventId: number, payload: any): Observable<EventModel> {
-    return this.http.put<EventModel>(`${this.apiUrl}events/${eventId}`, payload);
   }
 }

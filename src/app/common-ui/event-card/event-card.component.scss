@@ -204,8 +204,18 @@ h3{
   border-radius: 30px;
   padding: 3px 15px;
   font-size: 0.65rem;
-  font-weight: 600;
+  font-weight: 400;
   color: var(--dark-text-color);
+}
+
+.category-tag {
+  background: #e3f2fd;
+  color: #1976d2;
+}
+
+.genre-tag {
+  background: #f3e5f5;
+  color: #7b1fa2;
 }
 
 .event-card-tag:last-child{
