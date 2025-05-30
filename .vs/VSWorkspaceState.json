@@ -5,11 +5,12 @@
     "\\src\\app",
     "\\src\\app\\auth",
     "\\src\\app\\common-ui",
-    "\\src\\app\\common-ui\\login-modal",
-    "\\src\\app\\common-ui\\registration-modal",
-    "\\src\\app\\layout",
-    "\\src\\app\\layout\\event-card-block"
+    "\\src\\app\\common-ui\\app-parent",
+    "\\src\\app\\common-ui\\event-card",
+    "\\src\\app\\pages",
+    "\\src\\app\\pages\\create-event-page",
+    "\\src\\app\\pages\\created-event-page"
   ],
-  "SelectedNode": "\\package.json",
+  "SelectedNode": "\\src\\app\\pages\\created-event-page\\created-event-page.component.ts",
   "PreviewInSolutionExplorer": false
 }

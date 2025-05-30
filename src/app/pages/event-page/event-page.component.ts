@@ -1,18 +1,18 @@
 import { Component } from '@angular/core';
 import { HeaderComponent } from '../../common-ui/header/header.component';
-import { NgClass } from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
-import { EventMapComponent } from '../../pages/event-page/event-map.comonent';
-import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
-import {EventModel} from '../../events_data/event-model';
-import {ActivatedRoute} from '@angular/router';
-import {EventService} from '../../events_data/event.service';
-import {ImageService} from '../../images_data/image.service';
-import {Subscription} from 'rxjs';
+import { EventMapComponent } from './event-map.comonent';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { EventModel } from '../../events_data/event-model';
+import { ActivatedRoute } from '@angular/router';
+import { EventService } from '../../events_data/event.service';
+import { ImageService } from '../../images_data/image.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-event-page',
-  imports: [HeaderComponent, NgClass, MatIcon, EventMapComponent],
+  imports: [HeaderComponent, NgClass, NgIf, MatIcon, EventMapComponent], // Добавлен NgIf
   templateUrl: './event-page.component.html',
   styleUrl: './event-page.component.scss'
 })
@@ -27,7 +27,7 @@ export class EventPageComponent {
     private eventService: EventService,
     private imageService: ImageService,
     private sanitizer: DomSanitizer,
-  ) {}
+  ) { }
 
   ngOnInit() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
