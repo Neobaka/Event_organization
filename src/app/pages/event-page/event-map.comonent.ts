@@ -9,7 +9,7 @@ declare const ymaps: any;
   imports: [CommonModule],
   template: `
     <div id="yandex-map" style="width: 100%; height: 400px;">
-      <div *ngIf="isLoading" style="display: flex; align-items: center; justify-content: center; height: 100%; background: #f0f0f0;">
+      <div *ngIf="isLoading">
         Загрузка карты...
       </div>
     </div>

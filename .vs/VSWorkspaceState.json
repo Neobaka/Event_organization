@@ -3,14 +3,14 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\auth",
     "\\src\\app\\common-ui",
     "\\src\\app\\common-ui\\app-parent",
     "\\src\\app\\common-ui\\event-card",
     "\\src\\app\\pages",
     "\\src\\app\\pages\\create-event-page",
-    "\\src\\app\\pages\\created-event-page"
+    "\\src\\app\\pages\\created-event-page",
+    "\\src\\app\\pages\\event-page"
   ],
-  "SelectedNode": "\\src\\app\\pages\\created-event-page\\created-event-page.component.ts",
+  "SelectedNode": "\\README.md",
   "PreviewInSolutionExplorer": false
 }

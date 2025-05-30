@@ -3,12 +3,76 @@
   "WorkspaceRootPath": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\package.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:package.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\pages\\created-event-page\\created-event-page.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\pages\\created-event-page\\created-event-page.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\auth\\auth2.service.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\auth\\auth2.service.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\pages\\created-event-page\\created-event-page.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\pages\\created-event-page\\created-event-page.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\pages\\created-event-page\\created-event-page.component.scss||{181FE41B-5A5D-479F-9F8F-BF665F4EBC2A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\pages\\created-event-page\\created-event-page.component.scss||{181FE41B-5A5D-479F-9F8F-BF665F4EBC2A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\pages\\create-event-page\\create-event-page.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\pages\\create-event-page\\create-event-page.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\pages\\create-event-page\\create-event-page.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\pages\\create-event-page\\create-event-page.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\app.routes.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\app.routes.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\pages\\event-page\\event-page.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\pages\\event-page\\event-page.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\pages\\event-page\\event-map.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\pages\\event-page\\event-map.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\pages\\event-page\\event-map.comonent.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\pages\\event-page\\event-map.comonent.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\header\\header.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\common-ui\\header\\header.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\header\\header.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\common-ui\\header\\header.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\app-parent\\parent.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\common-ui\\app-parent\\parent.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\app.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\app.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\app-parent\\parent.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\common-ui\\app-parent\\parent.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\app-parent\\parent.component.scss||{181FE41B-5A5D-479F-9F8F-BF665F4EBC2A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\common-ui\\app-parent\\parent.component.scss||{181FE41B-5A5D-479F-9F8F-BF665F4EBC2A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\package-lock.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:package-lock.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\package.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:package.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\registration-modal\\registration-modal.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
@@ -21,10 +85,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\auth\\jwt.interceptor.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\auth\\jwt.interceptor.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\package-lock.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:package-lock.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\layout\\event-card-block\\event-card-block.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
@@ -178,15 +238,214 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 26,
+          "SelectedChildIndex": 6,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "app.routes.ts",
+              "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\app.routes.ts",
+              "RelativeDocumentMoniker": "src\\app\\app.routes.ts",
+              "ToolTip": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\app.routes.ts",
+              "RelativeToolTip": "src\\app\\app.routes.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-05-29T09:27:22.662Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "event-page.component.html",
+              "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\pages\\event-page\\event-page.component.html",
+              "RelativeDocumentMoniker": "src\\app\\pages\\event-page\\event-page.component.html",
+              "ToolTip": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\pages\\event-page\\event-page.component.html",
+              "RelativeToolTip": "src\\app\\pages\\event-page\\event-page.component.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-05-29T09:21:43.247Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "event-map.component.html",
+              "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\pages\\event-page\\event-map.component.html",
+              "RelativeDocumentMoniker": "src\\app\\pages\\event-page\\event-map.component.html",
+              "ToolTip": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\pages\\event-page\\event-map.component.html",
+              "RelativeToolTip": "src\\app\\pages\\event-page\\event-map.component.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-05-29T09:21:35.223Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "event-map.comonent.ts",
+              "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\pages\\event-page\\event-map.comonent.ts",
+              "RelativeDocumentMoniker": "src\\app\\pages\\event-page\\event-map.comonent.ts",
+              "ToolTip": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\pages\\event-page\\event-map.comonent.ts",
+              "RelativeToolTip": "src\\app\\pages\\event-page\\event-map.comonent.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-05-29T09:21:28.15Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "header.component.ts",
+              "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\header\\header.component.ts",
+              "RelativeDocumentMoniker": "src\\app\\common-ui\\header\\header.component.ts",
+              "ToolTip": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\header\\header.component.ts",
+              "RelativeToolTip": "src\\app\\common-ui\\header\\header.component.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-05-29T09:21:20.78Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "created-event-page.component.ts",
+              "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\pages\\created-event-page\\created-event-page.component.ts",
+              "RelativeDocumentMoniker": "src\\app\\pages\\created-event-page\\created-event-page.component.ts",
+              "ToolTip": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\pages\\created-event-page\\created-event-page.component.ts",
+              "RelativeToolTip": "src\\app\\pages\\created-event-page\\created-event-page.component.ts",
+              "ViewState": "AgIAAAABAAAAAAAAAAAkwOgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-05-29T09:21:04.23Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "created-event-page.component.scss",
+              "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\pages\\created-event-page\\created-event-page.component.scss",
+              "RelativeDocumentMoniker": "src\\app\\pages\\created-event-page\\created-event-page.component.scss",
+              "ToolTip": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\pages\\created-event-page\\created-event-page.component.scss",
+              "RelativeToolTip": "src\\app\\pages\\created-event-page\\created-event-page.component.scss",
+              "ViewState": "AgIAAAMAAAAAAAAAAAD4vxsAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002663|",
+              "WhenOpened": "2025-05-29T09:20:50.002Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "created-event-page.component.html",
+              "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\pages\\created-event-page\\created-event-page.component.html",
+              "RelativeDocumentMoniker": "src\\app\\pages\\created-event-page\\created-event-page.component.html",
+              "ToolTip": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\pages\\created-event-page\\created-event-page.component.html",
+              "RelativeToolTip": "src\\app\\pages\\created-event-page\\created-event-page.component.html",
+              "ViewState": "AgIAAGsAAAAAAAAAAAD4v30AAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-05-29T09:20:28.962Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "create-event-page.component.ts",
+              "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\pages\\create-event-page\\create-event-page.component.ts",
+              "RelativeDocumentMoniker": "src\\app\\pages\\create-event-page\\create-event-page.component.ts",
+              "ToolTip": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\pages\\create-event-page\\create-event-page.component.ts",
+              "RelativeToolTip": "src\\app\\pages\\create-event-page\\create-event-page.component.ts",
+              "ViewState": "AgIAAH8AAAAAAAAAAAAgwLoAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-05-29T09:19:10.599Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "create-event-page.component.html",
+              "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\pages\\create-event-page\\create-event-page.component.html",
+              "RelativeDocumentMoniker": "src\\app\\pages\\create-event-page\\create-event-page.component.html",
+              "ToolTip": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\pages\\create-event-page\\create-event-page.component.html",
+              "RelativeToolTip": "src\\app\\pages\\create-event-page\\create-event-page.component.html",
+              "ViewState": "AgIAAJAAAAAAAAAAAAAIwJgAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-05-29T09:18:40.467Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "app.component.html",
+              "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\app.component.html",
+              "RelativeDocumentMoniker": "src\\app\\app.component.html",
+              "ToolTip": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\app.component.html",
+              "RelativeToolTip": "src\\app\\app.component.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-05-29T09:13:03.463Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "parent.component.scss",
+              "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\app-parent\\parent.component.scss",
+              "RelativeDocumentMoniker": "src\\app\\common-ui\\app-parent\\parent.component.scss",
+              "ToolTip": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\app-parent\\parent.component.scss",
+              "RelativeToolTip": "src\\app\\common-ui\\app-parent\\parent.component.scss",
+              "ViewState": "AgIAABYBAAAAAAAAAAAmwCQBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002663|",
+              "WhenOpened": "2025-05-29T06:56:55.751Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "parent.component.ts",
+              "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\app-parent\\parent.component.ts",
+              "RelativeDocumentMoniker": "src\\app\\common-ui\\app-parent\\parent.component.ts",
+              "ToolTip": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\app-parent\\parent.component.ts",
+              "RelativeToolTip": "src\\app\\common-ui\\app-parent\\parent.component.ts",
+              "ViewState": "AgIAAFsAAAAAAAAAAAAgwBEAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-05-29T06:37:01.105Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 12,
+              "Title": "parent.component.html",
+              "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\app-parent\\parent.component.html",
+              "RelativeDocumentMoniker": "src\\app\\common-ui\\app-parent\\parent.component.html",
+              "ToolTip": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\app-parent\\parent.component.html",
+              "RelativeToolTip": "src\\app\\common-ui\\app-parent\\parent.component.html",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAFIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-05-29T06:31:56.052Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "header.component.html",
+              "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\header\\header.component.html",
+              "RelativeDocumentMoniker": "src\\app\\common-ui\\header\\header.component.html",
+              "ToolTip": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\header\\header.component.html",
+              "RelativeToolTip": "src\\app\\common-ui\\header\\header.component.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-05-29T06:29:08.147Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
               "Title": "app.component.ts",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\app.component.ts",
               "RelativeDocumentMoniker": "src\\app\\app.component.ts",
@@ -194,11 +453,12 @@
               "RelativeToolTip": "src\\app\\app.component.ts",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-05-15T11:18:08.036Z"
+              "WhenOpened": "2025-05-15T11:18:08.036Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 30,
               "Title": "user-profile-data-block.component.spec.ts",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\layout\\user-profile-data-block\\user-profile-data-block.component.spec.ts",
               "RelativeDocumentMoniker": "src\\app\\layout\\user-profile-data-block\\user-profile-data-block.component.spec.ts",
@@ -206,11 +466,12 @@
               "RelativeToolTip": "src\\app\\layout\\user-profile-data-block\\user-profile-data-block.component.spec.ts",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-05-15T11:17:59.817Z"
+              "WhenOpened": "2025-05-15T11:17:59.817Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 33,
               "Title": "error.interceptor.spec.ts",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\auth\\error.interceptor.spec.ts",
               "RelativeDocumentMoniker": "src\\app\\auth\\error.interceptor.spec.ts",
@@ -218,11 +479,12 @@
               "RelativeToolTip": "src\\app\\auth\\error.interceptor.spec.ts",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-05-15T11:17:40.077Z"
+              "WhenOpened": "2025-05-15T11:17:40.077Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 31,
               "Title": "user-profile-data-block.component.scss",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\layout\\user-profile-data-block\\user-profile-data-block.component.scss",
               "RelativeDocumentMoniker": "src\\app\\layout\\user-profile-data-block\\user-profile-data-block.component.scss",
@@ -230,11 +492,12 @@
               "RelativeToolTip": "src\\app\\layout\\user-profile-data-block\\user-profile-data-block.component.scss",
               "ViewState": "AgIAACEAAAAAAAAAAAAAADAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002663|",
-              "WhenOpened": "2025-05-15T10:11:46.056Z"
+              "WhenOpened": "2025-05-15T10:11:46.056Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 34,
               "Title": "user-profile.component.scss",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\layout\\user-profile-data-block\\user-profile.component.scss",
               "RelativeDocumentMoniker": "src\\app\\layout\\user-profile-data-block\\user-profile.component.scss",
@@ -242,11 +505,12 @@
               "RelativeToolTip": "src\\app\\layout\\user-profile-data-block\\user-profile.component.scss",
               "ViewState": "AgIAABsAAAAAAAAAAAAAADIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002663|",
-              "WhenOpened": "2025-05-15T10:11:37.93Z"
+              "WhenOpened": "2025-05-15T10:11:37.93Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 28,
               "Title": "user-profile.component.ts",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\layout\\user-profile-data-block\\user-profile.component.ts",
               "RelativeDocumentMoniker": "src\\app\\layout\\user-profile-data-block\\user-profile.component.ts",
@@ -254,11 +518,12 @@
               "RelativeToolTip": "src\\app\\layout\\user-profile-data-block\\user-profile.component.ts",
               "ViewState": "AgIAADIAAAAAAAAAAAAAwEgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-05-15T10:10:55.307Z"
+              "WhenOpened": "2025-05-15T10:10:55.307Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 26,
               "Title": "user-profile.component.html",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\layout\\user-profile-data-block\\user-profile.component.html",
               "RelativeDocumentMoniker": "src\\app\\layout\\user-profile-data-block\\user-profile.component.html",
@@ -266,11 +531,12 @@
               "RelativeToolTip": "src\\app\\layout\\user-profile-data-block\\user-profile.component.html",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2025-05-15T10:10:38.398Z"
+              "WhenOpened": "2025-05-15T10:10:38.398Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 25,
               "Title": "event-card-block.component.html",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\layout\\event-card-block\\event-card-block.component.html",
               "RelativeDocumentMoniker": "src\\app\\layout\\event-card-block\\event-card-block.component.html",
@@ -278,11 +544,12 @@
               "RelativeToolTip": "src\\app\\layout\\event-card-block\\event-card-block.component.html",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2025-05-15T10:02:01.046Z"
+              "WhenOpened": "2025-05-15T10:02:01.046Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 21,
               "Title": "event-card-block.component.ts",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\layout\\event-card-block\\event-card-block.component.ts",
               "RelativeDocumentMoniker": "src\\app\\layout\\event-card-block\\event-card-block.component.ts",
@@ -290,11 +557,12 @@
               "RelativeToolTip": "src\\app\\layout\\event-card-block\\event-card-block.component.ts",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-05-15T10:01:53.087Z"
+              "WhenOpened": "2025-05-15T10:01:53.087Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 35,
               "Title": "index.d.ts",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\dataconnect-generated\\js\\default-connector\\index.d.ts",
               "RelativeDocumentMoniker": "dataconnect-generated\\js\\default-connector\\index.d.ts",
@@ -302,11 +570,12 @@
               "RelativeToolTip": "dataconnect-generated\\js\\default-connector\\index.d.ts",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-05-15T08:29:50.408Z"
+              "WhenOpened": "2025-05-15T08:29:50.408Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 36,
               "Title": "index.cjs.js",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\dataconnect-generated\\js\\default-connector\\index.cjs.js",
               "RelativeDocumentMoniker": "dataconnect-generated\\js\\default-connector\\index.cjs.js",
@@ -314,11 +583,12 @@
               "RelativeToolTip": "dataconnect-generated\\js\\default-connector\\index.cjs.js",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-05-15T08:29:49.151Z"
+              "WhenOpened": "2025-05-15T08:29:49.151Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 38,
               "Title": "package.json",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\dataconnect-generated\\js\\default-connector\\angular\\package.json",
               "RelativeDocumentMoniker": "dataconnect-generated\\js\\default-connector\\angular\\package.json",
@@ -326,11 +596,12 @@
               "RelativeToolTip": "dataconnect-generated\\js\\default-connector\\angular\\package.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-05-15T08:29:45.986Z"
+              "WhenOpened": "2025-05-15T08:29:45.986Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 39,
               "Title": "package.json",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\dataconnect-generated\\js\\default-connector\\angular\\esm\\package.json",
               "RelativeDocumentMoniker": "dataconnect-generated\\js\\default-connector\\angular\\esm\\package.json",
@@ -338,11 +609,12 @@
               "RelativeToolTip": "dataconnect-generated\\js\\default-connector\\angular\\esm\\package.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-05-15T08:29:44.479Z"
+              "WhenOpened": "2025-05-15T08:29:44.479Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 40,
               "Title": "index.esm.js",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\dataconnect-generated\\js\\default-connector\\angular\\esm\\index.esm.js",
               "RelativeDocumentMoniker": "dataconnect-generated\\js\\default-connector\\angular\\esm\\index.esm.js",
@@ -350,11 +622,12 @@
               "RelativeToolTip": "dataconnect-generated\\js\\default-connector\\angular\\esm\\index.esm.js",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-05-15T08:29:43.748Z"
+              "WhenOpened": "2025-05-15T08:29:43.748Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 37,
               "Title": "index.d.ts",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\dataconnect-generated\\js\\default-connector\\angular\\index.d.ts",
               "RelativeDocumentMoniker": "dataconnect-generated\\js\\default-connector\\angular\\index.d.ts",
@@ -362,11 +635,12 @@
               "RelativeToolTip": "dataconnect-generated\\js\\default-connector\\angular\\index.d.ts",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-05-15T08:29:42.034Z"
+              "WhenOpened": "2025-05-15T08:29:42.034Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 41,
               "Title": "index.cjs.js",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\dataconnect-generated\\js\\default-connector\\angular\\index.cjs.js",
               "RelativeDocumentMoniker": "dataconnect-generated\\js\\default-connector\\angular\\index.cjs.js",
@@ -374,11 +648,12 @@
               "RelativeToolTip": "dataconnect-generated\\js\\default-connector\\angular\\index.cjs.js",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-05-15T08:29:40.438Z"
+              "WhenOpened": "2025-05-15T08:29:40.438Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 42,
               "Title": "schema.gql",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\dataconnect\\schema\\schema.gql",
               "RelativeDocumentMoniker": "dataconnect\\schema\\schema.gql",
@@ -386,11 +661,12 @@
               "RelativeToolTip": "dataconnect\\schema\\schema.gql",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-05-15T08:29:32.075Z"
+              "WhenOpened": "2025-05-15T08:29:32.075Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 43,
               "Title": "queries.gql",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\dataconnect\\connector\\queries.gql",
               "RelativeDocumentMoniker": "dataconnect\\connector\\queries.gql",
@@ -398,11 +674,12 @@
               "RelativeToolTip": "dataconnect\\connector\\queries.gql",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-05-15T08:29:28.779Z"
+              "WhenOpened": "2025-05-15T08:29:28.779Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 44,
               "Title": "mutations.gql",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\dataconnect\\connector\\mutations.gql",
               "RelativeDocumentMoniker": "dataconnect\\connector\\mutations.gql",
@@ -410,11 +687,12 @@
               "RelativeToolTip": "dataconnect\\connector\\mutations.gql",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-05-15T08:29:27.75Z"
+              "WhenOpened": "2025-05-15T08:29:27.75Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 45,
               "Title": "connector.yaml",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\dataconnect\\connector\\connector.yaml",
               "RelativeDocumentMoniker": "dataconnect\\connector\\connector.yaml",
@@ -422,11 +700,12 @@
               "RelativeToolTip": "dataconnect\\connector\\connector.yaml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
-              "WhenOpened": "2025-05-15T08:29:26.648Z"
+              "WhenOpened": "2025-05-15T08:29:26.648Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 46,
               "Title": "dataconnect.yaml",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\dataconnect\\dataconnect.yaml",
               "RelativeDocumentMoniker": "dataconnect\\dataconnect.yaml",
@@ -434,11 +713,12 @@
               "RelativeToolTip": "dataconnect\\dataconnect.yaml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
-              "WhenOpened": "2025-05-15T08:29:23.871Z"
+              "WhenOpened": "2025-05-15T08:29:23.871Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 47,
               "Title": "tsconfig.spec.json",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\tsconfig.spec.json",
               "RelativeDocumentMoniker": "tsconfig.spec.json",
@@ -446,11 +726,12 @@
               "RelativeToolTip": "tsconfig.spec.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-05-15T08:29:17.938Z"
+              "WhenOpened": "2025-05-15T08:29:17.938Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 48,
               "Title": "tsconfig.json",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\tsconfig.json",
               "RelativeDocumentMoniker": "tsconfig.json",
@@ -458,11 +739,12 @@
               "RelativeToolTip": "tsconfig.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-05-15T08:29:16.452Z"
+              "WhenOpened": "2025-05-15T08:29:16.452Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 49,
               "Title": "tsconfig.app.json",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\tsconfig.app.json",
               "RelativeDocumentMoniker": "tsconfig.app.json",
@@ -470,11 +752,12 @@
               "RelativeToolTip": "tsconfig.app.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-05-15T08:29:15.351Z"
+              "WhenOpened": "2025-05-15T08:29:15.351Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 23,
               "Title": "README.md",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\README.md",
               "RelativeDocumentMoniker": "README.md",
@@ -482,36 +765,38 @@
               "RelativeToolTip": "README.md",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
-              "WhenOpened": "2025-05-15T08:29:14.562Z"
+              "WhenOpened": "2025-05-15T08:29:14.562Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 17,
               "Title": "package.json",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\package.json",
               "RelativeDocumentMoniker": "package.json",
               "ToolTip": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\package.json",
               "RelativeToolTip": "package.json",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAwwCgAAAAsAAAAAAAAAA==",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAIwBsAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2025-05-15T08:29:12.954Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 16,
               "Title": "package-lock.json",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\package-lock.json",
               "RelativeDocumentMoniker": "package-lock.json",
               "ToolTip": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\package-lock.json",
               "RelativeToolTip": "package-lock.json",
-              "ViewState": "AgIAAHM0AAAAAAAAAAAwwABHAAAaAAAAAAAAAA==",
+              "ViewState": "AgIAAHc0AAAAAAAAAAD4vxgAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-05-15T08:29:11.507Z"
+              "WhenOpened": "2025-05-15T08:29:11.507Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 50,
               "Title": "firebase.json",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\firebase.json",
               "RelativeDocumentMoniker": "firebase.json",
@@ -519,11 +804,12 @@
               "RelativeToolTip": "firebase.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-05-15T08:29:10.3Z"
+              "WhenOpened": "2025-05-15T08:29:10.3Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 51,
               "Title": "angular.json",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\angular.json",
               "RelativeDocumentMoniker": "angular.json",
@@ -531,11 +817,12 @@
               "RelativeToolTip": "angular.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-05-15T08:29:08.594Z"
+              "WhenOpened": "2025-05-15T08:29:08.594Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 52,
               "Title": "google.svg",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\public\\assets\\svg\\google.svg",
               "RelativeDocumentMoniker": "public\\assets\\svg\\google.svg",
@@ -543,11 +830,12 @@
               "RelativeToolTip": "public\\assets\\svg\\google.svg",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
               "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAKTSURBVDhPjVNLSFRRGP7unTsz9w75uOaMZlMNpo1aFFJRodRGN7UwatMiKgga3JgVRBSNSA8RooUFLRycCCpc9ITIFi0EW\u002BhCW/gONYUcxplsQL13nKv3dM6ZGV\u002BE9N37c\u002B455/\u002B\u002B/7s/5whYA7/fP5L63BSCIDxvbGxsAiEktZQEE6Brm6K1tXWS5TU0NNQyjsiZKQgCBgBChQ2Q\u002BfswpytgDLmg9zihD9XBNJfhcrlstPoeqlVPRS6uCBDy1broLnN29PkxPeaFFmpC79gOdEu9sB8KQRt\u002Bz/NUVbUGAoGpJIfc5j2gZIuv3fam/sCNGrdjGLGwE23hR\u002BiMeBCKAbXlOTgfr0VW9QfqD4iEZ5BIJNAWDI5yB75X0tXqwrc1JZk90MKVUEq/4UplFc4W5UKwiHjaO4tx90NWiYfT5cQuj4dRITLrZfn9104XtOD3\u002BE4z7/BrqIoKZ4YM37E8XNifA4vdiuCIApPzWY9Wmy9h6UfOpd13t89FstEceyF2PJlAfNHkm6y6xSbxcTASpyuMyFT4NoeI6PV6mzEvvIy0oO\u002BXPVGULaMs186jVLVil0zzF\u002BI4ki\u002BnqjP\u002BGgemrp0Z\u002BHn8T0d0nyrOTky\u002B8x0tNoxE0iZrcSqXz5lAcroCcXkeBcGpyzcnowRTDk9xoDuEmbkE5vRlfB6cRcWzIXibv\u002BNTf5ST0y7SEBa6MGIaOFje2VUnZSgPTFECMZM9YCeLde6cdwvuVLlXrVMFWXGAHqRRaUlDezyEic6tlbFBbW/oS8nHbf0RDZIooDDLipPeTJwozIJJH4EIoG/y1/6Fe/5bj6lFousa0WjoWjoWiLYhGNidWHcXDNhOsVGWFSg0ZCUdDigbIo11Zv73Oq8C\u002BAsr5V2IWWNA0gAAAABJRU5ErkJggg==",
-              "WhenOpened": "2025-05-15T07:31:43.764Z"
+              "WhenOpened": "2025-05-15T07:31:43.764Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 53,
               "Title": "arrow-left-icon.svg",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\public\\assets\\svg\\arrow-left-icon.svg",
               "RelativeDocumentMoniker": "public\\assets\\svg\\arrow-left-icon.svg",
@@ -555,11 +843,12 @@
               "RelativeToolTip": "public\\assets\\svg\\arrow-left-icon.svg",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAKTSURBVDhPjVNLSFRRGP7unTsz9w75uOaMZlMNpo1aFFJRodRGN7UwatMiKgga3JgVRBSNSA8RooUFLRycCCpc9ITIFi0EW\u002BhCW/gONYUcxplsQL13nKv3dM6ZGV\u002BE9N37c\u002B455/\u002B\u002B/7s/5whYA7/fP5L63BSCIDxvbGxsAiEktZQEE6Brm6K1tXWS5TU0NNQyjsiZKQgCBgBChQ2Q\u002BfswpytgDLmg9zihD9XBNJfhcrlstPoeqlVPRS6uCBDy1broLnN29PkxPeaFFmpC79gOdEu9sB8KQRt\u002Bz/NUVbUGAoGpJIfc5j2gZIuv3fam/sCNGrdjGLGwE23hR\u002BiMeBCKAbXlOTgfr0VW9QfqD4iEZ5BIJNAWDI5yB75X0tXqwrc1JZk90MKVUEq/4UplFc4W5UKwiHjaO4tx90NWiYfT5cQuj4dRITLrZfn9104XtOD3\u002BE4z7/BrqIoKZ4YM37E8XNifA4vdiuCIApPzWY9Wmy9h6UfOpd13t89FstEceyF2PJlAfNHkm6y6xSbxcTASpyuMyFT4NoeI6PV6mzEvvIy0oO\u002BXPVGULaMs186jVLVil0zzF\u002BI4ki\u002BnqjP\u002BGgemrp0Z\u002BHn8T0d0nyrOTky\u002B8x0tNoxE0iZrcSqXz5lAcroCcXkeBcGpyzcnowRTDk9xoDuEmbkE5vRlfB6cRcWzIXibv\u002BNTf5ST0y7SEBa6MGIaOFje2VUnZSgPTFECMZM9YCeLde6cdwvuVLlXrVMFWXGAHqRRaUlDezyEic6tlbFBbW/oS8nHbf0RDZIooDDLipPeTJwozIJJH4EIoG/y1/6Fe/5bj6lFousa0WjoWjoWiLYhGNidWHcXDNhOsVGWFSg0ZCUdDigbIo11Zv73Oq8C\u002BAsr5V2IWWNA0gAAAABJRU5ErkJggg==",
-              "WhenOpened": "2025-05-15T07:31:39.189Z"
+              "WhenOpened": "2025-05-15T07:31:39.189Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 24,
               "Title": "login-modal.component.spec.ts",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\login-modal\\login-modal.component.spec.ts",
               "RelativeDocumentMoniker": "src\\app\\common-ui\\login-modal\\login-modal.component.spec.ts",
@@ -567,11 +856,12 @@
               "RelativeToolTip": "src\\app\\common-ui\\login-modal\\login-modal.component.spec.ts",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-05-09T18:18:13.043Z"
+              "WhenOpened": "2025-05-09T18:18:13.043Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 54,
               "Title": "login-modal.component.scss",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\login-modal\\login-modal.component.scss",
               "RelativeDocumentMoniker": "src\\app\\common-ui\\login-modal\\login-modal.component.scss",
@@ -579,11 +869,12 @@
               "RelativeToolTip": "src\\app\\common-ui\\login-modal\\login-modal.component.scss",
               "ViewState": "AgIAAM4AAAAAAAAAAAAAANwAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002663|",
-              "WhenOpened": "2025-05-09T18:14:09.721Z"
+              "WhenOpened": "2025-05-09T18:14:09.721Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 19,
               "Title": "login-modal.component.ts",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\login-modal\\login-modal.component.ts",
               "RelativeDocumentMoniker": "src\\app\\common-ui\\login-modal\\login-modal.component.ts",
@@ -591,11 +882,12 @@
               "RelativeToolTip": "src\\app\\common-ui\\login-modal\\login-modal.component.ts",
               "ViewState": "AgIAADEAAAAAAAAAAAAAAHsAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-05-09T17:55:47.695Z"
+              "WhenOpened": "2025-05-09T17:55:47.695Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 20,
               "Title": "jwt.interceptor.ts",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\auth\\jwt.interceptor.ts",
               "RelativeDocumentMoniker": "src\\app\\auth\\jwt.interceptor.ts",
@@ -603,11 +895,12 @@
               "RelativeToolTip": "src\\app\\auth\\jwt.interceptor.ts",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-05-09T17:32:57.672Z"
+              "WhenOpened": "2025-05-09T17:32:57.672Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 55,
               "Title": "jwt.interceptor.spec.ts",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\auth\\jwt.interceptor.spec.ts",
               "RelativeDocumentMoniker": "src\\app\\auth\\jwt.interceptor.spec.ts",
@@ -615,11 +908,12 @@
               "RelativeToolTip": "src\\app\\auth\\jwt.interceptor.spec.ts",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-05-09T17:32:52.158Z"
+              "WhenOpened": "2025-05-09T17:32:52.158Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 29,
               "Title": "user-profile-data-block.component.ts",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\layout\\user-profile-data-block\\user-profile-data-block.component.ts",
               "RelativeDocumentMoniker": "src\\app\\layout\\user-profile-data-block\\user-profile-data-block.component.ts",
@@ -627,11 +921,12 @@
               "RelativeToolTip": "src\\app\\layout\\user-profile-data-block\\user-profile-data-block.component.ts",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-05-09T16:58:41.075Z"
+              "WhenOpened": "2025-05-09T16:58:41.075Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 32,
               "Title": "user-profile-data-block.component.html",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\layout\\user-profile-data-block\\user-profile-data-block.component.html",
               "RelativeDocumentMoniker": "src\\app\\layout\\user-profile-data-block\\user-profile-data-block.component.html",
@@ -639,7 +934,8 @@
               "RelativeToolTip": "src\\app\\layout\\user-profile-data-block\\user-profile-data-block.component.html",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2025-05-09T16:55:36.185Z"
+              "WhenOpened": "2025-05-09T16:55:36.185Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -647,16 +943,16 @@
               "Title": "auth2.service.ts",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\auth\\auth2.service.ts",
               "RelativeDocumentMoniker": "src\\app\\auth\\auth2.service.ts",
-              "ToolTip": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\auth\\auth2.service.ts*",
-              "RelativeToolTip": "src\\app\\auth\\auth2.service.ts*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGoAAAAAAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\auth\\auth2.service.ts",
+              "RelativeToolTip": "src\\app\\auth\\auth2.service.ts",
+              "ViewState": "AgIAAPAAAAAAAAAAAAAkwPQAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
               "WhenOpened": "2025-05-09T16:52:29.848Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 18,
               "Title": "registration-modal.component.ts",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\registration-modal\\registration-modal.component.ts",
               "RelativeDocumentMoniker": "src\\app\\common-ui\\registration-modal\\registration-modal.component.ts",
@@ -664,11 +960,12 @@
               "RelativeToolTip": "src\\app\\common-ui\\registration-modal\\registration-modal.component.ts",
               "ViewState": "AgIAAFMAAAAAAAAAAAAiwGMAAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-05-09T16:51:58.074Z"
+              "WhenOpened": "2025-05-09T16:51:58.074Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 56,
               "Title": "registration-modal.component.html",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\registration-modal\\registration-modal.component.html",
               "RelativeDocumentMoniker": "src\\app\\common-ui\\registration-modal\\registration-modal.component.html",
@@ -676,11 +973,12 @@
               "RelativeToolTip": "src\\app\\common-ui\\registration-modal\\registration-modal.component.html",
               "ViewState": "AgIAACwAAAAAAAAAAAAwwDsAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2025-05-09T16:51:30.406Z"
+              "WhenOpened": "2025-05-09T16:51:30.406Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 22,
               "Title": "login-modal.component.html",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\login-modal\\login-modal.component.html",
               "RelativeDocumentMoniker": "src\\app\\common-ui\\login-modal\\login-modal.component.html",
@@ -688,7 +986,8 @@
               "RelativeToolTip": "src\\app\\common-ui\\login-modal\\login-modal.component.html",
               "ViewState": "AgIAABIAAAAAAAAAAAAAADIAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2025-05-09T16:44:45.653Z"
+              "WhenOpened": "2025-05-09T16:44:45.653Z",
+              "EditorCaption": ""
             }
           ]
         }
