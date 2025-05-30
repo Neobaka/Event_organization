@@ -2,9 +2,9 @@ import {Component, inject} from '@angular/core';
 import {EventCardBlockComponent} from '../../layout/event-card-block/event-card-block.component';
 import {HeaderComponent} from '../../common-ui/header/header.component';
 import {SearchBarComponent} from '../../common-ui/search-bar/search-bar.component';
-import {EventModel} from '../../auth/auth2.service';
 import {EventService} from '../../events_data/event.service';
 import {FliterByCategoryPipe} from '../../events_data/fliter-by-category.pipe';
+import {EventModel} from '../../events_data/event-model';
 
 @Component({
   selector: 'app-main-page',

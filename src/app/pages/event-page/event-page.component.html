@@ -1,76 +1,74 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <app-header></app-header>
-  <div class="main-page">
-    <div class="page-container">
-      <div class="hero-container">
-        <img
-          class="hero-image"
-          [src]="imageUrl || 'assets/img/event-page.jpg'"
-          [alt]="event?.eventName || 'Изображение мероприятия'"
-        >
-        <div class="hero-content">
-          <h1 class="hero-title">{{ event?.eventName }}</h1>
-          <span>С {{ event?.dateStart }} по {{ event?.dateStart }}</span>
-        </div>
+<div class="main-page">
+  <div class="page-container">
+    <div class="hero-container">
+      <img class="hero-image"
+           [src]="imageUrl || 'assets/img/event-page.jpg'"
+           [alt]="event?.eventName || 'Изображение мероприятия'">
+      <div class="hero-content">
+        <h1 class="hero-title">{{ event?.eventName }}</h1>
+        <span>С {{ event?.dateStart }} по {{ event?.dateStart }}</span>
       </div>
-
-
-
-
-      <div class="map-container">
-        <div class="map">
-          <!--  Интерактивная карта -->
-          <app-event-map [latitude]="56.838011" [longitude]="60.597465"></app-event-map>
-          [Интерактивная карта мероприятия]
-        </div>
-      </div>
-
-      <section class="section1">
-        <h2>0 событий</h2>
-        <p class="event-description">{{ event?.eventDescription }}</p>
-        <a href="#" class="read-more">Читать далее...</a>
-      </section>
-
-      <section class="time-section section">
-        <h2>Дата и время</h2>
-        <div class="time-container">
-          <div class="time-block">
-            <span class="time-value">{{ event?.dateStart }}</span>
-          </div>
-          <div class="time-block">
-            <span class="time-value">{{ event?.dateEnd }}</span>
-          </div>
-        </div>
-      </section>
-
-      <section class="location-section section">
-        <h2>Локация</h2>
-        <div class="location-footer">
-          <div>{{ event?.place }}</div>
-          <button class="event-card-img-button-like" (click)="toggleLike($event)">
-            <mat-icon [ngClass]="{'icon-active': isLiked}">favorite</mat-icon>
-            <!--<img id="iconHeartId" src="assets/svg/heart-icon.svg" alt="Нравится">-->
-          </button>
-        </div>
-        <div class="location-footer">
-          <div>+7(343) 350-81-01?</div>
-        </div>
-      </section>
-
-      <section class="event-info-section section">
-        <h2>Информация об ивенте</h2>
-        <div class="info-container">
-          <div class="info-block">
-            <span class="info-label">Организатор</span>
-            <span class="info-value">{{ event?.organizerName }}</span>
-          </div>
-          <div class="info-block">
-            <span class="info-label">Вебсайт</span>
-            <span class="info-value">{{ event?.organizerSite }}</span>
-          </div>
-        </div>
-      </section>
-
-      <a href="#" class="register-btn">Зарегистрироваться</a>
     </div>
+
+    <div class="map-container">
+      <div class="map">
+        <!-- Динамическая карта с передачей места проведения -->
+        <app-event-map [place]="event?.place">
+        </app-event-map>
+        [Интерактивная карта мероприятия]
+      </div>
+    </div>
+
+    <section class="section1">
+      <h2>0 событий</h2>
+      <p class="event-description">{{ event?.eventDescription }}</p>
+      <a href="#" class="read-more">Читать далее...</a>
+    </section>
+
+    <section class="time-section section">
+      <h2>Дата и время</h2>
+      <div class="time-container">
+        <div class="time-block">
+          <span class="time-value">{{ event?.dateStart }}</span>
+        </div>
+        <div class="time-block">
+          <span class="time-value">{{ event?.dateEnd }}</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="location-section section">
+      <h2>Локация</h2>
+      <div class="location-footer">
+        <div>{{ event?.place }}</div>
+        <button class="event-card-img-button-like" (click)="toggleLike($event)">
+          <mat-icon [ngClass]="{'icon-active': isLiked}">favorite</mat-icon>
+          <!--<img id="iconHeartId" src="assets/svg/heart-icon.svg" alt="Нравится">-->
+        </button>
+      </div>
+    </section>
+
+    <section class="event-info-section section">
+      <h2>Информация об ивенте</h2>
+      <div class="info-container">
+        <div class="info-block">
+          <span class="info-label">Организатор</span>
+          <span class="info-value">{{ event?.organizerName }}</span>
+        </div>
+        <div class="info-block">
+          <span class="info-label">Вебсайт</span>
+          <span class="info-value">{{ event?.organizerSite }}</span>
+        </div>
+      </div>
+    </section>
+
+    <button
+      class="register-btn"
+      [class.added]="isAdded"
+      (click)="toggleAdd($event)">
+      {{ isAdded ? 'Удалить из планов' : 'Планирую посетить' }}
+    </button>
   </div>
+</div>

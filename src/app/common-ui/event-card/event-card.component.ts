@@ -20,7 +20,7 @@ import {Auth2Service} from '../../auth/auth2.service';
     NgClass,
     DatePipe,
     EnumTranslatorPipe,
-    NgIf
+    NgIf,
   ],
   templateUrl: './event-card.component.html',
   styleUrl: './event-card.component.scss'
@@ -67,7 +67,7 @@ export class EventCardComponent implements OnInit {
     if (!this.authService.isAuth) {
       this.router.navigate([], {
         queryParams: { showLoginModal: 'true' },
-        queryParamsHandling: 'merge' // Сохраняет существующие query-параметры
+        queryParamsHandling: 'merge'
       });
       return;
     }
@@ -78,7 +78,7 @@ export class EventCardComponent implements OnInit {
           this.isAdded = true;
           this.authService.updatePlannedEvents(this.event.id, true);
         },
-        error: () => {}
+        error: () => { }
       });
     } else {
       this.eventService.deleteEventFromPlanned(this.event.id).subscribe({
@@ -86,7 +86,7 @@ export class EventCardComponent implements OnInit {
           this.isAdded = false;
           this.authService.updatePlannedEvents(this.event.id, false);
         },
-        error: () => {}
+        error: () => { }
       })
     }
   }
@@ -109,7 +109,7 @@ export class EventCardComponent implements OnInit {
           this.isLiked = true
           this.authService.updateFavoriteEvents(this.event.id, true);
         },
-        error: () => { /* обработка ошибки */ }
+        error: () => { }
       });
     } else {
       this.eventService.deleteEventFromFavorites(this.event.id).subscribe({
@@ -117,7 +117,7 @@ export class EventCardComponent implements OnInit {
           this.isLiked = false
           this.authService.updateFavoriteEvents(this.event.id, false);
         },
-        error: () => { /* обработка ошибки */ }
+        error: () => { }
       });
     }
   }

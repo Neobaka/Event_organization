@@ -6,7 +6,7 @@ import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {RegisterPayload} from './register-payload';
 import {TokenResponse} from './token-response';
-import {BehaviorSubject, catchError, Observable, tap, throwError, of, EMPTY} from 'rxjs';
+import {BehaviorSubject, catchError, Observable, tap, throwError, EMPTY} from 'rxjs';
 import {LoginPayload} from './login-payload';
 import {AngularFireAuth} from '@angular/fire/compat/auth';
 import firebase from 'firebase/compat/app';
@@ -15,25 +15,6 @@ import {TokenService} from './token.service';
 
 //Поскольку используем compat API, везде, где есть ссылака на User, нужно использовать тип из firebase/compat/app
 type User = firebase.User;
-
-export interface EventModel {
-  id: number;
-  eventName: string;
-  eventDescription: string;
-  dateStart: string;
-  dateEnd: string;
-  place: string;
-  organizerName: string;
-  organizerSite: string;
-  cost: number;
-  fileName: string;
-  category: string;
-  genre: string;
-  creatorId: number;
-  createdAt?: string;
-  views?: number;
-  participants?: number;
-}
 
 export interface UserDetails {
   id: number;
@@ -44,6 +25,7 @@ export interface UserDetails {
   role: string;
   favoriteEvents: number[];
   plannedEvents: number[];
+  fileName: string;
 }
 
 @Injectable({
@@ -110,10 +92,9 @@ export class Auth2Service {
     const current = this.userDataSubject.value;
     if (!current) return;
     let updatedPlanned: number[];
-    if(add){
+    if (add) {
       updatedPlanned = [...current.plannedEvents, eventId];
-    }
-    else{
+    } else {
       updatedPlanned = current.plannedEvents.filter(id => id !== eventId);
     }
 
@@ -182,7 +163,7 @@ export class Auth2Service {
 
       const response = await this.http.post<TokenResponse>(
         `${this.apiUrl}users/google-auth`,
-        { idToken }
+        {idToken}
       ).pipe(
         tap(response => {
           this.saveToken(response.AccessToken);
@@ -223,7 +204,10 @@ export class Auth2Service {
 
   login(payload: LoginPayload) {
     return this.http.post<TokenResponse>(`${this.apiUrl}users/login`, payload).pipe(
-      tap(response => this.handleAuthSuccess(response.AccessToken)),
+      tap(response => {
+        this.handleAuthSuccess(response.AccessToken);
+        this.loadUserProfile();
+      }),
       catchError(error => {
         this.clearToken();
         return throwError(() => error);
@@ -284,26 +268,5 @@ export class Auth2Service {
   // Реактивная проверка авторизации
   isLoggedIn(): Observable<boolean> {
     return this.loggedIn$;
-  }
-
-
-  // Получение событий конкретного пользователя
-  getUserEvents(userId: number): Observable<EventModel[]> {
-    return this.http.get<EventModel[]>(`${this.apiUrl}events/user/${userId}`);
-  }
-
-  // Удаление события
-  deleteEvent(eventId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}events/${eventId}`);
-  }
-
-  // Получение события по ID (для редактирования)
-  getEventById(eventId: number): Observable<EventModel> {
-    return this.http.get<EventModel>(`${this.apiUrl}events/${eventId}`);
-  }
-
-  // Обновление события
-  updateEvent(eventId: number, payload: any): Observable<EventModel> {
-    return this.http.put<EventModel>(`${this.apiUrl}events/${eventId}`, payload);
   }
 }

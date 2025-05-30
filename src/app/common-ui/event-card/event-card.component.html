@@ -13,23 +13,23 @@
       >
     </ng-template>
     <div class="event-card-img-subdiv">
-        <button
-          class="event-card-img-cost-button"
-          (click)="toggleAdd($event)"
-          [class.added]="isAdded"
-          type="button"
-        >
-          <span>от {{ event.cost }} руб</span>
-          <span class="plus-icon">
+      <button
+        class="event-card-img-cost-button"
+        (click)="toggleAdd($event)"
+        [class.added]="isAdded"
+        type="button"
+      >
+        <span>от {{ event.cost }} руб</span>
+        <span class="plus-icon">
             <mat-icon
               *ngIf="isAdded; else plusIcon"
               color="primary"
               style="font-size: 18px; line-height: 23px;">
-              check
-            </mat-icon>
-            <ng-template #plusIcon>+</ng-template>
-            </span>
-        </button>
+            check
+          </mat-icon>
+          <ng-template #plusIcon>+</ng-template>
+        </span>
+      </button>
 
       <button class="event-card-img-button-like" (click)="toggleLike($event)">
         <mat-icon [ngClass]="{'icon-active': isLiked}">favorite</mat-icon>
@@ -45,8 +45,8 @@
     <div class="event-card-under-image-second-div">
       <div class="event-card-tags-div">
         <ul class="event-card-tags">
-          <li class="event-card-tag">{{ event.category | enumTranslator:'category' }}</li>
-          <li class="event-card-tag">{{ event.genre | enumTranslator:'genre' }}</li>
+          <li class="event-card-tag category-tag">{{ event.category | enumTranslator:'category' }}</li>
+          <li class="event-card-tag genre-tag">{{ event.genre | enumTranslator:'genre' }}</li>
         </ul>
       </div>
       <div class="event-card-undertags-div">
@@ -64,3 +64,4 @@
     </div>
   </div>
 </div>
+

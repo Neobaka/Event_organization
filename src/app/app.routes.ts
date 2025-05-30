@@ -20,7 +20,12 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/create-event-page/create-event-page.component').then(m => m.CreateEventPageComponent),
   },
   {
-    path: 'created',
+    path: 'my-events',
     loadComponent: () => import('./pages/created-event-page/created-event-page.component').then(m => m.CreatedEventPageComponent),
+  },
+  {
+    path: 'admin-panel',
+    loadComponent: () => import('./pages/admin-page/admin-page.component').then(m => m.AdminPageComponent),
   }
+
 ];
