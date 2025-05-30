@@ -29,6 +29,7 @@ export class EventCardComponent implements OnInit {
   @Input() event!: EventModel;
   imageUrl?: SafeUrl;
   isLiked = false;
+  isAdded = false;
 
   private imageService = inject(ImageService);
   private sanitizer = inject(DomSanitizer);
@@ -52,15 +53,56 @@ export class EventCardComponent implements OnInit {
         });
     }
     this.authService.userData$.subscribe(user => {
-      if (user && user.favoriteEvents) {
-        this.isLiked = user.favoriteEvents.includes(this.event.id);
+      if (user) {
+        this.isLiked = user.favoriteEvents?.includes(this.event.id) ?? false;
+        this.isAdded = user.plannedEvents?.includes(this.event.id) ?? false;
       }
     });
+  }
+
+  toggleAdd(event: MouseEvent) {
+    event.stopPropagation();
+    event.preventDefault();
+
+    if (!this.authService.isAuth) {
+      this.router.navigate([], {
+        queryParams: { showLoginModal: 'true' },
+        queryParamsHandling: 'merge' // Сохраняет существующие query-параметры
+      });
+      return;
+    }
+
+    if (!this.isAdded) {
+      this.eventService.addEventToPlanned(this.event.id).subscribe({
+        next: () => {
+          this.isAdded = true;
+          this.authService.updatePlannedEvents(this.event.id, true);
+        },
+        error: () => {}
+      });
+    } else {
+      this.eventService.deleteEventFromPlanned(this.event.id).subscribe({
+        next: () => {
+          this.isAdded = false;
+          this.authService.updatePlannedEvents(this.event.id, false);
+        },
+        error: () => {}
+      })
+    }
   }
 
   toggleLike(event: MouseEvent) {
     event.stopPropagation();
     event.preventDefault();
+
+    if (!this.authService.isAuth) {
+      this.router.navigate([], {
+        queryParams: { showLoginModal: 'true' },
+        queryParamsHandling: 'merge'
+      });
+      return;
+    }
+
     if (!this.isLiked) {
       this.eventService.addEventToFavorites(this.event.id).subscribe({
         next: () => {

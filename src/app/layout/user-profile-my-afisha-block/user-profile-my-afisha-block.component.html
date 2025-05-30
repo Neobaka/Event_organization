@@ -30,7 +30,7 @@
   <div class="user-profile-afisha-cards-div">
     @switch (activeComponent) {
       @case ('user-profile-my-tickets'){
-        <app-user-profile-my-tickets></app-user-profile-my-tickets>
+        <app-user-profile-my-tickets [searchQuery]="searchQuery"></app-user-profile-my-tickets>
       }
       @case ('user-profile-favorite-events'){
         <app-user-profile-favorite-events [searchQuery]="searchQuery"></app-user-profile-favorite-events>

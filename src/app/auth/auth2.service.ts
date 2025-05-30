@@ -106,6 +106,23 @@ export class Auth2Service {
     });
   }
 
+  updatePlannedEvents(eventId: number, add: boolean) {
+    const current = this.userDataSubject.value;
+    if (!current) return;
+    let updatedPlanned: number[];
+    if(add){
+      updatedPlanned = [...current.plannedEvents, eventId];
+    }
+    else{
+      updatedPlanned = current.plannedEvents.filter(id => id !== eventId);
+    }
+
+    this.userDataSubject.next({
+      ...current,
+      plannedEvents: updatedPlanned
+    })
+  }
+
   getCurrentUser(): Promise<User | null> {
     return this.afAuth.currentUser;
   }

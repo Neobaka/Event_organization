@@ -32,4 +32,12 @@ export class EventService {
   deleteEventFromFavorites(eventId: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/favorite/${eventId}`);
   }
+
+  addEventToPlanned(eventId: number): Observable<any> {
+    return this.http.post(`${this.apiUrl}/planned/${eventId}`, {});
+  }
+
+  deleteEventFromPlanned(eventId: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/planned/${eventId}`);
+  }
 }
