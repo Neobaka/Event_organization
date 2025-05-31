@@ -1,0 +1,98 @@
+<app-header></app-header>
+<div class="all-content">
+  <div class="hero-container">
+    <h1 class="hero-title">Пользователи</h1>
+    <p class="hero-subtitle">Управляйте всеми зарегистрированными пользователями</p>
+  </div>
+
+  <!-- Фильтр и поиск -->
+  <div class="filters-section">
+    <div class="search-container">
+      <input type="text"
+             class="search-input"
+             placeholder="Поиск по email или имени"
+             [(ngModel)]="searchQuery"
+             (input)="onSearchChange()"
+      >
+      <mat-icon class="search-icon">search</mat-icon>
+    </div>
+  </div>
+
+  <!-- Индикатор загрузки -->
+  <div class="loading-container" *ngIf="isLoading">
+    <div class="loading-spinner">
+      <mat-icon class="spin">refresh</mat-icon>
+    </div>
+    <p>Загрузка пользователей...</p>
+  </div>
+
+  <!-- Список пользователей -->
+  <div class="users-container" *ngIf="!isLoading && filteredUsers.length > 0; else noUsers">
+    <div class="user-card" *ngFor="let user of filteredUsers">
+      <div class="user-info">
+        <div class="user-header">
+          <h3 class="user-name">{{ user.displayName || 'Без имени' }}</h3>
+          <span class="user-role" [ngClass]="user.role">{{ user.role }}</span>
+        </div>
+        <div class="user-details">
+          <div class="user-meta">
+            <mat-icon class="meta-icon">email</mat-icon>
+            <span>{{ user.email }}</span>
+          </div>
+          <div class="user-meta">
+            <mat-icon class="meta-icon">phone</mat-icon>
+            <span>{{ user.phoneNumber || '—' }}</span>
+          </div>
+          <div class="user-meta">
+            <mat-icon class="meta-icon">event</mat-icon>
+            <span>Избранное: {{ user.favoriteEvents.length }}, В планах: {{ user.plannedEvents.length }}</span>
+          </div>
+        </div>
+        <div class="user-actions">
+          <button class="view-btn" (click)="openEditUserModal(user)">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+    <button
+      class="load-more-btn"
+      *ngIf="!isLoading && hasMoreUsers"
+      (click)="loadMoreUsers()"
+      aria-label="Загрузить еще пользователей">
+      <mat-icon>keyboard_arrow_down</mat-icon>
+    </button>
+  </div>
+
+  <!-- Пустое состояние -->
+  <ng-template #noUsers>
+    <div class="empty-state">
+      <h3>Нет пользователей</h3>
+      <p>Здесь появятся все зарегистрированные пользователи.</p>
+    </div>
+  </ng-template>
+
+  <div class="modal-overlay" *ngIf="showEditModal" (click)="cancelEditUser()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <h3>Редактировать пользователя</h3>
+      <form (ngSubmit)="saveEditUser()">
+        <div class="modal-form-group">
+          <label for="editDisplayName">Имя</label>
+          <input id="editDisplayName" type="text" [(ngModel)]="editDisplayName" name="editDisplayName" required>
+        </div>
+        <div class="modal-form-group">
+          <label for="editRole">Роль</label>
+          <select id="editRole" [(ngModel)]="editRole" name="editRole" required>
+            <option value="ROLE_USER">Пользователь</option>
+            <option value="ROLE_CREATOR">Создатель меро</option>
+            <option value="ROLE_ADMIN">Администратор</option>
+          </select>
+        </div>
+        <div class="modal-actions">
+          <button class="cancel-btn" type="button" (click)="cancelEditUser()">Отмена</button>
+          <button class="confirm-btn" type="submit">Сохранить</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

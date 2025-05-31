@@ -30,6 +30,9 @@ export class CreatedEventPageComponent implements OnInit {
   upcomingEvents: EventModel[] = [];
   pastEvents: EventModel[] = [];
 
+  page = 0;
+  size = 100;
+
   selectedFilter: 'all' | 'upcoming' | 'past' = 'all';
   searchQuery: string = '';
   isLoading: boolean = false;
@@ -67,19 +70,34 @@ export class CreatedEventPageComponent implements OnInit {
   loadMyEvents() {
     this.isLoading = true;
 
-    this.eventService.getEventsByCreator().subscribe({
-      next: (events: EventModel[]) => {
-        this.allEvents = events;
-        this.categorizeEvents();
-        this.applyFilters();
-        this.isLoading = false;
-      },
-      error: (err: any) => {
-        console.error('Ошибка загрузки мероприятий:', err);
-        this.isLoading = false;
-        // Показать уведомление об ошибке
-      }
-    });
+    const user = this.auth2Service.currentUser;
+    if (user && user.role === 'ROLE_ADMIN') {
+      // Админ — получаем все мероприятия
+      this.eventService.getEvents(this.page, this.size).subscribe({
+        next: (events: EventModel[]) => {
+          this.allEvents = events;
+          this.categorizeEvents();
+          this.applyFilters();
+          this.isLoading = false;
+        },
+        error: (err: any) => {
+          this.isLoading = false;
+        }
+      });
+    } else {
+      // Креатор — только свои мероприятия
+      this.eventService.getEventsByCreator().subscribe({
+        next: (events: EventModel[]) => {
+          this.allEvents = events;
+          this.categorizeEvents();
+          this.applyFilters();
+          this.isLoading = false;
+        },
+        error: (err: any) => {
+          this.isLoading = false;
+        }
+      });
+    }
   }
 
   categorizeEvents() {

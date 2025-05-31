@@ -20,7 +20,7 @@ import {Auth2Service} from '../../auth/auth2.service';
     NgClass,
     DatePipe,
     EnumTranslatorPipe,
-    NgIf
+    NgIf,
   ],
   templateUrl: './event-card.component.html',
   styleUrl: './event-card.component.scss'

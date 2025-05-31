@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, inject, Input} from '@angular/core';
 import {UserProfileMyTicketsComponent} from '../../common-ui/user-profile-my-tickets/user-profile-my-tickets.component';
 import {
   UserProfileFavoriteEventsComponent
@@ -7,6 +7,7 @@ import {
   UserProfileFavoritePlacesComponent
 } from '../../common-ui/user-profile-favorite-places/user-profile-favorite-places.component';
 import {FormsModule} from '@angular/forms';
+import {Router} from '@angular/router';
 
 //это parent
 @Component({
@@ -25,6 +26,8 @@ export class UserProfileMyAfishaBlockComponent {
   searchQuery: string = '';
   @Input() initialSection: string = 'user-profile-my-tickets';
 
+  private router = inject(Router);
+
   ngOnInit() {
     this.activeComponent = this.initialSection;
   }
@@ -32,6 +35,10 @@ export class UserProfileMyAfishaBlockComponent {
   showUserPageFilterComponent(componentName: string) {
     this.activeComponent = componentName;
     this.searchQuery = '';
+    this.router.navigate([], {
+      queryParams: { section: componentName },
+      queryParamsHandling: 'merge'
+    });
   }
 
   isActive(componentName: string): boolean {

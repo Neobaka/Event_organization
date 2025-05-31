@@ -71,7 +71,7 @@ export class LoginModalComponent {
           console.log('User logged in successfully:', user);
           this.loading = false;
           this.closeModal();
-          this.router.navigate(['/profile']);
+          this.router.navigate(['/']);
         },
         error: (error) => {
           console.error('Login error:', error);
