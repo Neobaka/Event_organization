@@ -160,18 +160,25 @@ export class Auth2Service {
       }
 
       const idToken = await result.user.getIdToken();
+      console.log('ID Token получен:', idToken.substring(0, 50) + '...'); // Логируем начало токена
 
       const response = await this.http.post<TokenResponse>(
         `${this.apiUrl}users/google-auth`,
-        { idToken }
+        { id_token: idToken }
       ).pipe(
         tap(response => {
+          console.log('Успешный ответ от сервера:', response);
           this.saveToken(response.AccessToken);
           this.loggedInSubject.next(true);
-          // Загружаем профиль пользователя
           this.getUserProfileFromApi().subscribe(profile => {
             this.userDataSubject.next(profile);
           });
+        }),
+        catchError(error => {
+          console.error('Детали ошибки:', error);
+          console.error('Статус:', error.status);
+          console.error('Тело ответа:', error.error);
+          return throwError(() => error);
         })
       ).toPromise();
 
