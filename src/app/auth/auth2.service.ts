@@ -1,6 +1,3 @@
-/* eslint-disable indent */
-/* eslint-disable @typescript-eslint/typedef */
-/* eslint-disable @typescript-eslint/member-ordering */
 import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';

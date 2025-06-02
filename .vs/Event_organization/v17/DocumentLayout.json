@@ -3,20 +3,44 @@
   "WorkspaceRootPath": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\auth\\auth2.service.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\auth\\auth2.service.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\auth\\login-payload.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\auth\\login-payload.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\auth\\token-response.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\auth\\token-response.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\auth\\token.service.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\auth\\token.service.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\app.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\app.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\pages\\event-page\\event-map.comonent.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\pages\\event-page\\event-map.comonent.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\pages\\event-page\\event-page.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\pages\\event-page\\event-page.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\pages\\event-page\\event-page.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\pages\\event-page\\event-page.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\pages\\event-page\\event-page.component.scss||{181FE41B-5A5D-479F-9F8F-BF665F4EBC2A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\pages\\event-page\\event-page.component.scss||{181FE41B-5A5D-479F-9F8F-BF665F4EBC2A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\pages\\event-page\\event-page.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\pages\\event-page\\event-page.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\pages\\event-page\\event-map.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -49,10 +73,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\pages\\created-event-page\\created-event-page.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\pages\\created-event-page\\created-event-page.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\auth\\auth2.service.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\auth\\auth2.service.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\pages\\created-event-page\\created-event-page.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -129,10 +149,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\layout\\user-profile-data-block\\user-profile.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\layout\\user-profile-data-block\\user-profile.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\app.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\app.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\layout\\user-profile-data-block\\user-profile.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
@@ -258,11 +274,64 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 45,
+          "SelectedChildIndex": 63,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "login-payload.ts",
+              "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\auth\\login-payload.ts",
+              "RelativeDocumentMoniker": "src\\app\\auth\\login-payload.ts",
+              "ToolTip": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\auth\\login-payload.ts",
+              "RelativeToolTip": "src\\app\\auth\\login-payload.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-05-30T22:36:44.025Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "token-response.ts",
+              "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\auth\\token-response.ts",
+              "RelativeDocumentMoniker": "src\\app\\auth\\token-response.ts",
+              "ToolTip": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\auth\\token-response.ts",
+              "RelativeToolTip": "src\\app\\auth\\token-response.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-05-30T22:36:40.857Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "token.service.ts",
+              "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\auth\\token.service.ts",
+              "RelativeDocumentMoniker": "src\\app\\auth\\token.service.ts",
+              "ToolTip": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\auth\\token.service.ts",
+              "RelativeToolTip": "src\\app\\auth\\token.service.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-05-30T22:36:18.964Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "event-page.component.scss",
+              "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\pages\\event-page\\event-page.component.scss",
+              "RelativeDocumentMoniker": "src\\app\\pages\\event-page\\event-page.component.scss",
+              "ToolTip": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\pages\\event-page\\event-page.component.scss",
+              "RelativeToolTip": "src\\app\\pages\\event-page\\event-page.component.scss",
+              "ViewState": "AgIAAGYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002663|",
+              "WhenOpened": "2025-05-30T20:40:19.94Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "event-page.component.ts",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\pages\\event-page\\event-page.component.ts",
               "RelativeDocumentMoniker": "src\\app\\pages\\event-page\\event-page.component.ts",
@@ -270,12 +339,11 @@
               "RelativeToolTip": "src\\app\\pages\\event-page\\event-page.component.ts",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-05-30T11:13:56.882Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-30T11:13:56.882Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 15,
               "Title": "app.config.ts",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\app.config.ts",
               "RelativeDocumentMoniker": "src\\app\\app.config.ts",
@@ -283,12 +351,11 @@
               "RelativeToolTip": "src\\app\\app.config.ts",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-05-30T10:55:39.628Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-30T10:55:39.628Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 13,
               "Title": "event-card.component.scss",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\event-card\\event-card.component.scss",
               "RelativeDocumentMoniker": "src\\app\\common-ui\\event-card\\event-card.component.scss",
@@ -296,12 +363,11 @@
               "RelativeToolTip": "src\\app\\common-ui\\event-card\\event-card.component.scss",
               "ViewState": "AgIAANgAAAAAAAAAAAAAAPYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002663|",
-              "WhenOpened": "2025-05-30T10:52:55.751Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-30T10:52:55.751Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 12,
               "Title": "event-card.component.ts",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\event-card\\event-card.component.ts",
               "RelativeDocumentMoniker": "src\\app\\common-ui\\event-card\\event-card.component.ts",
@@ -309,12 +375,11 @@
               "RelativeToolTip": "src\\app\\common-ui\\event-card\\event-card.component.ts",
               "ViewState": "AgIAADIAAAAAAAAAAAAiwEIAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-05-30T10:43:47.493Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-30T10:43:47.493Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 11,
               "Title": "event-card.component.html",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\event-card\\event-card.component.html",
               "RelativeDocumentMoniker": "src\\app\\common-ui\\event-card\\event-card.component.html",
@@ -322,12 +387,11 @@
               "RelativeToolTip": "src\\app\\common-ui\\event-card\\event-card.component.html",
               "ViewState": "AgIAACgAAAAAAAAAAADwvzcAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2025-05-30T10:43:33.74Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-30T10:43:33.74Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 14,
               "Title": "app.routes.ts",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\app.routes.ts",
               "RelativeDocumentMoniker": "src\\app\\app.routes.ts",
@@ -335,12 +399,11 @@
               "RelativeToolTip": "src\\app\\app.routes.ts",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-05-29T09:27:22.662Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-29T09:27:22.662Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "event-page.component.html",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\pages\\event-page\\event-page.component.html",
               "RelativeDocumentMoniker": "src\\app\\pages\\event-page\\event-page.component.html",
@@ -348,12 +411,11 @@
               "RelativeToolTip": "src\\app\\pages\\event-page\\event-page.component.html",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2025-05-29T09:21:43.247Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-29T09:21:43.247Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 10,
               "Title": "event-map.component.html",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\pages\\event-page\\event-map.component.html",
               "RelativeDocumentMoniker": "src\\app\\pages\\event-page\\event-map.component.html",
@@ -361,25 +423,23 @@
               "RelativeToolTip": "src\\app\\pages\\event-page\\event-map.component.html",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2025-05-29T09:21:35.223Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-29T09:21:35.223Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "event-map.comonent.ts",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\pages\\event-page\\event-map.comonent.ts",
               "RelativeDocumentMoniker": "src\\app\\pages\\event-page\\event-map.comonent.ts",
               "ToolTip": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\pages\\event-page\\event-map.comonent.ts",
               "RelativeToolTip": "src\\app\\pages\\event-page\\event-map.comonent.ts",
-              "ViewState": "AgIAAEAAAAAAAAAAAAAiwFwAAABSAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-05-29T09:21:28.15Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-29T09:21:28.15Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 21,
               "Title": "header.component.ts",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\header\\header.component.ts",
               "RelativeDocumentMoniker": "src\\app\\common-ui\\header\\header.component.ts",
@@ -391,7 +451,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 17,
               "Title": "created-event-page.component.ts",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\pages\\created-event-page\\created-event-page.component.ts",
               "RelativeDocumentMoniker": "src\\app\\pages\\created-event-page\\created-event-page.component.ts",
@@ -399,12 +459,11 @@
               "RelativeToolTip": "src\\app\\pages\\created-event-page\\created-event-page.component.ts",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAOcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-05-29T09:21:04.23Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-29T09:21:04.23Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 19,
               "Title": "created-event-page.component.scss",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\pages\\created-event-page\\created-event-page.component.scss",
               "RelativeDocumentMoniker": "src\\app\\pages\\created-event-page\\created-event-page.component.scss",
@@ -416,7 +475,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 18,
               "Title": "created-event-page.component.html",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\pages\\created-event-page\\created-event-page.component.html",
               "RelativeDocumentMoniker": "src\\app\\pages\\created-event-page\\created-event-page.component.html",
@@ -428,7 +487,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 20,
               "Title": "create-event-page.component.ts",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\pages\\create-event-page\\create-event-page.component.ts",
               "RelativeDocumentMoniker": "src\\app\\pages\\create-event-page\\create-event-page.component.ts",
@@ -440,7 +499,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 16,
               "Title": "create-event-page.component.html",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\pages\\create-event-page\\create-event-page.component.html",
               "RelativeDocumentMoniker": "src\\app\\pages\\create-event-page\\create-event-page.component.html",
@@ -448,12 +507,11 @@
               "RelativeToolTip": "src\\app\\pages\\create-event-page\\create-event-page.component.html",
               "ViewState": "AgIAAJAAAAAAAAAAAAAIwJgAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2025-05-29T09:18:40.467Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-29T09:18:40.467Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 24,
               "Title": "app.component.html",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\app.component.html",
               "RelativeDocumentMoniker": "src\\app\\app.component.html",
@@ -464,12 +522,8 @@
               "WhenOpened": "2025-05-29T09:13:03.463Z"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 26,
               "Title": "parent.component.scss",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\app-parent\\parent.component.scss",
               "RelativeDocumentMoniker": "src\\app\\common-ui\\app-parent\\parent.component.scss",
@@ -481,7 +535,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 25,
               "Title": "parent.component.ts",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\app-parent\\parent.component.ts",
               "RelativeDocumentMoniker": "src\\app\\common-ui\\app-parent\\parent.component.ts",
@@ -493,7 +547,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 23,
               "Title": "parent.component.html",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\app-parent\\parent.component.html",
               "RelativeDocumentMoniker": "src\\app\\common-ui\\app-parent\\parent.component.html",
@@ -505,7 +559,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 22,
               "Title": "header.component.html",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\header\\header.component.html",
               "RelativeDocumentMoniker": "src\\app\\common-ui\\header\\header.component.html",
@@ -517,19 +571,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 4,
               "Title": "app.component.ts",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\app.component.ts",
               "RelativeDocumentMoniker": "src\\app\\app.component.ts",
               "ToolTip": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\app.component.ts",
               "RelativeToolTip": "src\\app\\app.component.ts",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
               "WhenOpened": "2025-05-15T11:18:08.036Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 39,
               "Title": "user-profile-data-block.component.spec.ts",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\layout\\user-profile-data-block\\user-profile-data-block.component.spec.ts",
               "RelativeDocumentMoniker": "src\\app\\layout\\user-profile-data-block\\user-profile-data-block.component.spec.ts",
@@ -541,7 +595,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 42,
               "Title": "error.interceptor.spec.ts",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\auth\\error.interceptor.spec.ts",
               "RelativeDocumentMoniker": "src\\app\\auth\\error.interceptor.spec.ts",
@@ -553,7 +607,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 40,
               "Title": "user-profile-data-block.component.scss",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\layout\\user-profile-data-block\\user-profile-data-block.component.scss",
               "RelativeDocumentMoniker": "src\\app\\layout\\user-profile-data-block\\user-profile-data-block.component.scss",
@@ -565,7 +619,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 43,
               "Title": "user-profile.component.scss",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\layout\\user-profile-data-block\\user-profile.component.scss",
               "RelativeDocumentMoniker": "src\\app\\layout\\user-profile-data-block\\user-profile.component.scss",
@@ -577,7 +631,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 37,
               "Title": "user-profile.component.ts",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\layout\\user-profile-data-block\\user-profile.component.ts",
               "RelativeDocumentMoniker": "src\\app\\layout\\user-profile-data-block\\user-profile.component.ts",
@@ -589,7 +643,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 36,
               "Title": "user-profile.component.html",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\layout\\user-profile-data-block\\user-profile.component.html",
               "RelativeDocumentMoniker": "src\\app\\layout\\user-profile-data-block\\user-profile.component.html",
@@ -601,7 +655,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 35,
               "Title": "event-card-block.component.html",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\layout\\event-card-block\\event-card-block.component.html",
               "RelativeDocumentMoniker": "src\\app\\layout\\event-card-block\\event-card-block.component.html",
@@ -613,7 +667,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 32,
               "Title": "event-card-block.component.ts",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\layout\\event-card-block\\event-card-block.component.ts",
               "RelativeDocumentMoniker": "src\\app\\layout\\event-card-block\\event-card-block.component.ts",
@@ -625,7 +679,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 44,
               "Title": "index.d.ts",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\dataconnect-generated\\js\\default-connector\\index.d.ts",
               "RelativeDocumentMoniker": "dataconnect-generated\\js\\default-connector\\index.d.ts",
@@ -637,7 +691,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 45,
               "Title": "index.cjs.js",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\dataconnect-generated\\js\\default-connector\\index.cjs.js",
               "RelativeDocumentMoniker": "dataconnect-generated\\js\\default-connector\\index.cjs.js",
@@ -649,7 +703,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 47,
               "Title": "package.json",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\dataconnect-generated\\js\\default-connector\\angular\\package.json",
               "RelativeDocumentMoniker": "dataconnect-generated\\js\\default-connector\\angular\\package.json",
@@ -661,7 +715,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 48,
               "Title": "package.json",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\dataconnect-generated\\js\\default-connector\\angular\\esm\\package.json",
               "RelativeDocumentMoniker": "dataconnect-generated\\js\\default-connector\\angular\\esm\\package.json",
@@ -673,7 +727,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 49,
               "Title": "index.esm.js",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\dataconnect-generated\\js\\default-connector\\angular\\esm\\index.esm.js",
               "RelativeDocumentMoniker": "dataconnect-generated\\js\\default-connector\\angular\\esm\\index.esm.js",
@@ -685,7 +739,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 46,
               "Title": "index.d.ts",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\dataconnect-generated\\js\\default-connector\\angular\\index.d.ts",
               "RelativeDocumentMoniker": "dataconnect-generated\\js\\default-connector\\angular\\index.d.ts",
@@ -697,7 +751,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 50,
               "Title": "index.cjs.js",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\dataconnect-generated\\js\\default-connector\\angular\\index.cjs.js",
               "RelativeDocumentMoniker": "dataconnect-generated\\js\\default-connector\\angular\\index.cjs.js",
@@ -709,7 +763,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 47,
+              "DocumentIndex": 51,
               "Title": "schema.gql",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\dataconnect\\schema\\schema.gql",
               "RelativeDocumentMoniker": "dataconnect\\schema\\schema.gql",
@@ -721,7 +775,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 52,
               "Title": "queries.gql",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\dataconnect\\connector\\queries.gql",
               "RelativeDocumentMoniker": "dataconnect\\connector\\queries.gql",
@@ -733,7 +787,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 53,
               "Title": "mutations.gql",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\dataconnect\\connector\\mutations.gql",
               "RelativeDocumentMoniker": "dataconnect\\connector\\mutations.gql",
@@ -745,7 +799,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 50,
+              "DocumentIndex": 54,
               "Title": "connector.yaml",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\dataconnect\\connector\\connector.yaml",
               "RelativeDocumentMoniker": "dataconnect\\connector\\connector.yaml",
@@ -757,7 +811,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 51,
+              "DocumentIndex": 55,
               "Title": "dataconnect.yaml",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\dataconnect\\dataconnect.yaml",
               "RelativeDocumentMoniker": "dataconnect\\dataconnect.yaml",
@@ -769,7 +823,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 52,
+              "DocumentIndex": 56,
               "Title": "tsconfig.spec.json",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\tsconfig.spec.json",
               "RelativeDocumentMoniker": "tsconfig.spec.json",
@@ -781,7 +835,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 53,
+              "DocumentIndex": 57,
               "Title": "tsconfig.json",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\tsconfig.json",
               "RelativeDocumentMoniker": "tsconfig.json",
@@ -793,7 +847,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 54,
+              "DocumentIndex": 58,
               "Title": "tsconfig.app.json",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\tsconfig.app.json",
               "RelativeDocumentMoniker": "tsconfig.app.json",
@@ -805,7 +859,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 8,
               "Title": "README.md",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\README.md",
               "RelativeDocumentMoniker": "README.md",
@@ -813,12 +867,11 @@
               "RelativeToolTip": "README.md",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
-              "WhenOpened": "2025-05-15T08:29:14.562Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-15T08:29:14.562Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 28,
               "Title": "package.json",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\package.json",
               "RelativeDocumentMoniker": "package.json",
@@ -830,7 +883,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 27,
               "Title": "package-lock.json",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\package-lock.json",
               "RelativeDocumentMoniker": "package-lock.json",
@@ -842,7 +895,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 55,
+              "DocumentIndex": 59,
               "Title": "firebase.json",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\firebase.json",
               "RelativeDocumentMoniker": "firebase.json",
@@ -854,7 +907,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 56,
+              "DocumentIndex": 60,
               "Title": "angular.json",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\angular.json",
               "RelativeDocumentMoniker": "angular.json",
@@ -866,7 +919,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 57,
+              "DocumentIndex": 61,
               "Title": "google.svg",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\public\\assets\\svg\\google.svg",
               "RelativeDocumentMoniker": "public\\assets\\svg\\google.svg",
@@ -878,7 +931,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 58,
+              "DocumentIndex": 62,
               "Title": "arrow-left-icon.svg",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\public\\assets\\svg\\arrow-left-icon.svg",
               "RelativeDocumentMoniker": "public\\assets\\svg\\arrow-left-icon.svg",
@@ -890,7 +943,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 34,
               "Title": "login-modal.component.spec.ts",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\login-modal\\login-modal.component.spec.ts",
               "RelativeDocumentMoniker": "src\\app\\common-ui\\login-modal\\login-modal.component.spec.ts",
@@ -902,7 +955,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 59,
+              "DocumentIndex": 63,
               "Title": "login-modal.component.scss",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\login-modal\\login-modal.component.scss",
               "RelativeDocumentMoniker": "src\\app\\common-ui\\login-modal\\login-modal.component.scss",
@@ -914,7 +967,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 30,
               "Title": "login-modal.component.ts",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\login-modal\\login-modal.component.ts",
               "RelativeDocumentMoniker": "src\\app\\common-ui\\login-modal\\login-modal.component.ts",
@@ -926,7 +979,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 31,
               "Title": "jwt.interceptor.ts",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\auth\\jwt.interceptor.ts",
               "RelativeDocumentMoniker": "src\\app\\auth\\jwt.interceptor.ts",
@@ -938,7 +991,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 60,
+              "DocumentIndex": 64,
               "Title": "jwt.interceptor.spec.ts",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\auth\\jwt.interceptor.spec.ts",
               "RelativeDocumentMoniker": "src\\app\\auth\\jwt.interceptor.spec.ts",
@@ -950,7 +1003,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 38,
               "Title": "user-profile-data-block.component.ts",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\layout\\user-profile-data-block\\user-profile-data-block.component.ts",
               "RelativeDocumentMoniker": "src\\app\\layout\\user-profile-data-block\\user-profile-data-block.component.ts",
@@ -962,7 +1015,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 41,
               "Title": "user-profile-data-block.component.html",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\layout\\user-profile-data-block\\user-profile-data-block.component.html",
               "RelativeDocumentMoniker": "src\\app\\layout\\user-profile-data-block\\user-profile-data-block.component.html",
@@ -974,19 +1027,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 0,
               "Title": "auth2.service.ts",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\auth\\auth2.service.ts",
               "RelativeDocumentMoniker": "src\\app\\auth\\auth2.service.ts",
               "ToolTip": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\auth\\auth2.service.ts",
               "RelativeToolTip": "src\\app\\auth\\auth2.service.ts",
-              "ViewState": "AgIAAPAAAAAAAAAAAAAkwPQAAAADAAAAAAAAAA==",
+              "ViewState": "AgIAAJYAAAAAAAAAAAAiwKYAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-05-09T16:52:29.848Z"
+              "WhenOpened": "2025-05-09T16:52:29.848Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 29,
               "Title": "registration-modal.component.ts",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\registration-modal\\registration-modal.component.ts",
               "RelativeDocumentMoniker": "src\\app\\common-ui\\registration-modal\\registration-modal.component.ts",
@@ -998,7 +1052,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 61,
+              "DocumentIndex": 65,
               "Title": "registration-modal.component.html",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\registration-modal\\registration-modal.component.html",
               "RelativeDocumentMoniker": "src\\app\\common-ui\\registration-modal\\registration-modal.component.html",
@@ -1010,7 +1064,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 33,
               "Title": "login-modal.component.html",
               "DocumentMoniker": "C:\\Users\\\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D\\source\\repos\\Event_organization\\src\\app\\common-ui\\login-modal\\login-modal.component.html",
               "RelativeDocumentMoniker": "src\\app\\common-ui\\login-modal\\login-modal.component.html",
