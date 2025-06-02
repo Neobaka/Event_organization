@@ -69,6 +69,13 @@ export class Auth2Service {
     return this.userDataSubject.value;
   }
 
+  syncFirebaseUser(Token: string): Observable<UserDetails> {
+    return this.http.post<UserDetails>(
+      `${this.apiUrl}users/sync`,
+      { Token }
+    ).pipe();
+  }
+
   updateFavoriteEvents(eventId: number, add: boolean) {
     const current = this.userDataSubject.value;
     if (!current) return;
@@ -144,42 +151,22 @@ export class Auth2Service {
   }
 
   // Вход через Google
-  async signInWithGoogle(): Promise<any> {
+  async signInWithGoogle(): Promise<UserDetails | undefined> {
     const provider = new firebase.auth.GoogleAuthProvider();
     provider.addScope('email');
     provider.addScope('profile');
 
     try {
       const result = await this.afAuth.signInWithPopup(provider);
-
       if (!result.user) {
-        return null;
+        return undefined;
       }
-
       const idToken = await result.user.getIdToken();
-      console.log('ID Token получен:', idToken.substring(0, 50) + '...'); // Логируем начало токена
-
-      const response = await this.http.post<TokenResponse>(
-        `${this.apiUrl}users/google-auth`,
-        { idToken }
-      ).pipe(
-        tap(response => {
-          console.log('Успешный ответ от сервера:', response);
-          this.saveToken(response.AccessToken);
-          this.loggedInSubject.next(true);
-          this.getUserProfileFromApi().subscribe(profile => {
-            this.userDataSubject.next(profile);
-          });
-        }),
-        catchError(error => {
-          console.error('Детали ошибки:', error);
-          console.error('Статус:', error.status);
-          console.error('Тело ответа:', error.error);
-          return throwError(() => error);
-        })
-      ).toPromise();
-
-      return response;
+      const user = await this.syncFirebaseUser(idToken).toPromise();
+      // Синхронизируем пользователя с бэком
+      this.userDataSubject.next(user ?? null);
+      this.loggedInSubject.next(true);
+      return user;
 
     } catch (error) {
       console.error('Ошибка при входе через Google:', error);
