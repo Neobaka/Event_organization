@@ -1,16 +1,21 @@
 .event-card-div{
   width: 410px;
   border-radius: 20px;
-  transition: 0.1s;
-  margin: 20px auto;
+  transition: 0.3s;
+  margin: 0 auto;
   aspect-ratio: 1;
   box-sizing: border-box;
   cursor: pointer;
+  background-color: var(--dark-soft-color);
+  box-shadow:
+    0 1px 15px 0 rgba(92, 92, 92, 0.25),
+    0 1.5px 4px 0 rgba(60, 60, 60, 0.2);
 }
 
 .event-card-div:hover{
-  box-shadow: 0 0 2px var(--light-stroke-color);
-  transition: 0.1s;
+  padding: 2px;
+  box-shadow: 0 0 5px var(--light-stroke-color);
+  transition: 0.3s;
   box-sizing: border-box;
 }
 
@@ -54,12 +59,30 @@
   overflow: hidden;
 }
 
+.event-card-img-cost-button.added {
+  border: 1px solid gold;
+  box-shadow: 0 0 6px 0 #FFD70033;
+}
+
+.event-card-img-cost-button:hover {
+  font-size: 10px;
+  background-color: var(--light-color);
+  color: var(--dark-soft-color);
+  transition: 0.2s;
+  border: 1.5px solid var(--dark-soft-color);
+}
+
+.event-card-img-cost-button.added:hover{
+  background-color: gold;
+  border: 1.5px solid gold;
+}
+
 .plus-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #111;           /* Чёрный цвет */
-  font-size: 18px;       /* Размер плюса */
+  color: #111;
+  font-size: 18px;
   position: absolute;
   left: 17%;
   top: 50%;
@@ -69,6 +92,8 @@
   transition: opacity 0.2s;
   z-index: 2;
 }
+
+
 
 .event-card-img-cost-button span:not(.plus-icon) {
   transition: opacity 0.2s;
@@ -81,13 +106,7 @@
   opacity: 1;
 }
 
-.event-card-img-cost-button:hover {
-  font-size: 10px;
-  background-color: var(--light-color);
-  color: var(--dark-soft-color);
-  transition: 0.2s;
-  border: 1.5px solid var(--dark-soft-color);
-}
+
 
 .event-card-img-subdiv{
   position: relative;
@@ -95,6 +114,7 @@
   justify-content: space-between;
   width: 100%;
   top: -40px;
+  z-index: 5;
 }
 
 .event-card-img-button-like{
@@ -128,6 +148,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   height: 30%;
+  cursor: default;
 }
 
 .event-card-under-image-second-div{
@@ -183,8 +204,18 @@ h3{
   border-radius: 30px;
   padding: 3px 15px;
   font-size: 0.65rem;
-  font-weight: 600;
+  font-weight: 400;
   color: var(--dark-text-color);
+}
+
+.category-tag {
+  background: #e3f2fd;
+  color: #1976d2;
+}
+
+.genre-tag {
+  background: #f3e5f5;
+  color: #7b1fa2;
 }
 
 .event-card-tag:last-child{
@@ -198,6 +229,7 @@ h3{
   gap: 10px;
   height: 50%;
   align-items: center;
+  padding-right: 10px;
 }
 
 .event-card-undertags-div a{

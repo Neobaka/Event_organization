@@ -107,3 +107,227 @@
   pointer-events: auto;
 }
 
+.header-avatar-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+/* Контейнер для кнопок ролей */
+.role-buttons-container {
+  display: flex;
+  gap: 8px;
+  margin-right: 10px;
+}
+
+/* Базовые стили для кнопок ролей */
+.role-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 12px;
+  transition: all 0.3s ease;
+  position: relative;
+
+  .role-button-icon {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+  }
+
+  .role-button-text {
+    white-space: nowrap;
+  }
+
+  .role-tooltip {
+    position: absolute;
+    bottom: -36px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(30, 30, 30, 0.96);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 14px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+  }
+
+  &:hover .role-tooltip {
+    opacity: 1;
+  }
+}
+
+/* Стили для админской кнопки */
+.admin-button {
+  background-color: #dc3545;
+  color: white;
+
+  &:hover {
+    background-color: #c82333;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
+  }
+}
+
+/* Стили для кнопки создателя */
+.creator-button {
+  background-color: #28a745;
+  color: white;
+
+  &:hover {
+    background-color: #218838;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+  }
+}
+
+.my-events-button {
+  background-color: var(--dark-golden-color);
+  color: white;
+
+  &:hover {
+    background-color: #b59404;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgb(113, 95, 17);
+  }
+}
+
+/* Индикатор роли на аватарке */
+.role-indicator {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+
+  .role-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    font-size: 10px;
+    font-weight: bold;
+    color: white;
+    border: 2px solid white;
+  }
+
+  .admin-badge {
+    background-color: #dc3545;
+  }
+
+  .creator-badge {
+    background-color: #28a745;
+  }
+}
+
+/* Responsive стили */
+@media (max-width: 768px) {
+  .role-buttons-container {
+    flex-direction: column;
+    gap: 4px;
+    margin-right: 8px;
+  }
+
+  .role-button {
+    padding: 4px 8px;
+    font-size: 10px;
+
+    .role-button-text {
+      display: none; // Скрываем текст на мобильных
+    }
+
+    .role-button-icon {
+      font-size: 14px;
+      width: 14px;
+      height: 14px;
+    }
+  }
+
+  .header-avatar-container {
+    gap: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .role-buttons-container {
+    position: absolute;
+    top: -35px;
+    right: 0;
+    flex-direction: row;
+    gap: 4px;
+  }
+
+  .role-button {
+    padding: 3px 6px;
+    border-radius: 12px;
+
+    .role-button-icon {
+      font-size: 12px;
+      width: 12px;
+      height: 12px;
+    }
+  }
+
+  .role-indicator .role-badge {
+    width: 12px;
+    height: 12px;
+    font-size: 8px;
+  }
+}
+
+/* Анимация появления кнопок */
+.role-buttons-container {
+  animation: slideInRight 0.3s ease-out;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Дополнительные стили для лучшей интеграции */
+.header-button-div {
+  position: relative;
+  /* Убеждаемся, что контейнер может вместить кнопки ролей */
+  min-height: 40px;
+}
+
+/* Если нужно изменить порядок элементов */
+.header-avatar-container {
+  flex-direction: row;
+  /* Альтернативный вариант - кнопки под аватаркой */
+  &.vertical-layout {
+    flex-direction: column;
+
+    .role-buttons-container {
+      order: 2;
+      margin-right: 0;
+      margin-top: 5px;
+    }
+
+    .header-avatar {
+      order: 1;
+    }
+
+    .logout-btn {
+      order: 3;
+    }
+  }
+}

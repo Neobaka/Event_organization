@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {HeaderComponent} from '../../common-ui/header/header.component';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {KeyValuePipe, NgForOf, NgIf} from '@angular/common';
+import {KeyValuePipe, NgClass, NgForOf, NgIf} from '@angular/common';
 import {CATEGORY} from '../../events_data/event-category';
 import {GENRE} from '../../events_data/event-genre';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -23,12 +23,14 @@ import {HttpClient} from '@angular/common/http';
     KeyValuePipe,
     MatFormFieldModule,
     MatSelectModule,
-    MatIconModule
+    MatIconModule,
+    NgClass
   ],
   templateUrl: './create-event-page.component.html',
   styleUrl: './create-event-page.component.scss'
 })
 export class CreateEventPageComponent {
+  isUploaded = false;
   filePreviewUrl: string | null = null;
   form: FormGroup;
   submitted = false;
@@ -125,6 +127,7 @@ export class CreateEventPageComponent {
     ).subscribe({
       next: res => {
         // res.fileName - имя файла для карточки
+        this.isUploaded = true;
         this.form.patchValue({ fileName: res.fileName });
       },
       error: err => {

@@ -19,7 +19,6 @@
         <label><strong>Ваш пароль:</strong> </label>
         <input type="password" id="password" value="********" readonly>
       </div>
-      <button class="edit-btn" id="editBtn" (click)="editUserData()">Изменить данные</button>
     </div>
   </div>
 
@@ -29,10 +28,6 @@
     </div>
     <div *ngIf="error && !isLoading" class="error-profile">
       <p>{{ error }}</p>
-
-      <button (click)="loadUserData()" class="reload-btn">
-        Попробовать снова
-      </button>
     </div>
   </ng-template>
 </div>

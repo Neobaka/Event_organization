@@ -1,0 +1,41 @@
+.carousel-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 420px;
+}
+
+.carousel-arrow {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0 10px;
+  color: var(--light-stroke-color);
+  transition: color 0.2s;
+  &:disabled {
+    color: #888;
+    cursor: default;
+  }
+}
+
+.carousel-viewport {
+  overflow: hidden;
+  width: 100%;
+  padding: 10px;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.3s;
+  will-change: transform;
+  height: 410px;
+}
+
+::ng-deep .carousel-slide {
+  width: 410px !important;
+  min-width: 410px !important;
+  max-width: 410px !important;
+  height: 420px;
+  box-sizing: border-box;
+}

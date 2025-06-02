@@ -1,5 +1,10 @@
-<div class="user-profile-afisha-cards-div">
-  <p class="user-profile-afisha-cards-p1">Пока пусто 😞</p>
-  <p class="user-profile-afisha-cards-p2">Покупайте билеты и они появятся здесь</p>
-  <button class="user-profile-afisha-filter-btns" [routerLink]="['/']">Купить билеты</button>
+<div *ngIf="!isLoading && filteredEvents.length === 0">
+  <div class="user-profile-afisha-cards-div">
+    <p class="user-profile-afisha-cards-p1">Пока пусто 😞</p>
+    <p class="user-profile-afisha-cards-p2">Покупайте или добавляйте билеты и они появятся здесь</p>
+    <button class="user-profile-afisha-filter-btns" [routerLink]="['/']">Купить билеты</button>
+  </div>
+</div>
+<div *ngIf="!isLoading && filteredEvents.length > 0" class="div-events">
+  <app-event-card *ngFor="let event of filteredEvents" [event]="event"></app-event-card>
 </div>

@@ -91,7 +91,7 @@
       </section>
 
       <section class="photo section">
-        <h2>Фотография на заставку мероприятия</h2>
+        <h2>Фотография на заставку (желательно в соотношении 3х4)</h2>
         <div class="photo-content">
           <label *ngIf="!filePreviewUrl" class="plus-button" style="cursor:pointer;">
             <mat-icon>add</mat-icon>
@@ -111,9 +111,15 @@
             type="button"
             class="plus-button"
             (click)="uploadImage()"
-            [disabled]="!selectedFile">
-            <mat-icon class="done-icon">check</mat-icon>
-            <span class="text">Загрузить</span>
+            [disabled]="!selectedFile || isUploaded">
+            <mat-icon
+              class="done-icon"
+              [ngClass]="{'success-icon':isUploaded}"
+            >{{ isUploaded ? 'check_circle' : 'cloud_upload' }}
+            </mat-icon>
+            <span class="text">
+              {{ isUploaded ? 'Загружено' : 'Загрузить' }}
+            </span>
           </button>
         </div>
         <div class="error-message" *ngIf="submitted && form.controls['fileName'].errors?.['required']">

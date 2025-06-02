@@ -1,9 +1,12 @@
+/* eslint-disable indent */
+/* eslint-disable @typescript-eslint/typedef */
+/* eslint-disable @typescript-eslint/member-ordering */
 import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {RegisterPayload} from './register-payload';
 import {TokenResponse} from './token-response';
-import {BehaviorSubject, catchError, Observable, tap, throwError, of} from 'rxjs';
+import {BehaviorSubject, catchError, Observable, tap, throwError, EMPTY} from 'rxjs';
 import {LoginPayload} from './login-payload';
 import {AngularFireAuth} from '@angular/fire/compat/auth';
 import firebase from 'firebase/compat/app';
@@ -12,7 +15,6 @@ import {TokenService} from './token.service';
 
 //Поскольку используем compat API, везде, где есть ссылака на User, нужно использовать тип из firebase/compat/app
 type User = firebase.User;
-
 
 export interface UserDetails {
   id: number;
@@ -23,6 +25,7 @@ export interface UserDetails {
   role: string;
   favoriteEvents: number[];
   plannedEvents: number[];
+  fileName: string;
 }
 
 @Injectable({
@@ -55,10 +58,57 @@ export class Auth2Service {
   constructor() {
     this.loggedInSubject = new BehaviorSubject<boolean>(this.hasToken());
     this.user$ = this.afAuth.authState;
+
+    if (this.hasToken()) {
+      this.loadUserProfile();
+    }
   }
 
   private hasToken(): boolean {
     return !!this.tokenService.getAccessToken();
+  }
+
+  public get currentUser(): UserDetails | null {
+    return this.userDataSubject.value;
+  }
+
+  syncFirebaseUser(Token: string): Observable<UserDetails> {
+    return this.http.post<UserDetails>(
+      `${this.apiUrl}users/sync`,
+      { Token }
+    ).pipe();
+  }
+
+  updateFavoriteEvents(eventId: number, add: boolean) {
+    const current = this.userDataSubject.value;
+    if (!current) return;
+    let updatedFavorites: number[];
+    if (add) {
+      updatedFavorites = [...current.favoriteEvents, eventId];
+    } else {
+      updatedFavorites = current.favoriteEvents.filter(id => id !== eventId);
+    }
+    // Обновляем userDataSubject с новым массивом избранного
+    this.userDataSubject.next({
+      ...current,
+      favoriteEvents: updatedFavorites
+    });
+  }
+
+  updatePlannedEvents(eventId: number, add: boolean) {
+    const current = this.userDataSubject.value;
+    if (!current) return;
+    let updatedPlanned: number[];
+    if (add) {
+      updatedPlanned = [...current.plannedEvents, eventId];
+    } else {
+      updatedPlanned = current.plannedEvents.filter(id => id !== eventId);
+    }
+
+    this.userDataSubject.next({
+      ...current,
+      plannedEvents: updatedPlanned
+    })
   }
 
   getCurrentUser(): Promise<User | null> {
@@ -86,7 +136,7 @@ export class Auth2Service {
           this.router.navigate(['/login']);
         }
 
-        return of(null);
+        return EMPTY;
       })
     ).subscribe(profile => {
       if (profile) {
@@ -103,34 +153,28 @@ export class Auth2Service {
     this.userProfile$ = undefined;
   }
 
-  // Обновлено: вход через Google
-  signInWithGoogle(): Promise<any> {
+  // Вход через Google
+  async signInWithGoogle(): Promise<UserDetails | undefined> {
     const provider = new firebase.auth.GoogleAuthProvider();
     provider.addScope('email');
     provider.addScope('profile');
 
-    return this.afAuth.signInWithPopup(provider)
-      .then(result => {
-        // После успешной аутентификации через Google
-        if (result.user) {
-          return result.user.getIdToken().then(idToken => {
-            return this.http.post<TokenResponse>(
-              `${this.apiUrl}users/google-auth`,
-              {idToken}
-            ).pipe(
-              tap(response => {
-                this.saveToken(response.AccessToken);
-                this.loggedInSubject.next(true);
-                // Загружаем профиль пользователя
-                this.getUserProfileFromApi().subscribe(profile => {
-                  this.userDataSubject.next(profile);
-                });
-              })
-            ).toPromise();
-          });
-        }
-        return null;
-      });
+    try {
+      const result = await this.afAuth.signInWithPopup(provider);
+      if (!result.user) {
+        return undefined;
+      }
+      const idToken = await result.user.getIdToken();
+      const user = await this.syncFirebaseUser(idToken).toPromise();
+      // Синхронизируем пользователя с бэком
+      this.userDataSubject.next(user ?? null);
+      this.loggedInSubject.next(true);
+      return user;
+
+    } catch (error) {
+      console.error('Ошибка при входе через Google:', error);
+      throw error;
+    }
   }
 
 
@@ -154,7 +198,10 @@ export class Auth2Service {
 
   login(payload: LoginPayload) {
     return this.http.post<TokenResponse>(`${this.apiUrl}users/login`, payload).pipe(
-      tap(response => this.handleAuthSuccess(response.AccessToken)),
+      tap(response => {
+        this.handleAuthSuccess(response.AccessToken);
+        this.loadUserProfile();
+      }),
       catchError(error => {
         this.clearToken();
         return throwError(() => error);
@@ -167,7 +214,7 @@ export class Auth2Service {
     this.saveToken(token);
     this.loggedInSubject.next(true);
     this.resetUserProfileCache();
-    this.getUserProfileFromApi().subscribe();
+    this.loadUserProfile();
   }
 
   // Общая обработка ошибок аутентификации
@@ -193,6 +240,7 @@ export class Auth2Service {
     this.clearToken();
     this.loggedInSubject.next(false);
     this.resetUserProfileCache();
+    this.userDataSubject.next(null);
     this.router.navigate(['/']);
   }
 
