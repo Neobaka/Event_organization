@@ -1,16 +1,15 @@
-import {Component, DestroyRef, inject, Input, OnInit} from '@angular/core';
-import {SvgIconComponent} from '../../helpers/svg-icon/svg-icon.component';
-import {MatIcon} from '@angular/material/icon';
-import {DatePipe, NgClass, NgIf} from '@angular/common';
-import {EventModel} from '../../events_data/event-model';
-import {EnumTranslatorPipe} from '../../events_data/enum-translator.pipe';
-import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
-import {ImageService} from '../../images_data/image.service';
-import {Router} from '@angular/router';
-import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
-import {EventService} from '../../events_data/event.service';
-import {Auth2Service} from '../../auth/auth2.service';
-
+import { Component, DestroyRef, inject, Input, OnInit } from '@angular/core';
+import { SvgIconComponent } from '../../helpers/svg-icon/svg-icon.component';
+import { MatIcon } from '@angular/material/icon';
+import { DatePipe, NgClass, NgIf } from '@angular/common';
+import { EventModel } from '../../events_data/event-model';
+import { EnumTranslatorPipe } from '../../events_data/enum-translator.pipe';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { ImageService } from '../../images_data/image.service';
+import { Router } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { EventService } from '../../events_data/event.service';
+import { Auth2Service } from '../../auth/auth2.service';
 
 @Component({
   selector: 'app-event-card',
@@ -52,12 +51,15 @@ export class EventCardComponent implements OnInit {
           }
         });
     }
-    this.authService.userData$.subscribe(user => {
-      if (user) {
-        this.isLiked = user.favoriteEvents?.includes(this.event.id) ?? false;
-        this.isAdded = user.plannedEvents?.includes(this.event.id) ?? false;
-      }
-    });
+
+    this.authService.userData$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(user => {
+        if (user) {
+          this.isLiked = user.favoriteEvents?.includes(this.event.id) ?? false;
+          this.isAdded = user.plannedEvents?.includes(this.event.id) ?? false;
+        }
+      });
   }
 
   toggleAdd(event: MouseEvent) {
@@ -73,21 +75,25 @@ export class EventCardComponent implements OnInit {
     }
 
     if (!this.isAdded) {
-      this.eventService.addEventToPlanned(this.event.id).subscribe({
-        next: () => {
-          this.isAdded = true;
-          this.authService.updatePlannedEvents(this.event.id, true);
-        },
-        error: () => { }
-      });
+      this.eventService.addEventToPlanned(this.event.id)
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe({
+          next: () => {
+            this.isAdded = true;
+            this.authService.updatePlannedEvents(this.event.id, true);
+          },
+          error: () => { }
+        });
     } else {
-      this.eventService.deleteEventFromPlanned(this.event.id).subscribe({
-        next: () => {
-          this.isAdded = false;
-          this.authService.updatePlannedEvents(this.event.id, false);
-        },
-        error: () => { }
-      })
+      this.eventService.deleteEventFromPlanned(this.event.id)
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe({
+          next: () => {
+            this.isAdded = false;
+            this.authService.updatePlannedEvents(this.event.id, false);
+          },
+          error: () => { }
+        });
     }
   }
 
@@ -104,21 +110,25 @@ export class EventCardComponent implements OnInit {
     }
 
     if (!this.isLiked) {
-      this.eventService.addEventToFavorites(this.event.id).subscribe({
-        next: () => {
-          this.isLiked = true
-          this.authService.updateFavoriteEvents(this.event.id, true);
-        },
-        error: () => { }
-      });
+      this.eventService.addEventToFavorites(this.event.id)
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe({
+          next: () => {
+            this.isLiked = true;
+            this.authService.updateFavoriteEvents(this.event.id, true);
+          },
+          error: () => { }
+        });
     } else {
-      this.eventService.deleteEventFromFavorites(this.event.id).subscribe({
-        next: () => {
-          this.isLiked = false
-          this.authService.updateFavoriteEvents(this.event.id, false);
-        },
-        error: () => { }
-      });
+      this.eventService.deleteEventFromFavorites(this.event.id)
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe({
+          next: () => {
+            this.isLiked = false;
+            this.authService.updateFavoriteEvents(this.event.id, false);
+          },
+          error: () => { }
+        });
     }
   }
 

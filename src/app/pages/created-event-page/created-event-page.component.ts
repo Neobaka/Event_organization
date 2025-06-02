@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HeaderComponent } from '../../common-ui/header/header.component';
-import {NgForOf, NgIf, SlicePipe, NgClass} from '@angular/common';
+import { NgForOf, NgIf, SlicePipe, NgClass } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EventService } from '../../events_data/event.service';
-import {Auth2Service} from '../../auth/auth2.service';
+import { Auth2Service } from '../../auth/auth2.service';
 import { CATEGORY } from '../../events_data/event-category';
 import { GENRE } from '../../events_data/event-genre';
-import {EventModel} from '../../events_data/event-model';
+import { EventModel } from '../../events_data/event-model';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-my-events-page',
@@ -24,7 +26,9 @@ import {EventModel} from '../../events_data/event-model';
   templateUrl: './created-event-page.component.html',
   styleUrl: './created-event-page.component.scss'
 })
-export class CreatedEventPageComponent implements OnInit {
+export class CreatedEventPageComponent implements OnInit, OnDestroy {
+  private destroy$ = new Subject<void>();
+
   allEvents: EventModel[] = [];
   filteredEvents: EventModel[] = [];
   upcomingEvents: EventModel[] = [];
@@ -55,16 +59,23 @@ export class CreatedEventPageComponent implements OnInit {
     this.loadMyEvents();
   }
 
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
   loadCurrentUser() {
-    this.auth2Service.getUserProfileFromApi().subscribe({
-      next: (profile) => {
-        this.currentUserId = profile.id;
-        this.loadMyEvents();
-      },
-      error: (err) => {
-        console.error('Ошибка получения профиля пользователя', err);
-      }
-    });
+    this.auth2Service.getUserProfileFromApi()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (profile) => {
+          this.currentUserId = profile.id;
+          this.loadMyEvents();
+        },
+        error: (err) => {
+          console.error('Ошибка получения профиля пользователя', err);
+        }
+      });
   }
 
   loadMyEvents() {
@@ -73,30 +84,34 @@ export class CreatedEventPageComponent implements OnInit {
     const user = this.auth2Service.currentUser;
     if (user && user.role === 'ROLE_ADMIN') {
       // Админ — получаем все мероприятия
-      this.eventService.getEvents(this.page, this.size).subscribe({
-        next: (events: EventModel[]) => {
-          this.allEvents = events;
-          this.categorizeEvents();
-          this.applyFilters();
-          this.isLoading = false;
-        },
-        error: (err: any) => {
-          this.isLoading = false;
-        }
-      });
+      this.eventService.getEvents(this.page, this.size)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe({
+          next: (events: EventModel[]) => {
+            this.allEvents = events;
+            this.categorizeEvents();
+            this.applyFilters();
+            this.isLoading = false;
+          },
+          error: (err: any) => {
+            this.isLoading = false;
+          }
+        });
     } else {
       // Креатор — только свои мероприятия
-      this.eventService.getEventsByCreator().subscribe({
-        next: (events: EventModel[]) => {
-          this.allEvents = events;
-          this.categorizeEvents();
-          this.applyFilters();
-          this.isLoading = false;
-        },
-        error: (err: any) => {
-          this.isLoading = false;
-        }
-      });
+      this.eventService.getEventsByCreator()
+        .pipe(takeUntil(this.destroy$))
+        .subscribe({
+          next: (events: EventModel[]) => {
+            this.allEvents = events;
+            this.categorizeEvents();
+            this.applyFilters();
+            this.isLoading = false;
+          },
+          error: (err: any) => {
+            this.isLoading = false;
+          }
+        });
     }
   }
 
@@ -193,20 +208,22 @@ export class CreatedEventPageComponent implements OnInit {
   deleteEvent() {
     if (!this.eventToDelete) return;
     this.isLoading = true;
-    this.eventService.deleteEventById(this.eventToDelete.id).subscribe({
-      next: () => {
-        // Удаляем из локального массива
-        this.allEvents = this.allEvents.filter(e => e.id !== this.eventToDelete!.id);
-        this.categorizeEvents();
-        this.applyFilters();
-        this.cancelDelete();
-        this.isLoading = false;
-      },
-      error: (err: any) => {
-        console.error('Ошибка удаления мероприятия:', err);
-        this.isLoading = false;
-      }
-    });
+    this.eventService.deleteEventById(this.eventToDelete.id)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: () => {
+          // Удаляем из локального массива
+          this.allEvents = this.allEvents.filter(e => e.id !== this.eventToDelete!.id);
+          this.categorizeEvents();
+          this.applyFilters();
+          this.cancelDelete();
+          this.isLoading = false;
+        },
+        error: (err: any) => {
+          console.error('Ошибка удаления мероприятия:', err);
+          this.isLoading = false;
+        }
+      });
   }
 
   getCategoryName(categoryKey: string): string {
@@ -230,8 +247,6 @@ export class CreatedEventPageComponent implements OnInit {
     this.showDeleteModal = false;
     this.eventToDelete = null;
   }
-
-
 
   createNewEvent() {
     this.router.navigate(['/create-event']);
