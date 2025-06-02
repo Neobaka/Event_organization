@@ -98,7 +98,7 @@ module.exports = tseslint.config(
             selector: 'default',
             format: ['camelCase'],
             custom: {
-              regex: '/^[^А-ЯЁа-яё]*$/',
+              regex: '^[^А-ЯЁа-яё]*$',
               match: true,
             },
           },
@@ -108,7 +108,7 @@ module.exports = tseslint.config(
             modifiers: ['private'],
             prefix: ['_'],
             custom: {
-              regex: '/^[^А-ЯЁа-яё]*$/',
+              regex: '^[^А-ЯЁа-яё]*$',
               match: true,
             },
           },
@@ -117,7 +117,7 @@ module.exports = tseslint.config(
             modifiers: ['public', 'static', 'readonly'],
             format: ['camelCase', 'UPPER_CASE'],
             custom: {
-              regex: '/^[^А-ЯЁа-яё]*$/',
+              regex: '^[^А-ЯЁа-яё]*$',
               match: true,
             },
           },
@@ -133,7 +133,7 @@ module.exports = tseslint.config(
             selector: 'objectLiteralProperty',
             format: null,
             custom: {
-              regex: '/^[^А-ЯЁа-яё]*$/',
+              regex: '^[^А-ЯЁа-яё]*$',
               match: true,
             },
           },
@@ -141,7 +141,7 @@ module.exports = tseslint.config(
             selector: 'typeLike',
             format: ['PascalCase'],
             custom: {
-              regex: '/^[^А-ЯЁа-яё]*$/',
+              regex: '^[^А-ЯЁа-яё]*$',
               match: true,
             },
           },
@@ -150,7 +150,7 @@ module.exports = tseslint.config(
             modifiers: ['const', 'exported'],
             format: ['camelCase', 'UPPER_CASE'],
             custom: {
-              regex: '/^[^А-ЯЁа-яё]*$/',
+              regex: '^[^А-ЯЁа-яё]*$',
               match: true,
             },
           }
