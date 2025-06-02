@@ -1,6 +1,6 @@
 import {Component, inject, Input, SimpleChanges} from '@angular/core';
 import {RouterLink} from '@angular/router';
-import {Auth2Service} from '../../auth/auth2.service';
+import {Auth2Service} from '../../auth/services/auth2.service';
 import {EventService} from '../../events_data/event.service';
 import {EventCardComponent} from '../event-card/event-card.component';
 import {NgForOf, NgIf} from '@angular/common';

@@ -9,7 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ParentComponent } from './common-ui/app-parent/parent.component';
 import { CreateEventPageComponent } from './pages/create-event-page/create-event-page.component';
 import { LoginModalComponent } from './common-ui/login-modal/login-modal.component';
-import { Auth2Service } from './auth/auth2.service';
+import { Auth2Service } from './auth/services/auth2.service';
 
 
 

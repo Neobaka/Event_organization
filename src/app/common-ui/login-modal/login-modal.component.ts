@@ -2,7 +2,7 @@ import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Auth2Service } from '../../auth/auth2.service';
+import { Auth2Service } from '../../auth/services/auth2.service';
 import { Router } from '@angular/router';
 import { MatIcon } from '@angular/material/icon';
 

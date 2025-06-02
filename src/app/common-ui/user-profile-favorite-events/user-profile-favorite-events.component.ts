@@ -1,66 +1,82 @@
-import {Component, inject, Input, SimpleChanges} from '@angular/core';
-import {EventCardComponent} from '../event-card/event-card.component';
-import {Auth2Service} from '../../auth/auth2.service';
-import {EventService} from '../../events_data/event.service';
-import {NgForOf, NgIf} from '@angular/common';
-import {RouterLink} from '@angular/router';
-import {EventModel} from '../../events_data/event-model';
+import { Component, inject, Input, SimpleChanges, OnInit, OnChanges, input, InputSignal } from '@angular/core';
+import { EventCardComponent } from '../event-card/event-card.component';
+import { Auth2Service, UserDetails } from '../../auth/services/auth2.service';
+import { EventService } from '../../events_data/event.service';
+import { CommonModule, NgForOf, NgIf } from '@angular/common';
+import { RouterLink, RouterModule } from '@angular/router';
+import { EventModel } from '../../events_data/event-model';
+import {
+    BehaviorSubject,
+    combineLatest,
+    filter,
+    forkJoin,
+    map,
+    Observable,
+    of,
+    startWith,
+    Subject,
+    switchMap
+} from 'rxjs';
+import { toObservable } from '@angular/core/rxjs-interop';
 
 @Component({
-  selector: 'app-user-profile-favorite-events',
-  imports: [
-    EventCardComponent,
-    NgIf,
-    NgForOf,
-    RouterLink
-  ],
-  templateUrl: './user-profile-favorite-events.component.html',
-  styleUrl: './user-profile-favorite-events.component.scss'
+    selector: 'app-user-profile-favorite-events',
+    imports: [
+        CommonModule,
+        EventCardComponent,
+        RouterModule,
+    ],
+    templateUrl: './user-profile-favorite-events.component.html',
+    styleUrl: './user-profile-favorite-events.component.scss'
 })
 export class UserProfileFavoriteEventsComponent {
-  favoriteEvents: EventModel[] = [];
-  @Input() searchQuery: string = '';
-  filteredEvents: EventModel[] = [];
-  isLoading = true;
 
-  private authService = inject(Auth2Service);
-  private eventService = inject(EventService);
+    protected readonly favoriteEvents$: Observable<EventModel[]>;
+    protected readonly refreshSubj$: BehaviorSubject<void> = new BehaviorSubject<void>(void 0);
 
-  ngOnInit() {
-    this.authService.userData$.subscribe(user => {
-      if (user && user.favoriteEvents && user.favoriteEvents.length > 0) {
-        this.isLoading = true;
-        Promise.all(
-          user.favoriteEvents.map(id =>
-            this.eventService.getEventById(id).toPromise()
-          )
-        ).then(events => {
-          this.favoriteEvents = events.filter(e => !!e);
-          this.filterEvents();
-          this.isLoading = false;
-        });
-      } else {
-        this.favoriteEvents = [];
-        this.isLoading = false;
-        this.filterEvents();
-      }
-    });
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    if ('searchQuery' in changes) {
-      this.filterEvents();
+    @Input()
+    public set alternative(value: string): void {
+        this.searchQuery$.next(value);
     }
-  }
 
-  filterEvents() {
-    if (!this.searchQuery) {
-      this.filteredEvents = this.favoriteEvents;
-    } else {
-      const query = this.searchQuery.trim().toLowerCase();
-      this.filteredEvents = this.favoriteEvents.filter(e =>
-        e.eventName.toLowerCase().includes(query)
-      );
+    public searchQuery: InputSignal<string | undefined> = input<string>();
+
+    filteredEvents: EventModel[] = [];
+    isLoading = true;
+
+    private authService = inject(Auth2Service);
+    private eventService = inject(EventService);
+
+    constructor() {
+        this.favoriteEvents$ = combineLatest([
+            toObservable(this.searchQuery).pipe(startWith('')),
+            this.refreshSubj$,
+        ])
+            .pipe(
+                switchMap(([searchQuery, refresh]: [string | undefined, void]) => {
+                    return combineLatest([
+                        of(searchQuery || ''),
+                        this.authService.userData$.pipe(filter((user: UserDetails | null) => !!user))
+                    ]);
+                }),
+                switchMap(([searchQuery, user]: [string, UserDetails]) => {
+                    return forkJoin([searchQuery, forkJoin(
+                        user.favoriteEvents.map((id: number) => this.eventService.getEventById(id))
+                    )]);
+                }),
+                map(([searchQuery, events]: [string, EventModel[]]) => {
+                    if (!searchQuery) {
+                        return events;
+                    }
+
+                    return events.filter((e: EventModel) =>
+                        e.eventName.toLowerCase().includes(searchQuery)
+                    );
+                })
+            );
     }
-  }
+
+    protected updateList(): void {
+        this.refreshSubj$.next();
+    }
 }

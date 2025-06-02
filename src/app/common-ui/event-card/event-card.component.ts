@@ -9,7 +9,7 @@ import { ImageService } from '../../images_data/image.service';
 import { Router } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { EventService } from '../../events_data/event.service';
-import { Auth2Service } from '../../auth/auth2.service';
+import { Auth2Service } from '../../auth/services/auth2.service';
 
 @Component({
   selector: 'app-event-card',

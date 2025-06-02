@@ -1,5 +1,5 @@
 import {Component, inject} from '@angular/core';
-import {UserDetails} from '../../auth/auth2.service';
+import {UserDetails} from '../../auth/services/auth2.service';
 import {AdminService} from '../../admin/admin.service';
 import {HeaderComponent} from '../../common-ui/header/header.component';
 import { MatIcon } from '@angular/material/icon';

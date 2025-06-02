@@ -1,10 +1,10 @@
 import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
-import {RegisterPayload} from './register-payload';
-import {TokenResponse} from './token-response';
+import {RegisterPayload} from '../models/register-payload';
+import {TokenResponse} from '../models/token-response';
 import {BehaviorSubject, catchError, Observable, tap, throwError, EMPTY} from 'rxjs';
-import {LoginPayload} from './login-payload';
+import {LoginPayload} from '../models/login-payload';
 import {AngularFireAuth} from '@angular/fire/compat/auth';
 import firebase from 'firebase/compat/app';
 import {TokenService} from './token.service';

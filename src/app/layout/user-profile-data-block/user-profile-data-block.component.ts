@@ -1,6 +1,6 @@
 import { NgOptimizedImage } from '@angular/common';
 import {Component, inject, OnInit} from '@angular/core';
-import {Auth2Service, UserDetails} from '../../auth/auth2.service';
+import {Auth2Service, UserDetails} from '../../auth/services/auth2.service';
 import firebase from 'firebase/compat/app';
 import { UserProfileComponent } from '../../layout/user-profile-data-block/user-profile.component';
 import {Subscription} from 'rxjs';

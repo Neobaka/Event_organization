@@ -9,7 +9,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import {EventService} from '../../events_data/event.service';
 import {Router} from '@angular/router';
-import {Auth2Service} from '../../auth/auth2.service';
+import {Auth2Service} from '../../auth/services/auth2.service';
 import {ImageService} from '../../images_data/image.service';
 import {HttpClient} from '@angular/common/http';
 

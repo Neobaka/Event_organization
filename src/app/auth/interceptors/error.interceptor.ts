@@ -1,5 +1,5 @@
 import {HttpErrorResponse, HttpInterceptorFn} from '@angular/common/http';
-import {Auth2Service} from './auth2.service';
+import {Auth2Service} from '../services/auth2.service';
 import {inject, Injector} from '@angular/core';
 import {Router} from '@angular/router';
 import {catchError, throwError} from 'rxjs';

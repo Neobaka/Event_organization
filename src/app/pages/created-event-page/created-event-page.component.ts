@@ -5,7 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EventService } from '../../events_data/event.service';
-import { Auth2Service } from '../../auth/auth2.service';
+import { Auth2Service } from '../../auth/services/auth2.service';
 import { CATEGORY } from '../../events_data/event-category';
 import { GENRE } from '../../events_data/event-genre';
 import { EventModel } from '../../events_data/event-model';

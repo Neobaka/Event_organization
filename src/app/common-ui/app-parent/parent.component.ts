@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { RegistrationModalComponent } from '../registration-modal/registration-modal.component';
 import { LoginModalComponent } from '../login-modal/login-modal.component';
 import { Observable } from 'rxjs';
-import { Auth2Service, UserDetails } from '../../auth/auth2.service';
+import { Auth2Service, UserDetails } from '../../auth/services/auth2.service';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { Subject, takeUntil } from 'rxjs';
 import { MatIcon } from '@angular/material/icon';
