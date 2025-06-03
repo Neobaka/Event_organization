@@ -1,4 +1,3 @@
-/* eslint-disable indent */
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { RegistrationModalComponent } from '../registration-modal/registration-modal.component';

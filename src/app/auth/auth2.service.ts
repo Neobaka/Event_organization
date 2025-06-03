@@ -1,6 +1,3 @@
-/* eslint-disable indent */
-/* eslint-disable @typescript-eslint/typedef */
-/* eslint-disable @typescript-eslint/member-ordering */
 import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
@@ -11,6 +8,7 @@ import {LoginPayload} from './login-payload';
 import {AngularFireAuth} from '@angular/fire/compat/auth';
 import firebase from 'firebase/compat/app';
 import {TokenService} from './token.service';
+import {ApiConfigService} from './api-config.service';
 
 
 //Поскольку используем compat API, везде, где есть ссылака на User, нужно использовать тип из firebase/compat/app
@@ -34,8 +32,10 @@ export interface UserDetails {
 
 export class Auth2Service {
   // Ключ для хранения токена в localStorage
+  private apiConfig = inject(ApiConfigService);
+
   private readonly ACCESS_TOKEN_KEY = 'access_token';
-  private readonly apiUrl = 'http://188.226.91.215:43546/api/v1/';
+  private readonly apiUrl = this.apiConfig.apiUrl + 'users';
   private userProfile$?: Observable<any>;
   private loggedInSubject: BehaviorSubject<boolean>
   private userDataSubject = new BehaviorSubject<UserDetails | null>(null);
@@ -70,6 +70,13 @@ export class Auth2Service {
 
   public get currentUser(): UserDetails | null {
     return this.userDataSubject.value;
+  }
+
+  syncFirebaseUser(Token: string): Observable<UserDetails> {
+    return this.http.post<UserDetails>(
+      `${this.apiUrl}/sync`,
+      { Token }
+    ).pipe();
   }
 
   updateFavoriteEvents(eventId: number, add: boolean) {
@@ -110,7 +117,7 @@ export class Auth2Service {
 
   getUserProfileFromApi(): Observable<UserDetails> {
     console.log('Отправка запроса на получение данных пользователя');
-    return this.http.get<UserDetails>(`${this.apiUrl}users/user_details`);
+    return this.http.get<UserDetails>(`${this.apiUrl}/user_details`);
   }
 
   // Загрузка профиля пользователя и обновление userDataSubject
@@ -147,35 +154,22 @@ export class Auth2Service {
   }
 
   // Вход через Google
-  async signInWithGoogle(): Promise<any> {
+  async signInWithGoogle(): Promise<UserDetails | undefined> {
     const provider = new firebase.auth.GoogleAuthProvider();
     provider.addScope('email');
     provider.addScope('profile');
 
     try {
       const result = await this.afAuth.signInWithPopup(provider);
-
       if (!result.user) {
-        return null;
+        return undefined;
       }
-
       const idToken = await result.user.getIdToken();
-
-      const response = await this.http.post<TokenResponse>(
-        `${this.apiUrl}users/google-auth`,
-        {idToken}
-      ).pipe(
-        tap(response => {
-          this.saveToken(response.AccessToken);
-          this.loggedInSubject.next(true);
-          // Загружаем профиль пользователя
-          this.getUserProfileFromApi().subscribe(profile => {
-            this.userDataSubject.next(profile);
-          });
-        })
-      ).toPromise();
-
-      return response;
+      const user = await this.syncFirebaseUser(idToken).toPromise();
+      // Синхронизируем пользователя с бэком
+      this.userDataSubject.next(user ?? null);
+      this.loggedInSubject.next(true);
+      return user;
 
     } catch (error) {
       console.error('Ошибка при входе через Google:', error);
@@ -192,7 +186,7 @@ export class Auth2Service {
   //регистрация
   register(payload: RegisterPayload) {
     return this.http.post<void>(
-      `${this.apiUrl}users`,
+      `${this.apiUrl}`,
       payload
     ).pipe(
       catchError(error => {
@@ -203,7 +197,7 @@ export class Auth2Service {
   }
 
   login(payload: LoginPayload) {
-    return this.http.post<TokenResponse>(`${this.apiUrl}users/login`, payload).pipe(
+    return this.http.post<TokenResponse>(`${this.apiUrl}/login`, payload).pipe(
       tap(response => {
         this.handleAuthSuccess(response.AccessToken);
         this.loadUserProfile();

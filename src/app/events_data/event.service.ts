@@ -1,14 +1,18 @@
-import { Injectable } from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {map, Observable} from 'rxjs';
 import {EventModel} from './event-model';
+import {ApiConfigService} from '../auth/api-config.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventService {
 
-  private apiUrl = 'http://188.226.91.215:43546/api/v1/events';
+  private apiConfig = inject(ApiConfigService);
+  private readonly apiUrl = this.apiConfig.apiUrl + 'events';
+  //private apiUrl = 'http://188.226.91.215:43546/api/v1/events';
+
 
   constructor(private http: HttpClient) {}
 

@@ -1,12 +1,17 @@
-import { Injectable } from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {ApiConfigService} from '../auth/api-config.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ImageService {
-  private apiUrl = 'http://188.226.91.215:43546/api/v1/images';
+  private apiConfig = inject(ApiConfigService);
+  private readonly apiUrl = this.apiConfig.apiUrl + 'images';
+  //private apiUrl = 'http://188.226.91.215:43546/api/v1/images';
+
+
 
   constructor(private http: HttpClient) {}
 
