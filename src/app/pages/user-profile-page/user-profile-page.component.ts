@@ -1,12 +1,13 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { HeaderComponent } from '../../common-ui/header/header.component';
 import { UserProfileDataBlockComponent } from '../../layout/user-profile-data-block/user-profile-data-block.component';
 import {
     UserProfileMyAfishaBlockComponent
 } from '../../layout/user-profile-my-afisha-block/user-profile-my-afisha-block.component';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, Params } from '@angular/router';
 
 @Component({
+    changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'app-user-profile-page',
     imports: [
         HeaderComponent,
@@ -17,14 +18,14 @@ import { ActivatedRoute, Router } from '@angular/router';
     styleUrl: './user-profile-page.component.scss'
 })
 export class UserProfilePageComponent implements OnInit {
-    private router = inject(Router);
-    private route = inject(ActivatedRoute);
+    public initialSection = 'user-profile-my-tickets';
 
-    initialSection = 'user-profile-my-tickets';
+    private _router: Router = inject(Router);
+    private _route: ActivatedRoute = inject(ActivatedRoute);
 
-    ngOnInit() {
-        this.route.queryParams.subscribe(params => {
-            const allowedSections = [
+    public ngOnInit(): void {
+        this._route.queryParams.subscribe((params: Params) => {
+            const allowedSections: string[] = [
                 'user-profile-my-tickets',
                 'user-profile-favorite-events',
                 'user-profile-favorite-places'
@@ -38,9 +39,9 @@ export class UserProfilePageComponent implements OnInit {
     }
 
     /**
-     *
-     */
-    navigateToMainPage() {
-        this.router.navigate(['']);
+   * Navigates to the main page
+   */
+    public navigateToMainPage(): void {
+        this._router.navigate(['']);
     }
 }

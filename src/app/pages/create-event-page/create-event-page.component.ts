@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { HeaderComponent } from '../../common-ui/header/header.component';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { KeyValuePipe, NgClass, NgForOf, NgIf } from '@angular/common';
@@ -13,7 +13,31 @@ import { Auth2Service } from '../../auth/services/auth2.service';
 import { ImageService } from '../../images_data/image.service';
 import { HttpClient } from '@angular/common/http';
 
+interface UserProfile {
+  id: number;
+}
+
+interface UploadResponse {
+  fileName: string;
+}
+
+interface EventPayload {
+  fileName: string;
+  cost: string;
+  creatorId: number;
+  eventName: string;
+  eventDescription: string;
+  dateStart: string;
+  dateEnd: string;
+  place: string;
+  organizerName: string;
+  organizerSite: string;
+  category: string;
+  genre: string;
+}
+
 @Component({
+    changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'app-create-event-page',
     imports: [
         HeaderComponent,
@@ -30,65 +54,36 @@ import { HttpClient } from '@angular/common/http';
     styleUrl: './create-event-page.component.scss'
 })
 export class CreateEventPageComponent {
-    isUploaded = false;
-    filePreviewUrl: string | null = null;
-    form: FormGroup;
-    submitted = false;
-    categoryOptions = CATEGORY;
-    genreOptions = GENRE;
-    currentUserId = 0;
-    fileName:string | null  = null;
-    selectedFile: File | null = null;
-
-    showCategoryDropdown = false;
-    showGenreDropdown = false;
-
-    selectedCategory: string | null = null;
-    selectedGenre: string | null = null;
-
+    public isUploaded = false;
+    public filePreviewUrl: string | null = null;
+    public form: FormGroup;
+    public submitted = false;
+    public categoryOptions: typeof CATEGORY = CATEGORY;
+    public genreOptions: typeof GENRE = GENRE;
+    public currentUserId = 0;
+    public fileName: string | null = null;
+    public selectedFile: File | null = null;
+    public showCategoryDropdown = false;
+    public showGenreDropdown = false;
+    public selectedCategory: string | null = null;
+    public selectedGenre: string | null = null;
+
     /**
-     *
-     */
-    toggleCategoryDropdown() {
-        this.showCategoryDropdown = !this.showCategoryDropdown;
-        if (this.showCategoryDropdown) {this.showGenreDropdown = false;}
-    }
-
-    /**
-     *
-     */
-    toggleGenreDropdown() {
-        this.showGenreDropdown = !this.showGenreDropdown;
-        if (this.showGenreDropdown) {this.showCategoryDropdown = false;}
-    }
-
-    /**
-     *
-     */
-    selectCategory(key: string) {
-        this.selectedCategory = key;
-        this.form.controls['category'].setValue(key);
-        this.showCategoryDropdown = false;
-    }
-
-    /**
-     *
-     */
-    selectGenre(key: string) {
-        this.selectedGenre = key;
-        this.form.controls['genre'].setValue(key);
-        this.showGenreDropdown = false; // закроем после выбора
+   *
+   */
+    public get selectedGenreLabel(): string {
+        return this.selectedGenre ? this.genreOptions[this.selectedGenre] : 'Выберите жанр мероприятия';
     }
 
     constructor(
-    private fb: FormBuilder,
-    private eventService: EventService,
-    private router: Router,
-    private auth2Service: Auth2Service,
-    private imageService: ImageService,
-    private http: HttpClient,
+    private _fb: FormBuilder,
+    private _eventService: EventService,
+    private _router: Router,
+    private _auth2Service: Auth2Service,
+    private _imageService: ImageService,
+    private _http: HttpClient,
     ) {
-        this.form = this.fb.group({
+        this.form = this._fb.group({
             title: ['', Validators.required],
             category: ['', Validators.required],
             genre: ['', Validators.required],
@@ -101,11 +96,11 @@ export class CreateEventPageComponent {
             website: ['', Validators.required],
             fileName: ['', Validators.required],
         });
-        this.auth2Service.getUserProfileFromApi().subscribe({
-            next: (profile) => {
+        this._auth2Service.getUserProfileFromApi().subscribe({
+            next: (profile: UserProfile) => {
                 this.currentUserId = profile.id;
             },
-            error: (err) => {
+            error: (err: unknown) => {
                 // обработать ошибку
                 console.error('Ошибка получения профиля пользователя', err);
             }
@@ -113,79 +108,113 @@ export class CreateEventPageComponent {
     }
 
     /**
-     *
-     */
-    onFileSelected(event: Event) {
-        const input = event.target as HTMLInputElement;
+   *
+   */
+    public toggleCategoryDropdown(): void {
+        this.showCategoryDropdown = !this.showCategoryDropdown;
+        if (this.showCategoryDropdown) {
+            this.showGenreDropdown = false;
+        }
+    }
+
+    /**
+   *
+   */
+    public toggleGenreDropdown(): void {
+        this.showGenreDropdown = !this.showGenreDropdown;
+        if (this.showGenreDropdown) {
+            this.showCategoryDropdown = false;
+        }
+    }
+
+    /**
+   *
+   */
+    public selectCategory(key: string): void {
+        this.selectedCategory = key;
+        this.form.controls['category'].setValue(key);
+        this.showCategoryDropdown = false;
+    }
+
+    /**
+   *
+   */
+    public selectGenre(key: string): void {
+        this.selectedGenre = key;
+        this.form.controls['genre'].setValue(key);
+        this.showGenreDropdown = false;
+    }
+
+    /**
+   *
+   */
+    public onFileSelected(event: Event): void {
+        const input: HTMLInputElement = event.target as HTMLInputElement;
         if (input.files && input.files.length > 0) {
             this.selectedFile = input.files[0];
             this.fileName = this.selectedFile.name;
 
             // Создаём превью
-            const reader = new FileReader();
-            reader.onload = (e: any) => {
-                this.filePreviewUrl = e.target.result;
+            const reader: FileReader = new FileReader();
+            reader.onload = (e: ProgressEvent<FileReader>) => {
+                this.filePreviewUrl = e.target?.result as string;
             };
             reader.readAsDataURL(this.selectedFile);
         }
     }
 
     /**
-     *
-     */
-    uploadImage() {
-        if (!this.selectedFile) {return;}
+   *
+   */
+    public uploadImage(): void {
+        if (!this.selectedFile) {
+            return;
+        }
 
-        const formData = new FormData();
-        formData.append('file', this.selectedFile); // <-- ключ 'file' обязателен!
+        const formData: FormData = new FormData();
+        formData.append('file', this.selectedFile);
 
-        this.http.post<{ fileName: string }>(
+        this._http.post<UploadResponse>(
             'http://188.226.91.215:43546/api/v1/images/upload',
             formData
         ).subscribe({
-            next: res => {
-                // res.fileName - имя файла для карточки
+            next: (res: UploadResponse) => {
                 this.isUploaded = true;
                 this.form.patchValue({ fileName: res.fileName });
             },
-            error: err => {
-                console.error('Ошибка загрузки файла:', err.status, err.error);
+            error: (err: unknown) => {
+                console.error('Ошибка загрузки файла:', err);
             }
         });
     }
 
     /**
-     *
-     */
-    onGenresChange(event: Event) {
-        const select = event.target as HTMLSelectElement;
-        const selected = Array.from(select.selectedOptions).map(opt => opt.value);
+   *
+   */
+    public onGenresChange(event: Event): void {
+        const select: HTMLSelectElement = event.target as HTMLSelectElement;
+        const selected: string[] = Array.from(select.selectedOptions).map((opt: HTMLOptionElement) => opt.value);
         this.form.controls['genres'].setValue(selected);
         this.form.controls['genres'].markAsTouched();
     }
 
     /**
-     *
-     */
-    get selectedGenreLabel(): string {
-        return this.selectedGenre ? this.genreOptions[this.selectedGenre] : 'Выберите жанр мероприятия';
-    }
-
-    /**
-     *
-     */
-    async onSubmit() {
+   *
+   */
+    public async onSubmit(): Promise<void> {
         this.submitted = true;
-        if (this.form.invalid) {return;}
+        if (this.form.invalid) {
+            return;
+        }
 
         // Если файл выбран, загружаем его
         if (this.selectedFile) {
             try {
-                const res = await this.imageService.uploadImage(this.selectedFile).toPromise();
+                const res: UploadResponse | undefined = await this._imageService.uploadImage(this.selectedFile).toPromise();
                 if (res) {
                     this.form.patchValue({ fileName: res.fileName });
                 }
-            } catch (err) {
+            } catch (error) {
                 alert('Ошибка загрузки изображения');
 
                 return;
@@ -193,8 +222,8 @@ export class CreateEventPageComponent {
         }
 
         // Собираем payload для бэка
-        const payload = {
-            fileName: this.form.value.fileName || 'default.jpg', // заготовка для файла
+        const payload: EventPayload = {
+            fileName: this.form.value.fileName || 'default.jpg',
             cost: this.form.value.cost,
             creatorId: this.currentUserId,
             eventName: this.form.value.title,
@@ -208,22 +237,25 @@ export class CreateEventPageComponent {
             genre: this.form.value.genre,
         };
 
-        this.eventService.createEvent(payload).subscribe({
+        this._eventService.createEvent(payload).subscribe({
             next: () => {
                 alert('Мероприятие успешно создано!');
-                this.router.navigate(['/']);
+                this._router.navigate(['/']);
             },
-            error: (err) => {
-                // err - это HttpErrorResponse
-                console.error('Ошибка при создании мероприятия:');
-                console.error('Status code:', err.status); // HTTP статус
-                console.error('Error body:', err.error);   // Тело ответа с ошибкой
-                if (err.status === 400) {
-                    alert('Некорректное тело запроса. Проверьте форму.');
-                } else if (err.status === 401) {
-                    alert('Неверный Access Token!');
-                } else if (err.status === 500) {
-                    alert('Ошибка сервера. Попробуйте позже.');
+            error: (err: unknown) => {
+                console.error('Ошибка при создании мероприятия:', err);
+
+                if (err && typeof err === 'object' && 'status' in err) {
+                    const httpErr = err as { status: number; error: unknown };
+                    if (httpErr.status === 400) {
+                        alert('Некорректное тело запроса. Проверьте форму.');
+                    } else if (httpErr.status === 401) {
+                        alert('Неверный Access Token!');
+                    } else if (httpErr.status === 500) {
+                        alert('Ошибка сервера. Попробуйте позже.');
+                    } else {
+                        alert('Неизвестная ошибка. Подробности в консоли.');
+                    }
                 } else {
                     alert('Неизвестная ошибка. Подробности в консоли.');
                 }

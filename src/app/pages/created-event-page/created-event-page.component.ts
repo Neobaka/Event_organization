@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { HeaderComponent } from '../../common-ui/header/header.component';
 import { NgForOf, NgIf, SlicePipe, NgClass } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
@@ -13,6 +13,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
+    changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'app-my-events-page',
     imports: [
         HeaderComponent,
@@ -27,71 +28,73 @@ import { takeUntil } from 'rxjs/operators';
     styleUrl: './created-event-page.component.scss'
 })
 export class CreatedEventPageComponent implements OnInit, OnDestroy {
-    private destroy$ = new Subject<void>();
 
-    allEvents: EventModel[] = [];
-    filteredEvents: EventModel[] = [];
-    upcomingEvents: EventModel[] = [];
-    pastEvents: EventModel[] = [];
+    public allEvents: EventModel[] = [];
+    public filteredEvents: EventModel[] = [];
+    public upcomingEvents: EventModel[] = [];
+    public pastEvents: EventModel[] = [];
 
-    page = 0;
-    size = 100;
+    public page = 0;
+    public size = 100;
 
-    selectedFilter: 'all' | 'upcoming' | 'past' = 'all';
-    searchQuery = '';
-    isLoading = false;
+    public selectedFilter: 'all' | 'upcoming' | 'past' = 'all';
+    public searchQuery = '';
+    public isLoading = false;
 
     // Модальное окно удаления
-    showDeleteModal = false;
-    eventToDelete: EventModel | null = null;
+    public showDeleteModal = false;
+    public eventToDelete: EventModel | null = null;
 
-    categoryOptions = CATEGORY;
-    genreOptions = GENRE;
-    currentUserId = 0;
+    public categoryOptions: typeof CATEGORY = CATEGORY;
+    public genreOptions: typeof GENRE = GENRE;
+    public currentUserId = 0;
+
+
+    private _destroy$: Subject<void> = new Subject<void>();
 
     constructor(
-    private eventService: EventService,
-    private auth2Service: Auth2Service,
-    private router: Router
+    private _eventService: EventService,
+    private _auth2Service: Auth2Service,
+    private _router: Router
     ) { }
 
-    ngOnInit() {
+    public ngOnInit(): void {
         this.loadMyEvents();
     }
 
-    ngOnDestroy() {
-        this.destroy$.next();
-        this.destroy$.complete();
+    public ngOnDestroy(): void {
+        this._destroy$.next();
+        this._destroy$.complete();
     }
 
     /**
-     *
-     */
-    loadCurrentUser() {
-        this.auth2Service.getUserProfileFromApi()
-            .pipe(takeUntil(this.destroy$))
+   * Загружает текущего пользователя
+   */
+    public loadCurrentUser(): void {
+        this._auth2Service.getUserProfileFromApi()
+            .pipe(takeUntil(this._destroy$))
             .subscribe({
-                next: (profile) => {
+                next: (profile: any) => {
                     this.currentUserId = profile.id;
                     this.loadMyEvents();
                 },
-                error: (err) => {
+                error: (err: any) => {
                     console.error('Ошибка получения профиля пользователя', err);
                 }
             });
     }
 
     /**
-     *
-     */
-    loadMyEvents() {
+   * Загружает мероприятия пользователя
+   */
+    public loadMyEvents(): void {
         this.isLoading = true;
 
-        const user = this.auth2Service.currentUser;
+        const user: any = this._auth2Service.currentUser;
         if (user && user.role === 'ROLE_ADMIN') {
             // Админ — получаем все мероприятия
-            this.eventService.getEvents(this.page, this.size)
-                .pipe(takeUntil(this.destroy$))
+            this._eventService.getEvents(this.page, this.size)
+                .pipe(takeUntil(this._destroy$))
                 .subscribe({
                     next: (events: EventModel[]) => {
                         this.allEvents = events;
@@ -100,13 +103,14 @@ export class CreatedEventPageComponent implements OnInit, OnDestroy {
                         this.isLoading = false;
                     },
                     error: (err: any) => {
+                        console.error('Ошибка загрузки мероприятий:', err);
                         this.isLoading = false;
                     }
                 });
         } else {
             // Креатор — только свои мероприятия
-            this.eventService.getEventsByCreator()
-                .pipe(takeUntil(this.destroy$))
+            this._eventService.getEventsByCreator()
+                .pipe(takeUntil(this._destroy$))
                 .subscribe({
                     next: (events: EventModel[]) => {
                         this.allEvents = events;
@@ -115,6 +119,7 @@ export class CreatedEventPageComponent implements OnInit, OnDestroy {
                         this.isLoading = false;
                     },
                     error: (err: any) => {
+                        console.error('Ошибка загрузки мероприятий:', err);
                         this.isLoading = false;
                     }
                 });
@@ -122,39 +127,39 @@ export class CreatedEventPageComponent implements OnInit, OnDestroy {
     }
 
     /**
-     *
-     */
-    categorizeEvents() {
-        const now = new Date();
+   * Категоризирует мероприятия по времени
+   */
+    public categorizeEvents(): void {
+        const now: Date = new Date();
 
-        this.upcomingEvents = this.allEvents.filter(event =>
+        this.upcomingEvents = this.allEvents.filter((event: EventModel) =>
             new Date(event.dateStart) > now
         );
 
-        this.pastEvents = this.allEvents.filter(event =>
+        this.pastEvents = this.allEvents.filter((event: EventModel) =>
             new Date(event.dateEnd) < now
         );
     }
 
     /**
-     *
-     */
-    setFilter(filter: 'all' | 'upcoming' | 'past') {
+   * Устанавливает фильтр для мероприятий
+   */
+    public setFilter(filter: 'all' | 'upcoming' | 'past'): void {
         this.selectedFilter = filter;
         this.applyFilters();
     }
 
     /**
-     *
-     */
-    onSearchChange() {
+   * Обработчик изменения поискового запроса
+   */
+    public onSearchChange(): void {
         this.applyFilters();
     }
 
     /**
-     *
-     */
-    applyFilters() {
+   * Применяет фильтры к мероприятиям
+   */
+    public applyFilters(): void {
         let events: EventModel[] = [];
 
         // Фильтрация по типу
@@ -172,8 +177,8 @@ export class CreatedEventPageComponent implements OnInit, OnDestroy {
 
         // Поискфильтр
         if (this.searchQuery.trim()) {
-            const query = this.searchQuery.toLowerCase().trim();
-            events = events.filter(event =>
+            const query: string = this.searchQuery.toLowerCase().trim();
+            events = events.filter((event: EventModel) =>
                 event.eventName.toLowerCase().includes(query) ||
         event.eventDescription.toLowerCase().includes(query) ||
         event.place.toLowerCase().includes(query)
@@ -184,9 +189,9 @@ export class CreatedEventPageComponent implements OnInit, OnDestroy {
     }
 
     /**
-     *
-     */
-    getEventImageUrl(fileName: string): string {
+   * Получает URL изображения мероприятия
+   */
+    public getEventImageUrl(fileName: string): string {
         if (!fileName || fileName === 'default.jpg') {
             return '/assets/images/default-event.jpg';
         }
@@ -195,31 +200,32 @@ export class CreatedEventPageComponent implements OnInit, OnDestroy {
     }
 
     /**
-     *
-     */
-    onImageError(event: any) {
-        event.target.src = '/assets/images/default-event.jpg';
+   * Обработчик ошибки загрузки изображения
+   */
+    public onImageError(event: Event): void {
+        const target = event.target as HTMLImageElement;
+        target.src = '/assets/images/default-event.jpg';
     }
 
     /**
-     *
-     */
-    getEventStatus(event: EventModel): string {
-        const now = new Date();
-        const startDate = new Date(event.dateStart);
-        const endDate = new Date(event.dateEnd);
+   * Получает статус мероприятия
+   */
+    public getEventStatus(event: EventModel): string {
+        const now: Date = new Date();
+        const startDate: Date = new Date(event.dateStart);
+        const endDate: Date = new Date(event.dateEnd);
 
-        if (now < startDate) {return 'upcoming';}
-        if (now > endDate) {return 'past';}
+        if (now < startDate) { return 'upcoming'; }
+        if (now > endDate) { return 'past'; }
 
         return 'active';
     }
 
     /**
-     *
-     */
-    getEventStatusText(event: EventModel): string {
-        const status = this.getEventStatus(event);
+   * Получает текст статуса мероприятия
+   */
+    public getEventStatusText(event: EventModel): string {
+        const status: string = this.getEventStatus(event);
         switch (status) {
             case 'upcoming': return 'Предстоящее';
             case 'active': return 'Активное';
@@ -229,10 +235,10 @@ export class CreatedEventPageComponent implements OnInit, OnDestroy {
     }
 
     /**
-     *
-     */
-    formatDate(dateString: string): string {
-        const date = new Date(dateString);
+   * Форматирует дату
+   */
+    public formatDate(dateString: string): string {
+        const date: Date = new Date(dateString);
 
         return date.toLocaleDateString('ru-RU', {
             day: '2-digit',
@@ -242,17 +248,17 @@ export class CreatedEventPageComponent implements OnInit, OnDestroy {
     }
 
     /**
-     *
-     */
-    deleteEvent() {
-        if (!this.eventToDelete) {return;}
+   * Удаляет мероприятие
+   */
+    public deleteEvent(): void {
+        if (!this.eventToDelete) { return; }
         this.isLoading = true;
-        this.eventService.deleteEventById(this.eventToDelete.id)
-            .pipe(takeUntil(this.destroy$))
+        this._eventService.deleteEventById(this.eventToDelete.id)
+            .pipe(takeUntil(this._destroy$))
             .subscribe({
                 next: () => {
                     // Удаляем из локального массива
-                    this.allEvents = this.allEvents.filter(e => e.id !== this.eventToDelete!.id);
+                    this.allEvents = this.allEvents.filter((e: EventModel) => e.id !== this.eventToDelete!.id);
                     this.categorizeEvents();
                     this.applyFilters();
                     this.cancelDelete();
@@ -266,53 +272,53 @@ export class CreatedEventPageComponent implements OnInit, OnDestroy {
     }
 
     /**
-     *
-     */
-    getCategoryName(categoryKey: string): string {
+   * Получает название категории
+   */
+    public getCategoryName(categoryKey: string): string {
         return this.categoryOptions[categoryKey] || categoryKey;
     }
 
     /**
-     *
-     */
-    getGenreName(genreKey: string): string {
+   * Получает название жанра
+   */
+    public getGenreName(genreKey: string): string {
         return this.genreOptions[genreKey] || genreKey;
     }
 
     /**
-     *
-     */
-    viewEvent(eventId: number) {
-        this.router.navigate(['/event', eventId]);
+   * Переход к просмотру мероприятия
+   */
+    public viewEvent(eventId: number): void {
+        this._router.navigate(['/event', eventId]);
     }
 
     /**
-     *
-     */
-    confirmDelete(event: EventModel) {
+   * Подтверждение удаления мероприятия
+   */
+    public confirmDelete(event: EventModel): void {
         this.eventToDelete = event;
         this.showDeleteModal = true;
     }
 
     /**
-     *
-     */
-    cancelDelete() {
+   * Отмена удаления мероприятия
+   */
+    public cancelDelete(): void {
         this.showDeleteModal = false;
         this.eventToDelete = null;
     }
 
     /**
-     *
-     */
-    createNewEvent() {
-        this.router.navigate(['/create-event']);
+   * Переход к созданию нового мероприятия
+   */
+    public createNewEvent(): void {
+        this._router.navigate(['/create-event']);
     }
 
     /**
-     *
-     */
-    getEmptyStateTitle(): string {
+   * Получает заголовок для пустого состояния
+   */
+    public getEmptyStateTitle(): string {
         switch (this.selectedFilter) {
             case 'upcoming': return 'Нет предстоящих мероприятий';
             case 'past': return 'Нет завершенных мероприятий';
@@ -321,9 +327,9 @@ export class CreatedEventPageComponent implements OnInit, OnDestroy {
     }
 
     /**
-     *
-     */
-    getEmptyStateMessage(): string {
+   * Получает сообщение для пустого состояния
+   */
+    public getEmptyStateMessage(): string {
         if (this.searchQuery.trim()) {
             return `По запросу "${this.searchQuery}" ничего не найдено`;
         }

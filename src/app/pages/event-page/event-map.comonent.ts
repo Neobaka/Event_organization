@@ -1,10 +1,10 @@
-import { Component, Input, AfterViewInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, AfterViewInit, OnChanges, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 declare const ymaps: any;
 
 @Component({
-    selector: 'app-event-map',
+    changeDetection: ChangeDetectionStrategy.OnPush,selector: 'app-event-map',
     standalone: true,
     imports: [CommonModule],
     template: `

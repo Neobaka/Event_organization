@@ -3,14 +3,14 @@
     "",
     "\\src",
     "\\src\\app",
+    "\\src\\app\\admin",
     "\\src\\app\\auth",
+    "\\src\\app\\auth\\services",
     "\\src\\app\\common-ui",
-    "\\src\\app\\common-ui\\event-card",
+    "\\src\\app\\common-ui\\header",
     "\\src\\app\\pages",
-    "\\src\\app\\pages\\create-event-page",
-    "\\src\\app\\pages\\created-event-page",
-    "\\src\\app\\pages\\event-page"
+    "\\src\\app\\pages\\user-profile-page"
   ],
-  "SelectedNode": "\\src\\app\\auth\\auth2.service.ts",
+  "SelectedNode": "\\src\\app\\app.config.ts",
   "PreviewInSolutionExplorer": false
 }

@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { UserDetails } from '../../auth/services/auth2.service';
 import { AdminService } from '../../admin/admin.service';
 import { HeaderComponent } from '../../common-ui/header/header.component';
@@ -6,7 +6,14 @@ import { MatIcon } from '@angular/material/icon';
 import { NgClass, NgForOf, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
+interface UpdateUserData {
+  DisplayName: string;
+  Role: string;
+  FileName: string;
+}
+
 @Component({
+    changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'app-admin-page',
     imports: [
         HeaderComponent,
@@ -20,35 +27,35 @@ import { FormsModule } from '@angular/forms';
     styleUrl: './admin-page.component.scss'
 })
 export class AdminPageComponent implements OnInit {
-    page = 0;
-    size = 100;
-    editUser: UserDetails | null = null;
-    showEditModal = false;
-    editDisplayName = '';
-    editRole = '';
-    hasMoreUsers = true;
-    allUsers: UserDetails[] = [];
-    searchQuery = '';
-    filteredUsers: UserDetails[] = [];
-    isLoading = false;
+    public page = 0;
+    public size = 100;
+    public editUser: UserDetails | null = null;
+    public showEditModal = false;
+    public editDisplayName = '';
+    public editRole = '';
+    public hasMoreUsers = true;
+    public allUsers: UserDetails[] = [];
+    public searchQuery = '';
+    public filteredUsers: UserDetails[] = [];
+    public isLoading = false;
 
-    private adminService = inject(AdminService);
+    private _adminService: AdminService = inject(AdminService);
 
-    ngOnInit() {
+    public ngOnInit(): void {
         this.loadUsers(true);
     }
 
     /**
-     *
-     */
-    loadUsers(reset = false) {
+   *
+   */
+    public loadUsers(reset = false): void {
         if (reset) {
             this.page = 0;
             this.allUsers = [];
             this.hasMoreUsers = true;
         }
         this.isLoading = true;
-        this.adminService.getAllUsers(this.page, this.size).subscribe(users => {
+        this._adminService.getAllUsers(this.page, this.size).subscribe((users: UserDetails[]) => {
             if (users.length < this.size) {
                 this.hasMoreUsers = false;
             }
@@ -60,28 +67,28 @@ export class AdminPageComponent implements OnInit {
     }
 
     /**
-     *
-     */
-    loadMoreUsers() {
+   *
+   */
+    public loadMoreUsers(): void {
         this.loadUsers();
     }
 
     /**
-     *
-     */
-    onSearchChange() {
+   *
+   */
+    public onSearchChange(): void {
         this.applyUserFilter();
     }
 
     /**
-     *
-     */
-    applyUserFilter() {
-        const query = this.searchQuery.trim().toLowerCase();
+   *
+   */
+    public applyUserFilter(): void {
+        const query: string = this.searchQuery.trim().toLowerCase();
         if (!query) {
             this.filteredUsers = [...this.allUsers];
         } else {
-            this.filteredUsers = this.allUsers.filter(user =>
+            this.filteredUsers = this.allUsers.filter((user: UserDetails) =>
                 (user.displayName && user.displayName.toLowerCase().includes(query)) ||
         (user.email && user.email.toLowerCase().includes(query))
             );
@@ -89,9 +96,9 @@ export class AdminPageComponent implements OnInit {
     }
 
     /**
-     *
-     */
-    openEditUserModal(user: UserDetails) {
+   *
+   */
+    public openEditUserModal(user: UserDetails): void {
         this.editUser = user;
         this.editDisplayName = user.displayName;
         this.editRole = user.role;
@@ -99,24 +106,26 @@ export class AdminPageComponent implements OnInit {
     }
 
     /**
-     *
-     */
-    cancelEditUser() {
+   *
+   */
+    public cancelEditUser(): void {
         this.showEditModal = false;
         this.editUser = null;
     }
 
     /**
-     *
-     */
-    saveEditUser() {
-        if (!this.editUser) {return;}
-        const updateData = {
+   *
+   */
+    public saveEditUser(): void {
+        if (!this.editUser) {
+            return;
+        }
+        const updateData: UpdateUserData = {
             DisplayName: this.editDisplayName,
             Role: this.editRole,
             FileName: this.editUser.fileName
         };
-        this.adminService.updateUser(this.editUser.id, updateData).subscribe(() => {
+        this._adminService.updateUser(this.editUser.id, updateData).subscribe(() => {
             this.loadUsers();
             this.cancelEditUser();
         });
