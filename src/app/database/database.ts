@@ -12,7 +12,7 @@ export class UserService {
     /**
      *
      */
-    saveUserData(uid: string, data: any): Promise<void> {
+    public saveUserData(uid: string, data: any): Promise<void> {
         return this.db.object(`/users/${uid}`).set(data);
     }
 
@@ -20,7 +20,7 @@ export class UserService {
     /**
      *
      */
-    getUserData(uid: string): Observable<any> {
+    public getUserData(uid: string): Observable<any> {
         return this.db.object(`/users/${uid}`).valueChanges();
     }
 }

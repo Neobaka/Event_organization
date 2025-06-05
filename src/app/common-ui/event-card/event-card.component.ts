@@ -87,7 +87,7 @@ export class EventCardComponent implements OnInit {
                   error: () => { }
               });
       } else {
-          this.eventService.deleteEventFromPlanned(this.event.id)
+          this.eventService.deleteEventFromPlanned({ eventId: this.event.id })
               .pipe(takeUntilDestroyed(this.destroyRef))
               .subscribe({
                   next: () => {

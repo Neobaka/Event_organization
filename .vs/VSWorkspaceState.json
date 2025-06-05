@@ -3,14 +3,14 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\admin",
-    "\\src\\app\\auth",
-    "\\src\\app\\auth\\services",
     "\\src\\app\\common-ui",
-    "\\src\\app\\common-ui\\header",
-    "\\src\\app\\pages",
+    "\\src\\app\\layout",
+    "\\src\\app\\layout\\user-profile-data-block",
+    "\\src\\app\\pages\\admin-page",
+    "\\src\\app\\pages\\created-event-page",
+    "\\src\\app\\pages\\event-page",
     "\\src\\app\\pages\\user-profile-page"
   ],
-  "SelectedNode": "\\src\\app\\app.config.ts",
+  "SelectedNode": "\\src\\app\\layout\\user-profile-data-block\\user-profile.component.ts",
   "PreviewInSolutionExplorer": false
 }

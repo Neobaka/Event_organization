@@ -1,7 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-    selector: 'app-svg-icon',
+    changeDetection: ChangeDetectionStrategy.OnPush,selector: 'app-svg-icon',
     imports: [],
     templateUrl: './svg-icon.component.html',
     styles: [':host{cursor: pointer}']
@@ -15,7 +15,7 @@ export class SvgIconComponent {
   /**
    *
    */
-  get iconPath(): string {
+  public get iconPath(): string {
       // Формируем путь к SVG-спрайту
       return `assets/svg/${this.name}.svg`;
   }

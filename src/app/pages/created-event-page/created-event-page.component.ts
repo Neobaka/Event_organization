@@ -253,7 +253,7 @@ export class CreatedEventPageComponent implements OnInit, OnDestroy {
     public deleteEvent(): void {
         if (!this.eventToDelete) { return; }
         this.isLoading = true;
-        this._eventService.deleteEventById(this.eventToDelete.id)
+        this._eventService.deleteEventById({ eventId: this.eventToDelete.id })
             .pipe(takeUntil(this._destroy$))
             .subscribe({
                 next: () => {

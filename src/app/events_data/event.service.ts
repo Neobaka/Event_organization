@@ -15,7 +15,7 @@ export class EventService {
     /**
      *
      */
-    getEvents(page: number, size: number): Observable<EventModel[]> {
+    public getEvents(page: number, size: number): Observable<EventModel[]> {
         return this.http.get<{ content: EventModel[] }>(`${this.apiUrl}?page=${page}&size=${size}`)
             .pipe(map(response => response.content));
     }
@@ -23,49 +23,49 @@ export class EventService {
     /**
      *
      */
-    createEvent(event: Partial<EventModel>): Observable<any> {
+    public createEvent(event: Partial<EventModel>): Observable<any> {
         return this.http.post(this.apiUrl, event);
     }
 
     /**
      *
      */
-    getEventById(id: number): Observable<EventModel> {
+    public getEventById(id: number): Observable<EventModel> {
         return this.http.get<EventModel>(`${this.apiUrl}/${id}`);
     }
 
     /**
      *
      */
-    addEventToFavorites(eventId: number): Observable<any> {
+    public addEventToFavorites(eventId: number): Observable<any> {
         return this.http.post(`${this.apiUrl}/favorite/${eventId}`, {});
     }
 
     /**
      *
      */
-    deleteEventFromFavorites(eventId: number): Observable<any> {
+    public deleteEventFromFavorites(eventId: number): Observable<any> {
         return this.http.delete(`${this.apiUrl}/favorite/${eventId}`);
     }
 
     /**
      *
      */
-    addEventToPlanned(eventId: number): Observable<any> {
+    public addEventToPlanned(eventId: number): Observable<any> {
         return this.http.post(`${this.apiUrl}/planned/${eventId}`, {});
     }
 
     /**
      *
      */
-    deleteEventFromPlanned(eventId: number): Observable<any> {
+    public deleteEventFromPlanned({ eventId }: { eventId: number; }): Observable<any> {
         return this.http.delete(`${this.apiUrl}/planned/${eventId}`);
     }
 
     /**
      *
      */
-    getEventsByCreator() : Observable<EventModel[]> {
+    public getEventsByCreator() : Observable<EventModel[]> {
         return this.http.get<{ content: EventModel[] }>(`${this.apiUrl}/byCreator/`)
             .pipe(map(response => response.content));
     }
@@ -73,7 +73,7 @@ export class EventService {
     /**
      *
      */
-    deleteEventById(eventId: number): Observable<any> {
+    public deleteEventById({ eventId }: { eventId: number; }): Observable<any> {
         return this.http.delete(`${this.apiUrl}/${eventId}`);
     }
 }

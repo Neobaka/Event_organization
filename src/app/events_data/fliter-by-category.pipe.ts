@@ -9,7 +9,7 @@ export class FliterByCategoryPipe implements PipeTransform {
     /**
      *
      */
-    transform(events: EventModel[], category: string): EventModel[] {
+    public transform(events: EventModel[], category: string): EventModel[] {
         if (!events) {return [];}
 
         return events.filter(e => e.category === category);

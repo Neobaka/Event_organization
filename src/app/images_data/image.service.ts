@@ -13,7 +13,7 @@ export class ImageService {
     /**
      *
      */
-    uploadImage(file: File): Observable<{ fileName: string }> {
+    public uploadImage(file: File): Observable<{ fileName: string }> {
         const formData = new FormData();
         formData.append('file', file);
 
@@ -23,7 +23,7 @@ export class ImageService {
     /**
      *
      */
-    getImage(fileName: string): Observable<Blob> {
+    public getImage(fileName: string): Observable<Blob> {
         return this.http.get(`${this.apiUrl}/${fileName}`, { responseType: 'blob' });
     }
 }

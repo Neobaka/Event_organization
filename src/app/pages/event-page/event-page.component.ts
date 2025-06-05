@@ -95,7 +95,7 @@ export class EventPageComponent implements OnInit, OnDestroy {
             return;
         }
         const action: Observable<any> = this.isAdded
-            ? this._eventService.deleteEventFromPlanned(this.event!.id)
+            ? this._eventService.deleteEventFromPlanned({ eventId: this.event!.id })
             : this._eventService.addEventToPlanned(this.event!.id);
 
         action.subscribe({

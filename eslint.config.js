@@ -49,7 +49,7 @@ module.exports = tseslint.config(
       'semi': 'error',
       'padding-line-between-statements': [
         'error',
-        { blankLine: 'always', prev: '*', next: 'return' }
+        { blankLine: 'always', prev: '*', next: 'return' },
       ],
       '@typescript-eslint/member-ordering': [
         'error',
@@ -169,13 +169,9 @@ module.exports = tseslint.config(
       '@typescript-eslint/typedef': [
         'error',
         {
-          arrowParameter: true,
-          variableDeclaration: true,
-          arrayDestructuring: true,
           parameter: true,
           propertyDeclaration: true,
           memberVariableDeclaration: true,
-          objectDestructuring: true,
           variableDeclarationIgnoreFunction: true,
         }
       ],

@@ -10,7 +10,7 @@ export class EnumTranslatorPipe implements PipeTransform {
     /**
      *
      */
-    transform(value: string, type: 'genre' | 'category'): string {
+    public transform(value: string, type: 'genre' | 'category'): string {
         if (type === 'genre') {
             return GENRE[value] || 'Неизвестно';
         }
