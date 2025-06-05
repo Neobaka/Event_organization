@@ -9,7 +9,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import firebase from 'firebase/compat/app';
 import { TokenService } from './token.service';
 import { UserDetails } from '../interfaces/user-details';
-import {ApiConfigService} from "../../api-config/services/api-config.service";
+import { ApiConfigService } from '../../api-config/services/api-config.service';
 
 
 type User = firebase.User;
@@ -227,7 +227,7 @@ export class Auth2Service {
     login(payload: LoginPayload) {
         return this.http.post<TokenResponse>(`${this.apiUrl}/login`, payload).pipe(
             tap(response => {
-                this.handleAuthSuccess(response.AccessToken);
+                this.handleAuthSuccess({ token: response.AccessToken });
                 this.loadUserProfile();
             }),
             catchError(error => {
@@ -242,7 +242,7 @@ export class Auth2Service {
     /**
      *
      */
-    private handleAuthSuccess(token: string) {
+    private handleAuthSuccess({ token }: { token: string; }): void {
         this.saveToken(token);
         this.loggedInSubject.next(true);
         this.resetUserProfileCache();

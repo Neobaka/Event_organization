@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, DestroyRef, EventEmitter, inject, Input, OnInit, Output} from '@angular/core';
+import { ChangeDetectorRef, Component, DestroyRef, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { SvgIconComponent } from '../../../core/images_data/helpers/svg-icon/svg-icon.component';
 import { MatIcon } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
@@ -125,7 +125,7 @@ export class EventCardComponent implements OnInit {
               .subscribe({
                   next: () => {
                       this.isLiked = true;
-                      this.authService.updateFavoriteEvents(this.event.id, true);
+                      this.authService.updateFavoriteEvents({ eventId: this.event.id, add: true });
                   },
                   error: () => { }
               });
@@ -135,7 +135,7 @@ export class EventCardComponent implements OnInit {
               .subscribe({
                   next: () => {
                       this.isLiked = false;
-                      this.authService.updateFavoriteEvents(this.event.id, false);
+                      this.authService.updateFavoriteEvents({ eventId: this.event.id, add: false });
                       this.removedFromFavorite.emit(this.event);
                   },
                   error: () => { }
