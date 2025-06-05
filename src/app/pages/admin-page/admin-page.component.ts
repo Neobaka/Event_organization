@@ -116,7 +116,7 @@ export class AdminPageComponent implements OnInit {
             FileName: user.fileName
         };
         this._adminService.updateUser(user.id, updateData).subscribe(() => {
-            this.loadUsers();
+            this.loadUsers(true);
             this.cancelEditUser();
         });
     }

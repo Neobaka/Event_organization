@@ -1,17 +1,19 @@
 <ng-container *ngIf="!isLoading()">
   <div *ngIf="filteredEvents().length === 0" class="user-profile-afisha-cards-div">
     <p class="user-profile-afisha-cards-p1">Пока пусто 😞</p>
-    <p class="user-profile-afisha-cards-p2">Отмечайте любимые места и они появятся здесь</p>
+    <p class="user-profile-afisha-cards-p2">
+      Отмечайте любимые места и они появятся здесь
+    </p>
     <button class="user-profile-afisha-filter-btns" [routerLink]="['/']">Купить билеты</button>
   </div>
+  <div *ngIf="filteredEvents().length > 0" class="div-events">
+    <app-event-card
+      *ngFor="let event of filteredEvents()"
+      [event]="event"
+      (removedFromFavorite) = "onRemoveFavorite(event)">
+    </app-event-card>
+  </div>
 </ng-container>
-
-<div *ngIf="filteredEvents().length > 0" class="div-events">
-  <app-event-card
-    *ngFor="let event of filteredEvents()"
-    [event]="event">
-  </app-event-card>
-</div>
 
 <ng-container *ngIf="isLoading()">
   <div class="skeleton-loader">

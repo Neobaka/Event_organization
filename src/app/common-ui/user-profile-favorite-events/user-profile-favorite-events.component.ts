@@ -51,7 +51,17 @@ export class UserProfileFavoriteEventsComponent {
           this.isLoading.set(true);
           this.authService.userData$.pipe(
               tap(user => {
-                  if (!user) {return;}
+                  if (!user) {
+                    this.allEvents.set([]);
+                    this.isLoading.set(false);
+                    return;
+                  }
+
+                  if (!user.favoriteEvents || user.favoriteEvents.length === 0) {
+                    this.allEvents.set([]);
+                    this.isLoading.set(false);
+                    return;
+                  }
 
                   forkJoin(
                       user.favoriteEvents.map(id =>
@@ -70,7 +80,17 @@ export class UserProfileFavoriteEventsComponent {
           this.refreshSubj$.subscribe(() => {
               this.authService.userData$.pipe(
                   tap(user => {
-                      if (!user) {return;}
+                      if (!user) {
+                        this.allEvents.set([]);
+                        this.isLoading.set(false);
+                        return;
+                      }
+
+                      if(!user.favoriteEvents || user.favoriteEvents.length === 0) {
+                        this.allEvents.set([]);
+                        this.isLoading.set(false);
+                        return;
+                      }
                       this.isLoading.set(true);
 
                       forkJoin(
@@ -87,10 +107,7 @@ export class UserProfileFavoriteEventsComponent {
       });
   }
 
-  /**
-   *
-   */
-  protected updateList(): void {
-      this.refreshSubj$.next();
+  onRemoveFavorite(event: EventModel) {
+    this.allEvents.set(this.allEvents().filter(e => e.id !== event.id));
   }
 }
