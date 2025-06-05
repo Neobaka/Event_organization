@@ -7,11 +7,11 @@ import {
     ViewChild,
     ViewEncapsulation
 } from '@angular/core';
-import { EventModel } from '../../events_data/event-model';
-import { EventService } from '../../events_data/event.service';
-import { EventCardComponent } from '../../common-ui/event-card/event-card.component';
+import { EventModel } from '../../core/events_data/interfaces/event-model';
+import { EventService } from '../../core/events_data/services/event.service';
+import { EventCardComponent } from '../../common-ui/event-card/component/event-card.component';
 import { NgForOf, NgIf } from '@angular/common';
-import { CarouselComponent } from '../../common-ui/carousel/carousel/carousel.component';
+import {CarouselComponent} from '../../common-ui/carousel/component/carousel.component';
 
 @Component({
     selector: 'app-event-card-block',
@@ -19,8 +19,8 @@ import { CarouselComponent } from '../../common-ui/carousel/carousel/carousel.co
     imports: [
         EventCardComponent,
         NgForOf,
-        CarouselComponent,
-        NgIf
+        NgIf,
+        CarouselComponent
     ],
     encapsulation: ViewEncapsulation.None,
     styleUrls: ['./event-card-block.component.scss']

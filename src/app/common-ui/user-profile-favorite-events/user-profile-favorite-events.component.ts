@@ -1,10 +1,10 @@
 import { Component, computed, effect, inject, Input, signal } from '@angular/core';
-import { EventCardComponent } from '../event-card/event-card.component';
-import { Auth2Service } from '../../auth/services/auth2.service';
-import { EventService } from '../../events_data/event.service';
+import { EventCardComponent } from '../event-card/component/event-card.component';
+import { Auth2Service } from '../../core/auth/services/auth2.service';
+import { EventService } from '../../core/events_data/services/event.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { EventModel } from '../../events_data/event-model';
+import { EventModel } from '../../core/events_data/interfaces/event-model';
 import {
     BehaviorSubject,
     forkJoin,

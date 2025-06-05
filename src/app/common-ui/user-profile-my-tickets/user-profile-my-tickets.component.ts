@@ -1,10 +1,10 @@
 import { Component, inject, Input, signal, computed, effect } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Auth2Service } from '../../auth/services/auth2.service';
-import { EventService } from '../../events_data/event.service';
-import { EventCardComponent } from '../event-card/event-card.component';
+import { Auth2Service } from '../../core/auth/services/auth2.service';
+import { EventService } from '../../core/events_data/services/event.service';
+import { EventCardComponent } from '../event-card/component/event-card.component';
 import { NgForOf, NgIf } from '@angular/common';
-import { EventModel } from '../../events_data/event-model';
+import { EventModel } from '../../core/events_data/interfaces/event-model';
 import { forkJoin } from 'rxjs';
 
 @Component({

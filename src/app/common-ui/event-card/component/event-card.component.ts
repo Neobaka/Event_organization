@@ -1,15 +1,15 @@
 import { ChangeDetectorRef, Component, DestroyRef, inject, Input, OnInit } from '@angular/core';
-import { SvgIconComponent } from '../../helpers/svg-icon/svg-icon.component';
+import { SvgIconComponent } from '../../../core/images_data/helpers/svg-icon/svg-icon.component';
 import { MatIcon } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
-import { EventModel } from '../../events_data/event-model';
-import { EnumTranslatorPipe } from '../../events_data/enum-translator.pipe';
+import { EventModel } from '../../../core/events_data/interfaces/event-model';
+import { EnumTranslatorPipe } from '../../../core/events_data/helpers/enum-translator.pipe';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { ImageService } from '../../images_data/image.service';
+import { ImageService } from '../../../core/images_data/services/image.service';
 import { Router } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { EventService } from '../../events_data/event.service';
-import { Auth2Service } from '../../auth/services/auth2.service';
+import { EventService } from '../../../core/events_data/services/event.service';
+import { Auth2Service } from '../../../core/auth/services/auth2.service';
 
 @Component({
     selector: 'app-event-card',

@@ -1,17 +1,17 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { RegisterPayload } from '../models/register-payload';
-import { TokenResponse } from '../models/token-response';
+import { RegisterPayload } from '../interfaces/register-payload';
+import { TokenResponse } from '../interfaces/token-response';
 import { BehaviorSubject, catchError, Observable, tap, throwError, EMPTY } from 'rxjs';
-import { LoginPayload } from '../models/login-payload';
+import { LoginPayload } from '../interfaces/login-payload';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import firebase from 'firebase/compat/app';
 import { TokenService } from './token.service';
-import { UserDetails } from '../models/user-details';
+import { UserDetails } from '../interfaces/user-details';
+import {ApiConfigService} from "../../api-config/services/api-config.service";
 
 
-//Поскольку используем compat API, везде, где есть ссылака на User, нужно использовать тип из firebase/compat/app
 type User = firebase.User;
 
 @Injectable({
@@ -19,9 +19,7 @@ type User = firebase.User;
 })
 
 export class Auth2Service {
-    // Ключ для хранения токена в localStorage
-    private readonly ACCESS_TOKEN_KEY = 'access_token';
-    private readonly apiUrl = 'http://188.226.91.215:43546/api/v1/';
+    private readonly apiUrl = inject(ApiConfigService).baseUrl + 'users';
     private userProfile$?: Observable<any>;
     private loggedInSubject: BehaviorSubject<boolean>;
     private userDataSubject = new BehaviorSubject<UserDetails | null>(null);
@@ -79,7 +77,7 @@ export class Auth2Service {
      */
     syncFirebaseUser(Token: string): Observable<UserDetails> {
         return this.http.post<UserDetails>(
-            `${this.apiUrl}users/sync`,
+            `${this.apiUrl}/sync`,
             { Token }
         );
     }
@@ -115,7 +113,6 @@ export class Auth2Service {
         } else {
             updatedPlanned = current.plannedEvents.filter(id => id !== eventId);
         }
-        console.log('plannedEvents до:', current.plannedEvents, 'после:', updatedPlanned);
         this.userDataSubject.next({
             ...current,
             plannedEvents: updatedPlanned
@@ -133,9 +130,7 @@ export class Auth2Service {
      *
      */
     getUserProfileFromApi(): Observable<UserDetails> {
-        console.log('Отправка запроса на получение данных пользователя');
-
-        return this.http.get<UserDetails>(`${this.apiUrl}users/user_details`);
+        return this.http.get<UserDetails>(`${this.apiUrl}/user_details`);
     }
 
     // Загрузка профиля пользователя и обновление userDataSubject
@@ -143,12 +138,8 @@ export class Auth2Service {
      *
      */
     loadUserProfile(): void {
-        console.log('Загрузка профиля пользователя...');
-
         this.getUserProfileFromApi().pipe(
             catchError(error => {
-                console.error('Ошибка загрузки профиля пользователя:', error);
-
                 // Если ошибка 401 (Unauthorized), возможно токен истек
                 if (error.status === 401) {
                     console.log('Токен авторизации истек или некорректен');
@@ -161,7 +152,6 @@ export class Auth2Service {
             })
         ).subscribe(profile => {
             if (profile) {
-                console.log('Профиль пользователя успешно загружен:', profile);
                 this.userDataSubject.next(profile);
             } else {
                 console.log('Не удалось загрузить профиль пользователя');
@@ -220,7 +210,7 @@ export class Auth2Service {
      */
     register(payload: RegisterPayload) {
         return this.http.post<void>(
-            `${this.apiUrl}users`,
+            `${this.apiUrl}`,
             payload
         ).pipe(
             catchError(error => {
@@ -235,7 +225,7 @@ export class Auth2Service {
      *
      */
     login(payload: LoginPayload) {
-        return this.http.post<TokenResponse>(`${this.apiUrl}users/login`, payload).pipe(
+        return this.http.post<TokenResponse>(`${this.apiUrl}/login`, payload).pipe(
             tap(response => {
                 this.handleAuthSuccess(response.AccessToken);
                 this.loadUserProfile();
@@ -257,17 +247,6 @@ export class Auth2Service {
         this.loggedInSubject.next(true);
         this.resetUserProfileCache();
         this.loadUserProfile();
-    }
-
-    // Общая обработка ошибок аутентификации
-    /**
-     *
-     */
-    private handleAuthError(error: any) {
-        this.clearToken();
-        this.loggedInSubject.next(false);
-
-        return throwError(() => error);
     }
 
     /**

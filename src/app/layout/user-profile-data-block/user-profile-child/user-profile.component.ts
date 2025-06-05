@@ -1,8 +1,8 @@
 import { Component, OnDestroy, ChangeDetectionStrategy, inject, Signal, signal, effect } from '@angular/core';
-import { Auth2Service } from '../../auth/services/auth2.service';
+import { Auth2Service } from '../../../core/auth/services/auth2.service';
 import { Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { UserDetails } from '../../auth/models/user-details';
+import { UserDetails } from '../../../core/auth/interfaces/user-details';
 import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({

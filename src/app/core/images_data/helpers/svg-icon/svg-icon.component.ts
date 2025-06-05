@@ -8,15 +8,12 @@ import { Component, Input } from '@angular/core';
 })
 export class SvgIconComponent {
   @Input() name!: string;
-  //@Input() size: string = '20';
-  //@Input() color: string = '';
   @Input() alt = '';
 
   /**
    *
    */
   get iconPath(): string {
-      // Формируем путь к SVG-спрайту
       return `assets/svg/${this.name}.svg`;
   }
 }

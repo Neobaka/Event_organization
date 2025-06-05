@@ -4,11 +4,11 @@ import { NgForOf, NgIf, SlicePipe, NgClass, AsyncPipe } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { EventService } from '../../events_data/event.service';
-import { Auth2Service } from '../../auth/services/auth2.service';
-import { CATEGORY } from '../../events_data/event-category';
-import { GENRE } from '../../events_data/event-genre';
-import { EventModel } from '../../events_data/event-model';
+import { EventService } from '../../core/events_data/services/event.service';
+import { Auth2Service } from '../../core/auth/services/auth2.service';
+import { CATEGORY } from '../../core/events_data/helpers/event-category';
+import { GENRE } from '../../core/events_data/helpers/event-genre';
+import { EventModel } from '../../core/events_data/interfaces/event-model';
 import { BehaviorSubject, combineLatest, map, Observable, startWith, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -146,7 +146,7 @@ export class CreatedEventPageComponent implements OnInit, OnDestroy {
             this.searchQuery$.pipe(startWith(''))
         ]).pipe(
             map(([allEvents, selectedFilter, searchQuery]) => {
-                let events: EventModel[] = [];
+                let events: EventModel[];
                 const now = new Date();
 
                 // Категоризация

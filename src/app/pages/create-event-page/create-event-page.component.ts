@@ -2,40 +2,18 @@ import { Component, ChangeDetectionStrategy, inject, signal, DestroyRef } from '
 import { HeaderComponent } from '../../common-ui/header/header.component';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { CATEGORY } from '../../events_data/event-category';
-import { GENRE } from '../../events_data/event-genre';
+import { CATEGORY } from '../../core/events_data/helpers/event-category';
+import { GENRE } from '../../core/events_data/helpers/event-genre';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
-import { EventService } from '../../events_data/event.service';
+import { EventService } from '../../core/events_data/services/event.service';
 import { Router } from '@angular/router';
-import { Auth2Service } from '../../auth/services/auth2.service';
-import { ImageService } from '../../images_data/image.service';
-import { HttpClient } from '@angular/common/http';
+import { Auth2Service } from '../../core/auth/services/auth2.service';
+import { ImageService } from '../../core/images_data/services/image.service';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
+import {CreateEventPayload} from '../../core/events_data/interfaces/create-event-payload';
 
-interface UserProfile {
-  id: number;
-}
-
-interface UploadResponse {
-  fileName: string;
-}
-
-interface EventPayload {
-  fileName: string;
-  cost: number;
-  creatorId: number;
-  eventName: string;
-  eventDescription: string;
-  dateStart: string;
-  dateEnd: string;
-  place: string;
-  organizerName: string;
-  organizerSite: string;
-  category: string;
-  genre: string;
-}
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -57,7 +35,6 @@ export class CreateEventPageComponent {
     private _router = inject(Router);
     private _auth2Service = inject(Auth2Service);
     private _imageService = inject(ImageService);
-    private _http = inject(HttpClient);
     private destroyRef = inject(DestroyRef);
 
 
@@ -167,24 +144,19 @@ export class CreateEventPageComponent {
    *
    */
     uploadImage(): void {
-        const file = this.selectedFile();
-        if (!file) {return;}
-        const formData: FormData = new FormData();
-        formData.append('file', file);
+      const file = this.selectedFile();
+      if (!file) return;
 
-        this._http.post<UploadResponse>(
-            'http://188.226.91.215:43546/api/v1/images/upload',
-            formData
-        ).pipe(
-            takeUntilDestroyed(this.destroyRef) // Передаем контекст уничтожения
-        ).subscribe({
-            next: (res: UploadResponse) => {
-                this.isUploaded.set(true);
-                this.form.patchValue({ fileName: res.fileName });
-            },
-            error: (err: unknown) => {
-                this.error.set('Ошибка загрузки файла');
-            }
+      this._imageService.uploadImage(file)
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe({
+          next: (res) => {
+            this.isUploaded.set(true);
+            this.form.patchValue({ fileName: res.fileName });
+          },
+          error: () => {
+            this.error.set('Ошибка загрузки файла');
+          }
         });
     }
 
@@ -227,7 +199,7 @@ export class CreateEventPageComponent {
             return;
         }
 
-        const payload: EventPayload = {
+        const payload: CreateEventPayload = {
             fileName: this.form.value.fileName || 'default.jpg',
             cost: Number(this.form.value.cost),
             creatorId: user.id,

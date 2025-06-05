@@ -1,17 +1,13 @@
 import { Component, inject, ChangeDetectionStrategy, signal, computed, OnInit } from '@angular/core';
-import { AdminService } from '../../admin/admin.service';
+import { AdminService } from '../../core/admin/services/admin.service';
 import { HeaderComponent } from '../../common-ui/header/header.component';
 import { MatIcon } from '@angular/material/icon';
 import { NgClass, NgForOf, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { UserDetails } from '../../auth/models/user-details';
+import { UserDetails } from '../../core/auth/interfaces/user-details';
+import {UpdateUserData} from '../../core/admin/interfaces/update-user-data';
 
-interface UpdateUserData {
-  DisplayName: string;
-  Role: string;
-  FileName: string;
 
-}
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -40,7 +36,6 @@ export class AdminPageComponent implements OnInit {
     editRole = signal('');
 
     private _adminService: AdminService = inject(AdminService);
-
 
     filteredUsers = computed(() => {
         const query = this.searchQuery().trim().toLowerCase();

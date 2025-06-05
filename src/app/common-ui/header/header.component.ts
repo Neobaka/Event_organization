@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ParentComponent } from '../app-parent/parent.component';
+import { ParentComponent } from '../app-parent/component/parent.component';
 import { Router } from '@angular/router';
 
 @Component({

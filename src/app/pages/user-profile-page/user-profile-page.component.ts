@@ -1,6 +1,6 @@
 import { Component, inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { HeaderComponent } from '../../common-ui/header/header.component';
-import { UserProfileDataBlockComponent } from '../../layout/user-profile-data-block/user-profile-data-block.component';
+import { UserProfileDataBlockComponent } from '../../layout/user-profile-data-block/user-profile-parent/user-profile-data-block.component';
 import {
     UserProfileMyAfishaBlockComponent
 } from '../../layout/user-profile-my-afisha-block/user-profile-my-afisha-block.component';

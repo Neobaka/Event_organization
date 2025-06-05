@@ -4,12 +4,12 @@ import { AsyncPipe, NgClass, NgIf } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
 import { EventMapComponent } from './event-map.comonent';
 import { DomSanitizer } from '@angular/platform-browser';
-import { EventModel } from '../../events_data/event-model';
+import { EventModel } from '../../core/events_data/interfaces/event-model';
 import { ActivatedRoute, Router } from '@angular/router';
-import { EventService } from '../../events_data/event.service';
-import { ImageService } from '../../images_data/image.service';
+import { EventService } from '../../core/events_data/services/event.service';
+import { ImageService } from '../../core/images_data/services/image.service';
 import { combineLatest, map, switchMap, catchError, of } from 'rxjs';
-import { Auth2Service } from '../../auth/services/auth2.service';
+import { Auth2Service } from '../../core/auth/services/auth2.service';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,

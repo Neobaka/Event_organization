@@ -1,10 +1,10 @@
 import { NgOptimizedImage } from '@angular/common';
 import { Component, inject, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
-import { Auth2Service } from '../../auth/services/auth2.service';
+import { Auth2Service } from '../../../core/auth/services/auth2.service';
 import firebase from 'firebase/compat/app';
-import { UserProfileComponent } from '../../layout/user-profile-data-block/user-profile.component';
+import { UserProfileComponent } from '../user-profile-child/user-profile.component';
 import { Subscription } from 'rxjs';
-import { UserDetails } from '../../auth/models/user-details';
+import { UserDetails } from '../../../core/auth/interfaces/user-details';
 
 
 //Поскольку используем compat API, везде, где есть ссылака на User, нужно использовать тип из firebase/compat/app

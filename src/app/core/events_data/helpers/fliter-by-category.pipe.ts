@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { EventModel } from './event-model';
+import { EventModel } from '../interfaces/event-model';
 
 @Pipe({
     name: 'fliterByCategory'

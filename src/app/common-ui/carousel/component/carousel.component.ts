@@ -19,7 +19,7 @@ import { NgStyle } from '@angular/common';
 })
 export class CarouselComponent implements AfterViewInit, OnDestroy, OnChanges {
   @ViewChild('viewport', { static: true }) viewportRef!: ElementRef<HTMLDivElement>;
-  @Input() gap = 20; // Отступ между слайдами в px
+  @Input() gap = 20;
   @ViewChild('track', { static: true }) trackRef!: ElementRef<HTMLDivElement>;
 
   private wheelLocked = false;

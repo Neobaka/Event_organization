@@ -2,10 +2,10 @@ import { Component, inject, ChangeDetectionStrategy, OnInit } from '@angular/cor
 import { EventCardBlockComponent } from '../../layout/event-card-block/event-card-block.component';
 import { HeaderComponent } from '../../common-ui/header/header.component';
 import { SearchBarComponent } from '../../common-ui/search-bar/search-bar.component';
-import { EventService } from '../../events_data/event.service';
-import { FliterByCategoryPipe } from '../../events_data/fliter-by-category.pipe';
+import { EventService } from '../../core/events_data/services/event.service';
+import { FliterByCategoryPipe } from '../../core/events_data/helpers/fliter-by-category.pipe';
 import { AsyncPipe, NgIf } from '@angular/common';
-import { EventModel } from '../../events_data/event-model';
+import { EventModel } from '../../core/events_data/interfaces/event-model';
 import { filter, Observable, startWith, switchMap } from 'rxjs';
 import { NavigationEnd, Router } from '@angular/router';
 
