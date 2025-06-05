@@ -1,33 +1,33 @@
 import {
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  Input,
-  OnDestroy,
-  OnInit,
-  ViewChild,
-  ViewEncapsulation
+    ChangeDetectorRef,
+    Component,
+    ElementRef,
+    Input,
+    OnDestroy,
+    OnInit,
+    ViewChild,
+    ViewEncapsulation
 } from '@angular/core';
-import {EventModel} from '../../events_data/event-model';
-import {EventService} from '../../events_data/event.service';
-import {EventCardComponent} from '../../common-ui/event-card/event-card.component';
-import {NgForOf, NgIf} from '@angular/common';
-import {CarouselComponent} from '../../common-ui/carousel/carousel/carousel.component';
+import { EventModel } from '../../events_data/event-model';
+import { EventService } from '../../events_data/event.service';
+import { EventCardComponent } from '../../common-ui/event-card/event-card.component';
+import { NgForOf, NgIf } from '@angular/common';
+import { CarouselComponent } from '../../common-ui/carousel/carousel/carousel.component';
 
 @Component({
-  selector: 'app-event-card-block',
-  templateUrl: './event-card-block.component.html',
-  imports: [
-    EventCardComponent,
-    NgForOf,
-    CarouselComponent,
-    NgIf
-  ],
-  encapsulation: ViewEncapsulation.None,
-  styleUrls: ['./event-card-block.component.scss']
+    selector: 'app-event-card-block',
+    templateUrl: './event-card-block.component.html',
+    imports: [
+        EventCardComponent,
+        NgForOf,
+        CarouselComponent,
+        NgIf
+    ],
+    encapsulation: ViewEncapsulation.None,
+    styleUrls: ['./event-card-block.component.scss']
 })
 export class EventCardBlockComponent implements OnInit, OnDestroy {
-  @Input() title: string = '';
+  @Input() title = '';
   @Input() events: EventModel[] = [];
   private readonly CARD_WIDTH = 410;
   private readonly MIN_GAP = 10;
@@ -40,23 +40,24 @@ export class EventCardBlockComponent implements OnInit, OnDestroy {
    * Пересчитывает количество карточек и отступ между ними по ширине окна
    */
   updateLayout(): void {
-    // Если контейнер ещё не отрисован — fallback на window.innerWidth
-    const containerWidth = this.containerRef?.nativeElement?.offsetWidth || window.innerWidth;
-    let maxCards = Math.floor(containerWidth / this.CARD_WIDTH);
-    if (maxCards < 1) maxCards = 1;
+      // Если контейнер ещё не отрисован — fallback на window.innerWidth
+      const containerWidth = this.containerRef?.nativeElement?.offsetWidth || window.innerWidth;
+      let maxCards = Math.floor(containerWidth / this.CARD_WIDTH);
+      if (maxCards < 1) {maxCards = 1;}
 
-    for (let cards = maxCards; cards > 0; cards--) {
-      const gap = cards > 1
-        ? (containerWidth - cards * this.CARD_WIDTH) / (cards - 1)
-        : 0;
-      if (gap >= this.MIN_GAP && gap <= this.MAX_GAP) {
-        this.slidesToShow = cards;
-        this.gap = Math.round(gap);
-        return;
+      for (let cards = maxCards; cards > 0; cards--) {
+          const gap = cards > 1
+              ? (containerWidth - cards * this.CARD_WIDTH) / (cards - 1)
+              : 0;
+          if (gap >= this.MIN_GAP && gap <= this.MAX_GAP) {
+              this.slidesToShow = cards;
+              this.gap = Math.round(gap);
+
+              return;
+          }
       }
-    }
-    this.slidesToShow = 1;
-    this.gap = this.MIN_GAP;
+      this.slidesToShow = 1;
+      this.gap = this.MIN_GAP;
   }
 
 
@@ -66,18 +67,18 @@ export class EventCardBlockComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.updateLayout();
-    window.addEventListener('resize', this.onResize);
+      this.updateLayout();
+      window.addEventListener('resize', this.onResize);
   }
 
   ngOnDestroy(): void {
-    window.removeEventListener('resize', this.onResize);
+      window.removeEventListener('resize', this.onResize);
   }
 
   // Оборачиваем updateLayout для корректного удаления обработчика
   onResize = () => {
-    this.updateLayout();
-    this.cdr.detectChanges(); // Явно запускаем детект изменений
+      this.updateLayout();
+      this.cdr.detectChanges(); // Явно запускаем детект изменений
   };
 }
 

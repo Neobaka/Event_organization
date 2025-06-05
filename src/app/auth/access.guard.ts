@@ -3,15 +3,16 @@ import { CanActivateFn, Router } from '@angular/router';
 import { Auth2Service } from './services/auth2.service';
 
 export const authGuard: CanActivateFn = () => {
-  const authService = inject(Auth2Service);
-  const router = inject(Router);
+    const authService = inject(Auth2Service);
+    const router = inject(Router);
 
-  if (authService.isAuth) {
-    return true;
-  } else {
+    if (authService.isAuth) {
+        return true;
+    } else {
 
-    // Передаем маркер в query params
-    router.navigate([''], { queryParams: { showLoginModal: 'true' } });
-    return false;
-  }
+        // Передаем маркер в query params
+        router.navigate([''], { queryParams: { showLoginModal: 'true' } });
+
+        return false;
+    }
 };

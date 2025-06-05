@@ -69,12 +69,12 @@ export class EventPageComponent implements OnInit, OnDestroy {
                     takeUntilDestroyed(this.destroyRef)
                 )
                 .subscribe({
-                  next: (blob) => {
-                      const url = URL.createObjectURL(blob);
-                      this.imageUrl = this.sanitizer.bypassSecurityTrustUrl(url);
-                  },
-                  error: () => this.imageUrl = undefined
-            });
+                    next: (blob) => {
+                        const url = URL.createObjectURL(blob);
+                        this.imageUrl = this.sanitizer.bypassSecurityTrustUrl(url);
+                    },
+                    error: () => this.imageUrl = undefined
+                });
         }
     }
 

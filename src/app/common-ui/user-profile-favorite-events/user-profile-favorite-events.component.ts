@@ -1,9 +1,9 @@
-import { Component, inject, Input, SimpleChanges, OnInit, OnChanges, input, InputSignal } from '@angular/core';
+import { Component, inject, Input, input, InputSignal } from '@angular/core';
 import { EventCardComponent } from '../event-card/event-card.component';
 import { Auth2Service, UserDetails } from '../../auth/services/auth2.service';
 import { EventService } from '../../events_data/event.service';
-import { CommonModule, NgForOf, NgIf } from '@angular/common';
-import { RouterLink, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { EventModel } from '../../events_data/event-model';
 import {
     BehaviorSubject,
@@ -14,7 +14,6 @@ import {
     Observable,
     of,
     startWith,
-    Subject,
     switchMap
 } from 'rxjs';
 import { toObservable } from '@angular/core/rxjs-interop';
@@ -34,6 +33,9 @@ export class UserProfileFavoriteEventsComponent {
     protected readonly favoriteEvents$: Observable<EventModel[]>;
     protected readonly refreshSubj$: BehaviorSubject<void> = new BehaviorSubject<void>(void 0);
 
+    /**
+     *
+     */
     @Input()
     public set alternative(value: string): void {
         this.searchQuery$.next(value);
@@ -76,6 +78,9 @@ export class UserProfileFavoriteEventsComponent {
             );
     }
 
+    /**
+     *
+     */
     protected updateList(): void {
         this.refreshSubj$.next();
     }
