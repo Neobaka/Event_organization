@@ -11,6 +11,7 @@ import { ImageService } from '../../images_data/image.service';
 import { combineLatest, Subject, Subscription, take, takeUntil, Observable } from 'rxjs';
 import { Auth2Service, UserDetails } from '../../auth/services/auth2.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import {UserDetails} from '../../auth/models/user-details';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,

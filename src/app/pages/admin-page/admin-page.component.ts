@@ -5,6 +5,7 @@ import { HeaderComponent } from '../../common-ui/header/header.component';
 import { MatIcon } from '@angular/material/icon';
 import { NgClass, NgForOf, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import {UserDetails} from '../../auth/models/user-details';
 
 interface UpdateUserData {
   DisplayName: string;

@@ -1,87 +1,90 @@
-import { Component, inject, Input, input, InputSignal } from '@angular/core';
-import { EventCardComponent } from '../event-card/event-card.component';
-import { Auth2Service, UserDetails } from '../../auth/services/auth2.service';
-import { EventService } from '../../events_data/event.service';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { EventModel } from '../../events_data/event-model';
+import {Component, computed, effect, inject, Input, signal} from '@angular/core';
+import {EventCardComponent} from '../event-card/event-card.component';
+import {Auth2Service} from '../../auth/services/auth2.service';
+import {EventService} from '../../events_data/event.service';
+import {CommonModule} from '@angular/common';
+import {RouterModule} from '@angular/router';
+import {EventModel} from '../../events_data/event-model';
 import {
-    BehaviorSubject,
-    combineLatest,
-    filter,
-    forkJoin,
-    map,
-    Observable,
-    of,
-    startWith,
-    switchMap
+  BehaviorSubject,
+  forkJoin,
+  tap
 } from 'rxjs';
-import { toObservable } from '@angular/core/rxjs-interop';
 
 @Component({
-    selector: 'app-user-profile-favorite-events',
-    imports: [
-        CommonModule,
-        EventCardComponent,
-        RouterModule,
-    ],
-    templateUrl: './user-profile-favorite-events.component.html',
-    styleUrl: './user-profile-favorite-events.component.scss'
+  selector: 'app-user-profile-favorite-events',
+  imports: [
+    CommonModule,
+    EventCardComponent,
+    RouterModule,
+  ],
+  templateUrl: './user-profile-favorite-events.component.html',
+  styleUrl: './user-profile-favorite-events.component.scss'
 })
 export class UserProfileFavoriteEventsComponent {
 
-    protected readonly favoriteEvents$: Observable<EventModel[]>;
-    protected readonly refreshSubj$: BehaviorSubject<void> = new BehaviorSubject<void>(void 0);
+  private _searchQuery = signal<string>('');
+  @Input()
+  set searchQuery(value: string) {
+    this._searchQuery.set(value?.toLowerCase() ?? '');
+  }
 
-    /**
-     *
-     */
-    @Input()
-    public set alternative(value: string): void {
-        this.searchQuery$.next(value);
-    }
+  private authService = inject(Auth2Service);
+  private eventService = inject(EventService);
+  private refreshSubj$ = new BehaviorSubject<void>(void 0);
 
-    public searchQuery: InputSignal<string | undefined> = input<string>();
+  filteredEvents = computed(() => {
+    return this.allEvents().filter(e =>
+      e.eventName.toLowerCase().includes(this._searchQuery())
+    );
+  });
 
-    filteredEvents: EventModel[] = [];
-    isLoading = true;
+  isLoading = signal(true);
+  allEvents = signal<EventModel[]>([]);
 
-    private authService = inject(Auth2Service);
-    private eventService = inject(EventService);
+  constructor() {
+    // Реактивная загрузка данных
+    effect(() => {
+      this.isLoading.set(true);
+      this.authService.userData$.pipe(
+        tap(user => {
+          if (!user) return;
 
-    constructor() {
-        this.favoriteEvents$ = combineLatest([
-            toObservable(this.searchQuery).pipe(startWith('')),
-            this.refreshSubj$,
-        ])
-            .pipe(
-                switchMap(([searchQuery, refresh]: [string | undefined, void]) => {
-                    return combineLatest([
-                        of(searchQuery || ''),
-                        this.authService.userData$.pipe(filter((user: UserDetails | null) => !!user))
-                    ]);
-                }),
-                switchMap(([searchQuery, user]: [string, UserDetails]) => {
-                    return forkJoin([searchQuery, forkJoin(
-                        user.favoriteEvents.map((id: number) => this.eventService.getEventById(id))
-                    )]);
-                }),
-                map(([searchQuery, events]: [string, EventModel[]]) => {
-                    if (!searchQuery) {
-                        return events;
-                    }
+          forkJoin(
+            user.favoriteEvents.map(id =>
+              this.eventService.getEventById(id)
+            )
+          ).subscribe(events => {
+            this.allEvents.set(events);
+            this.isLoading.set(false);
+          });
+        })
+      ).subscribe();
+    });
 
-                    return events.filter((e: EventModel) =>
-                        e.eventName.toLowerCase().includes(searchQuery)
-                    );
-                })
-            );
-    }
+    // Обновление при ручном refresh
+    effect(() => {
+      this.refreshSubj$.subscribe(() => {
+        this.authService.userData$.pipe(
+          tap(user => {
+            if (!user) return;
+            this.isLoading.set(true);
 
-    /**
-     *
-     */
-    protected updateList(): void {
-        this.refreshSubj$.next();
-    }
+            forkJoin(
+              user.favoriteEvents.map(id =>
+                this.eventService.getEventById(id)
+              )
+            ).subscribe(events => {
+              this.allEvents.set(events);
+              this.isLoading.set(false);
+            });
+          })
+        ).subscribe();
+      });
+    });
+  }
+
+  protected updateList(): void {
+    this.refreshSubj$.next();
+  }
 }

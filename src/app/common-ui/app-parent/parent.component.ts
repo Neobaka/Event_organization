@@ -3,12 +3,13 @@ import { RouterModule } from '@angular/router';
 import { RegistrationModalComponent } from '../registration-modal/registration-modal.component';
 import { LoginModalComponent } from '../login-modal/login-modal.component';
 import { Observable } from 'rxjs';
-import { Auth2Service, UserDetails } from '../../auth/services/auth2.service';
+import { Auth2Service} from '../../auth/services/auth2.service';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { Subject, takeUntil } from 'rxjs';
 import { MatIcon } from '@angular/material/icon';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import {UserDetails} from '../../auth/models/user-details';
 
 @Component({
     selector: 'app-parent',
@@ -55,7 +56,6 @@ export class ParentComponent implements OnInit, OnDestroy {
             .pipe(takeUntil(this.destroy$))
             .subscribe(userData => {
                 this.currentUser = userData;
-                console.log('Current user data in header:', userData);
             });
     }
 
@@ -85,7 +85,6 @@ export class ParentComponent implements OnInit, OnDestroy {
      */
     navigateToAdminPanel(): void {
         this.router.navigate(['/admin-panel']);
-        console.log('Переход в админ панель');
     }
 
     /**
@@ -93,7 +92,6 @@ export class ParentComponent implements OnInit, OnDestroy {
      */
     navigateToCreateEvent(): void {
         this.router.navigate(['/create-event']);
-        console.log('Переход к созданию мероприятия');
     }
 
     /**
@@ -101,7 +99,6 @@ export class ParentComponent implements OnInit, OnDestroy {
      */
     navigateToMyEvents(): void {
         this.router.navigate(['/my-events']);
-        console.log('Переход на страницу моих мероприятий');
     }
 
     /**
