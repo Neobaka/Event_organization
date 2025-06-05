@@ -7,24 +7,24 @@ import { routes } from './app.routes';
 import { environment } from '../environments/environment';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { jwtInterceptor } from './auth/jwt.interceptor';
-import {errorInterceptor} from './auth/error.interceptor';
-import {provideNgxSkeletonLoader} from 'ngx-skeleton-loader';
+import { errorInterceptor } from './auth/error.interceptor';
+import { provideNgxSkeletonLoader } from 'ngx-skeleton-loader';
 
 export const appConfig: ApplicationConfig = {
-  providers: [
-    provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes),
-    importProvidersFrom(
-      BrowserModule,
-      AngularFireModule.initializeApp(environment.firebase),
-      AngularFireAuthModule
-    ),
-    provideHttpClient(
-      withInterceptors([
-        jwtInterceptor,
-        errorInterceptor,
-      ])
-    ),
-    provideNgxSkeletonLoader()
-  ]
+    providers: [
+        provideZoneChangeDetection({ eventCoalescing: true }),
+        provideRouter(routes),
+        importProvidersFrom(
+            BrowserModule,
+            AngularFireModule.initializeApp(environment.firebase),
+            AngularFireAuthModule
+        ),
+        provideHttpClient(
+            withInterceptors([
+                jwtInterceptor,
+                errorInterceptor,
+            ])
+        ),
+        provideNgxSkeletonLoader()
+    ]
 };

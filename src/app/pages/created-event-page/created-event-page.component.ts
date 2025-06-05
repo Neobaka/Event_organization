@@ -13,262 +13,325 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-my-events-page',
-  imports: [
-    HeaderComponent,
-    NgForOf,
-    NgIf,
-    MatIconModule,
-    FormsModule,
-    SlicePipe,
-    NgClass,
-  ],
-  templateUrl: './created-event-page.component.html',
-  styleUrl: './created-event-page.component.scss'
+    selector: 'app-my-events-page',
+    imports: [
+        HeaderComponent,
+        NgForOf,
+        NgIf,
+        MatIconModule,
+        FormsModule,
+        SlicePipe,
+        NgClass,
+    ],
+    templateUrl: './created-event-page.component.html',
+    styleUrl: './created-event-page.component.scss'
 })
 export class CreatedEventPageComponent implements OnInit, OnDestroy {
-  private destroy$ = new Subject<void>();
+    private destroy$ = new Subject<void>();
 
-  allEvents: EventModel[] = [];
-  filteredEvents: EventModel[] = [];
-  upcomingEvents: EventModel[] = [];
-  pastEvents: EventModel[] = [];
+    allEvents: EventModel[] = [];
+    filteredEvents: EventModel[] = [];
+    upcomingEvents: EventModel[] = [];
+    pastEvents: EventModel[] = [];
 
-  page = 0;
-  size = 100;
+    page = 0;
+    size = 100;
 
-  selectedFilter: 'all' | 'upcoming' | 'past' = 'all';
-  searchQuery: string = '';
-  isLoading: boolean = false;
+    selectedFilter: 'all' | 'upcoming' | 'past' = 'all';
+    searchQuery = '';
+    isLoading = false;
 
-  // Модальное окно удаления
-  showDeleteModal: boolean = false;
-  eventToDelete: EventModel | null = null;
+    // Модальное окно удаления
+    showDeleteModal = false;
+    eventToDelete: EventModel | null = null;
 
-  categoryOptions = CATEGORY;
-  genreOptions = GENRE;
-  currentUserId: number = 0;
+    categoryOptions = CATEGORY;
+    genreOptions = GENRE;
+    currentUserId = 0;
 
-  constructor(
+    constructor(
     private eventService: EventService,
     private auth2Service: Auth2Service,
     private router: Router
-  ) { }
+    ) { }
 
-  ngOnInit() {
-    this.loadMyEvents();
-  }
+    ngOnInit() {
+        this.loadMyEvents();
+    }
 
-  ngOnDestroy() {
-    this.destroy$.next();
-    this.destroy$.complete();
-  }
+    ngOnDestroy() {
+        this.destroy$.next();
+        this.destroy$.complete();
+    }
 
-  loadCurrentUser() {
-    this.auth2Service.getUserProfileFromApi()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe({
-        next: (profile) => {
-          this.currentUserId = profile.id;
-          this.loadMyEvents();
-        },
-        error: (err) => {
-          console.error('Ошибка получения профиля пользователя', err);
+    /**
+     *
+     */
+    loadCurrentUser() {
+        this.auth2Service.getUserProfileFromApi()
+            .pipe(takeUntil(this.destroy$))
+            .subscribe({
+                next: (profile) => {
+                    this.currentUserId = profile.id;
+                    this.loadMyEvents();
+                },
+                error: (err) => {
+                    console.error('Ошибка получения профиля пользователя', err);
+                }
+            });
+    }
+
+    /**
+     *
+     */
+    loadMyEvents() {
+        this.isLoading = true;
+
+        const user = this.auth2Service.currentUser;
+        if (user && user.role === 'ROLE_ADMIN') {
+            // Админ — получаем все мероприятия
+            this.eventService.getEvents(this.page, this.size)
+                .pipe(takeUntil(this.destroy$))
+                .subscribe({
+                    next: (events: EventModel[]) => {
+                        this.allEvents = events;
+                        this.categorizeEvents();
+                        this.applyFilters();
+                        this.isLoading = false;
+                    },
+                    error: (err: any) => {
+                        this.isLoading = false;
+                    }
+                });
+        } else {
+            // Креатор — только свои мероприятия
+            this.eventService.getEventsByCreator()
+                .pipe(takeUntil(this.destroy$))
+                .subscribe({
+                    next: (events: EventModel[]) => {
+                        this.allEvents = events;
+                        this.categorizeEvents();
+                        this.applyFilters();
+                        this.isLoading = false;
+                    },
+                    error: (err: any) => {
+                        this.isLoading = false;
+                    }
+                });
         }
-      });
-  }
-
-  loadMyEvents() {
-    this.isLoading = true;
-
-    const user = this.auth2Service.currentUser;
-    if (user && user.role === 'ROLE_ADMIN') {
-      // Админ — получаем все мероприятия
-      this.eventService.getEvents(this.page, this.size)
-        .pipe(takeUntil(this.destroy$))
-        .subscribe({
-          next: (events: EventModel[]) => {
-            this.allEvents = events;
-            this.categorizeEvents();
-            this.applyFilters();
-            this.isLoading = false;
-          },
-          error: (err: any) => {
-            this.isLoading = false;
-          }
-        });
-    } else {
-      // Креатор — только свои мероприятия
-      this.eventService.getEventsByCreator()
-        .pipe(takeUntil(this.destroy$))
-        .subscribe({
-          next: (events: EventModel[]) => {
-            this.allEvents = events;
-            this.categorizeEvents();
-            this.applyFilters();
-            this.isLoading = false;
-          },
-          error: (err: any) => {
-            this.isLoading = false;
-          }
-        });
-    }
-  }
-
-  categorizeEvents() {
-    const now = new Date();
-
-    this.upcomingEvents = this.allEvents.filter(event =>
-      new Date(event.dateStart) > now
-    );
-
-    this.pastEvents = this.allEvents.filter(event =>
-      new Date(event.dateEnd) < now
-    );
-  }
-
-  setFilter(filter: 'all' | 'upcoming' | 'past') {
-    this.selectedFilter = filter;
-    this.applyFilters();
-  }
-
-  onSearchChange() {
-    this.applyFilters();
-  }
-
-  applyFilters() {
-    let events: EventModel[] = [];
-
-    // Фильтрация по типу
-    switch (this.selectedFilter) {
-      case 'all':
-        events = [...this.allEvents];
-        break;
-      case 'upcoming':
-        events = [...this.upcomingEvents];
-        break;
-      case 'past':
-        events = [...this.pastEvents];
-        break;
     }
 
-    // Поискфильтр
-    if (this.searchQuery.trim()) {
-      const query = this.searchQuery.toLowerCase().trim();
-      events = events.filter(event =>
-        event.eventName.toLowerCase().includes(query) ||
+    /**
+     *
+     */
+    categorizeEvents() {
+        const now = new Date();
+
+        this.upcomingEvents = this.allEvents.filter(event =>
+            new Date(event.dateStart) > now
+        );
+
+        this.pastEvents = this.allEvents.filter(event =>
+            new Date(event.dateEnd) < now
+        );
+    }
+
+    /**
+     *
+     */
+    setFilter(filter: 'all' | 'upcoming' | 'past') {
+        this.selectedFilter = filter;
+        this.applyFilters();
+    }
+
+    /**
+     *
+     */
+    onSearchChange() {
+        this.applyFilters();
+    }
+
+    /**
+     *
+     */
+    applyFilters() {
+        let events: EventModel[] = [];
+
+        // Фильтрация по типу
+        switch (this.selectedFilter) {
+            case 'all':
+                events = [...this.allEvents];
+                break;
+            case 'upcoming':
+                events = [...this.upcomingEvents];
+                break;
+            case 'past':
+                events = [...this.pastEvents];
+                break;
+        }
+
+        // Поискфильтр
+        if (this.searchQuery.trim()) {
+            const query = this.searchQuery.toLowerCase().trim();
+            events = events.filter(event =>
+                event.eventName.toLowerCase().includes(query) ||
         event.eventDescription.toLowerCase().includes(query) ||
         event.place.toLowerCase().includes(query)
-      );
-    }
-
-    this.filteredEvents = events;
-  }
-
-  getEventImageUrl(fileName: string): string {
-    if (!fileName || fileName === 'default.jpg') {
-      return '/assets/images/default-event.jpg';
-    }
-    return `http://188.226.91.215:43546/api/v1/images/${fileName}`;
-  }
-
-  onImageError(event: any) {
-    event.target.src = '/assets/images/default-event.jpg';
-  }
-
-  getEventStatus(event: EventModel): string {
-    const now = new Date();
-    const startDate = new Date(event.dateStart);
-    const endDate = new Date(event.dateEnd);
-
-    if (now < startDate) return 'upcoming';
-    if (now > endDate) return 'past';
-    return 'active';
-  }
-
-  getEventStatusText(event: EventModel): string {
-    const status = this.getEventStatus(event);
-    switch (status) {
-      case 'upcoming': return 'Предстоящее';
-      case 'active': return 'Активное';
-      case 'past': return 'Завершено';
-      default: return '';
-    }
-  }
-
-  formatDate(dateString: string): string {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('ru-RU', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric'
-    });
-  }
-
-  deleteEvent() {
-    if (!this.eventToDelete) return;
-    this.isLoading = true;
-    this.eventService.deleteEventById(this.eventToDelete.id)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe({
-        next: () => {
-          // Удаляем из локального массива
-          this.allEvents = this.allEvents.filter(e => e.id !== this.eventToDelete!.id);
-          this.categorizeEvents();
-          this.applyFilters();
-          this.cancelDelete();
-          this.isLoading = false;
-        },
-        error: (err: any) => {
-          console.error('Ошибка удаления мероприятия:', err);
-          this.isLoading = false;
+            );
         }
-      });
-  }
 
-  getCategoryName(categoryKey: string): string {
-    return this.categoryOptions[categoryKey] || categoryKey;
-  }
-
-  getGenreName(genreKey: string): string {
-    return this.genreOptions[genreKey] || genreKey;
-  }
-
-  viewEvent(eventId: number) {
-    this.router.navigate(['/event', eventId]);
-  }
-
-  confirmDelete(event: EventModel) {
-    this.eventToDelete = event;
-    this.showDeleteModal = true;
-  }
-
-  cancelDelete() {
-    this.showDeleteModal = false;
-    this.eventToDelete = null;
-  }
-
-  createNewEvent() {
-    this.router.navigate(['/create-event']);
-  }
-
-  getEmptyStateTitle(): string {
-    switch (this.selectedFilter) {
-      case 'upcoming': return 'Нет предстоящих мероприятий';
-      case 'past': return 'Нет завершенных мероприятий';
-      default: return 'У вас пока нет мероприятий';
-    }
-  }
-
-  getEmptyStateMessage(): string {
-    if (this.searchQuery.trim()) {
-      return `По запросу "${this.searchQuery}" ничего не найдено`;
+        this.filteredEvents = events;
     }
 
-    switch (this.selectedFilter) {
-      case 'upcoming': return 'Создайте новое мероприятие, чтобы оно появилось в этом разделе';
-      case 'past': return 'Здесь будут отображаться завершенные мероприятия';
-      default: return 'Создайте свое первое мероприятие, чтобы начать!';
+    /**
+     *
+     */
+    getEventImageUrl(fileName: string): string {
+        if (!fileName || fileName === 'default.jpg') {
+            return '/assets/images/default-event.jpg';
+        }
+
+        return `http://188.226.91.215:43546/api/v1/images/${fileName}`;
     }
-  }
+
+    /**
+     *
+     */
+    onImageError(event: any) {
+        event.target.src = '/assets/images/default-event.jpg';
+    }
+
+    /**
+     *
+     */
+    getEventStatus(event: EventModel): string {
+        const now = new Date();
+        const startDate = new Date(event.dateStart);
+        const endDate = new Date(event.dateEnd);
+
+        if (now < startDate) {return 'upcoming';}
+        if (now > endDate) {return 'past';}
+
+        return 'active';
+    }
+
+    /**
+     *
+     */
+    getEventStatusText(event: EventModel): string {
+        const status = this.getEventStatus(event);
+        switch (status) {
+            case 'upcoming': return 'Предстоящее';
+            case 'active': return 'Активное';
+            case 'past': return 'Завершено';
+            default: return '';
+        }
+    }
+
+    /**
+     *
+     */
+    formatDate(dateString: string): string {
+        const date = new Date(dateString);
+
+        return date.toLocaleDateString('ru-RU', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric'
+        });
+    }
+
+    /**
+     *
+     */
+    deleteEvent() {
+        if (!this.eventToDelete) {return;}
+        this.isLoading = true;
+        this.eventService.deleteEventById(this.eventToDelete.id)
+            .pipe(takeUntil(this.destroy$))
+            .subscribe({
+                next: () => {
+                    // Удаляем из локального массива
+                    this.allEvents = this.allEvents.filter(e => e.id !== this.eventToDelete!.id);
+                    this.categorizeEvents();
+                    this.applyFilters();
+                    this.cancelDelete();
+                    this.isLoading = false;
+                },
+                error: (err: any) => {
+                    console.error('Ошибка удаления мероприятия:', err);
+                    this.isLoading = false;
+                }
+            });
+    }
+
+    /**
+     *
+     */
+    getCategoryName(categoryKey: string): string {
+        return this.categoryOptions[categoryKey] || categoryKey;
+    }
+
+    /**
+     *
+     */
+    getGenreName(genreKey: string): string {
+        return this.genreOptions[genreKey] || genreKey;
+    }
+
+    /**
+     *
+     */
+    viewEvent(eventId: number) {
+        this.router.navigate(['/event', eventId]);
+    }
+
+    /**
+     *
+     */
+    confirmDelete(event: EventModel) {
+        this.eventToDelete = event;
+        this.showDeleteModal = true;
+    }
+
+    /**
+     *
+     */
+    cancelDelete() {
+        this.showDeleteModal = false;
+        this.eventToDelete = null;
+    }
+
+    /**
+     *
+     */
+    createNewEvent() {
+        this.router.navigate(['/create-event']);
+    }
+
+    /**
+     *
+     */
+    getEmptyStateTitle(): string {
+        switch (this.selectedFilter) {
+            case 'upcoming': return 'Нет предстоящих мероприятий';
+            case 'past': return 'Нет завершенных мероприятий';
+            default: return 'У вас пока нет мероприятий';
+        }
+    }
+
+    /**
+     *
+     */
+    getEmptyStateMessage(): string {
+        if (this.searchQuery.trim()) {
+            return `По запросу "${this.searchQuery}" ничего не найдено`;
+        }
+
+        switch (this.selectedFilter) {
+            case 'upcoming': return 'Создайте новое мероприятие, чтобы оно появилось в этом разделе';
+            case 'past': return 'Здесь будут отображаться завершенные мероприятия';
+            default: return 'Создайте свое первое мероприятие, чтобы начать!';
+        }
+    }
 }

@@ -11,104 +11,134 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-parent',
-  standalone: true,
-  imports: [RegistrationModalComponent, LoginModalComponent, AsyncPipe, CommonModule, MatIcon, RouterModule],
-  templateUrl: './parent.component.html',
-  styleUrls: ['./parent.component.scss'],
+    selector: 'app-parent',
+    standalone: true,
+    imports: [RegistrationModalComponent, LoginModalComponent, AsyncPipe, CommonModule, MatIcon, RouterModule],
+    templateUrl: './parent.component.html',
+    styleUrls: ['./parent.component.scss'],
 })
 export class ParentComponent implements OnInit, OnDestroy {
-  private destroy$ = new Subject<void>();
+    private destroy$ = new Subject<void>();
 
 
-  isLoginModalOpen = false;
-  isRegistrationModalOpen = false;
-  isLoggedIn$!: Observable<boolean>;
-  currentUser: UserDetails | null = null;
+    isLoginModalOpen = false;
+    isRegistrationModalOpen = false;
+    isLoggedIn$!: Observable<boolean>;
+    currentUser: UserDetails | null = null;
 
 
-  constructor(
+    constructor(
     private authService: Auth2Service,
     private router: Router,
     private route: ActivatedRoute
 
-  ) {
+    ) {
     // Получаем реактивный статус авторизации
-    this.isLoggedIn$ = this.authService.isLoggedIn();
+        this.isLoggedIn$ = this.authService.isLoggedIn();
 
-    this.route.queryParams.subscribe(params => {
-    if (params['showLoginModal'] === 'true') {
-      this.openLoginModal();
+        this.route.queryParams.subscribe(params => {
+            if (params['showLoginModal'] === 'true') {
+                this.openLoginModal();
 
-      this.router.navigate([], {
-        relativeTo: this.route,
-        queryParams: {},
-        replaceUrl: true
-      });
+                this.router.navigate([], {
+                    relativeTo: this.route,
+                    queryParams: {},
+                    replaceUrl: true
+                });
+            }
+        });
     }
-  });
-  }
 
-  ngOnInit(): void {
+    ngOnInit(): void {
     // Подписка на данные пользователя для получения роли
-    this.authService.userData$
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(userData => {
-        this.currentUser = userData;
-        console.log('Current user data in header:', userData);
-      });
-  }
+        this.authService.userData$
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(userData => {
+                this.currentUser = userData;
+                console.log('Current user data in header:', userData);
+            });
+    }
 
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
-  }
+    ngOnDestroy(): void {
+        this.destroy$.next();
+        this.destroy$.complete();
+    }
 
-  // Проверка ролей пользователя
-  isAdmin(): boolean {
-    return this.authService.currentUser?.role === 'ROLE_ADMIN';
-  }
+    // Проверка ролей пользователя
+    /**
+     *
+     */
+    isAdmin(): boolean {
+        return this.authService.currentUser?.role === 'ROLE_ADMIN';
+    }
 
-  isEventCreator(): boolean {
-    return this.authService.currentUser?.role === 'ROLE_CREATOR';
-  }
+    /**
+     *
+     */
+    isEventCreator(): boolean {
+        return this.authService.currentUser?.role === 'ROLE_CREATOR';
+    }
 
-  // Навигация для кнопок с ролями
-  navigateToAdminPanel(): void {
-    this.router.navigate(['/admin-panel']);
-    console.log('Переход в админ панель');
-  }
+    // Навигация для кнопок с ролями
+    /**
+     *
+     */
+    navigateToAdminPanel(): void {
+        this.router.navigate(['/admin-panel']);
+        console.log('Переход в админ панель');
+    }
 
-  navigateToCreateEvent(): void {
-    this.router.navigate(['/create-event']);
-    console.log('Переход к созданию мероприятия');
-  }
+    /**
+     *
+     */
+    navigateToCreateEvent(): void {
+        this.router.navigate(['/create-event']);
+        console.log('Переход к созданию мероприятия');
+    }
 
-  navigateToMyEvents(): void {
-    this.router.navigate(['/my-events']);
-    console.log('Переход на страницу моих мероприятий')
-  }
+    /**
+     *
+     */
+    navigateToMyEvents(): void {
+        this.router.navigate(['/my-events']);
+        console.log('Переход на страницу моих мероприятий');
+    }
 
-  goToProfile() {
-    this.router.navigate(['/profile']);
-  }
+    /**
+     *
+     */
+    goToProfile() {
+        this.router.navigate(['/profile']);
+    }
 
-  logout(): void {
-    this.authService.logout();
-  }
+    /**
+     *
+     */
+    logout(): void {
+        this.authService.logout();
+    }
 
-  openLoginModal(): void {
-    this.isLoginModalOpen = true;
-    this.isRegistrationModalOpen = false;
-  }
+    /**
+     *
+     */
+    openLoginModal(): void {
+        this.isLoginModalOpen = true;
+        this.isRegistrationModalOpen = false;
+    }
 
-  openRegistrationModal(): void {
-    this.isRegistrationModalOpen = true;
-    this.isLoginModalOpen = false;
-  }
+    /**
+     *
+     */
+    openRegistrationModal(): void {
+        this.isRegistrationModalOpen = true;
+        this.isLoginModalOpen = false;
+    }
 
-  closeModals(): void {
-    this.isLoginModalOpen = false;
-    this.isRegistrationModalOpen = false;
-  }
+    /**
+     *
+     */
+    closeModals(): void {
+        this.isLoginModalOpen = false;
+        this.isRegistrationModalOpen = false;
+    }
 }

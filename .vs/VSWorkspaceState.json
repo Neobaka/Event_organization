@@ -3,14 +3,14 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\auth",
     "\\src\\app\\common-ui",
     "\\src\\app\\common-ui\\event-card",
     "\\src\\app\\pages",
-    "\\src\\app\\pages\\create-event-page",
     "\\src\\app\\pages\\created-event-page",
-    "\\src\\app\\pages\\event-page"
+    "\\src\\app\\pages\\event-page",
+    "\\src\\app\\pages\\main-page",
+    "\\src\\app\\pages\\user-profile-page"
   ],
-  "SelectedNode": "\\src\\app\\auth\\auth2.service.ts",
+  "SelectedNode": "\\src\\app\\pages\\event-page\\event-map.comonent.ts",
   "PreviewInSolutionExplorer": false
 }
