@@ -8,22 +8,11 @@ import { LoginPayload } from '../models/login-payload';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import firebase from 'firebase/compat/app';
 import { TokenService } from './token.service';
+import {UserDetails} from '../models/user-details';
 
 
 //Поскольку используем compat API, везде, где есть ссылака на User, нужно использовать тип из firebase/compat/app
 type User = firebase.User;
-
-export interface UserDetails {
-  id: number;
-  firebaseId: string;
-  email: string;
-  phoneNumber: string;
-  displayName: string;
-  role: string;
-  favoriteEvents: number[];
-  plannedEvents: number[];
-  fileName: string;
-}
 
 @Injectable({
     providedIn: 'root'
@@ -88,7 +77,7 @@ export class Auth2Service {
         return this.http.post<UserDetails>(
             `${this.apiUrl}users/sync`,
             { Token }
-        ).pipe();
+        );
     }
 
     /**

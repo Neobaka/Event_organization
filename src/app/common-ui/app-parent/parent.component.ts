@@ -3,12 +3,13 @@ import { RouterModule } from '@angular/router';
 import { RegistrationModalComponent } from '../registration-modal/registration-modal.component';
 import { LoginModalComponent } from '../login-modal/login-modal.component';
 import { Observable } from 'rxjs';
-import { Auth2Service, UserDetails } from '../../auth/services/auth2.service';
+import { Auth2Service} from '../../auth/services/auth2.service';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { Subject, takeUntil } from 'rxjs';
 import { MatIcon } from '@angular/material/icon';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import {UserDetails} from '../../auth/models/user-details';
 
 @Component({
     selector: 'app-parent',

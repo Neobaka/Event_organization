@@ -1,10 +1,10 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { UserDetails } from '../../auth/services/auth2.service';
 import { AdminService } from '../../admin/admin.service';
 import { HeaderComponent } from '../../common-ui/header/header.component';
 import { MatIcon } from '@angular/material/icon';
 import { NgClass, NgForOf, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import {UserDetails} from '../../auth/models/user-details';
 
 @Component({
     selector: 'app-admin-page',

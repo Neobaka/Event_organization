@@ -1,6 +1,6 @@
 import { Component, inject, Input, input, InputSignal } from '@angular/core';
 import { EventCardComponent } from '../event-card/event-card.component';
-import { Auth2Service, UserDetails } from '../../auth/services/auth2.service';
+import { Auth2Service } from '../../auth/services/auth2.service';
 import { EventService } from '../../events_data/event.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -17,6 +17,7 @@ import {
     switchMap
 } from 'rxjs';
 import { toObservable } from '@angular/core/rxjs-interop';
+import {UserDetails} from '../../auth/models/user-details';
 
 @Component({
     selector: 'app-user-profile-favorite-events',
