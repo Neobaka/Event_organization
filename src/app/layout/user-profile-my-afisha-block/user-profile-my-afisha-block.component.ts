@@ -9,7 +9,6 @@ import {
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
-//это parent
 @Component({
     selector: 'app-user-profile-my-afisha-block',
     imports: [

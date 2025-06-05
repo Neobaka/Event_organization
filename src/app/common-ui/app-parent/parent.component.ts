@@ -56,7 +56,6 @@ export class ParentComponent implements OnInit, OnDestroy {
             .pipe(takeUntil(this.destroy$))
             .subscribe(userData => {
                 this.currentUser = userData;
-                console.log('Current user data in header:', userData);
             });
     }
 
@@ -86,7 +85,6 @@ export class ParentComponent implements OnInit, OnDestroy {
      */
     navigateToAdminPanel(): void {
         this.router.navigate(['/admin-panel']);
-        console.log('Переход в админ панель');
     }
 
     /**
@@ -94,7 +92,6 @@ export class ParentComponent implements OnInit, OnDestroy {
      */
     navigateToCreateEvent(): void {
         this.router.navigate(['/create-event']);
-        console.log('Переход к созданию мероприятия');
     }
 
     /**
@@ -102,7 +99,6 @@ export class ParentComponent implements OnInit, OnDestroy {
      */
     navigateToMyEvents(): void {
         this.router.navigate(['/my-events']);
-        console.log('Переход на страницу моих мероприятий');
     }
 
     /**

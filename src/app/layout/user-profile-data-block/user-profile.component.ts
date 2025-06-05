@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Auth2Service, UserDetails } from '../../auth/services/auth2.service';
+import { Auth2Service } from '../../auth/services/auth2.service';
 import { Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import {UserDetails} from '../../auth/models/user-details';
 
 @Component({
     selector: 'app-user-profile',

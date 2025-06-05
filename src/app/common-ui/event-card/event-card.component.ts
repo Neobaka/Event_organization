@@ -1,7 +1,7 @@
 import { Component, DestroyRef, inject, Input, OnInit } from '@angular/core';
 import { SvgIconComponent } from '../../helpers/svg-icon/svg-icon.component';
 import { MatIcon } from '@angular/material/icon';
-import { DatePipe, NgClass, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { EventModel } from '../../events_data/event-model';
 import { EnumTranslatorPipe } from '../../events_data/enum-translator.pipe';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
@@ -16,10 +16,8 @@ import { Auth2Service } from '../../auth/services/auth2.service';
     imports: [
         SvgIconComponent,
         MatIcon,
-        NgClass,
-        DatePipe,
+        CommonModule,
         EnumTranslatorPipe,
-        NgIf,
     ],
     templateUrl: './event-card.component.html',
     styleUrl: './event-card.component.scss'
