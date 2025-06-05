@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { Component, inject, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { UserProfileMyTicketsComponent } from '../../common-ui/user-profile-my-tickets/user-profile-my-tickets.component';
 import {
     UserProfileFavoriteEventsComponent
@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
-    selector: 'app-user-profile-my-afisha-block',
+    changeDetection: ChangeDetectionStrategy.OnPush,selector: 'app-user-profile-my-afisha-block',
     imports: [
         UserProfileMyTicketsComponent,
         UserProfileFavoriteEventsComponent,
@@ -21,20 +21,20 @@ import { Router } from '@angular/router';
     styleUrl: './user-profile-my-afisha-block.component.scss'
 })
 export class UserProfileMyAfishaBlockComponent implements OnInit {
-    activeComponent = 'user-profile-my-tickets';
-    searchQuery = '';
-  @Input() initialSection = 'user-profile-my-tickets';
+    public activeComponent = 'user-profile-my-tickets';
+    public searchQuery = '';
+  @Input() public initialSection = 'user-profile-my-tickets';
 
   private router = inject(Router);
 
-  ngOnInit() {
+  public ngOnInit(): void {
       this.activeComponent = this.initialSection;
   }
 
   /**
    *
    */
-  showUserPageFilterComponent(componentName: string) {
+  public showUserPageFilterComponent(componentName: string): void {
       this.activeComponent = componentName;
       this.searchQuery = '';
       this.router.navigate([], {
@@ -46,7 +46,7 @@ export class UserProfileMyAfishaBlockComponent implements OnInit {
   /**
    *
    */
-  isActive(componentName: string): boolean {
+  public isActive(componentName: string): boolean {
       return this.activeComponent === componentName;
   }
 }
