@@ -11,15 +11,15 @@
       <input type="text"
              class="search-input"
              placeholder="Поиск по email или имени"
-             [(ngModel)]="searchQuery"
-             (input)="onSearchChange()"
+             [ngModel]="searchQuery()"
+             (ngModelChange)="onSearchChange($event)"
       >
       <mat-icon class="search-icon">search</mat-icon>
     </div>
   </div>
 
   <!-- Индикатор загрузки -->
-  <div class="loading-container" *ngIf="isLoading">
+  <div class="loading-container" *ngIf="isLoading()">
     <div class="loading-spinner">
       <mat-icon class="spin">refresh</mat-icon>
     </div>
@@ -27,8 +27,8 @@
   </div>
 
   <!-- Список пользователей -->
-  <div class="users-container" *ngIf="!isLoading && filteredUsers.length > 0; else noUsers">
-    <div class="user-card" *ngFor="let user of filteredUsers">
+  <div class="users-container" *ngIf="!isLoading() && filteredUsers().length > 0; else noUsers">
+    <div class="user-card" *ngFor="let user of filteredUsers()">
       <div class="user-info">
         <div class="user-header">
           <h3 class="user-name">{{ user.displayName || 'Без имени' }}</h3>
@@ -57,7 +57,7 @@
     </div>
     <button
       class="load-more-btn"
-      *ngIf="!isLoading && hasMoreUsers"
+      *ngIf="!isLoading() && hasMoreUsers()"
       (click)="loadMoreUsers()"
       aria-label="Загрузить еще пользователей">
       <mat-icon>keyboard_arrow_down</mat-icon>
@@ -72,17 +72,17 @@
     </div>
   </ng-template>
 
-  <div class="modal-overlay" *ngIf="showEditModal" (click)="cancelEditUser()">
+  <div class="modal-overlay" *ngIf="showEditModal()" (click)="cancelEditUser()">
     <div class="modal-content" (click)="$event.stopPropagation()">
       <h3>Редактировать пользователя</h3>
       <form (ngSubmit)="saveEditUser()">
         <div class="modal-form-group">
           <label for="editDisplayName">Имя</label>
-          <input id="editDisplayName" type="text" [(ngModel)]="editDisplayName" name="editDisplayName" required>
+          <input id="editDisplayName" type="text" [ngModel]="editDisplayName()" (ngModelChange)="editDisplayName.set($event)" name="editDisplayName" required>
         </div>
         <div class="modal-form-group">
           <label for="editRole">Роль</label>
-          <select id="editRole" [(ngModel)]="editRole" name="editRole" required>
+          <select id="editRole" [ngModel]="editRole()" (ngModelChange)="editRole.set($event)" name="editRole" required>
             <option value="ROLE_USER">Пользователь</option>
             <option value="ROLE_CREATOR">Создатель меро</option>
             <option value="ROLE_ADMIN">Администратор</option>

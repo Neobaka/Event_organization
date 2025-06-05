@@ -7,8 +7,6 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatRadioButton, MatRadioGroup } from '@angular/material/radio';
 import { MatTooltip } from '@angular/material/tooltip';
 
-;
-
 @Component({
     selector: 'app-search-bar',
     imports: [
@@ -40,6 +38,5 @@ export class SearchBarComponent {
      */
     selectSort(val: string) {
         this.selectedSort = val;
-    // Здесь можно вызвать сортировку
     }
 }

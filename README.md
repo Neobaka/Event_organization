@@ -25,20 +25,35 @@ The following technologies were used in the application:
 - Angular >= 19.x
 
 ## Run
-## 1. Install Dependencies
+
+### 1. Download and Install [node.js](https://nodejs.org/en/download)
+
+### 2. Download and Install Angular CLi
+```bash
+npm install -g @angular/cli
+```
+
+### 3. Clone the project
+
+### 4. Install Dependencies
 
 ```bash
 npm install
 ```
 
-## 2. Run
+### 5. Run project
 
-### Development server
+#### Development server
 
 To start a local development server, run:
 
 ```bash
 ng serve
+```
+
+To build:
+```bash
+ng build
 ```
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.

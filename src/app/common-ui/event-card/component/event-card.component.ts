@@ -1,0 +1,154 @@
+import {ChangeDetectorRef, Component, DestroyRef, EventEmitter, inject, Input, OnInit, Output} from '@angular/core';
+import { SvgIconComponent } from '../../../core/images_data/helpers/svg-icon/svg-icon.component';
+import { MatIcon } from '@angular/material/icon';
+import { CommonModule } from '@angular/common';
+import { EventModel } from '../../../core/events_data/interfaces/event-model';
+import { EnumTranslatorPipe } from '../../../core/events_data/helpers/enum-translator.pipe';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { ImageService } from '../../../core/images_data/services/image.service';
+import { Router } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { EventService } from '../../../core/events_data/services/event.service';
+import { Auth2Service } from '../../../core/auth/services/auth2.service';
+
+@Component({
+    selector: 'app-event-card',
+    imports: [
+        SvgIconComponent,
+        MatIcon,
+        CommonModule,
+        EnumTranslatorPipe,
+    ],
+    templateUrl: './event-card.component.html',
+    styleUrl: './event-card.component.scss'
+})
+export class EventCardComponent implements OnInit {
+  @Output() removedFromFavorite = new EventEmitter<EventModel>();
+  @Input() event!: EventModel;
+  imageUrl?: SafeUrl;
+  isLiked = false;
+  isAdded = false;
+
+  private imageService = inject(ImageService);
+  private sanitizer = inject(DomSanitizer);
+  private router = inject(Router);
+  private destroyRef = inject(DestroyRef);
+  private eventService = inject(EventService);
+  private authService = inject(Auth2Service);
+  private cdr = inject(ChangeDetectorRef);
+
+  ngOnInit() {
+      if (this.event?.fileName) {
+          this.imageService.getImage(this.event.fileName)
+              .pipe(takeUntilDestroyed(this.destroyRef))
+              .subscribe({
+                  next: (blob) => {
+                      const objectURL = URL.createObjectURL(blob);
+                      this.imageUrl = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+                      this.cdr.markForCheck();
+                  },
+                  error: () => {
+                      this.imageUrl = undefined;
+                      this.cdr.markForCheck();
+                  }
+              });
+      }
+
+      this.authService.userData$
+          .pipe(takeUntilDestroyed(this.destroyRef))
+          .subscribe(user => {
+              if (user) {
+                  this.isLiked = user.favoriteEvents?.includes(this.event.id) ?? false;
+                  this.isAdded = user.plannedEvents?.includes(this.event.id) ?? false;
+              }
+          });
+  }
+
+  /**
+   *
+   */
+  toggleAdd(event: MouseEvent) {
+      event.stopPropagation();
+      event.preventDefault();
+
+      if (!this.authService.isAuth) {
+          this.router.navigate([], {
+              queryParams: { showLoginModal: 'true' },
+              queryParamsHandling: 'merge'
+          });
+
+          return;
+      }
+
+      if (!this.isAdded) {
+          this.eventService.addEventToPlanned(this.event.id)
+              .pipe(takeUntilDestroyed(this.destroyRef))
+              .subscribe({
+                  next: () => {
+                      this.isAdded = true;
+                      this.authService.updatePlannedEvents(this.event.id, true);
+                  },
+                  error: () => { }
+              });
+      } else {
+          this.eventService.deleteEventFromPlanned({ eventId: this.event.id })
+              .pipe(takeUntilDestroyed(this.destroyRef))
+              .subscribe({
+                  next: () => {
+                      this.isAdded = false;
+                      this.authService.updatePlannedEvents(this.event.id, false);
+                  },
+                  error: () => { }
+              });
+      }
+  }
+
+  /**
+   *
+   */
+  toggleLike(event: MouseEvent) {
+      event.stopPropagation();
+      event.preventDefault();
+
+      if (!this.authService.isAuth) {
+          this.router.navigate([], {
+              queryParams: { showLoginModal: 'true' },
+              queryParamsHandling: 'merge'
+          });
+
+          return;
+      }
+
+      if (!this.isLiked) {
+          this.eventService.addEventToFavorites(this.event.id)
+              .pipe(takeUntilDestroyed(this.destroyRef))
+              .subscribe({
+                  next: () => {
+                      this.isLiked = true;
+                      this.authService.updateFavoriteEvents(this.event.id, true);
+                  },
+                  error: () => { }
+              });
+      } else {
+          this.eventService.deleteEventFromFavorites(this.event.id)
+              .pipe(takeUntilDestroyed(this.destroyRef))
+              .subscribe({
+                  next: () => {
+                      this.isLiked = false;
+                      this.authService.updateFavoriteEvents(this.event.id, false);
+                      this.removedFromFavorite.emit(this.event);
+                  },
+                  error: () => { }
+              });
+      }
+  }
+
+  /**
+   *
+   */
+  openEvent() {
+      if (this.event) {
+          this.router.navigate(['/event', this.event.id]);
+      }
+  }
+}

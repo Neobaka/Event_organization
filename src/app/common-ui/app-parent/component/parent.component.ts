@@ -1,0 +1,126 @@
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { RegistrationModalComponent } from '../../registration-modal/registration-modal.component';
+import { LoginModalComponent } from '../../login-modal/login-modal.component';
+import { Observable } from 'rxjs';
+import { Auth2Service } from '../../../core/auth/services/auth2.service';
+import { AsyncPipe, CommonModule } from '@angular/common';
+import { Subject, takeUntil } from 'rxjs';
+import { MatIcon } from '@angular/material/icon';
+import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { UserDetails } from '../../../core/auth/interfaces/user-details';
+
+@Component({
+    selector: 'app-parent',
+    standalone: true,
+    imports: [RegistrationModalComponent, LoginModalComponent, AsyncPipe, CommonModule, MatIcon, RouterModule],
+    templateUrl: './parent.component.html',
+    styleUrls: ['./parent.component.scss'],
+})
+export class ParentComponent implements OnInit, OnDestroy {
+    private destroy$ = new Subject<void>();
+    userData$!: Observable<UserDetails | null>;
+
+    isLoginModalOpen = false;
+    isRegistrationModalOpen = false;
+    isLoggedIn$!: Observable<boolean>;
+    currentUser: UserDetails | null = null;
+
+
+    constructor(
+    private authService: Auth2Service,
+    private router: Router,
+    private route: ActivatedRoute
+    ) {
+    // Получаем реактивный статус авторизации
+        this.isLoggedIn$ = this.authService.isLoggedIn();
+        this.userData$ = this.authService.userData$;
+
+        this.route.queryParams.subscribe(params => {
+            if (params['showLoginModal'] === 'true') {
+                this.openLoginModal();
+                this.router.navigate([], {
+                    relativeTo: this.route,
+                    queryParams: {},
+                    replaceUrl: true
+                });
+            }
+        });
+    }
+
+
+    ngOnInit(): void {
+    // Подписка на данные пользователя для получения роли
+        this.authService.userData$
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(userData => {
+                this.currentUser = userData;
+            });
+    }
+
+    ngOnDestroy(): void {
+        this.destroy$.next();
+        this.destroy$.complete();
+    }
+
+    // Навигация для кнопок с ролями
+    /**
+   *
+   */
+    navigateToAdminPanel(): void {
+        this.router.navigate(['/admin-panel']);
+    }
+
+    /**
+   *
+   */
+    navigateToCreateEvent(): void {
+        this.router.navigate(['/create-event']);
+    }
+
+    /**
+   *
+   */
+    navigateToMyEvents(): void {
+        this.router.navigate(['/my-events']);
+    }
+
+    /**
+   *
+   */
+    goToProfile() {
+        this.router.navigate(['/profile']);
+    }
+
+    /**
+   *
+   */
+    logout(): void {
+        this.authService.logout();
+    }
+
+    /**
+   *
+   */
+    openLoginModal(): void {
+        this.isLoginModalOpen = true;
+        this.isRegistrationModalOpen = false;
+    }
+
+    /**
+   *
+   */
+    openRegistrationModal(): void {
+        this.isRegistrationModalOpen = true;
+        this.isLoginModalOpen = false;
+    }
+
+    /**
+   *
+   */
+    closeModals(): void {
+        this.isLoginModalOpen = false;
+        this.isRegistrationModalOpen = false;
+    }
+}

@@ -1,0 +1,33 @@
+<div class="user-profile-container">
+  <h2>Профиль пользователя</h2>
+
+  <div class="user-profile-data-block" *ngIf="userData() && !isLoading(); else loadingOrError">
+    <div class="user-profile-data-block-input-divs">
+      <div class="user-profile-data-block-input-div">
+        <label><strong>Ваше Имя:</strong> </label>
+        <input type="text" id="username" [value]="userData()?.displayName || 'Не указано'" readonly>
+      </div>
+      <div class="user-profile-data-block-input-div">
+        <label><strong>Ваш телефон:</strong> </label>
+        <input type="text" id="phone" [value]="userData()?.phoneNumber || 'Не указан'" readonly>
+      </div>
+      <div class="user-profile-data-block-input-div">
+        <label><strong>Ваша почта:</strong> </label>
+        <input type="text" id="email" [value]="userData()?.email || 'Не указана'" readonly>
+      </div>
+      <div class="user-profile-data-block-input-div">
+        <label><strong>Ваш пароль:</strong> </label>
+        <input type="password" id="password" value="********" readonly>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #loadingOrError>
+    <div *ngIf="isLoading()" class="loading-profile">
+      <p>Загрузка данных пользователя...</p>
+    </div>
+    <div *ngIf="error() && !isLoading()" class="error-profile">
+      <p>{{ error() }}</p>
+    </div>
+  </ng-template>
+</div>

@@ -1,29 +1,26 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <app-header></app-header>
 <div class="main-page">
-  <div class="page-container">
+  <div class="page-container" *ngIf="event$ | async as event">
     <div class="hero-container">
       <img class="hero-image"
-           [src]="imageUrl || 'assets/img/event-page.jpg'"
-           [alt]="event?.eventName || 'Изображение мероприятия'">
+           [src]="(imageUrl$ | async) || 'assets/img/event-page.jpg'"
+           [alt]="event.eventName || 'Изображение мероприятия'">
       <div class="hero-content">
-        <h1 class="hero-title">{{ event?.eventName }}</h1>
-        <span>С {{ event?.dateStart }} по {{ event?.dateStart }}</span>
+        <h1 class="hero-title">{{ event.eventName }}</h1>
+        <span>С {{ event.dateStart }} по {{ event.dateEnd }}</span>
       </div>
     </div>
-
     <div class="map-container">
       <div class="map">
-        <!-- Динамическая карта с передачей места проведения -->
-        <app-event-map [place]="event?.place">
-        </app-event-map>
+        <app-event-map [place]="event.place"></app-event-map>
         [Интерактивная карта мероприятия]
       </div>
     </div>
 
     <section class="section1">
       <h2>0 событий</h2>
-      <p class="event-description">{{ event?.eventDescription }}</p>
+      <p class="event-description">{{ event.eventDescription }}</p>
       <a href="#" class="read-more">Читать далее...</a>
     </section>
 
@@ -31,10 +28,10 @@
       <h2>Дата и время</h2>
       <div class="time-container">
         <div class="time-block">
-          <span class="time-value">{{ event?.dateStart }}</span>
+          <span class="time-value">{{ event.dateStart }}</span>
         </div>
         <div class="time-block">
-          <span class="time-value">{{ event?.dateEnd }}</span>
+          <span class="time-value">{{ event.dateEnd }}</span>
         </div>
       </div>
     </section>
@@ -42,10 +39,10 @@
     <section class="location-section section">
       <h2>Локация</h2>
       <div class="location-footer">
-        <div>{{ event?.place }}</div>
-        <button class="event-card-img-button-like" (click)="toggleLike($event)">
+        <div>{{ event.place }}</div>
+        <button class="event-card-img-button-like"
+                (click)="toggleLike($event)">
           <mat-icon [ngClass]="{'icon-active': isLiked}">favorite</mat-icon>
-          <!--<img id="iconHeartId" src="assets/svg/heart-icon.svg" alt="Нравится">-->
         </button>
       </div>
     </section>
@@ -55,20 +52,23 @@
       <div class="info-container">
         <div class="info-block">
           <span class="info-label">Организатор</span>
-          <span class="info-value">{{ event?.organizerName }}</span>
+          <span class="info-value">{{ event.organizerName }}</span>
         </div>
         <div class="info-block">
           <span class="info-label">Вебсайт</span>
-          <span class="info-value">{{ event?.organizerSite }}</span>
+          <span class="info-value">{{ event.organizerSite }}</span>
         </div>
       </div>
     </section>
 
+    <div *ngIf="{ isAdded: isAdded$ | async } as data">
     <button
       class="register-btn"
-      [class.added]="isAdded"
-      (click)="toggleAdd($event)">
-      {{ isAdded ? 'Удалить из планов' : 'Планирую посетить' }}
+      [class.added]="data.isAdded"
+      (click)="toggleAdd(event, data.isAdded, $event)">
+      {{ data.isAdded ? 'Удалить из планов' : 'Планирую посетить' }}
     </button>
+  </div>
+
   </div>
 </div>
