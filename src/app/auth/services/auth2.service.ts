@@ -54,6 +54,10 @@ export class Auth2Service {
         if (this.hasToken()) {
             this.loadUserProfile();
         }
+
+        this.user$.subscribe(user => {
+            if (user) this.loadUserProfile();
+        });
     }
 
     /**
@@ -111,7 +115,7 @@ export class Auth2Service {
         } else {
             updatedPlanned = current.plannedEvents.filter(id => id !== eventId);
         }
-
+        console.log('plannedEvents до:', current.plannedEvents, 'после:', updatedPlanned);
         this.userDataSubject.next({
             ...current,
             plannedEvents: updatedPlanned

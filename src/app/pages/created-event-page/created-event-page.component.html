@@ -11,32 +11,32 @@
       <input type="text"
              class="search-input"
              placeholder="Поиск по названию мероприятия"
-             [(ngModel)]="searchQuery"
-             (input)="onSearchChange()">
+             [ngModel]="searchQuery$ | async"
+             (ngModelChange)="onSearchChange($event)">
       <mat-icon class="search-icon">search</mat-icon>
     </div>
 
     <div class="filter-buttons">
       <button class="filter-btn"
-              [class.active]="selectedFilter === 'all'"
+              [class.active]="(selectedFilter$ | async) === 'all'"
               (click)="setFilter('all')">
-        Все ({{ allEvents.length }})
+        Все ({{ allEventsCount$ | async }})
       </button>
       <button class="filter-btn"
-              [class.active]="selectedFilter === 'upcoming'"
+              [class.active]="(selectedFilter$ | async) === 'upcoming'"
               (click)="setFilter('upcoming')">
-        Предстоящие ({{ upcomingEvents.length }})
+        Предстоящие ({{ upcomingEventsCount$ | async }})
       </button>
       <button class="filter-btn"
-              [class.active]="selectedFilter === 'past'"
+              [class.active]="(selectedFilter$ | async) === 'past'"
               (click)="setFilter('past')">
-        Прошедшие ({{ pastEvents.length }})
+        Прошедшие ({{ pastEventsCount$ | async }})
       </button>
     </div>
   </div>
 
   <!-- Индикатор загрузки -->
-  <div class="loading-container" *ngIf="isLoading">
+  <div class="loading-container" *ngIf="isLoading$ | async">
     <div class="loading-spinner">
       <mat-icon class="spin">refresh</mat-icon>
     </div>
@@ -44,95 +44,97 @@
   </div>
 
   <!-- Список мероприятий -->
-  <div class="events-container" *ngIf="!isLoading && filteredEvents.length > 0; else noEvents">
-    <div class="event-card" *ngFor="let event of filteredEvents">
-      <!-- Изображение события -->
-      <div class="event-image-container">
-        <img [src]="getEventImageUrl(event.fileName)"
-             [alt]="event.eventName"
-             class="event-image"
-             (error)="onImageError($event)">
-        <div class="event-status" [ngClass]="getEventStatus(event)">
-          {{ getEventStatusText(event) }}
+  <ng-container *ngIf="filteredEvents$ | async as filteredEvents">
+    <div class="events-container" *ngIf="filteredEvents.length > 0; else noEvents">
+      <div class="event-card" *ngFor="let event of filteredEvents">
+        <!-- Изображение события -->
+        <div class="event-image-container">
+          <img [src]="getEventImageUrl(event.fileName)"
+               [alt]="event.eventName"
+               class="event-image"
+               (error)="onImageError($event)">
+          <div class="event-status" [ngClass]="getEventStatus(event)">
+            {{ getEventStatusText(event) }}
+          </div>
         </div>
-      </div>
+        <!-- Информация о событии -->
+        <div class="event-info">
+          <div class="event-header">
+            <h3 class="event-title">{{ event.eventName }}</h3>
+            <div class="event-actions">
+              <button class="action-btn delete-btn"
+                      (click)="confirmDelete(event)"
+                      title="Удалить">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </div>
 
-      <!-- Информация о событии -->
-      <div class="event-info">
-        <div class="event-header">
-          <h3 class="event-title">{{ event.eventName }}</h3>
-          <div class="event-actions">
-            <button class="action-btn delete-btn"
-                    (click)="confirmDelete(event)"
-                    title="Удалить">
-              <mat-icon>delete</mat-icon>
+          <div class="event-details">
+            <div class="event-meta">
+              <div class="meta-item">
+                <mat-icon class="meta-icon">event</mat-icon>
+                <span>{{ formatDate(event.dateStart) }} - {{ formatDate(event.dateEnd) }}</span>
+              </div>
+              <div class="meta-item">
+                <mat-icon class="meta-icon">location_on</mat-icon>
+                <span>{{ event.place }}</span>
+              </div>
+              <div class="meta-item">
+                <mat-icon class="meta-icon">business</mat-icon>
+                <span>{{ event.organizerName }}</span>
+              </div>
+              <div class="meta-item">
+                <mat-icon class="meta-icon">attach_money</mat-icon>
+                <span>от {{ event.cost }} руб.</span>
+              </div>
+            </div>
+
+            <div class="event-categories">
+              <span class="category-tag">{{ getCategoryName(event.category) }}</span>
+              <span class="genre-tag">{{ getGenreName(event.genre) }}</span>
+            </div>
+
+            <p class="event-description">
+              {{ event.eventDescription | slice:0:150 }}
+              <span *ngIf="event.eventDescription.length > 150">...</span>
+            </p>
+          </div>
+
+          <div class="event-footer">
+            <button class="view-btn" (click)="viewEvent(event.id)">
+              Подробнее
             </button>
           </div>
         </div>
+      </div>
+    </div>
+  </ng-container>
 
-        <div class="event-details">
-          <div class="event-meta">
-            <div class="meta-item">
-              <mat-icon class="meta-icon">event</mat-icon>
-              <span>{{ formatDate(event.dateStart) }} - {{ formatDate(event.dateEnd) }}</span>
-            </div>
-            <div class="meta-item">
-              <mat-icon class="meta-icon">location_on</mat-icon>
-              <span>{{ event.place }}</span>
-            </div>
-            <div class="meta-item">
-              <mat-icon class="meta-icon">business</mat-icon>
-              <span>{{ event.organizerName }}</span>
-            </div>
-            <div class="meta-item">
-              <mat-icon class="meta-icon">attach_money</mat-icon>
-              <span>от {{ event.cost }} руб.</span>
-            </div>
-          </div>
+    <!-- Пустое состояние -->
+    <ng-template #noEvents>
+      <div class="empty-state">
+        <h3>{{ emptyStateTitle$ | async }}</h3>
+        <p>{{ emptyStateMessage$ | async }}</p>
+        <button class="create-event-btn" (click)="createNewEvent()">
+          <mat-icon>add</mat-icon>
+          Создать мероприятие
+        </button>
+      </div>
+    </ng-template>
 
-          <div class="event-categories">
-            <span class="category-tag">{{ getCategoryName(event.category) }}</span>
-            <span class="genre-tag">{{ getGenreName(event.genre) }}</span>
-          </div>
-
-          <p class="event-description">
-            {{ event.eventDescription | slice:0:150 }}
-            <span *ngIf="event.eventDescription.length > 150">...</span>
-          </p>
-        </div>
-
-        <div class="event-footer">
-          <button class="view-btn" (click)="viewEvent(event.id)">
-            Подробнее
-          </button>
+    <!-- Модальное окно подтверждения удаления -->
+    <div class="modal-overlay" *ngIf="showDeleteModal" (click)="cancelDelete()">
+      <div class="modal-content" (click)="$event.stopPropagation()">
+        <h3>Подтверждение удаления</h3>
+        <p>Вы уверены, что хотите удалить мероприятие "{{ eventToDelete?.eventName }}"?</p>
+        <p class="warning-text">Это действие нельзя отменить.</p>
+        <div class="modal-actions">
+          <button class="cancel-btn" (click)="cancelDelete()">Отмена</button>
+          <button class="confirm-btn" (click)="deleteEvent(eventToDelete?.id)">Удалить</button>
         </div>
       </div>
     </div>
-  </div>
-
-  <!-- Пустое состояние -->
-  <ng-template #noEvents>
-    <div class="empty-state">
-      <h3>{{ getEmptyStateTitle() }}</h3>
-      <p>{{ getEmptyStateMessage() }}</p>
-      <button class="create-event-btn" (click)="createNewEvent()">
-        <mat-icon>add</mat-icon>
-        Создать мероприятие
-      </button>
-    </div>
-  </ng-template>
-
-  <!-- Модальное окно подтверждения удаления -->
-  <div class="modal-overlay" *ngIf="showDeleteModal" (click)="cancelDelete()">
-    <div class="modal-content" (click)="$event.stopPropagation()">
-      <h3>Подтверждение удаления</h3>
-      <p>Вы уверены, что хотите удалить мероприятие "{{ eventToDelete?.eventName }}"?</p>
-      <p class="warning-text">Это действие нельзя отменить.</p>
-      <div class="modal-actions">
-        <button class="cancel-btn" (click)="cancelDelete()">Отмена</button>
-        <button class="confirm-btn" (click)="deleteEvent()" >Удалить</button>
-      </div>
-    </div>
-  </div>
 </div>
+
 

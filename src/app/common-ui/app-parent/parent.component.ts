@@ -1,141 +1,126 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { RegistrationModalComponent } from '../registration-modal/registration-modal.component';
-import { LoginModalComponent } from '../login-modal/login-modal.component';
-import { Observable } from 'rxjs';
-import { Auth2Service} from '../../auth/services/auth2.service';
-import { AsyncPipe, CommonModule } from '@angular/common';
-import { Subject, takeUntil } from 'rxjs';
-import { MatIcon } from '@angular/material/icon';
-import { Router } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
+import {Component, OnInit, OnDestroy} from '@angular/core';
+import {RouterModule} from '@angular/router';
+import {RegistrationModalComponent} from '../registration-modal/registration-modal.component';
+import {LoginModalComponent} from '../login-modal/login-modal.component';
+import {Observable} from 'rxjs';
+import {Auth2Service} from '../../auth/services/auth2.service';
+import {AsyncPipe, CommonModule} from '@angular/common';
+import {Subject, takeUntil} from 'rxjs';
+import {MatIcon} from '@angular/material/icon';
+import {Router} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {UserDetails} from '../../auth/models/user-details';
 
 @Component({
-    selector: 'app-parent',
-    standalone: true,
-    imports: [RegistrationModalComponent, LoginModalComponent, AsyncPipe, CommonModule, MatIcon, RouterModule],
-    templateUrl: './parent.component.html',
-    styleUrls: ['./parent.component.scss'],
+  selector: 'app-parent',
+  standalone: true,
+  imports: [RegistrationModalComponent, LoginModalComponent, AsyncPipe, CommonModule, MatIcon, RouterModule],
+  templateUrl: './parent.component.html',
+  styleUrls: ['./parent.component.scss'],
 })
 export class ParentComponent implements OnInit, OnDestroy {
-    private destroy$ = new Subject<void>();
+  private destroy$ = new Subject<void>();
+  userData$!: Observable<UserDetails | null>;
+
+  isLoginModalOpen = false;
+  isRegistrationModalOpen = false;
+  isLoggedIn$!: Observable<boolean>;
+  currentUser: UserDetails | null = null;
 
 
-    isLoginModalOpen = false;
-    isRegistrationModalOpen = false;
-    isLoggedIn$!: Observable<boolean>;
-    currentUser: UserDetails | null = null;
-
-
-    constructor(
+  constructor(
     private authService: Auth2Service,
     private router: Router,
     private route: ActivatedRoute
-
-    ) {
+  ) {
     // Получаем реактивный статус авторизации
-        this.isLoggedIn$ = this.authService.isLoggedIn();
+    this.isLoggedIn$ = this.authService.isLoggedIn();
+    this.userData$ = this.authService.userData$;
 
-        this.route.queryParams.subscribe(params => {
-            if (params['showLoginModal'] === 'true') {
-                this.openLoginModal();
-
-                this.router.navigate([], {
-                    relativeTo: this.route,
-                    queryParams: {},
-                    replaceUrl: true
-                });
-            }
+    this.route.queryParams.subscribe(params => {
+      if (params['showLoginModal'] === 'true') {
+        this.openLoginModal();
+        this.router.navigate([], {
+          relativeTo: this.route,
+          queryParams: {},
+          replaceUrl: true
         });
-    }
+      }
+    });
+  }
 
-    ngOnInit(): void {
+
+  ngOnInit(): void {
     // Подписка на данные пользователя для получения роли
-        this.authService.userData$
-            .pipe(takeUntil(this.destroy$))
-            .subscribe(userData => {
-                this.currentUser = userData;
-            });
-    }
+    this.authService.userData$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(userData => {
+        this.currentUser = userData;
+      });
+  }
 
-    ngOnDestroy(): void {
-        this.destroy$.next();
-        this.destroy$.complete();
-    }
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 
-    // Проверка ролей пользователя
-    /**
-     *
-     */
-    isAdmin(): boolean {
-        return this.authService.currentUser?.role === 'ROLE_ADMIN';
-    }
+  // Навигация для кнопок с ролями
+  /**
+   *
+   */
+  navigateToAdminPanel(): void {
+    this.router.navigate(['/admin-panel']);
+  }
 
-    /**
-     *
-     */
-    isEventCreator(): boolean {
-        return this.authService.currentUser?.role === 'ROLE_CREATOR';
-    }
+  /**
+   *
+   */
+  navigateToCreateEvent(): void {
+    this.router.navigate(['/create-event']);
+  }
 
-    // Навигация для кнопок с ролями
-    /**
-     *
-     */
-    navigateToAdminPanel(): void {
-        this.router.navigate(['/admin-panel']);
-    }
+  /**
+   *
+   */
+  navigateToMyEvents(): void {
+    this.router.navigate(['/my-events']);
+  }
 
-    /**
-     *
-     */
-    navigateToCreateEvent(): void {
-        this.router.navigate(['/create-event']);
-    }
+  /**
+   *
+   */
+  goToProfile() {
+    this.router.navigate(['/profile']);
+  }
 
-    /**
-     *
-     */
-    navigateToMyEvents(): void {
-        this.router.navigate(['/my-events']);
-    }
+  /**
+   *
+   */
+  logout(): void {
+    this.authService.logout();
+  }
 
-    /**
-     *
-     */
-    goToProfile() {
-        this.router.navigate(['/profile']);
-    }
+  /**
+   *
+   */
+  openLoginModal(): void {
+    this.isLoginModalOpen = true;
+    this.isRegistrationModalOpen = false;
+  }
 
-    /**
-     *
-     */
-    logout(): void {
-        this.authService.logout();
-    }
+  /**
+   *
+   */
+  openRegistrationModal(): void {
+    this.isRegistrationModalOpen = true;
+    this.isLoginModalOpen = false;
+  }
 
-    /**
-     *
-     */
-    openLoginModal(): void {
-        this.isLoginModalOpen = true;
-        this.isRegistrationModalOpen = false;
-    }
-
-    /**
-     *
-     */
-    openRegistrationModal(): void {
-        this.isRegistrationModalOpen = true;
-        this.isLoginModalOpen = false;
-    }
-
-    /**
-     *
-     */
-    closeModals(): void {
-        this.isLoginModalOpen = false;
-        this.isRegistrationModalOpen = false;
-    }
+  /**
+   *
+   */
+  closeModals(): void {
+    this.isLoginModalOpen = false;
+    this.isRegistrationModalOpen = false;
+  }
 }

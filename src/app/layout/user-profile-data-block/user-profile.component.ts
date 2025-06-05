@@ -1,8 +1,9 @@
-import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
+import {Component, OnDestroy, ChangeDetectionStrategy, inject, Signal, signal, effect} from '@angular/core';
 import { Auth2Service } from '../../auth/services/auth2.service';
 import { Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import {UserDetails} from '../../auth/models/user-details';
+import {toSignal} from '@angular/core/rxjs-interop';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,selector: 'app-user-profile',
@@ -11,49 +12,31 @@ import {UserDetails} from '../../auth/models/user-details';
     templateUrl: './user-profile.component.html',
     styleUrls: ['./user-profile.component.scss']
 })
-export class UserProfileComponent implements OnInit, OnDestroy {
-    public userData: UserDetails | null = null;
-    public isLoading = true;
-    public error: string | null = null;
+export class UserProfileComponent implements OnDestroy {
+  isLoading = signal(true);
+  error = signal<string | null>(null);
     private userSubscription: Subscription | undefined;
 
-    constructor(public authService: Auth2Service) {
-    }
+  private authService = inject(Auth2Service);
+  userData: Signal<UserDetails | null> = toSignal(this.authService.userData$, { initialValue: null });
 
-    public ngOnInit(): void {
-        console.log('Инициализация компонента профиля пользователя');
+  constructor() {
+    effect(() => {
+      const user = this.userData();
+      const isAuth = this.authService.isAuth;
 
-        // Подписываемся на данные пользователя из сервиса
-        this.userSubscription = this.authService.userData$.subscribe({
-            next: (user): void => {
-                this.userData = user;
-                this.isLoading = false;
-                if (!user && this.authService.isAuth) {
-                    this.isLoading = true;
-                }
-                if (!user && !this.authService.isAuth) {
-                    this.error = 'Для просмотра профиля необходимо авторизоваться';
-                    this.isLoading = false;
-                }
-                console.log('Данные пользователя загружены в компоненте:', user);
-            },
-            error: (err): void => {
-                this.error = 'Ошибка загрузки данных пользователя';
-                this.isLoading = false;
-                console.error('Ошибка загрузки данных пользователя в компоненте:', err);
-            }
-        });
-    }
-
-    // Метод для редактирования данных пользователя
-    /**
-     *
-     */
-    public editUserData(): void {
-    // Здесь будет логика редактирования данных пользователя
-        console.log('Нажата кнопка редактирования данных');
-    // Например, открытие модального окна с формой редактирования
-    }
+      if (!user && isAuth) {
+        this.isLoading.set(true);
+        this.error.set(null);
+      } else if (!user && !isAuth) {
+        this.error.set('Для просмотра профиля необходимо авторизоваться');
+        this.isLoading.set(false);
+      } else {
+        this.isLoading.set(false);
+        this.error.set(null);
+      }
+    });
+  }
 
     public ngOnDestroy(): void {
     // Отписываемся, чтобы избежать утечек памяти

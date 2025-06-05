@@ -5,6 +5,9 @@ import { SearchBarComponent } from '../../common-ui/search-bar/search-bar.compon
 import { EventService } from '../../events_data/event.service';
 import { FliterByCategoryPipe } from '../../events_data/fliter-by-category.pipe';
 import {AsyncPipe, NgIf} from '@angular/common';
+import {EventModel} from '../../events_data/event-model';
+import {filter, Observable, startWith, switchMap} from 'rxjs';
+import {NavigationEnd, Router} from '@angular/router';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,selector: 'app-main-page',
@@ -21,5 +24,14 @@ import {AsyncPipe, NgIf} from '@angular/common';
 })
 export class MainPageComponent {
   private eventService = inject(EventService);
-  public allEvents$ = this.eventService.getEvents(0, 100);
+  private router = inject(Router);
+
+  public allEvents$!: Observable<EventModel[]>;
+  ngOnInit(): void {
+    this.allEvents$ = this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd),
+      startWith(null), // чтобы сразу был первый запрос
+      switchMap(() => this.eventService.getEvents(0, 100))
+    );
+  }
 }

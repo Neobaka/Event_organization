@@ -1,17 +1,18 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { HeaderComponent } from '../../common-ui/header/header.component';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { KeyValuePipe, NgClass, NgForOf, NgIf } from '@angular/common';
-import { CATEGORY } from '../../events_data/event-category';
-import { GENRE } from '../../events_data/event-genre';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSelectModule } from '@angular/material/select';
-import { MatIconModule } from '@angular/material/icon';
-import { EventService } from '../../events_data/event.service';
-import { Router } from '@angular/router';
-import { Auth2Service } from '../../auth/services/auth2.service';
-import { ImageService } from '../../images_data/image.service';
-import { HttpClient } from '@angular/common/http';
+import {Component, ChangeDetectionStrategy, inject, signal, DestroyRef} from '@angular/core';
+import {HeaderComponent} from '../../common-ui/header/header.component';
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {CommonModule} from '@angular/common';
+import {CATEGORY} from '../../events_data/event-category';
+import {GENRE} from '../../events_data/event-genre';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+import {MatIconModule} from '@angular/material/icon';
+import {EventService} from '../../events_data/event.service';
+import {Router} from '@angular/router';
+import {Auth2Service} from '../../auth/services/auth2.service';
+import {ImageService} from '../../images_data/image.service';
+import {HttpClient} from '@angular/common/http';
+import {takeUntilDestroyed, toSignal} from '@angular/core/rxjs-interop';
 
 interface UserProfile {
   id: number;
@@ -37,230 +38,213 @@ interface EventPayload {
 }
 
 @Component({
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    selector: 'app-create-event-page',
-    imports: [
-        HeaderComponent,
-        ReactiveFormsModule,
-        NgIf,
-        NgForOf,
-        KeyValuePipe,
-        MatFormFieldModule,
-        MatSelectModule,
-        MatIconModule,
-        NgClass
-    ],
-    templateUrl: './create-event-page.component.html',
-    styleUrl: './create-event-page.component.scss'
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  selector: 'app-create-event-page',
+  imports: [
+    HeaderComponent,
+    ReactiveFormsModule,
+    CommonModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatIconModule,
+  ],
+  templateUrl: './create-event-page.component.html',
+  styleUrl: './create-event-page.component.scss'
 })
 export class CreateEventPageComponent {
-    public isUploaded = false;
-    public filePreviewUrl: string | null = null;
-    public form: FormGroup;
-    public submitted = false;
-    public categoryOptions: typeof CATEGORY = CATEGORY;
-    public genreOptions: typeof GENRE = GENRE;
-    public currentUserId = 0;
-    public fileName: string | null = null;
-    public selectedFile: File | null = null;
-    public showCategoryDropdown = false;
-    public showGenreDropdown = false;
-    public selectedCategory: string | null = null;
-    public selectedGenre: string | null = null;
+  private _fb = inject(FormBuilder);
+  private _eventService = inject(EventService);
+  private _router = inject(Router);
+  private _auth2Service = inject(Auth2Service);
+  private _imageService = inject(ImageService);
+  private _http = inject(HttpClient);
+  private destroyRef = inject(DestroyRef);
 
 
-    /**
+  isUploaded = signal(false);
+  filePreviewUrl = signal<string | null>(null);
+  submitted = signal(false);
+  fileName = signal<string | null>(null);
+  selectedFile = signal<File | null>(null);
+  showCategoryDropdown = signal(false);
+  showGenreDropdown = signal(false);
+  selectedCategory = signal<string | null>(null);
+  selectedGenre = signal<string | null>(null);
+  error = signal<string | null>(null);
+
+  userProfile = toSignal(this._auth2Service.getUserProfileFromApi(), { initialValue: null });
+
+  categoryOptions: typeof CATEGORY = CATEGORY;
+  genreOptions: typeof GENRE = GENRE;
+
+  form: FormGroup;
+
+  constructor(
+  ) {
+    this.form = this._fb.group({
+      title: ['', Validators.required],
+      category: ['', Validators.required],
+      genre: ['', Validators.required],
+      startDate: ['', Validators.required],
+      endDate: ['', Validators.required],
+      description: ['', Validators.required],
+      cost: ['', Validators.required],
+      address: ['', Validators.required],
+      organization: ['', Validators.required],
+      website: ['', Validators.required],
+      fileName: ['', Validators.required],
+    });
+    this.form.get('category')!.valueChanges
+      .pipe(takeUntilDestroyed())
+      .subscribe(val => this.selectedCategory.set(val));
+    this.form.get('genre')!.valueChanges
+      .pipe(takeUntilDestroyed())
+      .subscribe(val => this.selectedGenre.set(val));
+  }
+
+  get selectedGenreLabel(): string {
+    return this.selectedGenre() ? this.genreOptions[this.selectedGenre()!] : 'Выберите жанр мероприятия';
+  }
+
+  /**
    *
    */
-    public get selectedGenreLabel(): string {
-        return this.selectedGenre ? this.genreOptions[this.selectedGenre] : 'Выберите жанр мероприятия';
-    }
+  toggleCategoryDropdown(): void {
+    this.showCategoryDropdown.set(!this.showCategoryDropdown());
+    if (this.showCategoryDropdown()) this.showGenreDropdown.set(false);
+  }
 
-    constructor(
-    private _fb: FormBuilder,
-    private _eventService: EventService,
-    private _router: Router,
-    private _auth2Service: Auth2Service,
-    private _imageService: ImageService,
-    private _http: HttpClient,
-    ) {
-        this.form = this._fb.group({
-            title: ['', Validators.required],
-            category: ['', Validators.required],
-            genre: ['', Validators.required],
-            startDate: ['', Validators.required],
-            endDate: ['', Validators.required],
-            description: ['', Validators.required],
-            cost: ['', Validators.required],
-            address: ['', Validators.required],
-            organization: ['', Validators.required],
-            website: ['', Validators.required],
-            fileName: ['', Validators.required],
-        });
-        this._auth2Service.getUserProfileFromApi().subscribe({
-            next: (profile: UserProfile) => {
-                this.currentUserId = profile.id;
-            },
-            error: (err: unknown) => {
-                // обработать ошибку
-                console.error('Ошибка получения профиля пользователя', err);
-            }
-        });
-    }
 
-    /**
+
+  /**
    *
    */
-    public toggleCategoryDropdown(): void {
-        this.showCategoryDropdown = !this.showCategoryDropdown;
-        if (this.showCategoryDropdown) {
-            this.showGenreDropdown = false;
+  toggleGenreDropdown(): void {
+    this.showGenreDropdown.set(!this.showGenreDropdown());
+    if (this.showGenreDropdown()) this.showCategoryDropdown.set(false);
+  }
+
+  /**
+   *
+   */
+  selectCategory(key: string): void {
+    this.selectedCategory.set(key);
+    this.form.controls['category'].setValue(key);
+    this.showCategoryDropdown.set(false);
+  }
+
+  /**
+   *
+   */
+  selectGenre(key: string): void {
+    this.selectedGenre.set(key);
+    this.form.controls['genre'].setValue(key);
+    this.showGenreDropdown.set(false);
+  }
+
+  /**
+   *
+   */
+  onFileSelected(event: Event): void {
+    const input: HTMLInputElement = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      const file = input.files[0];
+      this.selectedFile.set(file);
+      this.fileName.set(file.name);
+
+      const reader: FileReader = new FileReader();
+      reader.onload = (e: ProgressEvent<FileReader>) => {
+        this.filePreviewUrl.set(e.target?.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  /**
+   *
+   */
+  uploadImage(): void {
+    const file = this.selectedFile();
+    if (!file) return;
+    const formData: FormData = new FormData();
+    formData.append('file', file);
+
+    this._http.post<UploadResponse>(
+      'http://188.226.91.215:43546/api/v1/images/upload',
+      formData
+    ).pipe(
+      takeUntilDestroyed(this.destroyRef) // Передаем контекст уничтожения
+    ).subscribe({
+      next: (res: UploadResponse) => {
+        this.isUploaded.set(true);
+        this.form.patchValue({ fileName: res.fileName });
+      },
+      error: (err: unknown) => {
+        this.error.set('Ошибка загрузки файла');
+      }
+    });
+  }
+
+  /**
+   *
+   */
+  public onGenresChange(event: Event): void {
+    const select: HTMLSelectElement = event.target as HTMLSelectElement;
+    const selected: string[] = Array.from(select.selectedOptions).map((opt: HTMLOptionElement) => opt.value);
+    this.form.controls['genres'].setValue(selected);
+    this.form.controls['genres'].markAsTouched();
+  }
+
+  /**
+   *
+   */
+  async onSubmit(): Promise<void> {
+    this.submitted.set(true);
+    if (this.form.invalid) return;
+
+    // Если файл выбран, загружаем его
+    if (this.selectedFile()) {
+      try {
+        const res = await this._imageService.uploadImage(this.selectedFile()!).toPromise();
+        if (res) {
+          this.form.patchValue({ fileName: res.fileName });
         }
+      } catch (error) {
+        this.error.set('Ошибка загрузки изображения');
+        return;
+      }
     }
 
-    /**
-   *
-   */
-    public toggleGenreDropdown(): void {
-        this.showGenreDropdown = !this.showGenreDropdown;
-        if (this.showGenreDropdown) {
-            this.showCategoryDropdown = false;
-        }
+    // Собираем payload
+    const user = this.userProfile();
+    if (!user) {
+      this.error.set('Не удалось получить пользователя');
+      return;
     }
 
-    /**
-   *
-   */
-    public selectCategory(key: string): void {
-        this.selectedCategory = key;
-        this.form.controls['category'].setValue(key);
-        this.showCategoryDropdown = false;
-    }
+    const payload: EventPayload = {
+      fileName: this.form.value.fileName || 'default.jpg',
+      cost: Number(this.form.value.cost),
+      creatorId: user.id,
+      eventName: this.form.value.title,
+      eventDescription: this.form.value.description,
+      dateStart: this.form.value.startDate.split('T')[0],
+      dateEnd: this.form.value.endDate.split('T')[0],
+      place: this.form.value.address,
+      organizerName: this.form.value.organization,
+      organizerSite: this.form.value.website,
+      category: this.form.value.category,
+      genre: this.form.value.genre,
+    };
 
-    /**
-   *
-   */
-    public selectGenre(key: string): void {
-        this.selectedGenre = key;
-        this.form.controls['genre'].setValue(key);
-        this.showGenreDropdown = false;
-    }
-
-    /**
-   *
-   */
-    public onFileSelected(event: Event): void {
-        const input: HTMLInputElement = event.target as HTMLInputElement;
-        if (input.files && input.files.length > 0) {
-            this.selectedFile = input.files[0];
-            this.fileName = this.selectedFile.name;
-
-            // Создаём превью
-            const reader: FileReader = new FileReader();
-            reader.onload = (e: ProgressEvent<FileReader>) => {
-                this.filePreviewUrl = e.target?.result as string;
-            };
-            reader.readAsDataURL(this.selectedFile);
-        }
-    }
-
-    /**
-   *
-   */
-    public uploadImage(): void {
-        if (!this.selectedFile) {
-            return;
-        }
-
-        const formData: FormData = new FormData();
-        formData.append('file', this.selectedFile);
-
-        this._http.post<UploadResponse>(
-            'http://188.226.91.215:43546/api/v1/images/upload',
-            formData
-        ).subscribe({
-            next: (res: UploadResponse) => {
-                this.isUploaded = true;
-                this.form.patchValue({ fileName: res.fileName });
-            },
-            error: (err: unknown) => {
-                console.error('Ошибка загрузки файла:', err);
-            }
-        });
-    }
-
-    /**
-   *
-   */
-    public onGenresChange(event: Event): void {
-        const select: HTMLSelectElement = event.target as HTMLSelectElement;
-        const selected: string[] = Array.from(select.selectedOptions).map((opt: HTMLOptionElement) => opt.value);
-        this.form.controls['genres'].setValue(selected);
-        this.form.controls['genres'].markAsTouched();
-    }
-
-    /**
-   *
-   */
-    public async onSubmit(): Promise<void> {
-        this.submitted = true;
-        if (this.form.invalid) {
-            return;
-        }
-
-        // Если файл выбран, загружаем его
-        if (this.selectedFile) {
-            try {
-                const res: UploadResponse | undefined = await this._imageService.uploadImage(this.selectedFile).toPromise();
-                if (res) {
-                    this.form.patchValue({ fileName: res.fileName });
-                }
-            } catch (error) {
-                alert('Ошибка загрузки изображения');
-
-                return;
-            }
-        }
-
-        // Собираем payload для бэка
-        const payload: EventPayload = {
-            fileName: this.form.value.fileName || 'default.jpg',
-            cost: this.form.value.cost,
-            creatorId: this.currentUserId,
-            eventName: this.form.value.title,
-            eventDescription: this.form.value.description,
-            dateStart: this.form.value.startDate.split('T')[0],
-            dateEnd: this.form.value.endDate.split('T')[0],
-            place: this.form.value.address,
-            organizerName: this.form.value.organization,
-            organizerSite: this.form.value.website,
-            category: this.form.value.category,
-            genre: this.form.value.genre,
-        };
-
-        this._eventService.createEvent(payload).subscribe({
-            next: () => {
-                alert('Мероприятие успешно создано!');
-                this._router.navigate(['/']);
-            },
-            error: (err: unknown) => {
-                console.error('Ошибка при создании мероприятия:', err);
-
-                if (err && typeof err === 'object' && 'status' in err) {
-                    const httpErr = err as { status: number; error: unknown };
-                    if (httpErr.status === 400) {
-                        alert('Некорректное тело запроса. Проверьте форму.');
-                    } else if (httpErr.status === 401) {
-                        alert('Неверный Access Token!');
-                    } else if (httpErr.status === 500) {
-                        alert('Ошибка сервера. Попробуйте позже.');
-                    } else {
-                        alert('Неизвестная ошибка. Подробности в консоли.');
-                    }
-                } else {
-                    alert('Неизвестная ошибка. Подробности в консоли.');
-                }
-            }
-        });
-    }
+    this._eventService.createEvent(payload).subscribe({
+      next: () => {
+        alert('Мероприятие успешно создано!');
+        this._router.navigate(['/']);
+      },
+      error: (err: unknown) => {
+        this.error.set('Ошибка при создании мероприятия');
+      }
+    });
+  }
 }

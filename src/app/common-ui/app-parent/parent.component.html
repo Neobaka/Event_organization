@@ -10,9 +10,9 @@
   <div *ngIf="isLoggedIn$ | async" class="header-avatar-container">
 
     <!-- Кнопки в зависимости от роли пользователя -->
-    <div class="role-buttons-container" *ngIf="currentUser">
+    <div class="role-buttons-container" *ngIf="(userData$ | async) as user">
       <!-- Кнопка для админа -->
-      <button *ngIf="isAdmin()"
+      <button *ngIf="user.role === 'ROLE_ADMIN'"
               class="role-button admin-button"
               (click)="navigateToAdminPanel()"
               type="button">
@@ -22,7 +22,7 @@
       </button>
 
       <!-- Кнопка для создателя мероприятий -->
-      <button *ngIf="isEventCreator() || isAdmin()"
+      <button *ngIf="user.role === 'ROLE_CREATOR' || user.role === 'ROLE_ADMIN'"
               class="role-button creator-button"
               (click)="navigateToCreateEvent()"
               type="button">
@@ -32,7 +32,7 @@
       </button>
 
       <button
-        *ngIf="isAdmin() || isEventCreator()"
+        *ngIf="user.role === 'ROLE_CREATOR' || user.role === 'ROLE_ADMIN'"
         class="role-button my-events-button"
         (click)="navigateToMyEvents()"
         type="button">
@@ -45,9 +45,9 @@
     <div class="header-avatar" (click)="goToProfile()">
       <img class="avatar-img" src="assets/img/sample.jpeg" alt="Аватарка пользователя"/>
       <!-- Индикатор роли на аватарке -->
-      <div class="role-indicator" *ngIf="currentUser">
-        <span *ngIf="isAdmin()" class="role-badge admin-badge">A</span>
-        <span *ngIf="isEventCreator()" class="role-badge creator-badge">C</span>
+      <div class="role-indicator" *ngIf="(userData$ | async) as user">
+        <span *ngIf="user.role === 'ROLE_ADMIN'" class="role-badge admin-badge">A</span>
+        <span *ngIf="user.role === 'ROLE_CREATOR'" class="role-badge creator-badge">C</span>
       </div>
     </div>
 
