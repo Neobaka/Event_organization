@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, Input, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, DestroyRef, inject, Input, OnInit} from '@angular/core';
 import { SvgIconComponent } from '../../helpers/svg-icon/svg-icon.component';
 import { MatIcon } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
@@ -34,6 +34,7 @@ export class EventCardComponent implements OnInit {
   private destroyRef = inject(DestroyRef);
   private eventService = inject(EventService);
   private authService = inject(Auth2Service);
+  private cdr = inject(ChangeDetectorRef);
 
   ngOnInit() {
       if (this.event?.fileName) {
@@ -42,10 +43,12 @@ export class EventCardComponent implements OnInit {
               .subscribe({
                   next: (blob) => {
                       const objectURL = URL.createObjectURL(blob);
-                      this.imageUrl = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+                    this.imageUrl = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+                    this.cdr.markForCheck();
                   },
                   error: () => {
                       this.imageUrl = undefined;
+                    this.cdr.markForCheck();
                   }
               });
       }

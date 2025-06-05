@@ -1,12 +1,11 @@
-import { Component, inject, Input, SimpleChanges, OnInit, OnChanges } from '@angular/core';
+import {Component, inject, Input, signal, computed, effect} from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Auth2Service } from '../../auth/services/auth2.service';
 import { EventService } from '../../events_data/event.service';
 import { EventCardComponent } from '../event-card/event-card.component';
 import { NgForOf, NgIf } from '@angular/common';
 import { EventModel } from '../../events_data/event-model';
-import {forkJoin, of, switchMap, tap} from 'rxjs';
-import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
+import {forkJoin} from 'rxjs';
 
 @Component({
     selector: 'app-user-profile-my-tickets',
@@ -19,54 +18,46 @@ import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
     templateUrl: './user-profile-my-tickets.component.html',
     styleUrl: './user-profile-my-tickets.component.scss'
 })
-export class UserProfileMyTicketsComponent implements OnInit, OnChanges {
+export class UserProfileMyTicketsComponent {
     plannedEvents: EventModel[] = [];
-    filteredEvents: EventModel[] = [];
-    isLoading = true;
+  filteredEvents = computed(() => {
+    return this.allEvents().filter(e =>
+      e.eventName.toLowerCase().includes(this._searchQuery())
+    );
+  });
+  isLoading = signal(true);
+  allEvents = signal<EventModel[]>([]);
 
-  @Input() searchQuery = '';
+  private _searchQuery = signal<string>('');
+  @Input()
+  set searchQuery(value: string) {
+    this._searchQuery.set(value?.toLowerCase() ?? '');
+  }
 
   private authService = inject(Auth2Service);
   private eventService = inject(EventService);
 
-  ngOnInit() {
-    this.authService.userData$.pipe(
-      tap(() => this.isLoading = true),
-      switchMap(user => {
-        if (user && user.plannedEvents && user.plannedEvents.length > 0) {
-          return forkJoin(user.plannedEvents.map(id =>
-            this.eventService.getEventById(id)
-          ));
-        } else {
-          return of([]);
+  constructor() {
+    effect(() => {
+      this.isLoading.set(true);
+      this.authService.userData$.subscribe(user => {
+        if (!user) {
+          this.allEvents.set([]);
+          this.isLoading.set(false);
+          return;
         }
-      }),
-      takeUntilDestroyed() // <-- автоматическая отписка!
-    ).subscribe(events => {
-      this.plannedEvents = events.filter(e => !!e);
-      this.filterEvents();
-      this.isLoading = false;
+        if (user.plannedEvents && user.plannedEvents.length > 0) {
+          forkJoin(user.plannedEvents.map(id =>
+            this.eventService.getEventById(id)
+          )).subscribe(events => {
+            this.allEvents.set(events.filter(e => !!e));
+            this.isLoading.set(false);
+          });
+        } else {
+          this.allEvents.set([]);
+          this.isLoading.set(false);
+        }
+      });
     });
-  }
-
-
-  ngOnChanges(changes: SimpleChanges) {
-      if ('searchQuery' in changes) {
-          this.filterEvents();
-      }
-  }
-
-  /**
-   *
-   */
-  filterEvents() {
-      if (!this.searchQuery) {
-          this.filteredEvents = this.plannedEvents;
-      } else {
-          const query = this.searchQuery.trim().toLowerCase();
-          this.filteredEvents = this.plannedEvents.filter(e =>
-              e.eventName.toLowerCase().includes(query)
-          );
-      }
   }
 }

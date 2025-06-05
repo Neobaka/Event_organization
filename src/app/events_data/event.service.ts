@@ -23,8 +23,8 @@ export class EventService {
     /**
      *
      */
-    createEvent(event: Partial<EventModel>): Observable<any> {
-        return this.http.post(this.apiUrl, event);
+    createEvent(event: Partial<EventModel>): Observable<EventModel> {
+        return this.http.post<EventModel>(this.apiUrl, event);
     }
 
     /**
@@ -37,29 +37,29 @@ export class EventService {
     /**
      *
      */
-    addEventToFavorites(eventId: number): Observable<any> {
-        return this.http.post(`${this.apiUrl}/favorite/${eventId}`, {});
+    addEventToFavorites(eventId: number): Observable<EventModel> {
+        return this.http.post<EventModel>(`${this.apiUrl}/favorite/${eventId}`, {});
     }
 
     /**
      *
      */
-    deleteEventFromFavorites(eventId: number): Observable<any> {
-        return this.http.delete(`${this.apiUrl}/favorite/${eventId}`);
+    deleteEventFromFavorites(eventId: number): Observable<EventModel> {
+        return this.http.delete<EventModel>(`${this.apiUrl}/favorite/${eventId}`);
     }
 
     /**
      *
      */
-    addEventToPlanned(eventId: number): Observable<any> {
-        return this.http.post(`${this.apiUrl}/planned/${eventId}`, {});
+    addEventToPlanned(eventId: number): Observable<EventModel> {
+        return this.http.post<EventModel>(`${this.apiUrl}/planned/${eventId}`, {});
     }
 
     /**
      *
      */
-    deleteEventFromPlanned(eventId: number): Observable<any> {
-        return this.http.delete(`${this.apiUrl}/planned/${eventId}`);
+    deleteEventFromPlanned(eventId: number): Observable<EventModel> {
+        return this.http.delete<EventModel>(`${this.apiUrl}/planned/${eventId}`);
     }
 
     /**
@@ -73,7 +73,7 @@ export class EventService {
     /**
      *
      */
-    deleteEventById(eventId: number): Observable<any> {
-        return this.http.delete(`${this.apiUrl}/${eventId}`);
+    deleteEventById(eventId: number): Observable<EventModel> {
+        return this.http.delete<EventModel>(`${this.apiUrl}/${eventId}`);
     }
 }

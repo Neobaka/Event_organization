@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { EventService } from '../../events_data/event.service';
 import { ImageService } from '../../images_data/image.service';
 import { combineLatest, Subject, Subscription, take, takeUntil, Observable } from 'rxjs';
-import { Auth2Service, UserDetails } from '../../auth/services/auth2.service';
+import { Auth2Service } from '../../auth/services/auth2.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {UserDetails} from '../../auth/models/user-details';
 

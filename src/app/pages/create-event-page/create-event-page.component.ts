@@ -23,7 +23,7 @@ interface UploadResponse {
 
 interface EventPayload {
   fileName: string;
-  cost: string;
+  cost: number;
   creatorId: number;
   eventName: string;
   eventDescription: string;
@@ -67,7 +67,8 @@ export class CreateEventPageComponent {
     public showGenreDropdown = false;
     public selectedCategory: string | null = null;
     public selectedGenre: string | null = null;
-
+
+
     /**
    *
    */

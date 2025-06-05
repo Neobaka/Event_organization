@@ -1,12 +1,11 @@
 import {
-    ChangeDetectorRef,
-    Component,
-    ElementRef,
-    Input,
-    OnDestroy,
-    OnInit,
-    ViewChild,
-    ViewEncapsulation
+  ChangeDetectorRef,
+  Component,
+  ElementRef, HostListener,
+  Input,
+  OnInit,
+  ViewChild,
+  ViewEncapsulation
 } from '@angular/core';
 import { EventModel } from '../../events_data/event-model';
 import { EventService } from '../../events_data/event.service';
@@ -26,7 +25,7 @@ import { CarouselComponent } from '../../common-ui/carousel/carousel/carousel.co
     encapsulation: ViewEncapsulation.None,
     styleUrls: ['./event-card-block.component.scss']
 })
-export class EventCardBlockComponent implements OnInit, OnDestroy {
+export class EventCardBlockComponent implements OnInit {
   @Input() title = '';
   @Input() events: EventModel[] = [];
   private readonly CARD_WIDTH = 410;
@@ -68,17 +67,12 @@ export class EventCardBlockComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
       this.updateLayout();
-      window.addEventListener('resize', this.onResize);
   }
 
-  ngOnDestroy(): void {
-      window.removeEventListener('resize', this.onResize);
-  }
-
-  // Оборачиваем updateLayout для корректного удаления обработчика
+  @HostListener('window:resize')
   onResize = () => {
       this.updateLayout();
-      this.cdr.detectChanges(); // Явно запускаем детект изменений
+    this.cdr.detectChanges();
   };
 }
 
