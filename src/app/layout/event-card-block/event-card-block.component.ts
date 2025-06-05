@@ -1,11 +1,11 @@
 import {
-  ChangeDetectorRef,
-  Component,
-  ElementRef, HostListener,
-  Input,
-  OnInit,
-  ViewChild,
-  ViewEncapsulation
+    ChangeDetectorRef,
+    Component,
+    ElementRef, HostListener,
+    Input,
+    OnInit,
+    ViewChild,
+    ViewEncapsulation
 } from '@angular/core';
 import { EventModel } from '../../events_data/event-model';
 import { EventService } from '../../events_data/event.service';
@@ -70,9 +70,9 @@ export class EventCardBlockComponent implements OnInit {
   }
 
   @HostListener('window:resize')
-  onResize = () => {
-      this.updateLayout();
-    this.cdr.detectChanges();
-  };
+      onResize = () => {
+          this.updateLayout();
+          this.cdr.detectChanges();
+      };
 }
 

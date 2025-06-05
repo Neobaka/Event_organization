@@ -1,10 +1,10 @@
-import {Component, inject, ChangeDetectionStrategy, signal, computed} from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy, signal, computed, OnInit } from '@angular/core';
 import { AdminService } from '../../admin/admin.service';
 import { HeaderComponent } from '../../common-ui/header/header.component';
 import { MatIcon } from '@angular/material/icon';
 import { NgClass, NgForOf, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {UserDetails} from '../../auth/models/user-details';
+import { UserDetails } from '../../auth/models/user-details';
 
 interface UpdateUserData {
   DisplayName: string;
@@ -27,86 +27,102 @@ interface UpdateUserData {
     templateUrl: './admin-page.component.html',
     styleUrl: './admin-page.component.scss'
 })
-export class AdminPageComponent {
-  page = signal(0);
-  size = 100;
-  allUsers = signal<UserDetails[]>([]);
-  isLoading = signal(false);
-  hasMoreUsers = signal(true);
-  searchQuery = signal('');
-  showEditModal = signal(false);
-  editUser = signal<UserDetails | null>(null);
-  editDisplayName = signal('');
-  editRole = signal('');
+export class AdminPageComponent implements OnInit {
+    page = signal(0);
+    size = 100;
+    allUsers = signal<UserDetails[]>([]);
+    isLoading = signal(false);
+    hasMoreUsers = signal(true);
+    searchQuery = signal('');
+    showEditModal = signal(false);
+    editUser = signal<UserDetails | null>(null);
+    editDisplayName = signal('');
+    editRole = signal('');
 
     private _adminService: AdminService = inject(AdminService);
 
 
-  filteredUsers = computed(() => {
-    const query = this.searchQuery().trim().toLowerCase();
-    if (!query) return this.allUsers();
-    return this.allUsers().filter(user =>
-      (user.displayName && user.displayName.toLowerCase().includes(query)) ||
-      (user.email && user.email.toLowerCase().includes(query))
-    );
-  });
+    filteredUsers = computed(() => {
+        const query = this.searchQuery().trim().toLowerCase();
+        if (!query) {return this.allUsers();}
 
-  ngOnInit(): void {
-    this.loadUsers(true);
-  }
+        return this.allUsers().filter(user =>
+            (user.displayName && user.displayName.toLowerCase().includes(query)) ||
+      (user.email && user.email.toLowerCase().includes(query))
+        );
+    });
+
+    ngOnInit(): void {
+        this.loadUsers(true);
+    }
 
     /**
    *
    */
     loadUsers(reset = false): void {
-      if (reset) {
-        this.page.set(0);
-        this.allUsers.set([]);
-        this.hasMoreUsers.set(true);
-      }
-      this.isLoading.set(true);
-      this._adminService.getAllUsers(this.page(), this.size).subscribe(users => {
-        console.log(users);
-        if (users.length < this.size) {
-          this.hasMoreUsers.set(false);
+        if (reset) {
+            this.page.set(0);
+            this.allUsers.set([]);
+            this.hasMoreUsers.set(true);
         }
-        this.allUsers.set([...this.allUsers(), ...users]);
-        this.isLoading.set(false);
-        this.page.set(this.page() + 1);
-      });
+        this.isLoading.set(true);
+        this._adminService.getAllUsers(this.page(), this.size).subscribe(users => {
+            console.log(users);
+            if (users.length < this.size) {
+                this.hasMoreUsers.set(false);
+            }
+            this.allUsers.set([...this.allUsers(), ...users]);
+            this.isLoading.set(false);
+            this.page.set(this.page() + 1);
+        });
     }
 
-  loadMoreUsers(): void {
-    this.loadUsers();
-  }
+    /**
+     *
+     */
+    loadMoreUsers(): void {
+        this.loadUsers();
+    }
 
-  onSearchChange(query: string): void {
-    this.searchQuery.set(query);
-  }
+    /**
+     *
+     */
+    onSearchChange(query: string): void {
+        this.searchQuery.set(query);
+    }
 
-  openEditUserModal(user: UserDetails): void {
-    this.editUser.set(user);
-    this.editDisplayName.set(user.displayName);
-    this.editRole.set(user.role);
-    this.showEditModal.set(true);
-  }
+    /**
+     *
+     */
+    openEditUserModal(user: UserDetails): void {
+        this.editUser.set(user);
+        this.editDisplayName.set(user.displayName);
+        this.editRole.set(user.role);
+        this.showEditModal.set(true);
+    }
 
-  cancelEditUser(): void {
-    this.showEditModal.set(false);
-    this.editUser.set(null);
-  }
+    /**
+     *
+     */
+    cancelEditUser(): void {
+        this.showEditModal.set(false);
+        this.editUser.set(null);
+    }
 
-  saveEditUser(): void {
-    const user = this.editUser();
-    if (!user) return;
-    const updateData: UpdateUserData = {
-      DisplayName: this.editDisplayName(),
-      Role: this.editRole(),
-      FileName: user.fileName
-    };
-    this._adminService.updateUser(user.id, updateData).subscribe(() => {
-      this.loadUsers();
-      this.cancelEditUser();
-    });
-  }
+    /**
+     *
+     */
+    saveEditUser(): void {
+        const user = this.editUser();
+        if (!user) {return;}
+        const updateData: UpdateUserData = {
+            DisplayName: this.editDisplayName(),
+            Role: this.editRole(),
+            FileName: user.fileName
+        };
+        this._adminService.updateUser(user.id, updateData).subscribe(() => {
+            this.loadUsers();
+            this.cancelEditUser();
+        });
+    }
 }

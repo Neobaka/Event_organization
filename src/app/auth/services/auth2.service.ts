@@ -8,7 +8,7 @@ import { LoginPayload } from '../models/login-payload';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import firebase from 'firebase/compat/app';
 import { TokenService } from './token.service';
-import {UserDetails} from '../models/user-details';
+import { UserDetails } from '../models/user-details';
 
 
 //Поскольку используем compat API, везде, где есть ссылака на User, нужно использовать тип из firebase/compat/app
@@ -56,7 +56,7 @@ export class Auth2Service {
         }
 
         this.user$.subscribe(user => {
-            if (user) this.loadUserProfile();
+            if (user) {this.loadUserProfile();}
         });
     }
 
