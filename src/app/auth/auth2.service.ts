@@ -7,7 +7,8 @@ import { BehaviorSubject, catchError, Observable, tap, throwError, EMPTY } from 
 import { LoginPayload } from './login-payload';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import firebase from 'firebase/compat/app';
-import { TokenService } from './token.service';
+import {TokenService} from './token.service';
+import {ApiConfigService} from './api-config.service';
 
 
 //Поскольку используем compat API, везде, где есть ссылака на User, нужно использовать тип из firebase/compat/app
@@ -30,12 +31,14 @@ export interface UserDetails {
 })
 
 export class Auth2Service {
-    // Ключ для хранения токена в localStorage
-    private readonly ACCESS_TOKEN_KEY = 'access_token';
-    private readonly apiUrl = 'http://188.226.91.215:43546/api/v1/';
-    private userProfile$?: Observable<any>;
-    private loggedInSubject: BehaviorSubject<boolean>;
-    private userDataSubject = new BehaviorSubject<UserDetails | null>(null);
+  // Ключ для хранения токена в localStorage
+  private apiConfig = inject(ApiConfigService);
+
+  private readonly ACCESS_TOKEN_KEY = 'access_token';
+  private readonly apiUrl = this.apiConfig.apiUrl + 'users';
+  private userProfile$?: Observable<any>;
+  private loggedInSubject: BehaviorSubject<boolean>
+  private userDataSubject = new BehaviorSubject<UserDetails | null>(null);
 
     private http = inject(HttpClient);
     private router = inject(Router);
@@ -81,15 +84,12 @@ export class Auth2Service {
         return this.userDataSubject.value;
     }
 
-    /**
-     *
-     */
-    syncFirebaseUser(Token: string): Observable<UserDetails> {
-        return this.http.post<UserDetails>(
-            `${this.apiUrl}users/sync`,
-            { Token }
-        ).pipe();
-    }
+  syncFirebaseUser(Token: string): Observable<UserDetails> {
+    return this.http.post<UserDetails>(
+      `${this.apiUrl}/sync`,
+      { Token }
+    ).pipe();
+  }
 
     /**
      *
@@ -136,14 +136,10 @@ export class Auth2Service {
         return this.afAuth.currentUser;
     }
 
-    /**
-     *
-     */
-    getUserProfileFromApi(): Observable<UserDetails> {
-        console.log('Отправка запроса на получение данных пользователя');
-
-        return this.http.get<UserDetails>(`${this.apiUrl}users/user_details`);
-    }
+  getUserProfileFromApi(): Observable<UserDetails> {
+    console.log('Отправка запроса на получение данных пользователя');
+    return this.http.get<UserDetails>(`${this.apiUrl}/user_details`);
+  }
 
     // Загрузка профиля пользователя и обновление userDataSubject
     /**
@@ -221,39 +217,31 @@ export class Auth2Service {
         return this.hasToken();
     }
 
-    //регистрация
-    /**
-     *
-     */
-    register(payload: RegisterPayload) {
-        return this.http.post<void>(
-            `${this.apiUrl}users`,
-            payload
-        ).pipe(
-            catchError(error => {
-                this.clearToken();
+  //регистрация
+  register(payload: RegisterPayload) {
+    return this.http.post<void>(
+      `${this.apiUrl}`,
+      payload
+    ).pipe(
+      catchError(error => {
+        this.clearToken();
+        return throwError(() => error);
+      })
+    )
+  }
 
-                return throwError(() => error);
-            })
-        );
-    }
-
-    /**
-     *
-     */
-    login(payload: LoginPayload) {
-        return this.http.post<TokenResponse>(`${this.apiUrl}users/login`, payload).pipe(
-            tap(response => {
-                this.handleAuthSuccess(response.AccessToken);
-                this.loadUserProfile();
-            }),
-            catchError(error => {
-                this.clearToken();
-
-                return throwError(() => error);
-            })
-        );
-    }
+  login(payload: LoginPayload) {
+    return this.http.post<TokenResponse>(`${this.apiUrl}/login`, payload).pipe(
+      tap(response => {
+        this.handleAuthSuccess(response.AccessToken);
+        this.loadUserProfile();
+      }),
+      catchError(error => {
+        this.clearToken();
+        return throwError(() => error);
+      })
+    );
+  }
 
     // Общая обработка успешной аутентификации
     /**

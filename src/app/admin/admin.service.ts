@@ -1,14 +1,17 @@
-import { inject, Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { map, Observable } from 'rxjs';
-import { UserDetails } from '../auth/auth2.service';
+import {inject, Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {map, Observable} from 'rxjs';
+import {UserDetails} from '../auth/auth2.service';
+import {ApiConfigService} from '../auth/api-config.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AdminService {
 
-    private apiUrl = 'http://188.226.91.215:43546/api/v1/users';
+  private apiConfig = inject(ApiConfigService);
+  private readonly apiUrl = this.apiConfig.apiUrl + 'users';
+  //private apiUrl = 'http://188.226.91.215:43546/api/v1/users';
 
     private http = inject(HttpClient);
 
