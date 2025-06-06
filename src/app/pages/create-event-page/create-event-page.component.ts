@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 import { Auth2Service } from '../../core/auth/services/auth2.service';
 import { ImageService } from '../../core/images_data/services/image.service';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
-import {CreateEventPayload} from '../../core/events_data/interfaces/create-event-payload';
+import { CreateEventPayload } from '../../core/events_data/interfaces/create-event-payload';
 
 
 @Component({
@@ -144,20 +144,20 @@ export class CreateEventPageComponent {
    *
    */
     uploadImage(): void {
-      const file = this.selectedFile();
-      if (!file) return;
+        const file = this.selectedFile();
+        if (!file) {return;}
 
-      this._imageService.uploadImage(file)
-        .pipe(takeUntilDestroyed(this.destroyRef))
-        .subscribe({
-          next: (res) => {
-            this.isUploaded.set(true);
-            this.form.patchValue({ fileName: res.fileName });
-          },
-          error: () => {
-            this.error.set('Ошибка загрузки файла');
-          }
-        });
+        this._imageService.uploadImage(file)
+            .pipe(takeUntilDestroyed(this.destroyRef))
+            .subscribe({
+                next: (res) => {
+                    this.isUploaded.set(true);
+                    this.form.patchValue({ fileName: res.fileName });
+                },
+                error: () => {
+                    this.error.set('Ошибка загрузки файла');
+                }
+            });
     }
 
     /**

@@ -52,15 +52,17 @@ export class UserProfileFavoriteEventsComponent {
           this.authService.userData$.pipe(
               tap(user => {
                   if (!user) {
-                    this.allEvents.set([]);
-                    this.isLoading.set(false);
-                    return;
+                      this.allEvents.set([]);
+                      this.isLoading.set(false);
+
+                      return;
                   }
 
                   if (!user.favoriteEvents || user.favoriteEvents.length === 0) {
-                    this.allEvents.set([]);
-                    this.isLoading.set(false);
-                    return;
+                      this.allEvents.set([]);
+                      this.isLoading.set(false);
+
+                      return;
                   }
 
                   forkJoin(
@@ -81,15 +83,17 @@ export class UserProfileFavoriteEventsComponent {
               this.authService.userData$.pipe(
                   tap(user => {
                       if (!user) {
-                        this.allEvents.set([]);
-                        this.isLoading.set(false);
-                        return;
+                          this.allEvents.set([]);
+                          this.isLoading.set(false);
+
+                          return;
                       }
 
                       if(!user.favoriteEvents || user.favoriteEvents.length === 0) {
-                        this.allEvents.set([]);
-                        this.isLoading.set(false);
-                        return;
+                          this.allEvents.set([]);
+                          this.isLoading.set(false);
+
+                          return;
                       }
                       this.isLoading.set(true);
 
@@ -107,7 +111,10 @@ export class UserProfileFavoriteEventsComponent {
       });
   }
 
+  /**
+   *
+   */
   onRemoveFavorite(event: EventModel) {
-    this.allEvents.set(this.allEvents().filter(e => e.id !== event.id));
+      this.allEvents.set(this.allEvents().filter(e => e.id !== event.id));
   }
 }

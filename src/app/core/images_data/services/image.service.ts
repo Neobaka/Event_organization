@@ -1,7 +1,7 @@
-import {inject, Injectable} from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {ApiConfigService} from '../../api-config/services/api-config.service';
+import { ApiConfigService } from '../../api-config/services/api-config.service';
 
 @Injectable({
     providedIn: 'root'
