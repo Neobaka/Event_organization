@@ -31,7 +31,7 @@ export class MainPageComponent implements OnInit {
         this.allEvents$ = this.router.events.pipe(
             filter(event => event instanceof NavigationEnd),
             startWith(null), // чтобы сразу был первый запрос
-            switchMap(() => this.eventService.getEvents({ page: 0, size: 100 }))
+            switchMap(() => this.eventService.getEvents(0, 100))
         );
     }
 }

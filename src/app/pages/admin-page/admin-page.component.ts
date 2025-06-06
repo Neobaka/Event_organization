@@ -5,7 +5,7 @@ import { MatIcon } from '@angular/material/icon';
 import { NgClass, NgForOf, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { UserDetails } from '../../core/auth/interfaces/user-details';
-import {UpdateUserData} from '../../core/admin/interfaces/update-user-data';
+import { UpdateUserData } from '../../core/admin/interfaces/update-user-data';
 
 
 

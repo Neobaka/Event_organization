@@ -32,13 +32,13 @@ export class EventCardBlockComponent implements OnInit, OnDestroy {
   @Input() public title = '';
   @Input() public events: EventModel[] = [];
   @ViewChild('container', { static: true }) public containerRef!: ElementRef<HTMLDivElement>;
-  public slidesToShow = 1;
-  public gap: number = this._MIN_GAP;
 
   private readonly _CARD_WIDTH: number = 410;
   private readonly _MIN_GAP: number = 10;
   private readonly _MAX_GAP: number = 40;
 
+  public slidesToShow = 1;
+  public gap: number = this._MIN_GAP;
   constructor(
     private _eventService: EventService,
     private _cdr: ChangeDetectorRef

@@ -60,6 +60,7 @@ export class EventCardComponent implements OnInit {
               if (user) {
                   this.isLiked = user.favoriteEvents?.includes(this.event.id) ?? false;
                   this.isAdded = user.plannedEvents?.includes(this.event.id) ?? false;
+                  this.cdr.markForCheck();
               }
           });
   }
@@ -91,7 +92,7 @@ export class EventCardComponent implements OnInit {
                   error: () => { }
               });
       } else {
-          this.eventService.deleteEventFromPlanned({ eventId: this.event.id })
+          this.eventService.deleteEventFromPlanned(this.event.id)
               .pipe(takeUntilDestroyed(this.destroyRef))
               .subscribe({
                   next: () => {
@@ -125,7 +126,7 @@ export class EventCardComponent implements OnInit {
               .subscribe({
                   next: () => {
                       this.isLiked = true;
-                      this.authService.updateFavoriteEvents({ eventId: this.event.id, add: true });
+                      this.authService.updateFavoriteEvents(this.event.id, true );
                   },
                   error: () => { }
               });
@@ -135,7 +136,7 @@ export class EventCardComponent implements OnInit {
               .subscribe({
                   next: () => {
                       this.isLiked = false;
-                      this.authService.updateFavoriteEvents({ eventId: this.event.id, add: false });
+                      this.authService.updateFavoriteEvents(this.event.id, false );
                       this.removedFromFavorite.emit(this.event);
                   },
                   error: () => { }

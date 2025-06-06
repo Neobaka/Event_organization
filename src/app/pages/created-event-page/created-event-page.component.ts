@@ -106,7 +106,7 @@ export class CreatedEventPageComponent implements OnInit, OnDestroy {
         let events$: Observable<EventModel[]>;
 
         if (user && user.role === 'ROLE_ADMIN') {
-            events$ = this._eventService.getEvents({ page: this.page, size: this.size });
+            events$ = this._eventService.getEvents(this.page, this.size );
         } else {
             events$ = this._eventService.getEventsByCreator();
         }
